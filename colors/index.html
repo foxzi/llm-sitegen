@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color Palettes</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f5f5f5;
+      padding: 2rem;
+      line-height: 1.5;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 0.5rem;
+      color: #1a1a1a;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 2rem;
+    }
+
+    .category {
+      margin-bottom: 3rem;
+    }
+
+    .category h2 {
+      color: #333;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .palettes {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .palette {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .palette:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    .palette-header {
+      padding: 1rem;
+      border-bottom: 1px solid #eee;
+    }
+
+    .palette-name {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #1a1a1a;
+    }
+
+    .palette-desc {
+      font-size: 0.85rem;
+      color: #666;
+      margin-top: 0.25rem;
+    }
+
+    .colors {
+      display: flex;
+      height: 80px;
+    }
+
+    .color {
+      flex: 1;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 8px;
+      cursor: pointer;
+      position: relative;
+      transition: flex 0.2s;
+    }
+
+    .color:hover {
+      flex: 1.5;
+    }
+
+    .color span {
+      font-size: 0.7rem;
+      font-weight: 500;
+      padding: 2px 4px;
+      border-radius: 3px;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .color:hover span {
+      opacity: 1;
+    }
+
+    .color.light span {
+      background: rgba(0,0,0,0.6);
+      color: white;
+    }
+
+    .color.dark span {
+      background: rgba(255,255,255,0.9);
+      color: #333;
+    }
+
+    .color-labels {
+      display: flex;
+      padding: 0.5rem 1rem;
+      background: #fafafa;
+      border-top: 1px solid #eee;
+    }
+
+    .color-labels span {
+      flex: 1;
+      text-align: center;
+      font-size: 0.7rem;
+      color: #888;
+      text-transform: uppercase;
+    }
+
+    .preview {
+      padding: 1rem;
+      border-top: 1px solid #eee;
+    }
+
+    .preview-btn {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-decoration: none;
+      margin-right: 0.5rem;
+    }
+
+    .preview-text {
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+
+    .copied {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #333;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+
+    .copied.show {
+      opacity: 1;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem;
+      }
+      .palettes {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Color Palettes</h1>
+  <p class="subtitle">Click on any color to copy HEX code</p>
+
+  <div class="category">
+    <h2>Professional / Corporate</h2>
+    <div class="palettes">
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Ocean Trust</div>
+          <div class="palette-desc">Clean, trustworthy feel for business sites</div>
+        </div>
+        <div class="colors">
+          <div class="color dark" style="background: #0066CC" data-color="#0066CC"><span>#0066CC</span></div>
+          <div class="color dark" style="background: #004499" data-color="#004499"><span>#004499</span></div>
+          <div class="color dark" style="background: #FF6B35" data-color="#FF6B35"><span>#FF6B35</span></div>
+          <div class="color light" style="background: #F8FAFC" data-color="#F8FAFC"><span>#F8FAFC</span></div>
+          <div class="color dark" style="background: #1E293B" data-color="#1E293B"><span>#1E293B</span></div>
+        </div>
+        <div class="color-labels"><span>primary</span><span>secondary</span><span>accent</span><span>bg</span><span>text</span></div>
+      </div>
+
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Slate Professional</div>
+          <div class="palette-desc">Modern corporate, serious tone</div>
+        </div>
+        <div class="colors">
+          <div class="color dark" style="background: #334155" data-color="#334155"><span>#334155</span></div>
+          <div class="color dark" style="background: #64748B" data-color="#64748B"><span>#64748B</span></div>
+          <div class="color dark" style="background: #3B82F6" data-color="#3B82F6"><span>#3B82F6</span></div>
+          <div class="color light" style="background: #FFFFFF" data-color="#FFFFFF"><span>#FFFFFF</span></div>
+          <div class="color dark" style="background: #0F172A" data-color="#0F172A"><span>#0F172A</span></div>
+        </div>
+        <div class="color-labels"><span>primary</span><span>secondary</span><span>accent</span><span>bg</span><span>text</span></div>
+      </div>
+
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Executive Green</div>
+          <div class="palette-desc">Finance, legal, consulting</div>
+        </div>
+        <div class="colors">
+          <div class="color dark" style="background: #166534" data-color="#166534"><span>#166534</span></div>
+          <div class="color dark" style="background: #14532D" data-color="#14532D"><span>#14532D</span></div>
+          <div class="color dark" style="background: #CA8A04" data-color="#CA8A04"><span>#CA8A04</span></div>
+          <div class="color light" style="background: #FAFAF9" data-color="#FAFAF9"><span>#FAFAF9</span></div>
+          <div class="color dark" style="background: #1C1917" data-color="#1C1917"><span>#1C1917</span></div>
+        </div>
+        <div class="color-labels"><span>primary</span><span>secondary</span><span>accent</span><span>bg</span><span>text</span></div>
+      </div>
+
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Navy Authority</div>
+          <div class="palette-desc">Government, institutions, enterprise</div>
+        </div>
+        <div class="colors">
+          <div class="color dark" style="background: #1E3A5F" data-color="#1E3A5F"><span>#1E3A5F</span></div>
+          <div class="color dark" style="background: #3D5A80" data-color="#3D5A80"><span>#3D5A80</span></div>
+          <div class="color dark" style="background: #EE6C4D" data-color="#EE6C4D"><span>#EE6C4D</span></div>
+          <div class="color light" style="background: #F0F4F8" data-color="#F0F4F8"><span>#F0F4F8</span></div>
+          <div class="color dark" style="background: #293241" data-color="#293241"><span>#293241</span></div>
+        </div>
+        <div class="color-labels"><span>primary</span><span>secondary</span><span>accent</span><span>bg</span><span>text</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>Tech / Startup</h2>
+    <div class="palettes">
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Midnight Tech</div>
+          <div class="palette-desc">Dark mode tech aesthetic</div>
+        </div>
+        <div class="colors">
+          <div class="color dark" style="background: #6366F1" data-color="#6366F1"><span>#6366F1</span></div>
+          <div class="color dark" style="background: #8B5CF6" data-color="#8B5CF6"><span>#8B5CF6</span></div>
+          <div class="color dark" style="background: #22D3EE" data-color="#22D3EE"><span>#22D3EE</span></div>
+          <div class="color dark" style="background: #0F0F23" data-color="#0F0F23"><span>#0F0F23</span></div>
+          <div class="color light" style="background: #E2E8F0" data-color="#E2E8F0"><span>#E2E8F0</span></div>
+        </div>
+        <div class="color-labels"><span>primary</span><span>secondary</span><span>accent</span><span>bg</span><span>text</span></div>
+      </div>
+
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Electric Startup</div>
+          <div class="palette-desc">Energetic, modern SaaS</div>
+        </div>
+        <div class="colors">
+          <div class="color dark" style="background: #7C3AED" data-color="#7C3AED"><span>#7C3AED</span></div>
+          <div class="color dark" style="background: #2563EB" data-color="#2563EB"><span>#2563EB</span></div>
+          <div class="color dark" style="background: #10B981" data-color="#10B981"><span>#10B981</span></div>
+          <div class="color light" style="background: #FFFFFF" data-color="#FFFFFF"><span>#FFFFFF</span></div>
+          <div class="color dark" style="background: #111827" data-color="#111827"><span>#111827</span></div>
+        </div>
+        <div class="color-labels"><span>primary</span><span>secondary</span><span>accent</span><span>bg</span><span>text</span></div>
+      </div>
+
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Neon Cyber</div>
+          <div class="palette-desc">Gaming, crypto, futuristic</div>
+        </div>
+        <div class="colors">
+          <div class="color dark" style="background: #00FF88" data-color="#00FF88"><span>#00FF88</span></div>
+          <div class="color dark" style="background: #FF00FF" data-color="#FF00FF"><span>#FF00FF</span></div>
+          <div class="color dark" style="background: #00FFFF" data-color="#00FFFF"><span>#00FFFF</span></div>
+          <div class="color dark" style="background: #0A0A0A" data-color="#0A0A0A"><span>#0A0A0A</span></div>
+          <div class="color light" style="background: #FFFFFF" data-color="#FFFFFF"><span>#FFFFFF</span></div>
+        </div>
+        <div class="color-labels"><span>primary</span><span>secondary</span><span>accent</span><span>bg</span><span>text</span></div>
+      </div>
+
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Clean SaaS</div>
+          <div class="palette-desc">Minimal tech product</div>
+        </div>
+        <div class="colors">
+          <div class="color dark" style="background: #2563EB" data-color="#2563EB"><span>#2563EB</span></div>
+          <div class="color dark" style="background: #1D4ED8" data-color="#1D4ED8"><span>#1D4ED8</span></div>
+          <div class="color dark" style="background: #F59E0B" data-color="#F59E0B"><span>#F59E0B</span></div>
+          <div class="color light" style="background: #F9FAFB" data-color="#F9FAFB"><span>#F9FAFB</span></div>
+          <div class="color dark" style="background: #374151" data-color="#374151"><span>#374151</span></div>
+        </div>
+        <div class="color-labels"><span>primary</span><span>secondary</span><span>accent</span><span>bg</span><span>text</span></div>
+      </div>
+
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Terminal Dark</div>
+          <div class="palette-desc">Developer tools, code editors</div>
+        </div>
+        <div class="colors">
+          <div class="color dark" style="background: #22C55E" data-color="#22C55E"><span>#22C55E</span></div>
+          <div class="color dark" style="background: #3B82F6" data-color="#3B82F6"><span>#3B82F6</span></div>
+          <div class="color dark" style="background: #F97316" data-color="#F97316"><span>#F97316</span></div>
+          <div class="color dark" style="background: #1E1E1E" data-color="#1E1E1E"><span>#1E1E1E</span></div>
+          <div class="color light" style="background: #D4D4D4" data-color="#D4D4D4"><span>#D4D4D4</span></div>
+        </div>
+        <div class="color-labels"><span>primary</span><span>secondary</span><span>accent</span><span>bg</span><span>text</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>Nature / Organic</h2>
+    <div class="palettes">
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Forest Calm</div>
+          <div class="palette-desc">Eco, sustainability, wellness</div>
+        </div>
+        <div class="colors">
+          <div class="color dark" style="background: #2D5016" data-color="#2D5016"><span>#2D5016</span></div>
+          <div class="color dark" style="background: #4D7C0F" data-color="#4D7C0F"><span>#4D7C0F</span></div>
+          <div class="color dark" style="background: #A3E635" data-color="#A3E635"><span>#A3E635</span></div>
+          <div class="color light" style="background: #FEFCE8" data-color="#FEFCE8"><span>#FEFCE8</span></div>
+          <div class="color dark" style="background: #1A2E05" data-color="#1A2E05"><span>#1A2E05</span></div>
+        </div>
+        <div class="color-labels"><span>primary</span><span>secondary</span><span>accent</span><span>bg</span><span>text</span></div>
+      </div>
+
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Earth Tone</div>
+          <div class="palette-desc">Natural products, organic brands</div>
+        </div>
+        <div class="colors">
+          <div class="color dark" style="background: #78716C" data-color="#78716C"><span>#78716C</span></div>
+          <div class="color dark" style="background: #A8A29E" data-color="#A8A29E"><span>#A8A29E</span></div>
+          <div class="color dark" style="background: #84CC16" data-color="#84CC16"><span>#84CC16</span></div>
+          <div class="color light" style="background: #FAF9F6" data-color="#FAF9F6"><span>#FAF9F6</span></div>
+          <div class="color dark" style="background: #44403C" data-color="#44403C"><span>#44403C</span></div>
+        </div>
+        <div class="color-labels"><span>primary</span><span>secondary</span><span>accent</span><span>bg</span><span>text</span></div>
+      </div>
+
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Ocean Breeze</div>
+          <div class="palette-desc">Beach, travel, relaxation</div>
+        </div>
+        <div class="colors">
+          <div class="color dark" style="background: #0891B2" data-color="#0891B2"><span>#0891B2</span></div>
+          <div class="color dark" style="background: #06B6D4" data-color="#06B6D4"><span>#06B6D4</span></div>
+          <div class="color dark" style="background: #F59E0B" data-color="#F59E0B"><span>#F59E0B</span></div>
+          <div class="color light" style="background: #F0FDFA" data-color="#F0FDFA"><span>#F0FDFA</span></div>
+          <div class="color dark" style="background: #164E63" data-color="#164E63"><span>#164E63</span></div>
+        </div>
+        <div class="color-labels"><span>primary</span><span>secondary</span><span>accent</span><span>bg</span><span>text</span></div>
+      </div>
+
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Desert Sand</div>
+          <div class="palette-desc">Warm, earthy, bohemian</div>
+        </div>
+        <div class="colors">
+          <div class="color dark" style="background: #B45309" data-color="#B45309"><span>#B45309</span></div>
+          <div class="color dark" style="background: #D97706" data-color="#D97706"><span>#D97706</span></div>
+          <div class="color dark" style="background: #0D9488" data-color="#0D9488"><span>#0D9488</span></div>
+          <div class="color light" style="background: #FFFBEB" data-color="#FFFBEB"><span>#FFFBEB</span></div>
+          <div class="color dark" style="background: #78350F" data-color="#78350F"><span>#78350F</span></div>
+        </div>
+        <div class="color-labels"><span>primary</span><span>secondary</span><span>accent</span><span>bg</span><span>text</span></div>
+      </div>
+
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Botanical</div>
+          <div class="palette-desc">Plants, gardens, florists</div>
+        </div>
+        <div class="colors">
+          <div class="color dark" style="background: #15803D" data-color="#15803D"><span>#15803D</span></div>
+          <div class="color dark" style="background: #86EFAC" data-color="#86EFAC"><span>#86EFAC</span></div>
+          <div class="color dark" style="background: #FB7185" data-color="#FB7185"><span>#FB7185</span></div>
+          <div class="color light" style="background: #F0FDF4" data-color="#F0FDF4"><span>#F0FDF4</span></div>
+          <div class="color dark" style="background: #14532D" data-color="#14532D"><span>#14532D</span></div>
+        </div>
+        <div class="color-labels"><span>primary</span><span>secondary</span><span>accent</span><span>bg</span><span>text</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>Creative / Design</h2>
+    <div class="palettes">
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Sunset Gradient</div>
+          <div class="palette-desc">Bold, creative, artistic</div>
+        </div>
+        <div class="colors">
+          <div class="color dark" style="background: #F43F5E" data-color="#F43F5E"><span>#F43F5E</span></div>
+          <div class="color dark" style="background: #FB923C" data-color="#FB923C"><span>#FB923C</span></div>
+          <div class="color dark" style="background: #FBBF24" data-color="#FBBF24"><span>#FBBF24</span></div>
+          <div class="color dark" style="background: #18181B" data-color="#18181B"><span>#18181B</span></div>
+          <div class="color light" style="background: #FAFAFA" data-color="#FAFAFA"><span>#FAFAFA</span></div>
+        </div>
+        <div class="color-labels"><span>primary</span><span>secondary</span><span>accent</span><span>bg</span><span>text</span></div>
+      </div>
+
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Pastel Dream</div>
+          <div class="palette-desc">Soft, feminine, lifestyle</div>
+        </div>
+        <div class="colors">
+          <div class="color dark" style="background: #F9A8D4" data-color="#F9A8D4"><span>#F9A8D4</span></div>
+          <div class="color dark" style="background: #C4B5FD" data-color="#C4B5FD"><span>#C4B5FD</span></div>
+          <div class="color dark" style="background: #6EE7B7" data-color="#6EE7B7"><span>#6EE7B7</span></div>
+          <div class="color light" style="background: #FFFBFE" data-color="#FFFBFE"><span>#FFFBFE</span></div>
+          <div class="color dark" style="background: #581C87" data-color="#581C87"><span>#581C87</span></div>
+        </div>
+        <div class="color-labels"><span>primary</span><span>secondary</span><span>accent</span><span>bg</span><span>text</span></div>
+      </div>
+
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Bold Contrast</div>
+          <div class="palette-desc">Striking, memorable, high impact</div>
+        </div>
+        <div class="colors">
+          <div class="color dark" style="background: #DC2626" data-color="#DC2626"><span>#DC2626</span></div>
+          <div class="color dark" style="background: #000000" data-color="#000000"><span>#000000</span></div>
+          <div class="color dark" style="background: #FBBF24" data-color="#FBBF24"><span>#FBBF24</span></div>
+          <div class="color light" style="background: #FFFFFF" data-color="#FFFFFF"><span>#FFFFFF</span></div>
+          <div class="color dark" style="background: #171717" data-color="#171717"><span>#171717</span></div>
+        </div>
+        <div class="color-labels"><span>primary</span><span>secondary</span><span>accent</span><span>bg</span><span>text</span></div>
+      </div>
+
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Studio Minimal</div>
+          <div class="palette-desc">Clean portfolio, photography</div>
+        </div>
+        <div class="colors">
+          <div class="color dark" style="background: #18181B" data-color="#18181B"><span>#18181B</span></div>
+          <div class="color dark" style="background: #71717A" data-color="#71717A"><span>#71717A</span></div>
+          <div class="color dark" style="background: #E11D48" data-color="#E11D48"><span>#E11D48</span></div>
+          <div class="color light" style="background: #FAFAFA" data-color="#FAFAFA"><span>#FAFAFA</span></div>
+          <div class="color dark" style="background: #27272A" data-color="#27272A"><span>#27272A</span></div>
+        </div>
+        <div class="color-labels"><span>primary</span><span>secondary</span><span>accent</span><span>bg</span><span>text</span></div>
+      </div>
+
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Candy Pop</div>
+          <div class="palette-desc">Fun, playful, youth brands</div>
+        </div>
+        <div class="colors">
+          <div class="color dark" style="background: #EC4899" data-color="#EC4899"><span>#EC4899</span></div>
+          <div class="color dark" style="background: #8B5CF6" data-color="#8B5CF6"><span>#8B5CF6</span></div>
+          <div class="color dark" style="background: #06B6D4" data-color="#06B6D4"><span>#06B6D4</span></div>
+          <div class="color light" style="background: #FDF4FF" data-color="#FDF4FF"><span>#FDF4FF</span></div>
+          <div class="color dark" style="background: #1F2937" data-color="#1F2937"><span>#1F2937</span></div>
+        </div>
+        <div class="color-labels"><span>primary</span><span>secondary</span><span>accent</span><span>bg</span><span>text</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>E-commerce / Retail</h2>
+    <div class="palettes">
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Luxury Gold</div>
+          <div class="palette-desc">Premium, high-end products</div>
+        </div>
+        <div class="colors">
+          <div class="color dark" style="background: #B8860B" data-color="#B8860B"><span>#B8860B</span></div>
+          <div class="color dark" style="background: #1C1917" data-color="#1C1917"><span>#1C1917</span></div>
+          <div class="color dark" style="background: #D4AF37" data-color="#D4AF37"><span>#D4AF37</span></div>
+          <div class="color light" style="background: #FFFEF7" data-color="#FFFEF7"><span>#FFFEF7</span></div>
+          <div class="color dark" style="background: #292524" data-color="#292524"><span>#292524</span></div>
+        </div>
+        <div class="color-labels"><span>primary</span><span>secondary</span><span>accent</span><span>bg</span><span>text</span></div>
+      </div>
+
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Trust Blue</div>
+          <div class="palette-desc">General retail, marketplaces</div>
+        </div>
+        <div class="colors">
+          <div class="color dark" style="background: #1D4ED8" data-color="#1D4ED8"><span>#1D4ED8</span></div>
+          <div class="color dark" style="background: #3B82F6" data-color="#3B82F6"><span>#3B82F6</span></div>
+          <div class="color dark" style="background: #EF4444" data-color="#EF4444"><span>#EF4444</span></div>
+          <div class="color light" style="background: #FFFFFF" data-color="#FFFFFF"><span>#FFFFFF</span></div>
+          <div class="color dark" style="background: #1F2937" data-color="#1F2937"><span>#1F2937</span></div>
+        </div>
+        <div class="color-labels"><span>primary</span><span>secondary</span><span>accent</span><span>bg</span><span>text</span></div>
+      </div>
+
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Fashion Noir</div>
+          <div class="palette-desc">Clothing, accessories</div>
+        </div>
+        <div class="colors">
+          <div class="color dark" style="background: #000000" data-color="#000000"><span>#000000</span></div>
+          <div class="color dark" style="background: #404040" data-color="#404040"><span>#404040</span></div>
+          <div class="color dark" style="background: #B91C1C" data-color="#B91C1C"><span>#B91C1C</span></div>
+          <div class="color light" style="background: #FFFFFF" data-color="#FFFFFF"><span>#FFFFFF</span></div>
+          <div class="color dark" style="background: #171717" data-color="#171717"><span>#171717</span></div>
+        </div>
+        <div class="color-labels"><span>primary</span><span>secondary</span><span>accent</span><span>bg</span><span>text</span></div>
+      </div>
+
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Fresh Market</div>
+          <div class="palette-desc">Food, groceries, organic</div>
+        </div>
+        <div class="colors">
+          <div class="color dark" style="background: #16A34A" data-color="#16A34A"><span>#16A34A</span></div>
+          <div class="color dark" style="background: #22C55E" data-color="#22C55E"><span>#22C55E</span></div>
+          <div class="color dark" style="background: #EA580C" data-color="#EA580C"><span>#EA580C</span></div>
+          <div class="color light" style="background: #FFFFFF" data-color="#FFFFFF"><span>#FFFFFF</span></div>
+          <div class="color dark" style="background: #166534" data-color="#166534"><span>#166534</span></div>
+        </div>
+        <div class="color-labels"><span>primary</span><span>secondary</span><span>accent</span><span>bg</span><span>text</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>Health / Wellness</h2>
+    <div class="palettes">
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Medical Trust</div>
+          <div class="palette-desc">Healthcare, clinics, pharma</div>
+        </div>
+        <div class="colors">
+          <div class="color dark" style="background: #0EA5E9" data-color="#0EA5E9"><span>#0EA5E9</span></div>
+          <div class="color dark" style="background: #0284C7" data-color="#0284C7"><span>#0284C7</span></div>
+          <div class="color dark" style="background: #10B981" data-color="#10B981"><span>#10B981</span></div>
+          <div class="color light" style="background: #F0F9FF" data-color="#F0F9FF"><span>#F0F9FF</span></div>
+          <div class="color dark" style="background: #0C4A6E" data-color="#0C4A6E"><span>#0C4A6E</span></div>
+        </div>
+        <div class="color-labels"><span>primary</span><span>secondary</span><span>accent</span><span>bg</span><span>text</span></div>
+      </div>
+
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Spa Serenity</div>
+          <div class="palette-desc">Wellness, meditation, yoga</div>
+        </div>
+        <div class="colors">
+          <div class="color dark" style="background: #5EEAD4" data-color="#5EEAD4"><span>#5EEAD4</span></div>
+          <div class="color dark" style="background: #99F6E4" data-color="#99F6E4"><span>#99F6E4</span></div>
+          <div class="color dark" style="background: #C084FC" data-color="#C084FC"><span>#C084FC</span></div>
+          <div class="color light" style="background: #F0FDFA" data-color="#F0FDFA"><span>#F0FDFA</span></div>
+          <div class="color dark" style="background: #134E4A" data-color="#134E4A"><span>#134E4A</span></div>
+        </div>
+        <div class="color-labels"><span>primary</span><span>secondary</span><span>accent</span><span>bg</span><span>text</span></div>
+      </div>
+
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Fitness Energy</div>
+          <div class="palette-desc">Gym, sports, active lifestyle</div>
+        </div>
+        <div class="colors">
+          <div class="color dark" style="background: #EF4444" data-color="#EF4444"><span>#EF4444</span></div>
+          <div class="color dark" style="background: #F97316" data-color="#F97316"><span>#F97316</span></div>
+          <div class="color dark" style="background: #1E1E1E" data-color="#1E1E1E"><span>#1E1E1E</span></div>
+          <div class="color light" style="background: #FFFFFF" data-color="#FFFFFF"><span>#FFFFFF</span></div>
+          <div class="color dark" style="background: #171717" data-color="#171717"><span>#171717</span></div>
+        </div>
+        <div class="color-labels"><span>primary</span><span>secondary</span><span>accent</span><span>bg</span><span>text</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>Food / Restaurant</h2>
+    <div class="palettes">
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Appetito</div>
+          <div class="palette-desc">Italian, warm dining</div>
+        </div>
+        <div class="colors">
+          <div class="color dark" style="background: #B91C1C" data-color="#B91C1C"><span>#B91C1C</span></div>
+          <div class="color dark" style="background: #7F1D1D" data-color="#7F1D1D"><span>#7F1D1D</span></div>
+          <div class="color dark" style="background: #CA8A04" data-color="#CA8A04"><span>#CA8A04</span></div>
+          <div class="color light" style="background: #FFFBEB" data-color="#FFFBEB"><span>#FFFBEB</span></div>
+          <div class="color dark" style="background: #292524" data-color="#292524"><span>#292524</span></div>
+        </div>
+        <div class="color-labels"><span>primary</span><span>secondary</span><span>accent</span><span>bg</span><span>text</span></div>
+      </div>
+
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Cafe Warm</div>
+          <div class="palette-desc">Coffee shops, bakeries</div>
+        </div>
+        <div class="colors">
+          <div class="color dark" style="background: #78350F" data-color="#78350F"><span>#78350F</span></div>
+          <div class="color dark" style="background: #A16207" data-color="#A16207"><span>#A16207</span></div>
+          <div class="color dark" style="background: #65A30D" data-color="#65A30D"><span>#65A30D</span></div>
+          <div class="color light" style="background: #FFFBF5" data-color="#FFFBF5"><span>#FFFBF5</span></div>
+          <div class="color dark" style="background: #422006" data-color="#422006"><span>#422006</span></div>
+        </div>
+        <div class="color-labels"><span>primary</span><span>secondary</span><span>accent</span><span>bg</span><span>text</span></div>
+      </div>
+
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Fresh Kitchen</div>
+          <div class="palette-desc">Modern, healthy food</div>
+        </div>
+        <div class="colors">
+          <div class="color dark" style="background: #65A30D" data-color="#65A30D"><span>#65A30D</span></div>
+          <div class="color dark" style="background: #84CC16" data-color="#84CC16"><span>#84CC16</span></div>
+          <div class="color dark" style="background: #F97316" data-color="#F97316"><span>#F97316</span></div>
+          <div class="color light" style="background: #FFFFFF" data-color="#FFFFFF"><span>#FFFFFF</span></div>
+          <div class="color dark" style="background: #1A2E05" data-color="#1A2E05"><span>#1A2E05</span></div>
+        </div>
+        <div class="color-labels"><span>primary</span><span>secondary</span><span>accent</span><span>bg</span><span>text</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>Education</h2>
+    <div class="palettes">
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Scholar Blue</div>
+          <div class="palette-desc">Schools, universities, courses</div>
+        </div>
+        <div class="colors">
+          <div class="color dark" style="background: #1E40AF" data-color="#1E40AF"><span>#1E40AF</span></div>
+          <div class="color dark" style="background: #3B82F6" data-color="#3B82F6"><span>#3B82F6</span></div>
+          <div class="color dark" style="background: #F59E0B" data-color="#F59E0B"><span>#F59E0B</span></div>
+          <div class="color light" style="background: #EFF6FF" data-color="#EFF6FF"><span>#EFF6FF</span></div>
+          <div class="color dark" style="background: #1E3A8A" data-color="#1E3A8A"><span>#1E3A8A</span></div>
+        </div>
+        <div class="color-labels"><span>primary</span><span>secondary</span><span>accent</span><span>bg</span><span>text</span></div>
+      </div>
+
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Kids Bright</div>
+          <div class="palette-desc">Children, playful learning</div>
+        </div>
+        <div class="colors">
+          <div class="color dark" style="background: #F59E0B" data-color="#F59E0B"><span>#F59E0B</span></div>
+          <div class="color dark" style="background: #10B981" data-color="#10B981"><span>#10B981</span></div>
+          <div class="color dark" style="background: #EC4899" data-color="#EC4899"><span>#EC4899</span></div>
+          <div class="color light" style="background: #FFFFFF" data-color="#FFFFFF"><span>#FFFFFF</span></div>
+          <div class="color dark" style="background: #1F2937" data-color="#1F2937"><span>#1F2937</span></div>
+        </div>
+        <div class="color-labels"><span>primary</span><span>secondary</span><span>accent</span><span>bg</span><span>text</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>Dark Themes</h2>
+    <div class="palettes">
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Carbon Dark</div>
+          <div class="palette-desc">Universal dark mode</div>
+        </div>
+        <div class="colors">
+          <div class="color dark" style="background: #3B82F6" data-color="#3B82F6"><span>#3B82F6</span></div>
+          <div class="color dark" style="background: #1E293B" data-color="#1E293B"><span>#1E293B</span></div>
+          <div class="color dark" style="background: #22D3EE" data-color="#22D3EE"><span>#22D3EE</span></div>
+          <div class="color dark" style="background: #0F172A" data-color="#0F172A"><span>#0F172A</span></div>
+          <div class="color light" style="background: #F1F5F9" data-color="#F1F5F9"><span>#F1F5F9</span></div>
+        </div>
+        <div class="color-labels"><span>primary</span><span>secondary</span><span>accent</span><span>bg</span><span>text</span></div>
+      </div>
+
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Midnight Purple</div>
+          <div class="palette-desc">Creative dark theme</div>
+        </div>
+        <div class="colors">
+          <div class="color dark" style="background: #A855F7" data-color="#A855F7"><span>#A855F7</span></div>
+          <div class="color dark" style="background: #7C3AED" data-color="#7C3AED"><span>#7C3AED</span></div>
+          <div class="color dark" style="background: #F472B6" data-color="#F472B6"><span>#F472B6</span></div>
+          <div class="color dark" style="background: #18181B" data-color="#18181B"><span>#18181B</span></div>
+          <div class="color light" style="background: #E4E4E7" data-color="#E4E4E7"><span>#E4E4E7</span></div>
+        </div>
+        <div class="color-labels"><span>primary</span><span>secondary</span><span>accent</span><span>bg</span><span>text</span></div>
+      </div>
+
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Charcoal Minimal</div>
+          <div class="palette-desc">Elegant dark mode</div>
+        </div>
+        <div class="colors">
+          <div class="color light" style="background: #FFFFFF" data-color="#FFFFFF"><span>#FFFFFF</span></div>
+          <div class="color dark" style="background: #A1A1AA" data-color="#A1A1AA"><span>#A1A1AA</span></div>
+          <div class="color dark" style="background: #F43F5E" data-color="#F43F5E"><span>#F43F5E</span></div>
+          <div class="color dark" style="background: #27272A" data-color="#27272A"><span>#27272A</span></div>
+          <div class="color light" style="background: #FAFAFA" data-color="#FAFAFA"><span>#FAFAFA</span></div>
+        </div>
+        <div class="color-labels"><span>primary</span><span>secondary</span><span>accent</span><span>bg</span><span>text</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>Monochrome</h2>
+    <div class="palettes">
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Pure Grayscale</div>
+          <div class="palette-desc">Minimalist, typography focused</div>
+        </div>
+        <div class="colors">
+          <div class="color dark" style="background: #171717" data-color="#171717"><span>#171717</span></div>
+          <div class="color dark" style="background: #525252" data-color="#525252"><span>#525252</span></div>
+          <div class="color dark" style="background: #A3A3A3" data-color="#A3A3A3"><span>#A3A3A3</span></div>
+          <div class="color light" style="background: #FFFFFF" data-color="#FFFFFF"><span>#FFFFFF</span></div>
+          <div class="color dark" style="background: #262626" data-color="#262626"><span>#262626</span></div>
+        </div>
+        <div class="color-labels"><span>primary</span><span>secondary</span><span>accent</span><span>bg</span><span>text</span></div>
+      </div>
+
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Warm Gray</div>
+          <div class="palette-desc">Softer monochrome</div>
+        </div>
+        <div class="colors">
+          <div class="color dark" style="background: #292524" data-color="#292524"><span>#292524</span></div>
+          <div class="color dark" style="background: #78716C" data-color="#78716C"><span>#78716C</span></div>
+          <div class="color light" style="background: #D6D3D1" data-color="#D6D3D1"><span>#D6D3D1</span></div>
+          <div class="color light" style="background: #FAFAF9" data-color="#FAFAF9"><span>#FAFAF9</span></div>
+          <div class="color dark" style="background: #1C1917" data-color="#1C1917"><span>#1C1917</span></div>
+        </div>
+        <div class="color-labels"><span>primary</span><span>secondary</span><span>accent</span><span>bg</span><span>text</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h2>Seasonal</h2>
+    <div class="palettes">
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Spring Bloom</div>
+          <div class="palette-desc">Fresh, renewal</div>
+        </div>
+        <div class="colors">
+          <div class="color dark" style="background: #22C55E" data-color="#22C55E"><span>#22C55E</span></div>
+          <div class="color dark" style="background: #A3E635" data-color="#A3E635"><span>#A3E635</span></div>
+          <div class="color dark" style="background: #F472B6" data-color="#F472B6"><span>#F472B6</span></div>
+          <div class="color light" style="background: #F0FDF4" data-color="#F0FDF4"><span>#F0FDF4</span></div>
+          <div class="color dark" style="background: #14532D" data-color="#14532D"><span>#14532D</span></div>
+        </div>
+        <div class="color-labels"><span>primary</span><span>secondary</span><span>accent</span><span>bg</span><span>text</span></div>
+      </div>
+
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Summer Vibrant</div>
+          <div class="palette-desc">Energetic, sunny</div>
+        </div>
+        <div class="colors">
+          <div class="color dark" style="background: #0EA5E9" data-color="#0EA5E9"><span>#0EA5E9</span></div>
+          <div class="color dark" style="background: #FBBF24" data-color="#FBBF24"><span>#FBBF24</span></div>
+          <div class="color dark" style="background: #F97316" data-color="#F97316"><span>#F97316</span></div>
+          <div class="color light" style="background: #FFFFFF" data-color="#FFFFFF"><span>#FFFFFF</span></div>
+          <div class="color dark" style="background: #0C4A6E" data-color="#0C4A6E"><span>#0C4A6E</span></div>
+        </div>
+        <div class="color-labels"><span>primary</span><span>secondary</span><span>accent</span><span>bg</span><span>text</span></div>
+      </div>
+
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Autumn Warm</div>
+          <div class="palette-desc">Cozy, harvest</div>
+        </div>
+        <div class="colors">
+          <div class="color dark" style="background: #C2410C" data-color="#C2410C"><span>#C2410C</span></div>
+          <div class="color dark" style="background: #EA580C" data-color="#EA580C"><span>#EA580C</span></div>
+          <div class="color dark" style="background: #CA8A04" data-color="#CA8A04"><span>#CA8A04</span></div>
+          <div class="color light" style="background: #FFFBEB" data-color="#FFFBEB"><span>#FFFBEB</span></div>
+          <div class="color dark" style="background: #431407" data-color="#431407"><span>#431407</span></div>
+        </div>
+        <div class="color-labels"><span>primary</span><span>secondary</span><span>accent</span><span>bg</span><span>text</span></div>
+      </div>
+
+      <div class="palette">
+        <div class="palette-header">
+          <div class="palette-name">Winter Cool</div>
+          <div class="palette-desc">Clean, crisp</div>
+        </div>
+        <div class="colors">
+          <div class="color dark" style="background: #0891B2" data-color="#0891B2"><span>#0891B2</span></div>
+          <div class="color dark" style="background: #67E8F9" data-color="#67E8F9"><span>#67E8F9</span></div>
+          <div class="color dark" style="background: #E11D48" data-color="#E11D48"><span>#E11D48</span></div>
+          <div class="color light" style="background: #F8FAFC" data-color="#F8FAFC"><span>#F8FAFC</span></div>
+          <div class="color dark" style="background: #164E63" data-color="#164E63"><span>#164E63</span></div>
+        </div>
+        <div class="color-labels"><span>primary</span><span>secondary</span><span>accent</span><span>bg</span><span>text</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="copied" class="copied">Copied!</div>
+
+  <script>
+    document.querySelectorAll('.color').forEach(el => {
+      el.addEventListener('click', () => {
+        const color = el.dataset.color;
+        navigator.clipboard.writeText(color);
+        const copied = document.getElementById('copied');
+        copied.textContent = `Copied: ${color}`;
+        copied.classList.add('show');
+        setTimeout(() => copied.classList.remove('show'), 1500);
+      });
+    });
+  </script>
+</body>
+</html>
