@@ -27,5 +27,6 @@ All notable changes to this project will be documented in this file.
 - Section templates: navbar, hero (2 variants), features, pricing, testimonials, FAQ, team, stats, CTA, contact form, footer.
 - Page templates: landing page, blog post, dashboard, portfolio.
 - Additional page templates: lead-gen, click-through, coming-soon, product-listing, product-detail, cart, about, services, 404, login, pricing, careers.
+- Page Details section in layouts README with detailed descriptions for all 16 page templates.
 - Layouts preprompt `layouts/README.md` with usage guide and customization instructions.
 - Layout preview page `layouts/index.html` with live iframe previews.

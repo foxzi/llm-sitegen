@@ -274,6 +274,129 @@ All layouts include mobile breakpoints:
 
 ---
 
+## Page Details
+
+### landing.html
+- Complete SaaS landing page
+- Navbar, hero, features, testimonials, CTA, footer
+- Fully responsive
+- Ready for content replacement
+
+### blog-post.html
+- Article template with typography
+- Author info, date, tags
+- Code block styling
+- Table of contents ready
+- Related posts section
+
+### dashboard.html
+- Admin panel layout
+- Sidebar navigation with icons
+- Stats cards row
+- Data table with pagination
+- Header with search and user menu
+
+### portfolio.html
+- Personal portfolio
+- Hero with photo placeholder
+- Work grid with hover effects
+- About section
+- Contact form
+
+### about.html
+- Company story section
+- Values grid (3 columns)
+- Team members grid
+- Stats row
+- CTA section
+
+### services.html
+- Services grid with icons (6 items)
+- Process steps (4 steps)
+- Featured service highlight
+- CTA section
+- Responsive layout
+
+### pricing.html
+- Monthly/yearly toggle
+- 3-tier pricing cards
+- Popular tier highlighted
+- Feature comparison
+- FAQ accordion
+- CTA section
+
+### careers.html
+- Perks grid (4 items)
+- Job listings with filters
+- Job cards with tags, salary, location
+- Company values section
+- Contact CTA
+
+### 404.html
+- Large error code with gradient
+- Illustration SVG
+- Go Home / Go Back buttons
+- Popular links section
+- Minimal, centered layout
+
+### login.html
+- Split layout (form + illustration)
+- Social login buttons (Google, Facebook)
+- Email/password form
+- Remember me, forgot password
+- Responsive (hides illustration on mobile)
+
+### lead-gen.html
+- Split layout
+- Benefits list with checkmarks
+- Email capture form
+- Trust badges
+- Social proof elements
+
+### click-through.html
+- Product image showcase
+- Feature highlights
+- Pricing display
+- Testimonial
+- Strong CTA buttons
+- Urgency elements
+
+### coming-soon.html
+- Dark theme
+- Countdown timer (JS)
+- Email signup form
+- Social links
+- Brand logo
+- Animated gradient background
+
+### product-listing.html
+- Sidebar filters (category, price, rating)
+- Product grid (3 columns)
+- Product cards with image, price, rating
+- Pagination
+- Sort dropdown
+- Responsive (filters collapse)
+
+### product-detail.html
+- Image gallery with thumbnails
+- Product info (title, price, rating)
+- Color and size options
+- Quantity selector
+- Add to cart button
+- Tabs (description, specs, reviews)
+- Related products
+
+### cart.html
+- Cart items list
+- Quantity controls (+/-)
+- Remove item button
+- Order summary sidebar
+- Promo code input
+- Checkout button
+- Continue shopping link
+
+---
+
 ## Quick Reference
 
 ### Common CSS Classes
