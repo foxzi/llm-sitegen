@@ -13,3 +13,4 @@ All notable changes to this project will be documented in this file.
 - Added source spec file `exmaples/electrolux-roseville-spec.md`.
 - Converted all framework README files to LLM-friendly prompts with usage instructions.
 - Main `frameworks/README.md` now serves as LLM routing prompt for framework selection.
+- Color palettes collection in `colors/README.md` with 35+ named schemes for different project types.
