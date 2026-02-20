@@ -23,3 +23,8 @@ All notable changes to this project will be documented in this file.
 - Icons preprompt `icons/README.md` with usage guide and selection recommendations.
 - Icon preview page `icons/index.html` with search and style switching.
 - Icon download script `icons/download.sh` for updating icon sets.
+- HTML layout templates in `layouts/` with sections and full page templates.
+- Section templates: navbar, hero (2 variants), features, pricing, testimonials, FAQ, team, stats, CTA, contact form, footer.
+- Page templates: landing page, blog post, dashboard, portfolio.
+- Layouts preprompt `layouts/README.md` with usage guide and customization instructions.
+- Layout preview page `layouts/index.html` with live iframe previews.

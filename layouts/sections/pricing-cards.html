@@ -1,0 +1,235 @@
+<!-- Pricing: 3-tier cards -->
+<section class="pricing">
+  <div class="container">
+    <div class="pricing-header">
+      <span class="section-label">Pricing</span>
+      <h2 class="section-title">Simple, transparent pricing</h2>
+      <p class="section-subtitle">Choose the plan that works best for you. All plans include a 14-day free trial.</p>
+    </div>
+
+    <div class="pricing-grid">
+      <!-- Starter -->
+      <div class="pricing-card">
+        <div class="pricing-card-header">
+          <h3 class="plan-name">Starter</h3>
+          <p class="plan-description">Perfect for individuals and small projects</p>
+        </div>
+        <div class="pricing-card-price">
+          <span class="price-amount">$9</span>
+          <span class="price-period">/month</span>
+        </div>
+        <ul class="plan-features">
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Up to 3 projects</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> 5GB storage</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Basic analytics</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Email support</li>
+        </ul>
+        <a href="#" class="btn btn-outline">Get Started</a>
+      </div>
+
+      <!-- Pro (Popular) -->
+      <div class="pricing-card popular">
+        <div class="popular-badge">Most Popular</div>
+        <div class="pricing-card-header">
+          <h3 class="plan-name">Pro</h3>
+          <p class="plan-description">For growing teams and businesses</p>
+        </div>
+        <div class="pricing-card-price">
+          <span class="price-amount">$29</span>
+          <span class="price-period">/month</span>
+        </div>
+        <ul class="plan-features">
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Unlimited projects</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> 50GB storage</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Advanced analytics</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Priority support</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Custom domain</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Team collaboration</li>
+        </ul>
+        <a href="#" class="btn btn-primary">Get Started</a>
+      </div>
+
+      <!-- Enterprise -->
+      <div class="pricing-card">
+        <div class="pricing-card-header">
+          <h3 class="plan-name">Enterprise</h3>
+          <p class="plan-description">For large organizations</p>
+        </div>
+        <div class="pricing-card-price">
+          <span class="price-amount">$99</span>
+          <span class="price-period">/month</span>
+        </div>
+        <ul class="plan-features">
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Everything in Pro</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Unlimited storage</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Custom integrations</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Dedicated support</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> SLA guarantee</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> SSO & SAML</li>
+        </ul>
+        <a href="#" class="btn btn-outline">Contact Sales</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.pricing {
+  padding: 5rem 1.5rem;
+  background: white;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.pricing-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-label {
+  display: inline-block;
+  color: #4F46E5;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  font-size: 1.125rem;
+  color: #6B7280;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+.pricing-card {
+  background: #F9FAFB;
+  border-radius: 16px;
+  padding: 2rem;
+  position: relative;
+}
+
+.pricing-card.popular {
+  background: #4F46E5;
+  color: white;
+  transform: scale(1.05);
+  box-shadow: 0 25px 50px -12px rgba(79, 70, 229, 0.25);
+}
+
+.popular-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #FCD34D;
+  color: #92400E;
+  padding: 0.25rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.plan-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.plan-description {
+  font-size: 0.875rem;
+  opacity: 0.8;
+}
+
+.pricing-card-price {
+  margin: 2rem 0;
+}
+
+.price-amount {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.price-period {
+  font-size: 1rem;
+  opacity: 0.7;
+}
+
+.plan-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem;
+}
+
+.plan-features li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  font-size: 0.9375rem;
+}
+
+.plan-features svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+  flex-shrink: 0;
+}
+
+.pricing-card.popular .plan-features svg {
+  stroke: #A5B4FC;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 0.875rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid #E5E7EB;
+  color: #374151;
+}
+
+.btn-outline:hover {
+  border-color: #4F46E5;
+  color: #4F46E5;
+}
+
+.btn-primary {
+  background: white;
+  color: #4F46E5;
+}
+
+.btn-primary:hover {
+  background: #EEF2FF;
+}
+
+@media (max-width: 1024px) {
+  .pricing-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+  .pricing-card.popular { transform: none; }
+}
+</style>

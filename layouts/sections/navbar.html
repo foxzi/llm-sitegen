@@ -1,0 +1,197 @@
+<!-- Navbar: Simple with mobile menu -->
+<nav class="navbar">
+  <div class="navbar-container">
+    <a href="/" class="navbar-brand">
+      <svg class="brand-logo" viewBox="0 0 32 32" fill="currentColor">
+        <rect width="32" height="32" rx="8"/>
+      </svg>
+      <span class="brand-name">Brand</span>
+    </a>
+
+    <ul class="navbar-menu">
+      <li><a href="#" class="nav-link active">Home</a></li>
+      <li><a href="#" class="nav-link">Features</a></li>
+      <li><a href="#" class="nav-link">Pricing</a></li>
+      <li><a href="#" class="nav-link">About</a></li>
+      <li><a href="#" class="nav-link">Contact</a></li>
+    </ul>
+
+    <div class="navbar-actions">
+      <a href="#" class="btn btn-ghost">Log in</a>
+      <a href="#" class="btn btn-primary">Sign up</a>
+    </div>
+
+    <button class="navbar-toggle" aria-label="Toggle menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile menu (hidden by default) -->
+<div class="mobile-menu">
+  <ul class="mobile-menu-list">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Features</a></li>
+    <li><a href="#">Pricing</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <div class="mobile-menu-actions">
+    <a href="#" class="btn btn-ghost">Log in</a>
+    <a href="#" class="btn btn-primary">Sign up</a>
+  </div>
+</div>
+
+<style>
+.navbar {
+  position: sticky;
+  top: 0;
+  background: white;
+  border-bottom: 1px solid #E5E7EB;
+  z-index: 100;
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: #111827;
+}
+
+.brand-logo {
+  width: 32px;
+  height: 32px;
+  color: #4F46E5;
+}
+
+.brand-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.navbar-menu {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #6B7280;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #111827;
+}
+
+.navbar-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.btn-ghost {
+  color: #374151;
+}
+
+.btn-ghost:hover {
+  background: #F3F4F6;
+}
+
+.btn-primary {
+  background: #4F46E5;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #4338CA;
+}
+
+.navbar-toggle {
+  display: none;
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.navbar-toggle svg {
+  width: 24px;
+  height: 24px;
+  color: #374151;
+}
+
+.mobile-menu {
+  display: none;
+  background: white;
+  border-bottom: 1px solid #E5E7EB;
+  padding: 1rem 1.5rem;
+}
+
+.mobile-menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+}
+
+.mobile-menu-list li {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #F3F4F6;
+}
+
+.mobile-menu-list a {
+  text-decoration: none;
+  color: #374151;
+  font-weight: 500;
+}
+
+.mobile-menu-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+@media (max-width: 768px) {
+  .navbar-menu,
+  .navbar-actions {
+    display: none;
+  }
+  .navbar-toggle {
+    display: block;
+  }
+  .mobile-menu.open {
+    display: block;
+  }
+}
+</style>
+
+<script>
+// Toggle mobile menu
+document.querySelector('.navbar-toggle').addEventListener('click', () => {
+  document.querySelector('.mobile-menu').classList.toggle('open');
+});
+</script>

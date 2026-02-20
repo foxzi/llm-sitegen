@@ -1,0 +1,175 @@
+<!-- FAQ: Accordion style -->
+<section class="faq">
+  <div class="container">
+    <div class="faq-header">
+      <span class="section-label">FAQ</span>
+      <h2 class="section-title">Frequently asked questions</h2>
+      <p class="section-subtitle">Everything you need to know about our product.</p>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>What is included in the free trial?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>The free trial includes full access to all features for 14 days. No credit card required. You can upgrade to a paid plan at any time during or after the trial.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Can I cancel my subscription anytime?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>Yes, you can cancel your subscription at any time. If you cancel, you'll continue to have access until the end of your current billing period.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>Do you offer refunds?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>We offer a 30-day money-back guarantee. If you're not satisfied with our product, contact support within 30 days of purchase for a full refund.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>How does the pricing work for teams?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>Team pricing is per seat. The Pro plan includes up to 10 team members. For larger teams, our Enterprise plan offers custom pricing based on your needs.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>What kind of support do you offer?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="faq-answer">
+          <p>We offer email support for all plans, with priority support for Pro users. Enterprise customers get dedicated support with guaranteed response times and a dedicated account manager.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.faq {
+  padding: 5rem 1.5rem;
+  background: white;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-label {
+  display: inline-block;
+  color: #4F46E5;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  font-size: 1.125rem;
+  color: #6B7280;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.faq-item {
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.faq-question {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #111827;
+  transition: background 0.2s;
+}
+
+.faq-question:hover {
+  background: #F9FAFB;
+}
+
+.faq-icon {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+
+.faq-item.open .faq-icon {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  display: none;
+  padding: 0 1.5rem 1.25rem;
+}
+
+.faq-item.open .faq-answer {
+  display: block;
+}
+
+.faq-answer p {
+  color: #6B7280;
+  line-height: 1.7;
+}
+
+@media (max-width: 640px) {
+  .faq { padding: 3rem 1rem; }
+  .section-title { font-size: 1.75rem; }
+}
+</style>
+
+<script>
+document.querySelectorAll('.faq-question').forEach(button => {
+  button.addEventListener('click', () => {
+    const item = button.parentElement;
+    item.classList.toggle('open');
+  });
+});
+</script>
