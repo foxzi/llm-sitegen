@@ -7,19 +7,27 @@
   <meta name="description" content="Electrolux appliance repair in Roseville, CA. Same-day service.">
   <link rel="stylesheet" href="../../../../frameworks/bootstrap/dist/bootstrap.min.css">
   <style>
-    :root{--bs-primary:#3B82F6;--bs-primary-rgb:59,130,246;--bs-link-color:#60A5FA;--bs-link-hover-color:#93C5FD;--bs-body-bg:#0F172A;--bs-body-color:#F1F5F9;}
+    /* Surface Pairs */
+    :root{
+      --surface-dark:#0F172A;--on-dark:#F1F5F9;--on-dark-muted:#94A3B8;
+      --surface-dark-alt:#1E293B;
+      --surface-primary:#3B82F6;--on-primary:#FFFFFF;
+      --bs-primary:#3B82F6;--bs-primary-rgb:59,130,246;--bs-link-color:#60A5FA;--bs-link-hover-color:#93C5FD;--bs-body-bg:#0F172A;--bs-body-color:#F1F5F9;
+    }
     .btn-primary{background-color:#3B82F6;border-color:#3B82F6;color:#fff;}.btn-primary:hover{background-color:#2563EB;border-color:#2563EB;}
-    .bg-primary{background-color:#3B82F6!important;}.text-primary{color:#3B82F6!important;}
+    .bg-primary{background-color:var(--surface-primary)!important;}.text-primary{color:#3B82F6!important;}
     .text-accent{color:#22D3EE;}.bg-accent{background-color:#22D3EE;}
     html{scroll-behavior:smooth;}
-    body{background-color:#0F172A;color:#F1F5F9;}
+    body{background-color:var(--surface-dark);color:var(--on-dark);}
     .hover-lift{transition:transform .2s,box-shadow .2s;}.hover-lift:hover{transform:translateY(-4px);box-shadow:0 12px 20px -8px rgba(0,0,0,.4);}
     [data-scroll]{opacity:0;transform:translateY(30px);transition:opacity .6s,transform .6s;}[data-scroll].is-visible{opacity:1;transform:translateY(0);}
-    .navbar-brand{color:#3B82F6!important;}.nav-link{color:#94A3B8!important;}.nav-link:hover{color:#3B82F6!important;}
-    .navbar-dark{background-color:#1E293B!important;}
-    .card-dark{background-color:#1E293B;border:1px solid #334155;color:#F1F5F9;}
-    .text-muted{color:#94A3B8!important;}
-    .bg-dark-alt{background-color:#1E293B;}
+    .navbar-brand{color:#3B82F6!important;}.nav-link{color:var(--on-dark-muted)!important;}.nav-link:hover{color:#3B82F6!important;}
+    .navbar-dark{background-color:var(--surface-dark-alt)!important;}
+    .card-dark{background-color:var(--surface-dark-alt);border:1px solid #334155;color:var(--on-dark);}
+    .text-muted{color:var(--on-dark-muted)!important;}
+    .bg-dark-alt{background-color:var(--surface-dark-alt);}
+    /* Primary surface (CTA) */
+    .section-primary{background:var(--surface-primary);color:var(--on-primary);}
   </style>
 </head>
 <body>

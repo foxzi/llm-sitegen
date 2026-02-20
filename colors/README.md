@@ -492,3 +492,112 @@ Ensure contrast ratio of at least:
 - 3:1 for large text and UI components
 
 Dark text on light background or light text on dark background.
+
+---
+
+## Surface Pairs (Контрастные секции)
+
+При чередовании светлых и тёмных блоков на странице важно правильно подбирать цвет текста для каждой поверхности.
+
+### Правило: каждая поверхность имеет свой цвет текста
+
+```css
+:root {
+  /* Light surface (белые/светлые блоки) */
+  --surface-light: #FFFFFF;
+  --on-light: #1F2937;           /* тёмный текст */
+  --on-light-muted: #6B7280;     /* приглушённый */
+
+  /* Dark surface (тёмные блоки) */
+  --surface-dark: #1F2937;
+  --on-dark: #F9FAFB;            /* светлый текст */
+  --on-dark-muted: #9CA3AF;      /* приглушённый */
+
+  /* Primary surface (CTA, hero с основным цветом) */
+  --surface-primary: var(--primary);
+  --on-primary: #FFFFFF;         /* обычно белый */
+}
+```
+
+### Готовые классы для секций
+
+```css
+.section-light {
+  background: var(--surface-light);
+  color: var(--on-light);
+}
+.section-light .text-muted { color: var(--on-light-muted); }
+
+.section-dark {
+  background: var(--surface-dark);
+  color: var(--on-dark);
+}
+.section-dark .text-muted { color: var(--on-dark-muted); }
+
+.section-primary {
+  background: var(--surface-primary);
+  color: var(--on-primary);
+}
+```
+
+### Пример структуры страницы
+
+```
+┌─────────────────────────────────┐
+│  Navbar (light)                 │  --on-light
+├─────────────────────────────────┤
+│  Hero (primary/gradient)        │  --on-primary (white)
+├─────────────────────────────────┤
+│  Services (light)               │  --on-light
+├─────────────────────────────────┤
+│  Why Us (light-alt/gray)        │  --on-light
+├─────────────────────────────────┤
+│  Reviews (light)                │  --on-light
+├─────────────────────────────────┤
+│  CTA Banner (primary)           │  --on-primary (white)
+├─────────────────────────────────┤
+│  Footer (dark)                  │  --on-dark
+└─────────────────────────────────┘
+```
+
+### Surface Pairs для каждой палитры
+
+При использовании палитры определяй все поверхности:
+
+```
+Ocean Trust:
+  surface-light:   #F8FAFC    on-light:   #1E293B
+  surface-dark:    #1E293B    on-dark:    #F8FAFC
+  surface-primary: #0066CC    on-primary: #FFFFFF
+
+Executive Green:
+  surface-light:   #FAFAF9    on-light:   #1C1917
+  surface-dark:    #14532D    on-dark:    #F0FDF4
+  surface-primary: #166534    on-primary: #FFFFFF
+
+Medical Trust:
+  surface-light:   #F0F9FF    on-light:   #0C4A6E
+  surface-dark:    #0C4A6E    on-dark:    #F0F9FF
+  surface-primary: #0EA5E9    on-primary: #FFFFFF
+
+Fresh Market:
+  surface-light:   #FFFFFF    on-light:   #166534
+  surface-dark:    #14532D    on-dark:    #F0FDF4
+  surface-primary: #16A34A    on-primary: #FFFFFF
+
+Carbon Dark:
+  surface-light:   #1E293B    on-light:   #F1F5F9
+  surface-dark:    #0F172A    on-dark:    #F1F5F9
+  surface-primary: #3B82F6    on-primary: #FFFFFF
+```
+
+### Чеклист контрастности
+
+При создании страницы проверь:
+
+- [ ] Hero/CTA с основным цветом → белый текст
+- [ ] Светлые секции → тёмный текст
+- [ ] Тёмный footer → светлый текст
+- [ ] Карточки на цветном фоне → проверить контраст
+- [ ] Кнопки: текст контрастен к фону кнопки
+- [ ] Ссылки читаемы на любом фоне секции

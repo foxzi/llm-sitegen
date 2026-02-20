@@ -20,6 +20,27 @@
   <link rel="stylesheet" href="../../../../frameworks/tailwind/dist/tailwind.css">
 
   <style>
+    /* Surface Pairs - контрастные секции */
+    :root {
+      --surface-light: #FFFFFF;
+      --on-light: #1F2937;
+      --on-light-muted: #6B7280;
+
+      --surface-light-alt: #F9FAFB;
+
+      --surface-dark: #111827;
+      --on-dark: #F9FAFB;
+      --on-dark-muted: #9CA3AF;
+
+      --surface-primary: #2563EB;
+      --on-primary: #FFFFFF;
+    }
+
+    .section-light { background: var(--surface-light); color: var(--on-light); }
+    .section-light-alt { background: var(--surface-light-alt); color: var(--on-light); }
+    .section-dark { background: var(--surface-dark); color: var(--on-dark); }
+    .section-primary { background: var(--surface-primary); color: var(--on-primary); }
+
     /* Custom animations */
     @keyframes fade-in-up {
       from { opacity: 0; transform: translateY(20px); }

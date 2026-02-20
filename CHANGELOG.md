@@ -57,3 +57,5 @@ All notable changes to this project will be documented in this file.
 - Bulma color variants: ocean-trust, executive-green, medical-trust, fresh-market, carbon-dark
 - Project structure for examples with separate spec.md and design.md files
 - Examples README with structure documentation
+- Surface Pairs documentation in colors/README.md for contrast handling
+- CSS variables for surface pairs in example templates
