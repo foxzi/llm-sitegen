@@ -53,3 +53,5 @@ All notable changes to this project will be documented in this file.
   - `uikit/` - UIkit version
   - `pico/` - Pico CSS version
 - Tailwind color variants: ocean-trust, executive-green, medical-trust, fresh-market, carbon-dark
+- Bootstrap color variants: ocean-trust, executive-green, medical-trust, fresh-market, carbon-dark
+- Bulma color variants: ocean-trust, executive-green, medical-trust, fresh-market, carbon-dark
