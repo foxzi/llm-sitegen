@@ -14,3 +14,7 @@ All notable changes to this project will be documented in this file.
 - Converted all framework README files to LLM-friendly prompts with usage instructions.
 - Main `frameworks/README.md` now serves as LLM routing prompt for framework selection.
 - Color palettes collection in `colors/README.md` with 35+ named schemes for different project types.
+- Local font collection in `fonts/` with 16 Google Fonts (woff2 format).
+- Typography preprompt `fonts/README.md` with font pairings and usage guide.
+- Font preview page `fonts/index.html` with all fonts and pairing examples.
+- Font download script `fonts/download.sh` for updating fonts from Google Fonts.

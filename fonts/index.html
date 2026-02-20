@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Font Preview - LLM Sitegen</title>
+
+  <!-- Load all fonts -->
+  <link rel="stylesheet" href="inter/local.css">
+  <link rel="stylesheet" href="roboto/local.css">
+  <link rel="stylesheet" href="open-sans/local.css">
+  <link rel="stylesheet" href="lato/local.css">
+  <link rel="stylesheet" href="poppins/local.css">
+  <link rel="stylesheet" href="montserrat/local.css">
+  <link rel="stylesheet" href="nunito/local.css">
+  <link rel="stylesheet" href="raleway/local.css">
+  <link rel="stylesheet" href="source-sans/local.css">
+  <link rel="stylesheet" href="playfair-display/local.css">
+  <link rel="stylesheet" href="merriweather/local.css">
+  <link rel="stylesheet" href="source-serif/local.css">
+  <link rel="stylesheet" href="lora/local.css">
+  <link rel="stylesheet" href="pt-serif/local.css">
+  <link rel="stylesheet" href="fira-code/local.css">
+  <link rel="stylesheet" href="jetbrains-mono/local.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #f5f5f5;
+      padding: 2rem;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 0.5rem;
+      font-size: 2.5rem;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 2rem;
+    }
+
+    .section {
+      margin-bottom: 3rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #ddd;
+      color: #444;
+    }
+
+    .fonts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .font-card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .font-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    }
+
+    .font-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid #eee;
+    }
+
+    .font-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .font-weights {
+      font-size: 0.75rem;
+      color: #888;
+      background: #f0f0f0;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    .font-preview {
+      margin-bottom: 1rem;
+    }
+
+    .preview-heading {
+      font-size: 2rem;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+      color: #222;
+    }
+
+    .preview-text {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #555;
+    }
+
+    .font-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: #888;
+    }
+
+    .font-css {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.75rem;
+      background: #f8f8f8;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .font-css:hover {
+      background: #e8e8e8;
+    }
+
+    .font-css.copied {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    /* Font families */
+    .inter { font-family: 'Inter', sans-serif; }
+    .roboto { font-family: 'Roboto', sans-serif; }
+    .open-sans { font-family: 'Open Sans', sans-serif; }
+    .lato { font-family: 'Lato', sans-serif; }
+    .poppins { font-family: 'Poppins', sans-serif; }
+    .montserrat { font-family: 'Montserrat', sans-serif; }
+    .nunito { font-family: 'Nunito', sans-serif; }
+    .raleway { font-family: 'Raleway', sans-serif; }
+    .source-sans { font-family: 'Source Sans 3', sans-serif; }
+    .playfair { font-family: 'Playfair Display', serif; }
+    .merriweather { font-family: 'Merriweather', serif; }
+    .source-serif { font-family: 'Source Serif 4', serif; }
+    .lora { font-family: 'Lora', serif; }
+    .pt-serif { font-family: 'PT Serif', serif; }
+    .fira-code { font-family: 'Fira Code', monospace; }
+    .jetbrains { font-family: 'JetBrains Mono', monospace; }
+
+    /* Pairings section */
+    .pairings-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .pairing-card {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .pairing-name {
+      font-size: 0.85rem;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+
+    .pairing-heading {
+      font-size: 2.5rem;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      color: #222;
+    }
+
+    .pairing-body {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #444;
+    }
+
+    .pairing-fonts {
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #eee;
+      font-size: 0.8rem;
+      color: #888;
+    }
+
+    @media (max-width: 768px) {
+      body { padding: 1rem; }
+      .fonts-grid, .pairings-grid { grid-template-columns: 1fr; }
+      h1 { font-size: 1.75rem; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Typography Preview</h1>
+  <p class="subtitle">Click on font-family to copy to clipboard</p>
+
+  <!-- Sans-Serif -->
+  <div class="section">
+    <h2 class="section-title">Sans-Serif Fonts</h2>
+    <div class="fonts-grid">
+
+      <div class="font-card">
+        <div class="font-header">
+          <span class="font-name">Inter</span>
+          <span class="font-weights">400, 500, 600, 700</span>
+        </div>
+        <div class="font-preview inter">
+          <div class="preview-heading">The Quick Brown Fox</div>
+          <div class="preview-text">Pack my box with five dozen liquor jugs. Amazingly few discotheques provide jukeboxes.</div>
+        </div>
+        <div class="font-meta">
+          <span>UI, Apps, SaaS</span>
+          <span class="font-css" onclick="copyFont(this, \"'Inter', sans-serif\")">'Inter', sans-serif</span>
+        </div>
+      </div>
+
+      <div class="font-card">
+        <div class="font-header">
+          <span class="font-name">Roboto</span>
+          <span class="font-weights">400, 500, 700</span>
+        </div>
+        <div class="font-preview roboto">
+          <div class="preview-heading">The Quick Brown Fox</div>
+          <div class="preview-text">Pack my box with five dozen liquor jugs. Amazingly few discotheques provide jukeboxes.</div>
+        </div>
+        <div class="font-meta">
+          <span>Android, Material</span>
+          <span class="font-css" onclick="copyFont(this, \"'Roboto', sans-serif\")">'Roboto', sans-serif</span>
+        </div>
+      </div>
+
+      <div class="font-card">
+        <div class="font-header">
+          <span class="font-name">Open Sans</span>
+          <span class="font-weights">400, 500, 600, 700</span>
+        </div>
+        <div class="font-preview open-sans">
+          <div class="preview-heading">The Quick Brown Fox</div>
+          <div class="preview-text">Pack my box with five dozen liquor jugs. Amazingly few discotheques provide jukeboxes.</div>
+        </div>
+        <div class="font-meta">
+          <span>General, Readable</span>
+          <span class="font-css" onclick="copyFont(this, \"'Open Sans', sans-serif\")">'Open Sans', sans-serif</span>
+        </div>
+      </div>
+
+      <div class="font-card">
+        <div class="font-header">
+          <span class="font-name">Lato</span>
+          <span class="font-weights">400, 700</span>
+        </div>
+        <div class="font-preview lato">
+          <div class="preview-heading">The Quick Brown Fox</div>
+          <div class="preview-text">Pack my box with five dozen liquor jugs. Amazingly few discotheques provide jukeboxes.</div>
+        </div>
+        <div class="font-meta">
+          <span>Corporate, Clean</span>
+          <span class="font-css" onclick="copyFont(this, \"'Lato', sans-serif\")">'Lato', sans-serif</span>
+        </div>
+      </div>
+
+      <div class="font-card">
+        <div class="font-header">
+          <span class="font-name">Poppins</span>
+          <span class="font-weights">400, 500, 600, 700</span>
+        </div>
+        <div class="font-preview poppins">
+          <div class="preview-heading">The Quick Brown Fox</div>
+          <div class="preview-text">Pack my box with five dozen liquor jugs. Amazingly few discotheques provide jukeboxes.</div>
+        </div>
+        <div class="font-meta">
+          <span>Modern, Geometric</span>
+          <span class="font-css" onclick="copyFont(this, \"'Poppins', sans-serif\")">'Poppins', sans-serif</span>
+        </div>
+      </div>
+
+      <div class="font-card">
+        <div class="font-header">
+          <span class="font-name">Montserrat</span>
+          <span class="font-weights">400, 500, 600, 700</span>
+        </div>
+        <div class="font-preview montserrat">
+          <div class="preview-heading">The Quick Brown Fox</div>
+          <div class="preview-text">Pack my box with five dozen liquor jugs. Amazingly few discotheques provide jukeboxes.</div>
+        </div>
+        <div class="font-meta">
+          <span>Headers, Bold</span>
+          <span class="font-css" onclick="copyFont(this, \"'Montserrat', sans-serif\")">'Montserrat', sans-serif</span>
+        </div>
+      </div>
+
+      <div class="font-card">
+        <div class="font-header">
+          <span class="font-name">Nunito</span>
+          <span class="font-weights">400, 600, 700</span>
+        </div>
+        <div class="font-preview nunito">
+          <div class="preview-heading">The Quick Brown Fox</div>
+          <div class="preview-text">Pack my box with five dozen liquor jugs. Amazingly few discotheques provide jukeboxes.</div>
+        </div>
+        <div class="font-meta">
+          <span>Friendly, Rounded</span>
+          <span class="font-css" onclick="copyFont(this, \"'Nunito', sans-serif\")">'Nunito', sans-serif</span>
+        </div>
+      </div>
+
+      <div class="font-card">
+        <div class="font-header">
+          <span class="font-name">Raleway</span>
+          <span class="font-weights">400, 500, 600, 700</span>
+        </div>
+        <div class="font-preview raleway">
+          <div class="preview-heading">The Quick Brown Fox</div>
+          <div class="preview-text">Pack my box with five dozen liquor jugs. Amazingly few discotheques provide jukeboxes.</div>
+        </div>
+        <div class="font-meta">
+          <span>Elegant, Thin</span>
+          <span class="font-css" onclick="copyFont(this, \"'Raleway', sans-serif\")">'Raleway', sans-serif</span>
+        </div>
+      </div>
+
+      <div class="font-card">
+        <div class="font-header">
+          <span class="font-name">Source Sans 3</span>
+          <span class="font-weights">400, 600, 700</span>
+        </div>
+        <div class="font-preview source-sans">
+          <div class="preview-heading">The Quick Brown Fox</div>
+          <div class="preview-text">Pack my box with five dozen liquor jugs. Amazingly few discotheques provide jukeboxes.</div>
+        </div>
+        <div class="font-meta">
+          <span>Adobe, Technical</span>
+          <span class="font-css" onclick="copyFont(this, \"'Source Sans 3', sans-serif\")">'Source Sans 3', sans-serif</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Serif -->
+  <div class="section">
+    <h2 class="section-title">Serif Fonts</h2>
+    <div class="fonts-grid">
+
+      <div class="font-card">
+        <div class="font-header">
+          <span class="font-name">Playfair Display</span>
+          <span class="font-weights">400, 500, 600, 700</span>
+        </div>
+        <div class="font-preview playfair">
+          <div class="preview-heading">The Quick Brown Fox</div>
+          <div class="preview-text">Pack my box with five dozen liquor jugs. Amazingly few discotheques provide jukeboxes.</div>
+        </div>
+        <div class="font-meta">
+          <span>Luxury, Editorial</span>
+          <span class="font-css" onclick="copyFont(this, \"'Playfair Display', serif\")">'Playfair Display', serif</span>
+        </div>
+      </div>
+
+      <div class="font-card">
+        <div class="font-header">
+          <span class="font-name">Merriweather</span>
+          <span class="font-weights">400, 700</span>
+        </div>
+        <div class="font-preview merriweather">
+          <div class="preview-heading">The Quick Brown Fox</div>
+          <div class="preview-text">Pack my box with five dozen liquor jugs. Amazingly few discotheques provide jukeboxes.</div>
+        </div>
+        <div class="font-meta">
+          <span>Reading, Blog</span>
+          <span class="font-css" onclick="copyFont(this, \"'Merriweather', serif\")">'Merriweather', serif</span>
+        </div>
+      </div>
+
+      <div class="font-card">
+        <div class="font-header">
+          <span class="font-name">Source Serif 4</span>
+          <span class="font-weights">400, 600, 700</span>
+        </div>
+        <div class="font-preview source-serif">
+          <div class="preview-heading">The Quick Brown Fox</div>
+          <div class="preview-text">Pack my box with five dozen liquor jugs. Amazingly few discotheques provide jukeboxes.</div>
+        </div>
+        <div class="font-meta">
+          <span>Articles, Print</span>
+          <span class="font-css" onclick="copyFont(this, \"'Source Serif 4', serif\")">'Source Serif 4', serif</span>
+        </div>
+      </div>
+
+      <div class="font-card">
+        <div class="font-header">
+          <span class="font-name">Lora</span>
+          <span class="font-weights">400, 500, 600, 700</span>
+        </div>
+        <div class="font-preview lora">
+          <div class="preview-heading">The Quick Brown Fox</div>
+          <div class="preview-text">Pack my box with five dozen liquor jugs. Amazingly few discotheques provide jukeboxes.</div>
+        </div>
+        <div class="font-meta">
+          <span>Books, Classic</span>
+          <span class="font-css" onclick="copyFont(this, \"'Lora', serif\")">'Lora', serif</span>
+        </div>
+      </div>
+
+      <div class="font-card">
+        <div class="font-header">
+          <span class="font-name">PT Serif</span>
+          <span class="font-weights">400, 700</span>
+        </div>
+        <div class="font-preview pt-serif">
+          <div class="preview-heading">The Quick Brown Fox</div>
+          <div class="preview-text">Pack my box with five dozen liquor jugs. Amazingly few discotheques provide jukeboxes.</div>
+        </div>
+        <div class="font-meta">
+          <span>Russian, Academic</span>
+          <span class="font-css" onclick="copyFont(this, \"'PT Serif', serif\")">'PT Serif', serif</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Monospace -->
+  <div class="section">
+    <h2 class="section-title">Monospace Fonts</h2>
+    <div class="fonts-grid">
+
+      <div class="font-card">
+        <div class="font-header">
+          <span class="font-name">Fira Code</span>
+          <span class="font-weights">400, 500, 600, 700</span>
+        </div>
+        <div class="font-preview fira-code">
+          <div class="preview-heading" style="font-size: 1.5rem;">const x = () => {}</div>
+          <div class="preview-text">function hello() { return "world"; } // ligatures: != === =></div>
+        </div>
+        <div class="font-meta">
+          <span>Code, Ligatures</span>
+          <span class="font-css" onclick="copyFont(this, \"'Fira Code', monospace\")">'Fira Code', monospace</span>
+        </div>
+      </div>
+
+      <div class="font-card">
+        <div class="font-header">
+          <span class="font-name">JetBrains Mono</span>
+          <span class="font-weights">400, 500, 700</span>
+        </div>
+        <div class="font-preview jetbrains">
+          <div class="preview-heading" style="font-size: 1.5rem;">const x = () => {}</div>
+          <div class="preview-text">function hello() { return "world"; } // ligatures: != === =></div>
+        </div>
+        <div class="font-meta">
+          <span>IDE, Terminal</span>
+          <span class="font-css" onclick="copyFont(this, \"'JetBrains Mono', monospace\")">'JetBrains Mono', monospace</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Font Pairings -->
+  <div class="section">
+    <h2 class="section-title">Font Pairings</h2>
+    <div class="pairings-grid">
+
+      <div class="pairing-card">
+        <div class="pairing-name">Classic Business</div>
+        <div class="pairing-heading playfair">Elegant Professional Design</div>
+        <div class="pairing-body source-sans">Transform your business with stunning visuals and clear communication. Our approach combines timeless elegance with modern functionality.</div>
+        <div class="pairing-fonts">Playfair Display + Source Sans 3</div>
+      </div>
+
+      <div class="pairing-card">
+        <div class="pairing-name">Modern Corporate</div>
+        <div class="pairing-heading montserrat">Bold Modern Solutions</div>
+        <div class="pairing-body open-sans">We deliver cutting-edge technology solutions tailored to your needs. Experience the future of digital transformation today.</div>
+        <div class="pairing-fonts">Montserrat + Open Sans</div>
+      </div>
+
+      <div class="pairing-card">
+        <div class="pairing-name">SaaS Product</div>
+        <div class="pairing-heading inter" style="font-weight: 600;">Ship Faster, Build Better</div>
+        <div class="pairing-body inter">The all-in-one platform for modern teams. Streamline your workflow with intelligent automation and seamless integrations.</div>
+        <div class="pairing-fonts">Inter + Inter</div>
+      </div>
+
+      <div class="pairing-card">
+        <div class="pairing-name">Magazine Style</div>
+        <div class="pairing-heading playfair">The Art of Living Well</div>
+        <div class="pairing-body merriweather">In an age of constant noise, finding moments of genuine peace becomes an art form worth mastering. Discover the simple pleasures that make life extraordinary.</div>
+        <div class="pairing-fonts">Playfair Display + Merriweather</div>
+      </div>
+
+      <div class="pairing-card">
+        <div class="pairing-name">Modern Blog</div>
+        <div class="pairing-heading lora">Stories That Matter</div>
+        <div class="pairing-body open-sans">Every great idea starts with a story. We curate the most compelling narratives from around the world to inspire and inform.</div>
+        <div class="pairing-fonts">Lora + Open Sans</div>
+      </div>
+
+      <div class="pairing-card">
+        <div class="pairing-name">Tech Modern</div>
+        <div class="pairing-heading poppins" style="font-weight: 600;">Next-Gen Platform</div>
+        <div class="pairing-body inter">Built for scale, designed for simplicity. Our platform empowers developers to create without limits.</div>
+        <div class="pairing-fonts">Poppins + Inter</div>
+      </div>
+
+      <div class="pairing-card">
+        <div class="pairing-name">Luxury Brand</div>
+        <div class="pairing-heading playfair">Timeless Excellence</div>
+        <div class="pairing-body lato">Crafted with precision, designed to inspire. Experience the pinnacle of refined luxury and sophisticated style.</div>
+        <div class="pairing-fonts">Playfair Display + Lato</div>
+      </div>
+
+      <div class="pairing-card">
+        <div class="pairing-name">Minimalist</div>
+        <div class="pairing-heading raleway" style="font-weight: 500;">Less Is More</div>
+        <div class="pairing-body lato">Simplicity is the ultimate sophistication. We believe in the power of restraint and the beauty of purposeful design.</div>
+        <div class="pairing-fonts">Raleway + Lato</div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function copyFont(element, fontFamily) {
+      navigator.clipboard.writeText("font-family: " + fontFamily + ";").then(() => {
+        const original = element.textContent;
+        element.textContent = 'Copied!';
+        element.classList.add('copied');
+        setTimeout(() => {
+          element.textContent = original;
+          element.classList.remove('copied');
+        }, 1500);
+      });
+    }
+  </script>
+</body>
+</html>
