@@ -1,0 +1,498 @@
+<!-- Tooltip & Popover Components -->
+<!-- Standalone CSS + JS - copy styles and HTML as needed -->
+
+<style>
+/* ============================================= */
+/* TOOLTIP BASE                                  */
+/* ============================================= */
+
+.tooltip-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip {
+  position: absolute;
+  padding: 0.5rem 0.75rem;
+  background: #111827;
+  color: white;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.tooltip::after {
+  content: '';
+  position: absolute;
+  border: 6px solid transparent;
+}
+
+.tooltip-wrapper:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ============================================= */
+/* TOOLTIP POSITIONS                             */
+/* ============================================= */
+
+/* Top (default) */
+.tooltip-top {
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+}
+
+.tooltip-top::after {
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-top-color: #111827;
+}
+
+.tooltip-wrapper:hover .tooltip-top {
+  transform: translateX(-50%) translateY(-4px);
+}
+
+/* Bottom */
+.tooltip-bottom {
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+}
+
+.tooltip-bottom::after {
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-bottom-color: #111827;
+}
+
+.tooltip-wrapper:hover .tooltip-bottom {
+  transform: translateX(-50%) translateY(4px);
+}
+
+/* Left */
+.tooltip-left {
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%) translateX(-8px);
+}
+
+.tooltip-left::after {
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border-left-color: #111827;
+}
+
+.tooltip-wrapper:hover .tooltip-left {
+  transform: translateY(-50%) translateX(-4px);
+}
+
+/* Right */
+.tooltip-right {
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%) translateX(8px);
+}
+
+.tooltip-right::after {
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border-right-color: #111827;
+}
+
+.tooltip-wrapper:hover .tooltip-right {
+  transform: translateY(-50%) translateX(4px);
+}
+
+/* ============================================= */
+/* TOOLTIP COLORS                                */
+/* ============================================= */
+
+.tooltip-light {
+  background: white;
+  color: #374151;
+  border: 1px solid #E5E7EB;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.tooltip-light.tooltip-top::after {
+  border-top-color: white;
+}
+
+.tooltip-light.tooltip-bottom::after {
+  border-bottom-color: white;
+}
+
+.tooltip-primary {
+  background: #4F46E5;
+}
+
+.tooltip-primary.tooltip-top::after {
+  border-top-color: #4F46E5;
+}
+
+.tooltip-success {
+  background: #059669;
+}
+
+.tooltip-success.tooltip-top::after {
+  border-top-color: #059669;
+}
+
+.tooltip-warning {
+  background: #D97706;
+}
+
+.tooltip-warning.tooltip-top::after {
+  border-top-color: #D97706;
+}
+
+.tooltip-error {
+  background: #DC2626;
+}
+
+.tooltip-error.tooltip-top::after {
+  border-top-color: #DC2626;
+}
+
+/* ============================================= */
+/* MULTILINE TOOLTIP                             */
+/* ============================================= */
+
+.tooltip-multiline {
+  white-space: normal;
+  max-width: 250px;
+  text-align: center;
+}
+
+/* ============================================= */
+/* POPOVER                                       */
+/* ============================================= */
+
+.popover-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.popover {
+  position: absolute;
+  min-width: 200px;
+  max-width: 320px;
+  background: white;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  z-index: 1000;
+}
+
+.popover-wrapper.open .popover {
+  opacity: 1;
+  visibility: visible;
+}
+
+.popover::after {
+  content: '';
+  position: absolute;
+  border: 8px solid transparent;
+}
+
+/* Popover positions */
+.popover-top {
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-12px);
+}
+
+.popover-top::after {
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-top-color: white;
+}
+
+.popover-wrapper.open .popover-top {
+  transform: translateX(-50%) translateY(-8px);
+}
+
+.popover-bottom {
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(12px);
+}
+
+.popover-bottom::after {
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-bottom-color: white;
+}
+
+.popover-wrapper.open .popover-bottom {
+  transform: translateX(-50%) translateY(8px);
+}
+
+/* Popover parts */
+.popover-header {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #E5E7EB;
+  font-weight: 600;
+  color: #111827;
+}
+
+.popover-body {
+  padding: 1rem;
+  color: #374151;
+  font-size: 0.9375rem;
+}
+
+.popover-footer {
+  padding: 0.75rem 1rem;
+  border-top: 1px solid #E5E7EB;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+/* ============================================= */
+/* INFO TOOLTIP (? icon)                         */
+/* ============================================= */
+
+.info-tooltip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  background: #E5E7EB;
+  color: #6B7280;
+  border-radius: 50%;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  cursor: help;
+}
+
+.info-tooltip:hover {
+  background: #D1D5DB;
+}
+
+/* ============================================= */
+/* DROPDOWN TOOLTIP (on hover menu)              */
+/* ============================================= */
+
+.hover-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 180px;
+  padding: 0.5rem 0;
+  background: white;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: all 0.2s ease;
+  z-index: 1000;
+}
+
+.tooltip-wrapper:hover .hover-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(4px);
+}
+
+.hover-menu-item {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #374151;
+  text-decoration: none;
+  font-size: 0.9375rem;
+  transition: background 0.15s;
+}
+
+.hover-menu-item:hover {
+  background: #F3F4F6;
+}
+
+/* ============================================= */
+/* DATA ATTRIBUTE TOOLTIPS (CSS only)            */
+/* ============================================= */
+
+[data-tooltip] {
+  position: relative;
+}
+
+[data-tooltip]::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  padding: 0.5rem 0.75rem;
+  background: #111827;
+  color: white;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+[data-tooltip]::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: #111827;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+[data-tooltip]:hover::before,
+[data-tooltip]:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+[data-tooltip]:hover::before {
+  transform: translateX(-50%) translateY(-4px);
+}
+</style>
+
+<!-- ============================================= -->
+<!-- EXAMPLES                                      -->
+<!-- ============================================= -->
+
+<!-- Basic Tooltip -->
+<span class="tooltip-wrapper">
+  <button class="btn btn-secondary">Hover me</button>
+  <span class="tooltip tooltip-top">This is a tooltip</span>
+</span>
+
+<!-- Tooltip Positions -->
+<span class="tooltip-wrapper">
+  <button class="btn btn-secondary">Top</button>
+  <span class="tooltip tooltip-top">Top tooltip</span>
+</span>
+
+<span class="tooltip-wrapper">
+  <button class="btn btn-secondary">Bottom</button>
+  <span class="tooltip tooltip-bottom">Bottom tooltip</span>
+</span>
+
+<span class="tooltip-wrapper">
+  <button class="btn btn-secondary">Left</button>
+  <span class="tooltip tooltip-left">Left tooltip</span>
+</span>
+
+<span class="tooltip-wrapper">
+  <button class="btn btn-secondary">Right</button>
+  <span class="tooltip tooltip-right">Right tooltip</span>
+</span>
+
+<!-- Tooltip Colors -->
+<span class="tooltip-wrapper">
+  <button class="btn btn-secondary">Light</button>
+  <span class="tooltip tooltip-top tooltip-light">Light tooltip</span>
+</span>
+
+<span class="tooltip-wrapper">
+  <button class="btn btn-secondary">Primary</button>
+  <span class="tooltip tooltip-top tooltip-primary">Primary tooltip</span>
+</span>
+
+<span class="tooltip-wrapper">
+  <button class="btn btn-secondary">Success</button>
+  <span class="tooltip tooltip-top tooltip-success">Success tooltip</span>
+</span>
+
+<!-- Multiline Tooltip -->
+<span class="tooltip-wrapper">
+  <button class="btn btn-secondary">Multiline</button>
+  <span class="tooltip tooltip-top tooltip-multiline">
+    This is a longer tooltip text that wraps to multiple lines.
+  </span>
+</span>
+
+<!-- Data Attribute Tooltip (CSS only) -->
+<button class="btn btn-secondary" data-tooltip="CSS-only tooltip!">
+  CSS Tooltip
+</button>
+
+<!-- Info Tooltip -->
+<label style="display: flex; align-items: center; gap: 0.5rem;">
+  Password
+  <span class="tooltip-wrapper">
+    <span class="info-tooltip">?</span>
+    <span class="tooltip tooltip-top tooltip-multiline">
+      Password must be at least 8 characters and contain a number.
+    </span>
+  </span>
+</label>
+
+<!-- Popover -->
+<span class="popover-wrapper" id="popover-demo">
+  <button class="btn btn-primary" onclick="togglePopover('popover-demo')">
+    Click me
+  </button>
+  <div class="popover popover-bottom">
+    <div class="popover-header">Popover Title</div>
+    <div class="popover-body">
+      This is the popover content. It can contain any HTML including forms, images, or text.
+    </div>
+    <div class="popover-footer">
+      <button class="btn btn-sm btn-secondary" onclick="togglePopover('popover-demo')">Cancel</button>
+      <button class="btn btn-sm btn-primary">Confirm</button>
+    </div>
+  </div>
+</span>
+
+<!-- Hover Menu -->
+<span class="tooltip-wrapper">
+  <button class="btn btn-secondary">
+    Hover Menu
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="hover-menu">
+    <a href="#" class="hover-menu-item">Option 1</a>
+    <a href="#" class="hover-menu-item">Option 2</a>
+    <a href="#" class="hover-menu-item">Option 3</a>
+  </div>
+</span>
+
+<script>
+function togglePopover(id) {
+  const wrapper = document.getElementById(id);
+  wrapper.classList.toggle('open');
+}
+
+// Close popover on outside click
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.popover-wrapper')) {
+    document.querySelectorAll('.popover-wrapper.open').forEach(p => p.classList.remove('open'));
+  }
+});
+</script>

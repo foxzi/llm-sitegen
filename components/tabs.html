@@ -1,0 +1,405 @@
+<!-- Tab Components -->
+<!-- Standalone CSS + JS - copy styles and HTML as needed -->
+
+<style>
+/* ============================================= */
+/* BASE TABS                                     */
+/* ============================================= */
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+}
+
+.tab-list {
+  display: flex;
+  border-bottom: 1px solid #E5E7EB;
+  gap: 0;
+}
+
+.tab-button {
+  padding: 0.75rem 1.25rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #6B7280;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tab-button:hover {
+  color: #374151;
+}
+
+.tab-button.active {
+  color: #4F46E5;
+  border-bottom-color: #4F46E5;
+}
+
+.tab-content {
+  padding: 1.5rem 0;
+}
+
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ============================================= */
+/* PILL TABS                                     */
+/* ============================================= */
+
+.tabs-pills .tab-list {
+  border-bottom: none;
+  gap: 0.5rem;
+  background: #F3F4F6;
+  padding: 0.25rem;
+  border-radius: 10px;
+  width: fit-content;
+}
+
+.tabs-pills .tab-button {
+  border-radius: 8px;
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.tabs-pills .tab-button.active {
+  background: white;
+  color: #111827;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================= */
+/* BOXED TABS                                    */
+/* ============================================= */
+
+.tabs-boxed .tab-list {
+  border: 1px solid #E5E7EB;
+  border-radius: 8px 8px 0 0;
+  background: #F9FAFB;
+  border-bottom: none;
+}
+
+.tabs-boxed .tab-button {
+  border-bottom: none;
+  margin-bottom: 0;
+  border-right: 1px solid #E5E7EB;
+}
+
+.tabs-boxed .tab-button:last-child {
+  border-right: none;
+}
+
+.tabs-boxed .tab-button.active {
+  background: white;
+  position: relative;
+}
+
+.tabs-boxed .tab-button.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: white;
+}
+
+.tabs-boxed .tab-content {
+  border: 1px solid #E5E7EB;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  padding: 1.5rem;
+  background: white;
+}
+
+/* ============================================= */
+/* VERTICAL TABS                                 */
+/* ============================================= */
+
+.tabs-vertical {
+  flex-direction: row;
+}
+
+.tabs-vertical .tab-list {
+  flex-direction: column;
+  border-bottom: none;
+  border-right: 1px solid #E5E7EB;
+  min-width: 200px;
+}
+
+.tabs-vertical .tab-button {
+  border-bottom: none;
+  border-right: 2px solid transparent;
+  margin-bottom: 0;
+  margin-right: -1px;
+  text-align: left;
+}
+
+.tabs-vertical .tab-button.active {
+  border-right-color: #4F46E5;
+}
+
+.tabs-vertical .tab-content {
+  flex: 1;
+  padding: 0 1.5rem;
+}
+
+/* ============================================= */
+/* WITH ICONS                                    */
+/* ============================================= */
+
+.tab-button svg {
+  width: 18px;
+  height: 18px;
+  margin-right: 0.5rem;
+}
+
+.tab-button-icon-only {
+  padding: 0.75rem;
+}
+
+.tab-button-icon-only svg {
+  margin-right: 0;
+}
+
+/* ============================================= */
+/* WITH BADGE                                    */
+/* ============================================= */
+
+.tab-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  margin-left: 0.5rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  background: #E5E7EB;
+  color: #6B7280;
+  border-radius: 10px;
+}
+
+.tab-button.active .tab-badge {
+  background: #EEF2FF;
+  color: #4F46E5;
+}
+
+/* ============================================= */
+/* FULL WIDTH TABS                               */
+/* ============================================= */
+
+.tabs-full .tab-list {
+  width: 100%;
+}
+
+.tabs-full .tab-button {
+  flex: 1;
+  text-align: center;
+}
+
+/* ============================================= */
+/* SCROLLABLE TABS                               */
+/* ============================================= */
+
+.tabs-scrollable .tab-list {
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.tabs-scrollable .tab-list::-webkit-scrollbar {
+  display: none;
+}
+
+.tabs-scrollable .tab-button {
+  flex-shrink: 0;
+}
+
+/* ============================================= */
+/* CARD TABS (like browser tabs)                 */
+/* ============================================= */
+
+.tabs-card .tab-list {
+  gap: 0.25rem;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.tabs-card .tab-button {
+  background: #F3F4F6;
+  border-radius: 8px 8px 0 0;
+  border: 1px solid #E5E7EB;
+  border-bottom: none;
+  margin-bottom: 0;
+  position: relative;
+}
+
+.tabs-card .tab-button.active {
+  background: white;
+  border-bottom: 1px solid white;
+  z-index: 1;
+  margin-bottom: -1px;
+}
+
+.tabs-card .tab-content {
+  border: 1px solid #E5E7EB;
+  border-radius: 0 8px 8px 8px;
+  padding: 1.5rem;
+  background: white;
+}
+</style>
+
+<!-- ============================================= -->
+<!-- EXAMPLES                                      -->
+<!-- ============================================= -->
+
+<!-- Basic Tabs -->
+<div class="tabs" data-tabs>
+  <div class="tab-list" role="tablist">
+    <button class="tab-button active" data-tab="tab1">Tab 1</button>
+    <button class="tab-button" data-tab="tab2">Tab 2</button>
+    <button class="tab-button" data-tab="tab3">Tab 3</button>
+  </div>
+  <div class="tab-content">
+    <div class="tab-panel active" id="tab1">Content for Tab 1</div>
+    <div class="tab-panel" id="tab2">Content for Tab 2</div>
+    <div class="tab-panel" id="tab3">Content for Tab 3</div>
+  </div>
+</div>
+
+<!-- Pill Tabs -->
+<div class="tabs tabs-pills" data-tabs>
+  <div class="tab-list">
+    <button class="tab-button active" data-tab="pill1">Overview</button>
+    <button class="tab-button" data-tab="pill2">Features</button>
+    <button class="tab-button" data-tab="pill3">Pricing</button>
+  </div>
+  <div class="tab-content">
+    <div class="tab-panel active" id="pill1">Overview content</div>
+    <div class="tab-panel" id="pill2">Features content</div>
+    <div class="tab-panel" id="pill3">Pricing content</div>
+  </div>
+</div>
+
+<!-- Boxed Tabs -->
+<div class="tabs tabs-boxed" data-tabs>
+  <div class="tab-list">
+    <button class="tab-button active" data-tab="box1">Details</button>
+    <button class="tab-button" data-tab="box2">Reviews</button>
+    <button class="tab-button" data-tab="box3">FAQ</button>
+  </div>
+  <div class="tab-content">
+    <div class="tab-panel active" id="box1">Details content here...</div>
+    <div class="tab-panel" id="box2">Reviews content here...</div>
+    <div class="tab-panel" id="box3">FAQ content here...</div>
+  </div>
+</div>
+
+<!-- Tabs with Icons -->
+<div class="tabs" data-tabs>
+  <div class="tab-list">
+    <button class="tab-button active" data-tab="icon1">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Home
+    </button>
+    <button class="tab-button" data-tab="icon2">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Profile
+    </button>
+    <button class="tab-button" data-tab="icon3">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      Settings
+    </button>
+  </div>
+  <div class="tab-content">
+    <div class="tab-panel active" id="icon1">Home content</div>
+    <div class="tab-panel" id="icon2">Profile content</div>
+    <div class="tab-panel" id="icon3">Settings content</div>
+  </div>
+</div>
+
+<!-- Tabs with Badges -->
+<div class="tabs" data-tabs>
+  <div class="tab-list">
+    <button class="tab-button active" data-tab="badge1">
+      Inbox <span class="tab-badge">12</span>
+    </button>
+    <button class="tab-button" data-tab="badge2">
+      Sent <span class="tab-badge">5</span>
+    </button>
+    <button class="tab-button" data-tab="badge3">
+      Drafts <span class="tab-badge">3</span>
+    </button>
+  </div>
+  <div class="tab-content">
+    <div class="tab-panel active" id="badge1">Inbox messages...</div>
+    <div class="tab-panel" id="badge2">Sent messages...</div>
+    <div class="tab-panel" id="badge3">Draft messages...</div>
+  </div>
+</div>
+
+<!-- Vertical Tabs -->
+<div class="tabs tabs-vertical" data-tabs>
+  <div class="tab-list">
+    <button class="tab-button active" data-tab="vert1">General</button>
+    <button class="tab-button" data-tab="vert2">Security</button>
+    <button class="tab-button" data-tab="vert3">Notifications</button>
+    <button class="tab-button" data-tab="vert4">Billing</button>
+  </div>
+  <div class="tab-content">
+    <div class="tab-panel active" id="vert1">General settings...</div>
+    <div class="tab-panel" id="vert2">Security settings...</div>
+    <div class="tab-panel" id="vert3">Notification settings...</div>
+    <div class="tab-panel" id="vert4">Billing settings...</div>
+  </div>
+</div>
+
+<!-- Full Width Tabs -->
+<div class="tabs tabs-full" data-tabs>
+  <div class="tab-list">
+    <button class="tab-button active" data-tab="full1">Tab 1</button>
+    <button class="tab-button" data-tab="full2">Tab 2</button>
+    <button class="tab-button" data-tab="full3">Tab 3</button>
+  </div>
+  <div class="tab-content">
+    <div class="tab-panel active" id="full1">Content 1</div>
+    <div class="tab-panel" id="full2">Content 2</div>
+    <div class="tab-panel" id="full3">Content 3</div>
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('[data-tabs]').forEach(tabs => {
+  const buttons = tabs.querySelectorAll('.tab-button');
+  const panels = tabs.querySelectorAll('.tab-panel');
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Remove active from all
+      buttons.forEach(b => b.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+
+      // Add active to clicked
+      button.classList.add('active');
+      const panel = tabs.querySelector(`#${button.dataset.tab}`);
+      if (panel) panel.classList.add('active');
+    });
+  });
+});
+</script>

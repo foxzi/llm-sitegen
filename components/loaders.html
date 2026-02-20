@@ -1,0 +1,426 @@
+<!-- Loader / Spinner Components -->
+<!-- Standalone CSS - copy styles and HTML as needed -->
+
+<style>
+/* ============================================= */
+/* SPINNER (Circular)                            */
+/* ============================================= */
+
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #E5E7EB;
+  border-top-color: #4F46E5;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Sizes */
+.spinner-sm { width: 16px; height: 16px; border-width: 2px; }
+.spinner-md { width: 24px; height: 24px; border-width: 2px; }
+.spinner-lg { width: 40px; height: 40px; border-width: 3px; }
+.spinner-xl { width: 56px; height: 56px; border-width: 4px; }
+
+/* Colors */
+.spinner-primary { border-top-color: #4F46E5; }
+.spinner-white { border-color: rgba(255,255,255,0.3); border-top-color: white; }
+.spinner-dark { border-color: rgba(0,0,0,0.1); border-top-color: #111827; }
+
+/* ============================================= */
+/* DOTS LOADER                                   */
+/* ============================================= */
+
+.dots-loader {
+  display: flex;
+  gap: 6px;
+}
+
+.dots-loader span {
+  width: 8px;
+  height: 8px;
+  background: #4F46E5;
+  border-radius: 50%;
+  animation: dots-bounce 1.4s infinite ease-in-out both;
+}
+
+.dots-loader span:nth-child(1) { animation-delay: -0.32s; }
+.dots-loader span:nth-child(2) { animation-delay: -0.16s; }
+.dots-loader span:nth-child(3) { animation-delay: 0s; }
+
+@keyframes dots-bounce {
+  0%, 80%, 100% { transform: scale(0); }
+  40% { transform: scale(1); }
+}
+
+/* ============================================= */
+/* PULSE LOADER                                  */
+/* ============================================= */
+
+.pulse-loader {
+  width: 40px;
+  height: 40px;
+  background: #4F46E5;
+  border-radius: 50%;
+  animation: pulse-scale 1.5s infinite;
+}
+
+@keyframes pulse-scale {
+  0% { transform: scale(0); opacity: 1; }
+  100% { transform: scale(1); opacity: 0; }
+}
+
+/* Double pulse */
+.pulse-loader-double {
+  position: relative;
+  width: 40px;
+  height: 40px;
+}
+
+.pulse-loader-double::before,
+.pulse-loader-double::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #4F46E5;
+  border-radius: 50%;
+  animation: pulse-scale 1.5s infinite;
+}
+
+.pulse-loader-double::after {
+  animation-delay: 0.5s;
+}
+
+/* ============================================= */
+/* BARS LOADER                                   */
+/* ============================================= */
+
+.bars-loader {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 24px;
+}
+
+.bars-loader span {
+  width: 4px;
+  height: 100%;
+  background: #4F46E5;
+  animation: bars-stretch 1.2s infinite ease-in-out;
+}
+
+.bars-loader span:nth-child(1) { animation-delay: -1.1s; }
+.bars-loader span:nth-child(2) { animation-delay: -1.0s; }
+.bars-loader span:nth-child(3) { animation-delay: -0.9s; }
+.bars-loader span:nth-child(4) { animation-delay: -0.8s; }
+.bars-loader span:nth-child(5) { animation-delay: -0.7s; }
+
+@keyframes bars-stretch {
+  0%, 40%, 100% { transform: scaleY(0.4); }
+  20% { transform: scaleY(1); }
+}
+
+/* ============================================= */
+/* RING LOADER                                   */
+/* ============================================= */
+
+.ring-loader {
+  width: 40px;
+  height: 40px;
+  border: 3px solid transparent;
+  border-top-color: #4F46E5;
+  border-bottom-color: #4F46E5;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* ============================================= */
+/* PROGRESS BAR                                  */
+/* ============================================= */
+
+.progress {
+  width: 100%;
+  height: 8px;
+  background: #E5E7EB;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: #4F46E5;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+/* Animated/indeterminate progress */
+.progress-indeterminate .progress-bar {
+  width: 30%;
+  animation: progress-indeterminate 1.5s infinite ease-in-out;
+}
+
+@keyframes progress-indeterminate {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(400%); }
+}
+
+/* Sizes */
+.progress-sm { height: 4px; }
+.progress-lg { height: 12px; }
+
+/* Colors */
+.progress-bar.success { background: #10B981; }
+.progress-bar.warning { background: #F59E0B; }
+.progress-bar.error { background: #EF4444; }
+
+/* With label */
+.progress-labeled {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.progress-labeled .progress {
+  flex: 1;
+}
+
+.progress-labeled .progress-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  min-width: 40px;
+}
+
+/* ============================================= */
+/* SKELETON LOADER                               */
+/* ============================================= */
+
+.skeleton {
+  background: linear-gradient(90deg, #E5E7EB 25%, #F3F4F6 50%, #E5E7EB 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+@keyframes skeleton-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.skeleton-text {
+  height: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.skeleton-text:last-child {
+  width: 60%;
+}
+
+.skeleton-title {
+  height: 1.5rem;
+  width: 40%;
+  margin-bottom: 1rem;
+}
+
+.skeleton-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+.skeleton-image {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 8px;
+}
+
+.skeleton-button {
+  width: 100px;
+  height: 40px;
+  border-radius: 8px;
+}
+
+/* Skeleton card */
+.skeleton-card {
+  padding: 1rem;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+}
+
+/* ============================================= */
+/* FULL PAGE LOADER                              */
+/* ============================================= */
+
+.page-loader {
+  position: fixed;
+  inset: 0;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  z-index: 9999;
+}
+
+.page-loader-text {
+  color: #6B7280;
+  font-size: 0.9375rem;
+}
+
+/* ============================================= */
+/* INLINE LOADER (with text)                     */
+/* ============================================= */
+
+.inline-loader {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #6B7280;
+  font-size: 0.9375rem;
+}
+
+/* ============================================= */
+/* BUTTON LOADING STATE                          */
+/* ============================================= */
+
+.btn-loading {
+  position: relative;
+  color: transparent !important;
+  pointer-events: none;
+}
+
+.btn-loading::after {
+  content: '';
+  position: absolute;
+  width: 1em;
+  height: 1em;
+  top: 50%;
+  left: 50%;
+  margin-top: -0.5em;
+  margin-left: -0.5em;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+/* ============================================= */
+/* OVERLAY LOADER                                */
+/* ============================================= */
+
+.overlay-loader {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.overlay-loader-dark {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.overlay-loader-dark .spinner {
+  border-color: rgba(255,255,255,0.3);
+  border-top-color: white;
+}
+</style>
+
+<!-- ============================================= -->
+<!-- EXAMPLES                                      -->
+<!-- ============================================= -->
+
+<!-- Spinner -->
+<div class="spinner"></div>
+<div class="spinner spinner-sm"></div>
+<div class="spinner spinner-lg"></div>
+<div class="spinner spinner-xl"></div>
+
+<!-- Dots Loader -->
+<div class="dots-loader">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
+<!-- Pulse Loader -->
+<div class="pulse-loader"></div>
+<div class="pulse-loader-double"></div>
+
+<!-- Bars Loader -->
+<div class="bars-loader">
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
+<!-- Ring Loader -->
+<div class="ring-loader"></div>
+
+<!-- Progress Bar -->
+<div class="progress">
+  <div class="progress-bar" style="width: 60%;"></div>
+</div>
+
+<div class="progress progress-sm">
+  <div class="progress-bar success" style="width: 80%;"></div>
+</div>
+
+<!-- Indeterminate Progress -->
+<div class="progress progress-indeterminate">
+  <div class="progress-bar"></div>
+</div>
+
+<!-- Progress with Label -->
+<div class="progress-labeled">
+  <div class="progress">
+    <div class="progress-bar" style="width: 45%;"></div>
+  </div>
+  <span class="progress-label">45%</span>
+</div>
+
+<!-- Skeleton -->
+<div class="skeleton-card">
+  <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+    <div class="skeleton skeleton-avatar"></div>
+    <div style="flex: 1;">
+      <div class="skeleton skeleton-text" style="width: 50%;"></div>
+      <div class="skeleton skeleton-text" style="width: 30%;"></div>
+    </div>
+  </div>
+  <div class="skeleton skeleton-image" style="margin-bottom: 1rem;"></div>
+  <div class="skeleton skeleton-text"></div>
+  <div class="skeleton skeleton-text"></div>
+  <div class="skeleton skeleton-text" style="width: 60%;"></div>
+</div>
+
+<!-- Inline Loader -->
+<div class="inline-loader">
+  <div class="spinner spinner-sm"></div>
+  <span>Loading...</span>
+</div>
+
+<!-- Full Page Loader -->
+<div class="page-loader" style="display: none;">
+  <div class="spinner spinner-lg"></div>
+  <div class="page-loader-text">Loading...</div>
+</div>
+
+<!-- Overlay Loader -->
+<div style="position: relative; padding: 2rem; border: 1px solid #E5E7EB; border-radius: 8px;">
+  <p>Content behind overlay</p>
+  <div class="overlay-loader">
+    <div class="spinner spinner-lg"></div>
+  </div>
+</div>
+
+<!-- Button Loading -->
+<button class="btn btn-primary btn-loading">Submit</button>

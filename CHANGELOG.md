@@ -37,5 +37,8 @@ All notable changes to this project will be documented in this file.
 - sitemap.xml template with images and video support.
 - Schema.org JSON-LD templates: organization, local-business, website, article, product, faq, breadcrumb, person, review, service.
 - SEO preprompt with validation tools and checklists.
+- UI components collection in `components/` directory.
+- Component templates: buttons, cards, forms, modals, alerts, badges, tabs, dropdowns, avatars, loaders, tooltips.
+- Components preprompt with quick reference and customization guide.
 - Layouts preprompt `layouts/README.md` with usage guide and customization instructions.
 - Layout preview page `layouts/index.html` with live iframe previews.

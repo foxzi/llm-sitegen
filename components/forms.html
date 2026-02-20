@@ -1,0 +1,616 @@
+<!-- Form Components -->
+<!-- Standalone CSS - copy styles and HTML as needed -->
+
+<style>
+/* ============================================= */
+/* FORM GROUP                                    */
+/* ============================================= */
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.form-label.required::after {
+  content: ' *';
+  color: #EF4444;
+}
+
+.form-hint {
+  font-size: 0.8125rem;
+  color: #6B7280;
+  margin-top: 0.375rem;
+}
+
+/* ============================================= */
+/* TEXT INPUT                                    */
+/* ============================================= */
+
+.form-input {
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: #111827;
+  background: white;
+  border: 1px solid #D1D5DB;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.form-input::placeholder {
+  color: #9CA3AF;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #4F46E5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.form-input:disabled {
+  background: #F3F4F6;
+  cursor: not-allowed;
+}
+
+/* Sizes */
+.form-input-sm {
+  padding: 0.375rem 0.75rem;
+  font-size: 0.8125rem;
+  border-radius: 6px;
+}
+
+.form-input-lg {
+  padding: 0.875rem 1rem;
+  font-size: 1rem;
+  border-radius: 10px;
+}
+
+/* States */
+.form-input.is-valid {
+  border-color: #10B981;
+}
+
+.form-input.is-invalid {
+  border-color: #EF4444;
+}
+
+.form-error {
+  font-size: 0.8125rem;
+  color: #EF4444;
+  margin-top: 0.375rem;
+}
+
+.form-success {
+  font-size: 0.8125rem;
+  color: #10B981;
+  margin-top: 0.375rem;
+}
+
+/* ============================================= */
+/* INPUT WITH ICON                               */
+/* ============================================= */
+
+.input-group {
+  position: relative;
+}
+
+.input-group .form-input {
+  padding-left: 2.75rem;
+}
+
+.input-group .input-icon {
+  position: absolute;
+  left: 0.875rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9CA3AF;
+  pointer-events: none;
+}
+
+.input-group .input-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Icon on right */
+.input-group.icon-right .form-input {
+  padding-left: 0.875rem;
+  padding-right: 2.75rem;
+}
+
+.input-group.icon-right .input-icon {
+  left: auto;
+  right: 0.875rem;
+}
+
+/* ============================================= */
+/* INPUT WITH ADDON                              */
+/* ============================================= */
+
+.input-addon-group {
+  display: flex;
+}
+
+.input-addon {
+  padding: 0.625rem 0.875rem;
+  background: #F3F4F6;
+  border: 1px solid #D1D5DB;
+  color: #6B7280;
+  font-size: 0.9375rem;
+  white-space: nowrap;
+}
+
+.input-addon-group .input-addon:first-child {
+  border-radius: 8px 0 0 8px;
+  border-right: none;
+}
+
+.input-addon-group .form-input {
+  border-radius: 0;
+}
+
+.input-addon-group .input-addon:last-child {
+  border-radius: 0 8px 8px 0;
+  border-left: none;
+}
+
+.input-addon-group .form-input:first-child {
+  border-radius: 8px 0 0 8px;
+}
+
+.input-addon-group .form-input:last-child {
+  border-radius: 0 8px 8px 0;
+}
+
+/* ============================================= */
+/* SELECT                                        */
+/* ============================================= */
+
+.form-select {
+  width: 100%;
+  padding: 0.625rem 2.5rem 0.625rem 0.875rem;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: #111827;
+  background: white url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e") no-repeat right 0.75rem center/1.25em;
+  border: 1px solid #D1D5DB;
+  border-radius: 8px;
+  cursor: pointer;
+  appearance: none;
+  transition: all 0.2s;
+}
+
+.form-select:focus {
+  outline: none;
+  border-color: #4F46E5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+/* ============================================= */
+/* TEXTAREA                                      */
+/* ============================================= */
+
+.form-textarea {
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: #111827;
+  background: white;
+  border: 1px solid #D1D5DB;
+  border-radius: 8px;
+  resize: vertical;
+  min-height: 120px;
+  transition: all 0.2s;
+}
+
+.form-textarea:focus {
+  outline: none;
+  border-color: #4F46E5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+/* ============================================= */
+/* CHECKBOX                                      */
+/* ============================================= */
+
+.form-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  cursor: pointer;
+}
+
+.form-checkbox input {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: #4F46E5;
+  cursor: pointer;
+}
+
+.form-checkbox-label {
+  font-size: 0.9375rem;
+  color: #374151;
+}
+
+/* Custom checkbox */
+.checkbox-custom {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+}
+
+.checkbox-custom input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkbox-custom .checkmark {
+  width: 20px;
+  height: 20px;
+  background: white;
+  border: 2px solid #D1D5DB;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.checkbox-custom input:checked + .checkmark {
+  background: #4F46E5;
+  border-color: #4F46E5;
+}
+
+.checkbox-custom .checkmark svg {
+  width: 12px;
+  height: 12px;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.checkbox-custom input:checked + .checkmark svg {
+  opacity: 1;
+}
+
+/* ============================================= */
+/* RADIO                                         */
+/* ============================================= */
+
+.form-radio {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+}
+
+.form-radio input {
+  width: 18px;
+  height: 18px;
+  accent-color: #4F46E5;
+  cursor: pointer;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.radio-group.horizontal {
+  flex-direction: row;
+  gap: 1.5rem;
+}
+
+/* ============================================= */
+/* TOGGLE / SWITCH                               */
+/* ============================================= */
+
+.form-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+}
+
+.toggle-switch {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  background: #D1D5DB;
+  border-radius: 9999px;
+  transition: background 0.2s;
+}
+
+.form-toggle input {
+  position: absolute;
+  opacity: 0;
+}
+
+.toggle-switch::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.form-toggle input:checked + .toggle-switch {
+  background: #4F46E5;
+}
+
+.form-toggle input:checked + .toggle-switch::after {
+  transform: translateX(20px);
+}
+
+/* ============================================= */
+/* FILE INPUT                                    */
+/* ============================================= */
+
+.form-file {
+  position: relative;
+}
+
+.form-file input[type="file"] {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.form-file-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.625rem 0.875rem;
+  background: white;
+  border: 2px dashed #D1D5DB;
+  border-radius: 8px;
+  color: #6B7280;
+  transition: all 0.2s;
+}
+
+.form-file:hover .form-file-label {
+  border-color: #4F46E5;
+  color: #4F46E5;
+}
+
+/* ============================================= */
+/* RANGE / SLIDER                                */
+/* ============================================= */
+
+.form-range {
+  width: 100%;
+  height: 6px;
+  background: #E5E7EB;
+  border-radius: 3px;
+  outline: none;
+  appearance: none;
+}
+
+.form-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #4F46E5;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.form-range::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+}
+
+/* ============================================= */
+/* FORM LAYOUT                                   */
+/* ============================================= */
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+@media (max-width: 640px) {
+  .form-row {
+    flex-direction: column;
+  }
+}
+
+/* Inline form */
+.form-inline {
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+.form-inline .form-group {
+  margin-bottom: 0;
+}
+</style>
+
+<!-- ============================================= -->
+<!-- EXAMPLES                                      -->
+<!-- ============================================= -->
+
+<!-- Basic Input -->
+<div class="form-group">
+  <label class="form-label">Email</label>
+  <input type="email" class="form-input" placeholder="Enter your email">
+</div>
+
+<!-- Required Field -->
+<div class="form-group">
+  <label class="form-label required">Password</label>
+  <input type="password" class="form-input" placeholder="Enter password">
+  <p class="form-hint">Must be at least 8 characters</p>
+</div>
+
+<!-- Input Sizes -->
+<input type="text" class="form-input form-input-sm" placeholder="Small">
+<input type="text" class="form-input" placeholder="Default">
+<input type="text" class="form-input form-input-lg" placeholder="Large">
+
+<!-- Validation States -->
+<div class="form-group">
+  <label class="form-label">Username</label>
+  <input type="text" class="form-input is-valid" value="johndoe">
+  <p class="form-success">Username is available!</p>
+</div>
+
+<div class="form-group">
+  <label class="form-label">Email</label>
+  <input type="email" class="form-input is-invalid" value="invalid-email">
+  <p class="form-error">Please enter a valid email address</p>
+</div>
+
+<!-- Input with Icon -->
+<div class="form-group">
+  <label class="form-label">Search</label>
+  <div class="input-group">
+    <span class="input-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    </span>
+    <input type="text" class="form-input" placeholder="Search...">
+  </div>
+</div>
+
+<!-- Input with Addon -->
+<div class="form-group">
+  <label class="form-label">Website</label>
+  <div class="input-addon-group">
+    <span class="input-addon">https://</span>
+    <input type="text" class="form-input" placeholder="example.com">
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="form-label">Price</label>
+  <div class="input-addon-group">
+    <span class="input-addon">$</span>
+    <input type="number" class="form-input" placeholder="0.00">
+    <span class="input-addon">USD</span>
+  </div>
+</div>
+
+<!-- Select -->
+<div class="form-group">
+  <label class="form-label">Country</label>
+  <select class="form-select">
+    <option value="">Select country...</option>
+    <option value="us">United States</option>
+    <option value="uk">United Kingdom</option>
+    <option value="ca">Canada</option>
+  </select>
+</div>
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="form-label">Message</label>
+  <textarea class="form-textarea" placeholder="Write your message..."></textarea>
+</div>
+
+<!-- Checkbox -->
+<div class="form-group">
+  <label class="form-checkbox">
+    <input type="checkbox">
+    <span class="form-checkbox-label">I agree to the terms and conditions</span>
+  </label>
+</div>
+
+<!-- Custom Checkbox -->
+<label class="checkbox-custom">
+  <input type="checkbox">
+  <span class="checkmark">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+  </span>
+  <span>Remember me</span>
+</label>
+
+<!-- Radio Group -->
+<div class="form-group">
+  <label class="form-label">Plan</label>
+  <div class="radio-group">
+    <label class="form-radio">
+      <input type="radio" name="plan" value="free" checked>
+      <span>Free</span>
+    </label>
+    <label class="form-radio">
+      <input type="radio" name="plan" value="pro">
+      <span>Pro ($29/mo)</span>
+    </label>
+    <label class="form-radio">
+      <input type="radio" name="plan" value="enterprise">
+      <span>Enterprise (Contact us)</span>
+    </label>
+  </div>
+</div>
+
+<!-- Toggle Switch -->
+<label class="form-toggle">
+  <input type="checkbox">
+  <span class="toggle-switch"></span>
+  <span>Enable notifications</span>
+</label>
+
+<!-- File Input -->
+<div class="form-group">
+  <label class="form-label">Upload File</label>
+  <div class="form-file">
+    <input type="file">
+    <div class="form-file-label">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+      <span>Choose file or drag here</span>
+    </div>
+  </div>
+</div>
+
+<!-- Range Slider -->
+<div class="form-group">
+  <label class="form-label">Volume: <span id="range-value">50</span>%</label>
+  <input type="range" class="form-range" value="50" min="0" max="100">
+</div>
+
+<!-- Form Row (Two Columns) -->
+<div class="form-row">
+  <div class="form-group">
+    <label class="form-label">First Name</label>
+    <input type="text" class="form-input" placeholder="John">
+  </div>
+  <div class="form-group">
+    <label class="form-label">Last Name</label>
+    <input type="text" class="form-input" placeholder="Doe">
+  </div>
+</div>
+
+<!-- Inline Form -->
+<div class="form-inline">
+  <div class="form-group" style="flex: 2;">
+    <label class="form-label">Email</label>
+    <input type="email" class="form-input" placeholder="Enter email">
+  </div>
+  <button class="btn btn-primary">Subscribe</button>
+</div>

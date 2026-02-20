@@ -1,0 +1,476 @@
+<!-- Dropdown Components -->
+<!-- Standalone CSS + JS - copy styles and HTML as needed -->
+
+<style>
+/* ============================================= */
+/* DROPDOWN CONTAINER                            */
+/* ============================================= */
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* ============================================= */
+/* DROPDOWN TRIGGER                              */
+/* ============================================= */
+
+.dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.dropdown-toggle svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s;
+}
+
+.dropdown.open .dropdown-toggle svg {
+  transform: rotate(180deg);
+}
+
+/* ============================================= */
+/* DROPDOWN MENU                                 */
+/* ============================================= */
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 200px;
+  padding: 0.5rem 0;
+  margin-top: 0.5rem;
+  background: white;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.2s ease;
+  z-index: 100;
+}
+
+.dropdown.open .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Right aligned */
+.dropdown-menu.right {
+  left: auto;
+  right: 0;
+}
+
+/* ============================================= */
+/* DROPDOWN ITEMS                                */
+/* ============================================= */
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.625rem 1rem;
+  font-size: 0.9375rem;
+  color: #374151;
+  background: none;
+  border: none;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.dropdown-item:hover {
+  background: #F3F4F6;
+}
+
+.dropdown-item svg {
+  width: 18px;
+  height: 18px;
+  color: #6B7280;
+}
+
+.dropdown-item.active {
+  background: #EEF2FF;
+  color: #4F46E5;
+}
+
+.dropdown-item.active svg {
+  color: #4F46E5;
+}
+
+.dropdown-item.danger {
+  color: #DC2626;
+}
+
+.dropdown-item.danger svg {
+  color: #DC2626;
+}
+
+.dropdown-item:disabled,
+.dropdown-item.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ============================================= */
+/* DROPDOWN DIVIDER                              */
+/* ============================================= */
+
+.dropdown-divider {
+  height: 1px;
+  margin: 0.5rem 0;
+  background: #E5E7EB;
+}
+
+/* ============================================= */
+/* DROPDOWN HEADER                               */
+/* ============================================= */
+
+.dropdown-header {
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #9CA3AF;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ============================================= */
+/* WITH SUBMENU                                  */
+/* ============================================= */
+
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu > .dropdown-item::after {
+  content: '';
+  margin-left: auto;
+  border: 4px solid transparent;
+  border-left-color: currentColor;
+}
+
+.dropdown-submenu .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: 0;
+  margin-left: 0.25rem;
+}
+
+.dropdown-submenu:hover > .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* ============================================= */
+/* SELECT DROPDOWN                               */
+/* ============================================= */
+
+.select-dropdown {
+  min-width: 180px;
+}
+
+.select-dropdown .dropdown-toggle {
+  width: 100%;
+  padding: 0.625rem 0.875rem;
+  background: white;
+  border: 1px solid #D1D5DB;
+  border-radius: 8px;
+  justify-content: space-between;
+}
+
+.select-dropdown.open .dropdown-toggle {
+  border-color: #4F46E5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.select-dropdown .dropdown-menu {
+  width: 100%;
+}
+
+.select-dropdown .dropdown-item .check {
+  margin-left: auto;
+  opacity: 0;
+}
+
+.select-dropdown .dropdown-item.selected .check {
+  opacity: 1;
+  color: #4F46E5;
+}
+
+/* ============================================= */
+/* CONTEXT MENU                                  */
+/* ============================================= */
+
+.context-menu {
+  position: fixed;
+  min-width: 180px;
+  padding: 0.5rem 0;
+  background: white;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display: none;
+}
+
+.context-menu.show {
+  display: block;
+  animation: fadeIn 0.15s ease;
+}
+
+/* ============================================= */
+/* MEGA MENU                                     */
+/* ============================================= */
+
+.mega-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  margin-top: 0.5rem;
+  background: white;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  display: none;
+}
+
+.mega-menu.show {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.mega-menu-section h4 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 0.75rem;
+}
+
+.mega-menu-section a {
+  display: block;
+  padding: 0.375rem 0;
+  color: #6B7280;
+  text-decoration: none;
+  font-size: 0.9375rem;
+  transition: color 0.15s;
+}
+
+.mega-menu-section a:hover {
+  color: #4F46E5;
+}
+
+/* ============================================= */
+/* USER DROPDOWN                                 */
+/* ============================================= */
+
+.user-dropdown .dropdown-toggle {
+  padding: 0.375rem;
+  border-radius: 50%;
+}
+
+.user-dropdown .dropdown-toggle img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+
+.user-dropdown .dropdown-menu {
+  min-width: 240px;
+}
+
+.user-dropdown .user-info {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #E5E7EB;
+}
+
+.user-dropdown .user-name {
+  font-weight: 600;
+  color: #111827;
+}
+
+.user-dropdown .user-email {
+  font-size: 0.8125rem;
+  color: #6B7280;
+}
+</style>
+
+<!-- ============================================= -->
+<!-- EXAMPLES                                      -->
+<!-- ============================================= -->
+
+<!-- Basic Dropdown -->
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" onclick="toggleDropdown(this)">
+    Options
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="dropdown-menu">
+    <a href="#" class="dropdown-item">Profile</a>
+    <a href="#" class="dropdown-item">Settings</a>
+    <a href="#" class="dropdown-item">Help</a>
+    <div class="dropdown-divider"></div>
+    <a href="#" class="dropdown-item danger">Logout</a>
+  </div>
+</div>
+
+<!-- Dropdown with Icons -->
+<div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" onclick="toggleDropdown(this)">
+    Actions
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="dropdown-menu">
+    <a href="#" class="dropdown-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      Edit
+    </a>
+    <a href="#" class="dropdown-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+      Duplicate
+    </a>
+    <a href="#" class="dropdown-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download
+    </a>
+    <div class="dropdown-divider"></div>
+    <a href="#" class="dropdown-item danger">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+      Delete
+    </a>
+  </div>
+</div>
+
+<!-- Dropdown with Headers -->
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" onclick="toggleDropdown(this)">
+    Filter
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="dropdown-menu">
+    <div class="dropdown-header">Status</div>
+    <a href="#" class="dropdown-item active">All</a>
+    <a href="#" class="dropdown-item">Active</a>
+    <a href="#" class="dropdown-item">Inactive</a>
+    <div class="dropdown-divider"></div>
+    <div class="dropdown-header">Type</div>
+    <a href="#" class="dropdown-item">Users</a>
+    <a href="#" class="dropdown-item">Teams</a>
+  </div>
+</div>
+
+<!-- Right Aligned -->
+<div class="dropdown" style="float: right;">
+  <button class="btn btn-secondary dropdown-toggle" onclick="toggleDropdown(this)">
+    Right
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="dropdown-menu right">
+    <a href="#" class="dropdown-item">Option 1</a>
+    <a href="#" class="dropdown-item">Option 2</a>
+    <a href="#" class="dropdown-item">Option 3</a>
+  </div>
+</div>
+
+<!-- Select Dropdown -->
+<div class="dropdown select-dropdown">
+  <button class="dropdown-toggle" onclick="toggleDropdown(this)">
+    <span>Select option...</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="dropdown-menu">
+    <a href="#" class="dropdown-item" onclick="selectOption(this)">
+      Option 1
+      <svg class="check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+    </a>
+    <a href="#" class="dropdown-item selected" onclick="selectOption(this)">
+      Option 2
+      <svg class="check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+    </a>
+    <a href="#" class="dropdown-item" onclick="selectOption(this)">
+      Option 3
+      <svg class="check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- User Dropdown -->
+<div class="dropdown user-dropdown">
+  <button class="dropdown-toggle" onclick="toggleDropdown(this)">
+    <img src="https://placehold.co/36x36" alt="">
+  </button>
+  <div class="dropdown-menu right">
+    <div class="user-info">
+      <div class="user-name">John Doe</div>
+      <div class="user-email">john@example.com</div>
+    </div>
+    <a href="#" class="dropdown-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Profile
+    </a>
+    <a href="#" class="dropdown-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      Settings
+    </a>
+    <div class="dropdown-divider"></div>
+    <a href="#" class="dropdown-item danger">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+      Logout
+    </a>
+  </div>
+</div>
+
+<script>
+function toggleDropdown(button) {
+  const dropdown = button.closest('.dropdown');
+  const wasOpen = dropdown.classList.contains('open');
+
+  // Close all dropdowns
+  document.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
+
+  // Toggle this one
+  if (!wasOpen) {
+    dropdown.classList.add('open');
+  }
+}
+
+function selectOption(item) {
+  const dropdown = item.closest('.dropdown');
+  const toggle = dropdown.querySelector('.dropdown-toggle span');
+
+  // Update selection
+  dropdown.querySelectorAll('.dropdown-item').forEach(i => i.classList.remove('selected'));
+  item.classList.add('selected');
+
+  // Update toggle text
+  toggle.textContent = item.textContent.trim();
+
+  // Close dropdown
+  dropdown.classList.remove('open');
+}
+
+// Close on click outside
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.dropdown')) {
+    document.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
+  }
+});
+
+// Close on Escape
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.dropdown.open').forEach(d => d.classList.remove('open'));
+  }
+});
+</script>
