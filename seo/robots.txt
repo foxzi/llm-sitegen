@@ -1,0 +1,174 @@
+# Robots.txt Template
+# Place in root directory of website
+# https://example.com/robots.txt
+
+# ============================================
+# ALLOW ALL (Default, most permissive)
+# ============================================
+
+User-agent: *
+Allow: /
+
+Sitemap: https://example.com/sitemap.xml
+
+# ============================================
+# STANDARD WEBSITE TEMPLATE
+# ============================================
+
+User-agent: *
+Allow: /
+
+# Block admin and private areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+Disallow: /tmp/
+Disallow: /cgi-bin/
+
+# Block search results and filters
+Disallow: /search
+Disallow: /*?s=
+Disallow: /*?q=
+Disallow: /*?filter=
+Disallow: /*?sort=
+
+# Block user account pages
+Disallow: /account/
+Disallow: /cart/
+Disallow: /checkout/
+Disallow: /login
+Disallow: /register
+
+# Block utility pages
+Disallow: /thank-you
+Disallow: /confirmation
+Disallow: /unsubscribe
+
+# Block common development files
+Disallow: /*.json$
+Disallow: /*.xml$
+Disallow: /package.json
+Disallow: /composer.json
+
+Sitemap: https://example.com/sitemap.xml
+
+# ============================================
+# E-COMMERCE TEMPLATE
+# ============================================
+
+User-agent: *
+Allow: /
+
+# Allow product and category pages
+Allow: /products/
+Allow: /collections/
+Allow: /category/
+
+# Block cart and checkout
+Disallow: /cart
+Disallow: /checkout
+Disallow: /account
+
+# Block filtered/sorted pages (duplicate content)
+Disallow: /*?sort=
+Disallow: /*?filter=
+Disallow: /*?page=
+Disallow: /*?price=
+
+# Block search with parameters
+Disallow: /search?
+
+# Block wishlist and compare
+Disallow: /wishlist
+Disallow: /compare
+
+Sitemap: https://example.com/sitemap.xml
+
+# ============================================
+# BLOCK SPECIFIC BOTS
+# ============================================
+
+# Block bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# ============================================
+# ALLOW SPECIFIC BOTS ONLY
+# ============================================
+
+# Allow only major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# Block everything else
+User-agent: *
+Disallow: /
+
+# ============================================
+# CRAWL DELAY (Use sparingly)
+# ============================================
+
+User-agent: *
+Crawl-delay: 10
+
+# ============================================
+# GOOGLE SPECIFIC
+# ============================================
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /images/
+Disallow: /private-images/
+
+User-agent: Googlebot-Video
+Allow: /videos/
+
+User-agent: Googlebot-News
+Allow: /news/
+Allow: /blog/
+
+# ============================================
+# MULTIPLE SITEMAPS
+# ============================================
+
+Sitemap: https://example.com/sitemap.xml
+Sitemap: https://example.com/sitemap-posts.xml
+Sitemap: https://example.com/sitemap-products.xml
+Sitemap: https://example.com/sitemap-images.xml
+
+# ============================================
+# STAGING/DEVELOPMENT (Block all)
+# ============================================
+
+User-agent: *
+Disallow: /
+
+# ============================================
+# NOTES
+# ============================================
+
+# - robots.txt is publicly accessible
+# - Don't list sensitive URLs here (security risk)
+# - Use noindex meta tag for more reliable blocking
+# - Changes may take time to be picked up by crawlers
+# - Test with Google Search Console robots.txt tester

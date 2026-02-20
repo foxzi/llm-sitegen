@@ -1,0 +1,81 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+
+  "name": "John Doe",
+  "givenName": "John",
+  "familyName": "Doe",
+
+  "jobTitle": "Software Engineer",
+  "description": "Full-stack developer with 10 years of experience",
+
+  "image": "https://example.com/john-doe.jpg",
+  "url": "https://example.com/about/john-doe",
+
+  "email": "john@example.com",
+  "telephone": "+1-555-555-5555",
+
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "San Francisco",
+    "addressRegion": "CA",
+    "addressCountry": "US"
+  },
+
+  "birthDate": "1985-06-15",
+  "birthPlace": {
+    "@type": "Place",
+    "name": "New York, NY"
+  },
+
+  "nationality": {
+    "@type": "Country",
+    "name": "United States"
+  },
+
+  "alumniOf": [
+    {
+      "@type": "CollegeOrUniversity",
+      "name": "Stanford University",
+      "url": "https://stanford.edu"
+    }
+  ],
+
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Company Name",
+    "url": "https://example.com"
+  },
+
+  "knowsAbout": [
+    "JavaScript",
+    "Python",
+    "Web Development",
+    "Cloud Architecture"
+  ],
+
+  "sameAs": [
+    "https://twitter.com/johndoe",
+    "https://linkedin.com/in/johndoe",
+    "https://github.com/johndoe"
+  ],
+
+  "award": [
+    "Developer of the Year 2023"
+  ],
+
+  "hasOccupation": {
+    "@type": "Occupation",
+    "name": "Software Engineer",
+    "occupationLocation": {
+      "@type": "City",
+      "name": "San Francisco"
+    },
+    "estimatedSalary": {
+      "@type": "MonetaryAmountDistribution",
+      "name": "base",
+      "currency": "USD",
+      "median": 150000
+    }
+  }
+}

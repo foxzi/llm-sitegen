@@ -1,0 +1,54 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+
+  "headline": "Article Title Here (Max 110 characters recommended)",
+  "alternativeHeadline": "Shorter or alternative title",
+  "description": "Brief summary of the article content",
+
+  "image": [
+    "https://example.com/article-image-1x1.jpg",
+    "https://example.com/article-image-4x3.jpg",
+    "https://example.com/article-image-16x9.jpg"
+  ],
+
+  "author": {
+    "@type": "Person",
+    "name": "Author Name",
+    "url": "https://example.com/author/author-name",
+    "image": "https://example.com/author-photo.jpg"
+  },
+
+  "publisher": {
+    "@type": "Organization",
+    "name": "Publisher Name",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.com/logo.png",
+      "width": 600,
+      "height": 60
+    }
+  },
+
+  "datePublished": "2024-01-15T08:00:00+00:00",
+  "dateModified": "2024-01-16T10:30:00+00:00",
+
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.com/article-url"
+  },
+
+  "articleSection": "Technology",
+  "keywords": ["keyword1", "keyword2", "keyword3"],
+
+  "wordCount": 1500,
+  "timeRequired": "PT5M",
+
+  "inLanguage": "en-US",
+
+  "isAccessibleForFree": true,
+  "hasPart": {
+    "@type": "WebPageElement",
+    "isAccessibleForFree": true
+  }
+}

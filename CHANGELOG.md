@@ -28,5 +28,14 @@ All notable changes to this project will be documented in this file.
 - Page templates: landing page, blog post, dashboard, portfolio.
 - Additional page templates: lead-gen, click-through, coming-soon, product-listing, product-detail, cart, about, services, 404, login, pricing, careers.
 - Page Details section in layouts README with detailed descriptions for all 16 page templates.
+- SEO/Meta templates collection in `seo/` directory.
+- Meta tags template with essential and advanced options.
+- Open Graph templates for Facebook/LinkedIn sharing.
+- Twitter Cards templates for all card types.
+- Favicon setup template with manifest and browserconfig.
+- robots.txt templates for various use cases.
+- sitemap.xml template with images and video support.
+- Schema.org JSON-LD templates: organization, local-business, website, article, product, faq, breadcrumb, person.
+- SEO preprompt with validation tools and checklists.
 - Layouts preprompt `layouts/README.md` with usage guide and customization instructions.
 - Layout preview page `layouts/index.html` with live iframe previews.

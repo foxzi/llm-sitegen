@@ -1,0 +1,107 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+
+  "name": "Product Name",
+  "description": "Detailed product description",
+  "image": [
+    "https://example.com/product-image-1.jpg",
+    "https://example.com/product-image-2.jpg",
+    "https://example.com/product-image-3.jpg"
+  ],
+
+  "sku": "SKU12345",
+  "mpn": "MPN12345",
+  "gtin13": "1234567890123",
+
+  "brand": {
+    "@type": "Brand",
+    "name": "Brand Name"
+  },
+
+  "manufacturer": {
+    "@type": "Organization",
+    "name": "Manufacturer Name"
+  },
+
+  "offers": {
+    "@type": "Offer",
+    "url": "https://example.com/product-url",
+    "priceCurrency": "USD",
+    "price": "29.99",
+    "priceValidUntil": "2024-12-31",
+    "availability": "https://schema.org/InStock",
+    "itemCondition": "https://schema.org/NewCondition",
+    "seller": {
+      "@type": "Organization",
+      "name": "Seller Name"
+    },
+    "shippingDetails": {
+      "@type": "OfferShippingDetails",
+      "shippingRate": {
+        "@type": "MonetaryAmount",
+        "value": "5.99",
+        "currency": "USD"
+      },
+      "shippingDestination": {
+        "@type": "DefinedRegion",
+        "addressCountry": "US"
+      },
+      "deliveryTime": {
+        "@type": "ShippingDeliveryTime",
+        "handlingTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 1,
+          "maxValue": 2,
+          "unitCode": "DAY"
+        },
+        "transitTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 3,
+          "maxValue": 5,
+          "unitCode": "DAY"
+        }
+      }
+    },
+    "hasMerchantReturnPolicy": {
+      "@type": "MerchantReturnPolicy",
+      "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+      "merchantReturnDays": 30,
+      "returnMethod": "https://schema.org/ReturnByMail"
+    }
+  },
+
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.5",
+    "reviewCount": "89",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+
+  "review": [
+    {
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "John Doe"
+      },
+      "datePublished": "2024-01-10",
+      "reviewBody": "Great product! Exactly what I needed."
+    }
+  ],
+
+  "category": "Electronics > Computers > Laptops",
+  "color": "Silver",
+  "material": "Aluminum",
+  "weight": {
+    "@type": "QuantitativeValue",
+    "value": "1.5",
+    "unitCode": "KGM"
+  }
+}

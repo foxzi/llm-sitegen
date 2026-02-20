@@ -1,0 +1,174 @@
+<!-- Favicon Setup Template -->
+<!-- Copy to <head> section -->
+<!-- Place favicon files in /favicon/ or root directory -->
+
+<!-- ============================================= -->
+<!-- MINIMAL SETUP (Quick start) -->
+<!-- ============================================= -->
+
+<!-- Standard favicon (browsers look for this automatically in root) -->
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<!-- ============================================= -->
+<!-- COMPLETE SETUP (Recommended) -->
+<!-- ============================================= -->
+
+<!-- ICO format for legacy browsers -->
+<link rel="icon" href="/favicon/favicon.ico" sizes="32x32">
+
+<!-- SVG favicon (modern browsers, supports dark mode) -->
+<link rel="icon" href="/favicon/favicon.svg" type="image/svg+xml">
+
+<!-- PNG favicons for various sizes -->
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
+
+<!-- Apple Touch Icons -->
+<link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-touch-icon-120x120.png">
+
+<!-- Safari Pinned Tab (SVG, single color) -->
+<link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#4F46E5">
+
+<!-- Android Chrome -->
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon/android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/favicon/android-chrome-512x512.png">
+
+<!-- Web App Manifest -->
+<link rel="manifest" href="/favicon/site.webmanifest">
+
+<!-- Windows Tiles -->
+<meta name="msapplication-TileColor" content="#4F46E5">
+<meta name="msapplication-TileImage" content="/favicon/mstile-144x144.png">
+<meta name="msapplication-config" content="/favicon/browserconfig.xml">
+
+<!-- Theme Color (browser UI color) -->
+<meta name="theme-color" content="#4F46E5">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111827">
+
+<!-- ============================================= -->
+<!-- SVG FAVICON WITH DARK MODE SUPPORT -->
+<!-- ============================================= -->
+
+<!--
+Create favicon.svg with this content:
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>
+    .icon { fill: #4F46E5; }
+    @media (prefers-color-scheme: dark) {
+      .icon { fill: #818CF8; }
+    }
+  </style>
+  <rect class="icon" width="32" height="32" rx="6"/>
+  <text x="16" y="22" text-anchor="middle" fill="white" font-size="18" font-weight="bold">A</text>
+</svg>
+-->
+
+<!-- ============================================= -->
+<!-- WEB APP MANIFEST (site.webmanifest) -->
+<!-- ============================================= -->
+
+<!--
+Create site.webmanifest with this content:
+
+{
+  "name": "Your App Name",
+  "short_name": "App",
+  "description": "Your app description",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4F46E5",
+  "icons": [
+    {
+      "src": "/favicon/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
+-->
+
+<!-- ============================================= -->
+<!-- BROWSERCONFIG.XML (Windows Tiles) -->
+<!-- ============================================= -->
+
+<!--
+Create browserconfig.xml with this content:
+
+<?xml version="1.0" encoding="utf-8"?>
+<browserconfig>
+  <msapplication>
+    <tile>
+      <square70x70logo src="/favicon/mstile-70x70.png"/>
+      <square150x150logo src="/favicon/mstile-150x150.png"/>
+      <square310x310logo src="/favicon/mstile-310x310.png"/>
+      <wide310x150logo src="/favicon/mstile-310x150.png"/>
+      <TileColor>#4F46E5</TileColor>
+    </tile>
+  </msapplication>
+</browserconfig>
+-->
+
+<!-- ============================================= -->
+<!-- REQUIRED FILES LIST -->
+<!-- ============================================= -->
+
+<!--
+Essential files (minimum):
+- favicon.ico (32x32)
+- favicon.svg (any size, vector)
+- apple-touch-icon.png (180x180)
+
+Complete set:
+favicon/
+  favicon.ico
+  favicon.svg
+  favicon-16x16.png
+  favicon-32x32.png
+  favicon-96x96.png
+  apple-touch-icon.png (180x180)
+  apple-touch-icon-120x120.png
+  apple-touch-icon-152x152.png
+  android-chrome-192x192.png
+  android-chrome-512x512.png
+  safari-pinned-tab.svg
+  mstile-70x70.png
+  mstile-144x144.png
+  mstile-150x150.png
+  mstile-310x150.png
+  mstile-310x310.png
+  site.webmanifest
+  browserconfig.xml
+-->
+
+<!-- ============================================= -->
+<!-- FAVICON GENERATORS -->
+<!-- ============================================= -->
+
+<!--
+Online generators:
+- realfavicongenerator.net (recommended)
+- favicon.io
+- favicomatic.com
+
+From SVG/PNG, generate all required sizes automatically
+-->
