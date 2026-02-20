@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UIkit Local Example</title>
+    <link rel="stylesheet" href="../dist/uikit.min.css" />
+  </head>
+  <body>
+    <main class="uk-container uk-section">
+      <h1 class="uk-heading-small">UIkit local bundle</h1>
+      <button class="uk-button uk-button-primary" uk-toggle="target: #modal">Open modal</button>
+      <div id="modal" uk-modal>
+        <div class="uk-modal-dialog uk-modal-body">
+          <p>UIkit JS works locally.</p>
+          <button class="uk-button uk-button-default uk-modal-close" type="button">Close</button>
+        </div>
+      </div>
+    </main>
+    <script src="../dist/uikit.min.js"></script>
+    <script src="../dist/uikit-icons.min.js"></script>
+  </body>
+</html>
