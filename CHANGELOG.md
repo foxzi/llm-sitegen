@@ -18,3 +18,8 @@ All notable changes to this project will be documented in this file.
 - Typography preprompt `fonts/README.md` with font pairings and usage guide.
 - Font preview page `fonts/index.html` with all fonts and pairing examples.
 - Font download script `fonts/download.sh` for updating fonts from Google Fonts.
+- SVG icon collection in `icons/` with 6 icon sets (15000+ icons total).
+- Icon sets: Heroicons, Feather, Lucide, Bootstrap Icons, Tabler, Phosphor.
+- Icons preprompt `icons/README.md` with usage guide and selection recommendations.
+- Icon preview page `icons/index.html` with search and style switching.
+- Icon download script `icons/download.sh` for updating icon sets.

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Icon Preview - LLM Sitegen</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #f5f5f5;
+      padding: 2rem;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 0.5rem;
+      font-size: 2.5rem;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 1rem;
+    }
+
+    .search-container {
+      max-width: 500px;
+      margin: 0 auto 2rem;
+    }
+
+    #search {
+      width: 100%;
+      padding: 12px 16px;
+      font-size: 1rem;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    #search:focus {
+      border-color: #3B82F6;
+    }
+
+    .section {
+      margin-bottom: 3rem;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #ddd;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      color: #444;
+    }
+
+    .section-meta {
+      font-size: 0.85rem;
+      color: #888;
+    }
+
+    .icons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 8px;
+    }
+
+    .icon-card {
+      background: white;
+      border-radius: 8px;
+      padding: 16px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 2px solid transparent;
+    }
+
+    .icon-card:hover {
+      border-color: #3B82F6;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+    }
+
+    .icon-card.copied {
+      background: #D1FAE5;
+      border-color: #10B981;
+    }
+
+    .icon-card svg,
+    .icon-card img {
+      width: 32px;
+      height: 32px;
+      color: #374151;
+    }
+
+    .icon-card img {
+      filter: brightness(0) saturate(100%) invert(21%) sepia(10%) saturate(1000%) hue-rotate(180deg);
+    }
+
+    .icon-name {
+      font-size: 0.65rem;
+      color: #666;
+      text-align: center;
+      word-break: break-all;
+      line-height: 1.2;
+    }
+
+    .style-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 1rem;
+    }
+
+    .style-tab {
+      padding: 6px 12px;
+      background: #e5e7eb;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+    }
+
+    .style-tab:hover {
+      background: #d1d5db;
+    }
+
+    .style-tab.active {
+      background: #3B82F6;
+      color: white;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1F2937;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    .toast.show {
+      opacity: 1;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 768px) {
+      body { padding: 1rem; }
+      h1 { font-size: 1.75rem; }
+      .icons-grid { grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+  <h1>Icon Preview</h1>
+  <p class="subtitle">Click on icon to copy file path</p>
+
+  <div class="search-container">
+    <input type="text" id="search" placeholder="Search icons... (e.g., arrow, user, cart)">
+  </div>
+
+  <!-- Heroicons -->
+  <div class="section" data-set="heroicons">
+    <div class="section-header">
+      <h2 class="section-title">Heroicons</h2>
+      <span class="section-meta">By Tailwind • 324 icons × 3 styles</span>
+    </div>
+    <div class="style-tabs">
+      <button class="style-tab active" data-style="outline">Outline</button>
+      <button class="style-tab" data-style="solid">Solid</button>
+      <button class="style-tab" data-style="mini">Mini</button>
+    </div>
+    <div class="icons-grid" id="heroicons-grid"></div>
+  </div>
+
+  <!-- Feather -->
+  <div class="section" data-set="feather">
+    <div class="section-header">
+      <h2 class="section-title">Feather Icons</h2>
+      <span class="section-meta">Simple & minimal • 287 icons</span>
+    </div>
+    <div class="icons-grid" id="feather-grid"></div>
+  </div>
+
+  <!-- Lucide -->
+  <div class="section" data-set="lucide">
+    <div class="section-header">
+      <h2 class="section-title">Lucide</h2>
+      <span class="section-meta">Extended Feather • 1688 icons</span>
+    </div>
+    <div class="icons-grid" id="lucide-grid"></div>
+  </div>
+
+  <!-- Bootstrap -->
+  <div class="section" data-set="bootstrap">
+    <div class="section-header">
+      <h2 class="section-title">Bootstrap Icons</h2>
+      <span class="section-meta">Bootstrap framework • 2078 icons</span>
+    </div>
+    <div class="icons-grid" id="bootstrap-grid"></div>
+  </div>
+
+  <!-- Tabler -->
+  <div class="section" data-set="tabler">
+    <div class="section-header">
+      <h2 class="section-title">Tabler Icons</h2>
+      <span class="section-meta">Large collection • 4985 outline + 1019 filled</span>
+    </div>
+    <div class="style-tabs">
+      <button class="style-tab active" data-style="outline">Outline</button>
+      <button class="style-tab" data-style="filled">Filled</button>
+    </div>
+    <div class="icons-grid" id="tabler-grid"></div>
+  </div>
+
+  <!-- Phosphor -->
+  <div class="section" data-set="phosphor">
+    <div class="section-header">
+      <h2 class="section-title">Phosphor Icons</h2>
+      <span class="section-meta">Flexible family • 1512 icons × 3 styles</span>
+    </div>
+    <div class="style-tabs">
+      <button class="style-tab active" data-style="regular">Regular</button>
+      <button class="style-tab" data-style="bold">Bold</button>
+      <button class="style-tab" data-style="fill">Fill</button>
+    </div>
+    <div class="icons-grid" id="phosphor-grid"></div>
+  </div>
+
+  <div class="toast" id="toast">Path copied!</div>
+
+  <script>
+    // Common icons to display (subset for preview)
+    const commonIcons = [
+      'arrow-left', 'arrow-right', 'arrow-up', 'arrow-down',
+      'chevron-left', 'chevron-right', 'chevron-up', 'chevron-down',
+      'plus', 'minus', 'x', 'check',
+      'home', 'search', 'menu', 'settings',
+      'user', 'users', 'mail', 'phone',
+      'heart', 'star', 'bookmark', 'bell',
+      'edit', 'trash', 'copy', 'save',
+      'download', 'upload', 'share', 'link',
+      'lock', 'unlock', 'eye', 'eye-off',
+      'calendar', 'clock', 'map', 'globe',
+      'image', 'camera', 'film', 'music',
+      'play', 'pause', 'volume', 'mic',
+      'file', 'folder', 'archive', 'cloud',
+      'shopping-cart', 'credit-card', 'tag', 'gift',
+      'sun', 'moon', 'zap', 'activity'
+    ];
+
+    // Icon set configurations
+    const iconSets = {
+      heroicons: {
+        styles: ['outline', 'solid', 'mini'],
+        currentStyle: 'outline',
+        getPath: (name, style) => `heroicons/${style}/${name}.svg`
+      },
+      feather: {
+        styles: null,
+        getPath: (name) => `feather/${name}.svg`
+      },
+      lucide: {
+        styles: null,
+        getPath: (name) => `lucide/${name}.svg`
+      },
+      bootstrap: {
+        styles: null,
+        getPath: (name) => `bootstrap/${name}.svg`
+      },
+      tabler: {
+        styles: ['outline', 'filled'],
+        currentStyle: 'outline',
+        getPath: (name, style) => `tabler/${style}/${name}.svg`
+      },
+      phosphor: {
+        styles: ['regular', 'bold', 'fill'],
+        currentStyle: 'regular',
+        getPath: (name, style) => `phosphor/${style}/${name}.svg`
+      }
+    };
+
+    // Toast notification
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2000);
+    }
+
+    // Copy path to clipboard
+    function copyPath(path, card) {
+      navigator.clipboard.writeText(path).then(() => {
+        card.classList.add('copied');
+        showToast(`Copied: ${path}`);
+        setTimeout(() => card.classList.remove('copied'), 1500);
+      });
+    }
+
+    // Create icon card
+    function createIconCard(name, path) {
+      const card = document.createElement('div');
+      card.className = 'icon-card';
+      card.dataset.name = name;
+      card.innerHTML = `
+        <img src="${path}" alt="${name}" onerror="this.parentElement.style.display='none'">
+        <span class="icon-name">${name}</span>
+      `;
+      card.onclick = () => copyPath(path, card);
+      return card;
+    }
+
+    // Render icons for a set
+    function renderIcons(setName) {
+      const set = iconSets[setName];
+      const grid = document.getElementById(`${setName}-grid`);
+      grid.innerHTML = '';
+
+      const style = set.currentStyle || null;
+
+      commonIcons.forEach(name => {
+        const path = set.styles ? set.getPath(name, style) : set.getPath(name);
+        const card = createIconCard(name, path);
+        grid.appendChild(card);
+      });
+    }
+
+    // Initialize all icon sets
+    Object.keys(iconSets).forEach(setName => renderIcons(setName));
+
+    // Style tab switching
+    document.querySelectorAll('.style-tabs').forEach(tabs => {
+      tabs.querySelectorAll('.style-tab').forEach(tab => {
+        tab.onclick = () => {
+          const section = tabs.closest('.section');
+          const setName = section.dataset.set;
+          const style = tab.dataset.style;
+
+          tabs.querySelectorAll('.style-tab').forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+
+          iconSets[setName].currentStyle = style;
+          renderIcons(setName);
+        };
+      });
+    });
+
+    // Search functionality
+    document.getElementById('search').addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase().trim();
+
+      document.querySelectorAll('.icon-card').forEach(card => {
+        const name = card.dataset.name;
+        if (query === '' || name.includes(query)) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
