@@ -46,15 +46,7 @@ All notable changes to this project will be documented in this file.
 - Animation templates: transitions, keyframes, hover effects, scroll-triggered, text effects.
 - Animations preprompt with quick reference and best practices.
 - Main README.md with project overview and usage guide.
-- Example site build in `build/site1/` based on Electrolux Roseville spec with 5 framework variants:
-  - `tailwind/` - Tailwind CSS version with 5 color schemes
-  - `bootstrap/` - Bootstrap 5 version
-  - `bulma/` - Bulma version
-  - `uikit/` - UIkit version
-  - `pico/` - Pico CSS version
-- Tailwind color variants: ocean-trust, executive-green, medical-trust, fresh-market, carbon-dark
-- Bootstrap color variants: ocean-trust, executive-green, medical-trust, fresh-market, carbon-dark
-- Bulma color variants: ocean-trust, executive-green, medical-trust, fresh-market, carbon-dark
+- Added `build/` to .gitignore (generated output not tracked)
 - Project structure for examples with separate spec.md and design.md files
 - Examples README with structure documentation
 - Surface Pairs documentation in colors/README.md for contrast handling

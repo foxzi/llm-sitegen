@@ -56,11 +56,9 @@ Or preset from `fonts/`:
 
 # Notes / Wishes
 
-Здесь можно добавить любые пожелания:
 - Хочу чтобы кнопки были более заметными
 - Футер должен быть тёмным
 - Добавить иконки к сервисам
-- ...
 
 ---
 
@@ -72,8 +70,3 @@ Generate these color variants:
 - medical-trust
 - fresh-market
 - carbon-dark
-
-Frameworks:
-- bootstrap
-- bulma
-- tailwind
