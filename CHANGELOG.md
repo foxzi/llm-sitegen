@@ -9,3 +9,4 @@ All notable changes to this project will be documented in this file.
 - Per-framework usage guides and minimal examples in `frameworks/*/README.md` and `frameworks/*/examples/index.example.html`.
 - Framework index file `frameworks/README.md` with bundle overview.
 - Bulk update script `frameworks/update.sh` and usage notes in `frameworks/README.md`.
+- Repository `.gitignore` for local instruction files (`CLAUDE.md`, `tz.md`).
