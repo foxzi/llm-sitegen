@@ -45,3 +45,4 @@ All notable changes to this project will be documented in this file.
 - CSS animations collection in `animations/` directory.
 - Animation templates: transitions, keyframes, hover effects, scroll-triggered, text effects.
 - Animations preprompt with quick reference and best practices.
+- Main README.md with project overview and usage guide.
