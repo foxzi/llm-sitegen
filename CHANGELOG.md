@@ -10,3 +10,4 @@ All notable changes to this project will be documented in this file.
 - Framework index file `frameworks/README.md` with bundle overview.
 - Bulk update script `frameworks/update.sh` and usage notes in `frameworks/README.md`.
 - Repository `.gitignore` for local instruction files (`CLAUDE.md`, `tz.md`).
+- Added source spec file `exmaples/electrolux-roseville-spec.md`.
