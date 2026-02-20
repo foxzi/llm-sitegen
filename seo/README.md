@@ -137,6 +137,8 @@ Structured data templates in `schema/` directory.
 | `faq.json` | FAQ pages |
 | `breadcrumb.json` | Navigation breadcrumbs |
 | `person.json` | Personal profiles |
+| `review.json` | Product/service reviews |
+| `service.json` | Professional services |
 
 ### How to Add Schema
 

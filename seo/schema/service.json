@@ -1,0 +1,169 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+
+  "name": "Web Design Service",
+  "description": "Professional web design and development services for businesses of all sizes",
+
+  "serviceType": "Web Design",
+  "category": "Professional Services",
+
+  "provider": {
+    "@type": "Organization",
+    "name": "Company Name",
+    "url": "https://example.com",
+    "logo": "https://example.com/logo.png",
+    "telephone": "+1-555-555-5555",
+    "email": "contact@example.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "123 Main Street",
+      "addressLocality": "San Francisco",
+      "addressRegion": "CA",
+      "postalCode": "94102",
+      "addressCountry": "US"
+    }
+  },
+
+  "areaServed": [
+    {
+      "@type": "Country",
+      "name": "United States"
+    },
+    {
+      "@type": "Country",
+      "name": "Canada"
+    }
+  ],
+
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Web Design Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Basic Website",
+          "description": "5-page responsive website"
+        },
+        "price": "999",
+        "priceCurrency": "USD"
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "E-commerce Website",
+          "description": "Full online store with payment integration"
+        },
+        "price": "2999",
+        "priceCurrency": "USD"
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Custom Web Application",
+          "description": "Fully custom web application development"
+        },
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "minPrice": "5000",
+          "priceCurrency": "USD"
+        }
+      }
+    ]
+  },
+
+  "termsOfService": "https://example.com/terms",
+  "serviceOutput": "Completed website with full documentation",
+
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "127",
+    "bestRating": "5"
+  },
+
+  "review": [
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Jane Smith"
+      },
+      "datePublished": "2024-01-10",
+      "reviewBody": "Excellent service! They delivered a beautiful website on time and within budget.",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5"
+      }
+    }
+  ],
+
+  "availableChannel": {
+    "@type": "ServiceChannel",
+    "serviceType": "Online",
+    "serviceUrl": "https://example.com/services/web-design",
+    "servicePhone": "+1-555-555-5555",
+    "availableLanguage": ["English", "Spanish"]
+  },
+
+  "hoursAvailable": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    "opens": "09:00",
+    "closes": "18:00"
+  },
+
+  "brand": {
+    "@type": "Brand",
+    "name": "Company Name"
+  },
+
+  "slogan": "Building beautiful websites since 2010"
+}
+
+/*
+  COMMON SERVICE TYPES:
+
+  Professional Services:
+  - "serviceType": "Consulting"
+  - "serviceType": "Legal Services"
+  - "serviceType": "Accounting"
+  - "serviceType": "Marketing"
+
+  Home Services:
+  - "serviceType": "Plumbing"
+  - "serviceType": "Electrical"
+  - "serviceType": "Cleaning"
+  - "serviceType": "Landscaping"
+
+  Health Services:
+  - "serviceType": "Medical"
+  - "serviceType": "Dental"
+  - "serviceType": "Therapy"
+
+  Tech Services:
+  - "serviceType": "IT Support"
+  - "serviceType": "Web Development"
+  - "serviceType": "Software Development"
+  - "serviceType": "Cloud Services"
+
+  SIMPLIFIED VERSION:
+
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Service Name",
+    "description": "Service description",
+    "provider": {
+      "@type": "Organization",
+      "name": "Company Name",
+      "url": "https://example.com"
+    },
+    "areaServed": "United States",
+    "serviceType": "Consulting"
+  }
+*/

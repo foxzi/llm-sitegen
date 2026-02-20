@@ -1,0 +1,135 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Review",
+
+  "itemReviewed": {
+    "@type": "Product",
+    "name": "Product Name",
+    "image": "https://example.com/product.jpg",
+    "url": "https://example.com/product"
+  },
+
+  "reviewRating": {
+    "@type": "Rating",
+    "ratingValue": "4.5",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+
+  "author": {
+    "@type": "Person",
+    "name": "John Doe",
+    "url": "https://example.com/authors/john-doe"
+  },
+
+  "publisher": {
+    "@type": "Organization",
+    "name": "Review Site Name",
+    "url": "https://example.com"
+  },
+
+  "datePublished": "2024-01-15",
+  "dateModified": "2024-01-16",
+
+  "reviewBody": "This is a detailed review of the product. It covers all the important aspects including quality, value for money, and overall experience. The product exceeded my expectations in many ways.",
+
+  "name": "Great product, highly recommended",
+
+  "positiveNotes": {
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Excellent build quality"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Great value for money"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Fast shipping"
+      }
+    ]
+  },
+
+  "negativeNotes": {
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Instructions could be clearer"
+      }
+    ]
+  }
+}
+
+/*
+  VARIANTS - Replace itemReviewed @type as needed:
+
+  For LocalBusiness review:
+  "itemReviewed": {
+    "@type": "LocalBusiness",
+    "name": "Restaurant Name",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "123 Main St",
+      "addressLocality": "San Francisco",
+      "addressRegion": "CA"
+    }
+  }
+
+  For Service review:
+  "itemReviewed": {
+    "@type": "Service",
+    "name": "Web Design Service",
+    "provider": {
+      "@type": "Organization",
+      "name": "Agency Name"
+    }
+  }
+
+  For Book review:
+  "itemReviewed": {
+    "@type": "Book",
+    "name": "Book Title",
+    "author": {
+      "@type": "Person",
+      "name": "Author Name"
+    },
+    "isbn": "978-0-123456-78-9"
+  }
+
+  For Movie review:
+  "itemReviewed": {
+    "@type": "Movie",
+    "name": "Movie Title",
+    "director": {
+      "@type": "Person",
+      "name": "Director Name"
+    },
+    "dateCreated": "2024"
+  }
+
+  For Course review:
+  "itemReviewed": {
+    "@type": "Course",
+    "name": "Course Title",
+    "provider": {
+      "@type": "Organization",
+      "name": "Platform Name"
+    }
+  }
+
+  For SoftwareApplication review:
+  "itemReviewed": {
+    "@type": "SoftwareApplication",
+    "name": "App Name",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "iOS, Android"
+  }
+*/
