@@ -59,3 +59,4 @@ All notable changes to this project will be documented in this file.
 - Examples README with structure documentation
 - Surface Pairs documentation in colors/README.md for contrast handling
 - CSS variables for surface pairs in example templates
+- Fix: CTA section text contrast in all Bulma color variants

@@ -7,6 +7,18 @@
   <meta name="description" content="Need Electrolux appliance repair near you in Roseville, CA? Get same-day service from certified technicians.">
   <link rel="stylesheet" href="../../../../frameworks/bulma/dist/bulma.min.css">
   <style>
+    /* Surface Pairs */
+    :root {
+      --surface-light: #FFFFFF;
+      --on-light: #0C4A6E;
+      --on-light-muted: #64748B;
+      --surface-light-alt: #f0f9ff;
+      --surface-dark: #0c4a6e;
+      --on-dark: #F0F9FF;
+      --on-dark-muted: #BAE6FD;
+      --surface-primary: #0EA5E9;
+      --on-primary: #FFFFFF;
+    }
     html { scroll-behavior: smooth; }
     .hover-lift { transition: transform 0.2s ease, box-shadow 0.2s ease; }
     .hover-lift:hover { transform: translateY(-4px); box-shadow: 0 12px 20px -8px rgba(0,0,0,0.15); }
@@ -15,13 +27,15 @@
     .navbar { box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
     /* Medical Trust color scheme */
     .has-text-link, .has-text-primary { color: #0EA5E9 !important; }
-    .has-background-link, .hero.is-link { background-color: #0EA5E9 !important; }
-    .button.is-link { background-color: #0EA5E9; border-color: #0EA5E9; }
+    .has-background-link, .hero.is-link { background-color: var(--surface-primary) !important; }
+    .button.is-link { background-color: #0EA5E9; border-color: #0EA5E9; color: var(--on-primary); }
     .button.is-link:hover { background-color: #0284C7; border-color: #0284C7; }
     .button.is-link.is-outlined { color: #0EA5E9; border-color: #0EA5E9; background-color: transparent; }
     .button.is-link.is-outlined:hover { background-color: #0EA5E9; color: white; }
     .has-text-accent { color: #10B981 !important; }
-    body { color: #0C4A6E; }
+    body { color: var(--on-light); }
+    /* Fix: text on primary surface must be white */
+    .hero.is-link .title, .hero.is-link .subtitle { color: var(--on-primary) !important; }
   </style>
 </head>
 <body>

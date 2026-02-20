@@ -10,12 +10,26 @@
 
   <link rel="stylesheet" href="../../../../frameworks/bulma/dist/bulma.min.css">
   <style>
+    /* Surface Pairs */
+    :root {
+      --surface-light: #FFFFFF;
+      --on-light: #363636;
+      --on-light-muted: #7a7a7a;
+      --surface-light-alt: #F5F5F5;
+      --surface-dark: #363636;
+      --on-dark: #FFFFFF;
+      --on-dark-muted: #B5B5B5;
+      --surface-primary: #485FC7;
+      --on-primary: #FFFFFF;
+    }
     html { scroll-behavior: smooth; }
     .hover-lift { transition: transform 0.2s ease, box-shadow 0.2s ease; }
     .hover-lift:hover { transform: translateY(-4px); box-shadow: 0 12px 20px -8px rgba(0,0,0,0.15); }
     [data-scroll] { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
     [data-scroll].is-visible { opacity: 1; transform: translateY(0); }
     .navbar { box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    /* Fix: ensure text on primary surface is white */
+    .hero.is-link .title, .hero.is-link .subtitle { color: var(--on-primary) !important; }
   </style>
 
   <script type="application/ld+json">
