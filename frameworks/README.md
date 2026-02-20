@@ -21,3 +21,8 @@ Each framework lives in its own folder:
 - `frameworks/milligram` - Milligram + Normalize
 - `frameworks/alpinejs` - Alpine.js
 - `frameworks/htmx` - htmx
+
+## Update all local bundles
+
+- Dry run: `./frameworks/update.sh --dry-run`
+- Download updates: `./frameworks/update.sh`
