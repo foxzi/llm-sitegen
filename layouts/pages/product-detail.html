@@ -1,0 +1,246 @@
+<!-- E-commerce: Product Detail Page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Name - Store</title>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, -apple-system, sans-serif; color: #374151; line-height: 1.6; }
+
+    /* Header */
+    .header { background: white; border-bottom: 1px solid #E5E7EB; padding: 1rem 1.5rem; }
+    .header-inner { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-size: 1.5rem; font-weight: 700; color: #111827; text-decoration: none; }
+    .breadcrumb { font-size: 0.875rem; color: #6B7280; }
+    .breadcrumb a { color: #6B7280; }
+    .breadcrumb span { color: #111827; }
+
+    /* Product Section */
+    .product { max-width: 1400px; margin: 0 auto; padding: 2rem 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+
+    /* Gallery */
+    .gallery {}
+    .gallery-main { height: 500px; background: #F3F4F6; border-radius: 16px; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; color: #9CA3AF; font-size: 1.25rem; }
+    .gallery-thumbs { display: flex; gap: 0.75rem; }
+    .gallery-thumb { width: 80px; height: 80px; background: #F3F4F6; border-radius: 8px; border: 2px solid transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #9CA3AF; font-size: 0.75rem; }
+    .gallery-thumb.active, .gallery-thumb:hover { border-color: #4F46E5; }
+
+    /* Product Info */
+    .product-info {}
+    .product-badge { display: inline-block; background: #FEF3C7; color: #92400E; padding: 0.25rem 0.75rem; border-radius: 6px; font-size: 0.75rem; font-weight: 600; margin-bottom: 1rem; }
+    .product-title { font-size: 2rem; font-weight: 700; color: #111827; margin-bottom: 0.5rem; }
+    .product-rating { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; }
+    .stars { display: flex; gap: 2px; }
+    .stars svg { width: 20px; height: 20px; fill: #FBBF24; }
+    .rating-text { color: #6B7280; font-size: 0.9375rem; }
+    .rating-text a { color: #4F46E5; }
+
+    .product-price { margin: 1.5rem 0; }
+    .price-current { font-size: 2.5rem; font-weight: 700; color: #111827; }
+    .price-old { font-size: 1.25rem; color: #9CA3AF; text-decoration: line-through; margin-left: 0.75rem; }
+    .price-save { display: inline-block; background: #FEE2E2; color: #DC2626; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.875rem; font-weight: 500; margin-left: 0.75rem; }
+
+    .product-description { color: #6B7280; margin-bottom: 1.5rem; line-height: 1.7; }
+
+    /* Options */
+    .option-group { margin-bottom: 1.5rem; }
+    .option-label { font-weight: 500; color: #111827; margin-bottom: 0.75rem; display: block; }
+    .option-label span { color: #6B7280; font-weight: 400; }
+
+    .color-options { display: flex; gap: 0.75rem; }
+    .color-option { width: 36px; height: 36px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; position: relative; }
+    .color-option.selected { border-color: #4F46E5; }
+    .color-option.selected::after { content: ''; position: absolute; inset: -4px; border: 2px solid #4F46E5; border-radius: 50%; }
+
+    .size-options { display: flex; gap: 0.5rem; }
+    .size-option { padding: 0.75rem 1.25rem; border: 1px solid #D1D5DB; border-radius: 8px; cursor: pointer; font-weight: 500; transition: all 0.2s; }
+    .size-option:hover { border-color: #4F46E5; }
+    .size-option.selected { background: #4F46E5; color: white; border-color: #4F46E5; }
+    .size-option.disabled { color: #D1D5DB; cursor: not-allowed; }
+
+    /* Quantity */
+    .quantity-selector { display: flex; align-items: center; gap: 1rem; }
+    .quantity-btn { width: 40px; height: 40px; border: 1px solid #D1D5DB; border-radius: 8px; background: white; cursor: pointer; font-size: 1.25rem; }
+    .quantity-value { font-size: 1.125rem; font-weight: 500; min-width: 40px; text-align: center; }
+
+    /* Actions */
+    .product-actions { display: flex; gap: 1rem; margin-top: 2rem; }
+    .btn { padding: 1rem 2rem; border-radius: 10px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.2s; }
+    .btn-primary { flex: 1; background: #4F46E5; color: white; border: none; }
+    .btn-primary:hover { background: #4338CA; }
+    .btn-secondary { background: white; border: 2px solid #E5E7EB; color: #374151; padding: 1rem; }
+    .btn-secondary:hover { border-color: #4F46E5; color: #4F46E5; }
+    .btn-secondary svg { width: 24px; height: 24px; }
+
+    /* Features */
+    .product-features { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #E5E7EB; }
+    .feature-item { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
+    .feature-item svg { width: 20px; height: 20px; color: #10B981; }
+
+    /* Tabs */
+    .tabs-section { max-width: 1400px; margin: 0 auto; padding: 3rem 1.5rem; }
+    .tabs-nav { display: flex; border-bottom: 1px solid #E5E7EB; margin-bottom: 2rem; }
+    .tab-btn { padding: 1rem 1.5rem; background: none; border: none; font-size: 1rem; font-weight: 500; color: #6B7280; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+    .tab-btn.active { color: #4F46E5; border-bottom-color: #4F46E5; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .tab-content h3 { font-size: 1.25rem; margin-bottom: 1rem; color: #111827; }
+    .tab-content p { color: #6B7280; margin-bottom: 1rem; }
+    .tab-content ul { color: #6B7280; margin-left: 1.5rem; }
+    .tab-content li { margin-bottom: 0.5rem; }
+
+    @media (max-width: 1024px) {
+      .product { grid-template-columns: 1fr; gap: 2rem; }
+      .gallery-main { height: 400px; }
+    }
+    @media (max-width: 640px) {
+      .gallery-main { height: 300px; }
+      .product-title { font-size: 1.5rem; }
+      .price-current { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a href="/" class="logo">Store</a>
+      <nav class="breadcrumb">
+        <a href="#">Home</a> / <a href="#">Women</a> / <a href="#">Tops</a> / <span>Classic Cotton T-Shirt</span>
+      </nav>
+    </div>
+  </header>
+
+  <div class="product">
+    <div class="gallery">
+      <div class="gallery-main">Main Product Image</div>
+      <div class="gallery-thumbs">
+        <div class="gallery-thumb active">1</div>
+        <div class="gallery-thumb">2</div>
+        <div class="gallery-thumb">3</div>
+        <div class="gallery-thumb">4</div>
+      </div>
+    </div>
+
+    <div class="product-info">
+      <span class="product-badge">Best Seller</span>
+      <h1 class="product-title">Classic Cotton T-Shirt</h1>
+
+      <div class="product-rating">
+        <div class="stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <span class="rating-text">4.8 (128 reviews) • <a href="#reviews">Read reviews</a></span>
+      </div>
+
+      <div class="product-price">
+        <span class="price-current">$29.99</span>
+        <span class="price-old">$49.99</span>
+        <span class="price-save">Save 40%</span>
+      </div>
+
+      <p class="product-description">Premium quality cotton t-shirt with a relaxed fit. Perfect for everyday wear, this versatile piece features a classic crew neck and short sleeves. Made from 100% organic cotton for ultimate comfort.</p>
+
+      <div class="option-group">
+        <label class="option-label">Color: <span>White</span></label>
+        <div class="color-options">
+          <div class="color-option selected" style="background: #FFFFFF; border: 1px solid #E5E7EB;"></div>
+          <div class="color-option" style="background: #000000;"></div>
+          <div class="color-option" style="background: #3B82F6;"></div>
+          <div class="color-option" style="background: #EF4444;"></div>
+        </div>
+      </div>
+
+      <div class="option-group">
+        <label class="option-label">Size: <span>Select a size</span></label>
+        <div class="size-options">
+          <div class="size-option">XS</div>
+          <div class="size-option">S</div>
+          <div class="size-option selected">M</div>
+          <div class="size-option">L</div>
+          <div class="size-option">XL</div>
+          <div class="size-option disabled">XXL</div>
+        </div>
+      </div>
+
+      <div class="option-group">
+        <label class="option-label">Quantity</label>
+        <div class="quantity-selector">
+          <button class="quantity-btn">−</button>
+          <span class="quantity-value">1</span>
+          <button class="quantity-btn">+</button>
+        </div>
+      </div>
+
+      <div class="product-actions">
+        <button class="btn btn-primary">Add to Cart</button>
+        <button class="btn btn-secondary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+      </div>
+
+      <div class="product-features">
+        <div class="feature-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Free shipping on orders over $50
+        </div>
+        <div class="feature-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+          30-day easy returns
+        </div>
+        <div class="feature-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          2-year warranty included
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tabs-section">
+    <div class="tabs-nav">
+      <button class="tab-btn active" data-tab="description">Description</button>
+      <button class="tab-btn" data-tab="details">Details & Care</button>
+      <button class="tab-btn" data-tab="reviews">Reviews (128)</button>
+    </div>
+
+    <div class="tab-content active" id="description">
+      <h3>Product Description</h3>
+      <p>This classic cotton t-shirt is a wardrobe essential. Made from premium organic cotton, it offers exceptional softness and durability. The relaxed fit provides comfortable movement while maintaining a stylish silhouette.</p>
+      <p>Features a reinforced crew neck that holds its shape wash after wash, and double-stitched hems for added durability.</p>
+    </div>
+
+    <div class="tab-content" id="details">
+      <h3>Details & Care</h3>
+      <ul>
+        <li>100% Organic Cotton</li>
+        <li>Relaxed fit</li>
+        <li>Crew neck</li>
+        <li>Machine wash cold</li>
+        <li>Tumble dry low</li>
+        <li>Made in Portugal</li>
+      </ul>
+    </div>
+
+    <div class="tab-content" id="reviews">
+      <h3>Customer Reviews</h3>
+      <p>Reviews content would go here...</p>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.tab).classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

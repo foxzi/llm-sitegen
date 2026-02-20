@@ -1,0 +1,247 @@
+<!-- Services Page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services - Company</title>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, -apple-system, sans-serif; color: #374151; line-height: 1.6; }
+
+    /* Navbar */
+    .navbar { background: white; border-bottom: 1px solid #E5E7EB; padding: 1rem 1.5rem; }
+    .navbar-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.25rem; font-weight: 700; color: #111827; text-decoration: none; }
+    .nav-links { display: flex; list-style: none; gap: 2rem; }
+    .nav-links a { color: #6B7280; text-decoration: none; font-weight: 500; }
+
+    /* Hero */
+    .hero { padding: 5rem 1.5rem; text-align: center; background: #F9FAFB; }
+    .hero-inner { max-width: 800px; margin: 0 auto; }
+    .hero-title { font-size: 3rem; font-weight: 800; color: #111827; margin-bottom: 1rem; }
+    .hero-text { font-size: 1.25rem; color: #6B7280; }
+
+    /* Services Grid */
+    .services { padding: 5rem 1.5rem; }
+    .services-inner { max-width: 1200px; margin: 0 auto; }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+
+    .service-card { background: white; border: 1px solid #E5E7EB; border-radius: 16px; padding: 2rem; transition: all 0.3s; }
+    .service-card:hover { border-color: #4F46E5; box-shadow: 0 10px 40px rgba(79, 70, 229, 0.1); }
+    .service-icon { width: 56px; height: 56px; background: #EEF2FF; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
+    .service-icon svg { width: 28px; height: 28px; color: #4F46E5; }
+    .service-title { font-size: 1.25rem; font-weight: 600; color: #111827; margin-bottom: 0.75rem; }
+    .service-text { color: #6B7280; margin-bottom: 1.5rem; }
+    .service-features { list-style: none; }
+    .service-features li { display: flex; align-items: center; gap: 0.5rem; padding: 0.375rem 0; color: #6B7280; font-size: 0.9375rem; }
+    .service-features svg { width: 18px; height: 18px; color: #10B981; flex-shrink: 0; }
+    .service-link { display: inline-flex; align-items: center; gap: 0.5rem; color: #4F46E5; font-weight: 500; margin-top: 1rem; }
+    .service-link svg { width: 16px; height: 16px; }
+
+    /* Featured Service */
+    .featured { padding: 5rem 1.5rem; background: #111827; color: white; }
+    .featured-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .featured-content {}
+    .featured-label { color: #818CF8; font-weight: 600; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; }
+    .featured-title { font-size: 2.5rem; font-weight: 700; margin-bottom: 1.5rem; }
+    .featured-text { color: #9CA3AF; margin-bottom: 2rem; font-size: 1.125rem; }
+    .featured-features { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .featured-feature { display: flex; align-items: center; gap: 0.75rem; }
+    .featured-feature svg { width: 20px; height: 20px; color: #10B981; }
+    .featured-image { height: 400px; background: #1F2937; border-radius: 16px; display: flex; align-items: center; justify-content: center; color: #6B7280; }
+    .btn { display: inline-block; padding: 0.875rem 2rem; background: #4F46E5; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; margin-top: 2rem; }
+
+    /* Process */
+    .process { padding: 5rem 1.5rem; }
+    .process-inner { max-width: 1000px; margin: 0 auto; }
+    .process-header { text-align: center; margin-bottom: 4rem; }
+    .section-title { font-size: 2.25rem; font-weight: 700; color: #111827; margin-bottom: 1rem; }
+    .section-text { color: #6B7280; font-size: 1.125rem; }
+    .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+    .step { text-align: center; position: relative; }
+    .step-number { width: 48px; height: 48px; background: #4F46E5; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.25rem; margin: 0 auto 1rem; }
+    .step-title { font-weight: 600; color: #111827; margin-bottom: 0.5rem; }
+    .step-text { color: #6B7280; font-size: 0.9375rem; }
+
+    /* CTA */
+    .cta { padding: 5rem 1.5rem; background: #F9FAFB; text-align: center; }
+    .cta-inner { max-width: 600px; margin: 0 auto; }
+    .cta-title { font-size: 2.25rem; font-weight: 700; color: #111827; margin-bottom: 1rem; }
+    .cta-text { color: #6B7280; margin-bottom: 2rem; }
+    .cta-buttons { display: flex; gap: 1rem; justify-content: center; }
+    .btn-secondary { background: white; color: #374151; border: 2px solid #E5E7EB; }
+
+    /* Footer */
+    .footer { padding: 2rem 1.5rem; border-top: 1px solid #E5E7EB; text-align: center; color: #6B7280; font-size: 0.875rem; }
+
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .featured-inner { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .hero-title { font-size: 2rem; }
+      .nav-links { display: none; }
+      .cta-buttons { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="/" class="logo">Company</a>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <h1 class="hero-title">Our Services</h1>
+      <p class="hero-text">We offer a comprehensive range of services to help your business grow and succeed in the digital age.</p>
+    </div>
+  </section>
+
+  <section class="services">
+    <div class="services-inner">
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <h3 class="service-title">Web Development</h3>
+          <p class="service-text">Custom websites and web applications built with modern technologies.</p>
+          <ul class="service-features">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Responsive design</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> CMS integration</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> E-commerce solutions</li>
+          </ul>
+          <a href="#" class="service-link">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+          </div>
+          <h3 class="service-title">Mobile Apps</h3>
+          <p class="service-text">Native and cross-platform mobile applications for iOS and Android.</p>
+          <ul class="service-features">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> iOS & Android</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> React Native</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> App Store deployment</li>
+          </ul>
+          <a href="#" class="service-link">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <h3 class="service-title">Digital Marketing</h3>
+          <p class="service-text">Data-driven marketing strategies to grow your online presence.</p>
+          <ul class="service-features">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> SEO optimization</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Social media</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> PPC campaigns</li>
+          </ul>
+          <a href="#" class="service-link">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3 class="service-title">Cloud Solutions</h3>
+          <p class="service-text">Scalable cloud infrastructure and DevOps services.</p>
+          <ul class="service-features">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> AWS / Azure / GCP</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> CI/CD pipelines</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> 24/7 monitoring</li>
+          </ul>
+          <a href="#" class="service-link">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          </div>
+          <h3 class="service-title">UI/UX Design</h3>
+          <p class="service-text">User-centered design that converts visitors into customers.</p>
+          <ul class="service-features">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> User research</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Prototyping</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Design systems</li>
+          </ul>
+          <a href="#" class="service-link">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <h3 class="service-title">Consulting</h3>
+          <p class="service-text">Strategic technology consulting for digital transformation.</p>
+          <ul class="service-features">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Tech audits</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Strategy planning</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Team training</li>
+          </ul>
+          <a href="#" class="service-link">Learn more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="process">
+    <div class="process-inner">
+      <div class="process-header">
+        <h2 class="section-title">How We Work</h2>
+        <p class="section-text">Our proven process ensures successful project delivery every time.</p>
+      </div>
+      <div class="process-steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3 class="step-title">Discovery</h3>
+          <p class="step-text">We learn about your business, goals, and requirements.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3 class="step-title">Planning</h3>
+          <p class="step-text">We create a detailed roadmap and project timeline.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3 class="step-title">Development</h3>
+          <p class="step-text">We build your solution with regular updates and feedback.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3 class="step-title">Launch</h3>
+          <p class="step-text">We deploy, test, and provide ongoing support.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="cta-inner">
+      <h2 class="cta-title">Ready to start your project?</h2>
+      <p class="cta-text">Let's discuss how we can help bring your ideas to life.</p>
+      <div class="cta-buttons">
+        <a href="#" class="btn">Get a Quote</a>
+        <a href="#" class="btn btn-secondary">Schedule a Call</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; 2024 Company Name. All rights reserved.</p>
+  </footer>
+</body>
+</html>

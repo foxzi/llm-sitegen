@@ -1,0 +1,239 @@
+<!-- Pricing Page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing - Company</title>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, -apple-system, sans-serif; color: #374151; line-height: 1.6; }
+
+    /* Navbar */
+    .navbar { background: white; border-bottom: 1px solid #E5E7EB; padding: 1rem 1.5rem; }
+    .navbar-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 1.25rem; font-weight: 700; color: #111827; text-decoration: none; }
+    .nav-links { display: flex; list-style: none; gap: 2rem; }
+    .nav-links a { color: #6B7280; text-decoration: none; font-weight: 500; }
+
+    /* Hero */
+    .hero { padding: 5rem 1.5rem; text-align: center; background: #F9FAFB; }
+    .hero-inner { max-width: 700px; margin: 0 auto; }
+    .hero-title { font-size: 3rem; font-weight: 800; color: #111827; margin-bottom: 1rem; }
+    .hero-text { font-size: 1.25rem; color: #6B7280; margin-bottom: 2rem; }
+
+    /* Toggle */
+    .toggle { display: inline-flex; background: white; border-radius: 10px; padding: 0.25rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .toggle-btn { padding: 0.75rem 1.5rem; border: none; background: none; border-radius: 8px; cursor: pointer; font-weight: 500; color: #6B7280; transition: all 0.2s; }
+    .toggle-btn.active { background: #4F46E5; color: white; }
+    .toggle-badge { display: inline-block; background: #10B981; color: white; padding: 0.125rem 0.5rem; border-radius: 4px; font-size: 0.75rem; margin-left: 0.5rem; }
+
+    /* Pricing Cards */
+    .pricing { padding: 4rem 1.5rem; }
+    .pricing-inner { max-width: 1200px; margin: 0 auto; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+
+    .pricing-card { background: white; border: 1px solid #E5E7EB; border-radius: 16px; padding: 2.5rem; position: relative; }
+    .pricing-card.popular { border: 2px solid #4F46E5; transform: scale(1.05); }
+    .popular-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #4F46E5; color: white; padding: 0.25rem 1rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; }
+
+    .plan-name { font-size: 1.25rem; font-weight: 600; color: #111827; margin-bottom: 0.5rem; }
+    .plan-desc { color: #6B7280; margin-bottom: 1.5rem; }
+
+    .plan-price { margin-bottom: 1.5rem; }
+    .price-amount { font-size: 3.5rem; font-weight: 800; color: #111827; }
+    .price-period { color: #6B7280; }
+
+    .plan-features { list-style: none; margin-bottom: 2rem; }
+    .plan-features li { display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.5rem 0; }
+    .plan-features svg { width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px; }
+    .plan-features .included svg { color: #10B981; }
+    .plan-features .excluded { color: #9CA3AF; }
+    .plan-features .excluded svg { color: #D1D5DB; }
+
+    .btn { display: block; width: 100%; padding: 0.875rem; border-radius: 10px; font-weight: 600; text-align: center; text-decoration: none; transition: all 0.2s; }
+    .btn-primary { background: #4F46E5; color: white; border: none; }
+    .btn-primary:hover { background: #4338CA; }
+    .btn-outline { background: white; color: #374151; border: 2px solid #E5E7EB; }
+    .btn-outline:hover { border-color: #4F46E5; color: #4F46E5; }
+
+    /* Compare */
+    .compare { padding: 4rem 1.5rem; background: #F9FAFB; }
+    .compare-inner { max-width: 1000px; margin: 0 auto; }
+    .compare-title { text-align: center; font-size: 2rem; font-weight: 700; color: #111827; margin-bottom: 3rem; }
+    .compare-table { width: 100%; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .compare-table th, .compare-table td { padding: 1rem 1.5rem; text-align: left; border-bottom: 1px solid #E5E7EB; }
+    .compare-table th { background: #F9FAFB; font-weight: 600; color: #374151; }
+    .compare-table td:not(:first-child) { text-align: center; }
+    .compare-table .check { color: #10B981; }
+    .compare-table .cross { color: #D1D5DB; }
+
+    /* FAQ */
+    .faq { padding: 4rem 1.5rem; }
+    .faq-inner { max-width: 700px; margin: 0 auto; }
+    .faq-title { text-align: center; font-size: 2rem; font-weight: 700; color: #111827; margin-bottom: 3rem; }
+    .faq-item { border-bottom: 1px solid #E5E7EB; }
+    .faq-question { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 0; background: none; border: none; cursor: pointer; font-size: 1rem; font-weight: 500; color: #111827; text-align: left; }
+    .faq-question svg { width: 20px; height: 20px; color: #6B7280; transition: transform 0.2s; }
+    .faq-item.open .faq-question svg { transform: rotate(180deg); }
+    .faq-answer { display: none; padding-bottom: 1.25rem; color: #6B7280; }
+    .faq-item.open .faq-answer { display: block; }
+
+    /* CTA */
+    .cta { padding: 5rem 1.5rem; background: #111827; color: white; text-align: center; }
+    .cta-title { font-size: 2.25rem; font-weight: 700; margin-bottom: 1rem; }
+    .cta-text { color: #9CA3AF; margin-bottom: 2rem; font-size: 1.125rem; }
+    .cta .btn-primary { display: inline-block; width: auto; }
+
+    /* Footer */
+    .footer { padding: 2rem 1.5rem; border-top: 1px solid #E5E7EB; text-align: center; color: #6B7280; font-size: 0.875rem; }
+
+    @media (max-width: 1024px) {
+      .pricing-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+      .pricing-card.popular { transform: none; }
+    }
+    @media (max-width: 640px) {
+      .hero-title { font-size: 2rem; }
+      .nav-links { display: none; }
+      .compare-table { font-size: 0.875rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="/" class="logo">Company</a>
+      <ul class="nav-links">
+        <li><a href="#">Features</a></li>
+        <li><a href="#">Pricing</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <h1 class="hero-title">Simple, transparent pricing</h1>
+      <p class="hero-text">Choose the plan that's right for you. All plans include a 14-day free trial.</p>
+      <div class="toggle">
+        <button class="toggle-btn active">Monthly</button>
+        <button class="toggle-btn">Yearly <span class="toggle-badge">Save 20%</span></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing">
+    <div class="pricing-inner">
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3 class="plan-name">Starter</h3>
+          <p class="plan-desc">Perfect for individuals and small projects</p>
+          <div class="plan-price">
+            <span class="price-amount">$9</span>
+            <span class="price-period">/month</span>
+          </div>
+          <ul class="plan-features">
+            <li class="included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Up to 3 projects</li>
+            <li class="included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> 5GB storage</li>
+            <li class="included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Basic analytics</li>
+            <li class="included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Email support</li>
+            <li class="excluded"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg> Custom domain</li>
+            <li class="excluded"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg> Priority support</li>
+          </ul>
+          <a href="#" class="btn btn-outline">Get Started</a>
+        </div>
+
+        <div class="pricing-card popular">
+          <span class="popular-badge">Most Popular</span>
+          <h3 class="plan-name">Pro</h3>
+          <p class="plan-desc">For growing teams and businesses</p>
+          <div class="plan-price">
+            <span class="price-amount">$29</span>
+            <span class="price-period">/month</span>
+          </div>
+          <ul class="plan-features">
+            <li class="included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Unlimited projects</li>
+            <li class="included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> 50GB storage</li>
+            <li class="included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Advanced analytics</li>
+            <li class="included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Priority support</li>
+            <li class="included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Custom domain</li>
+            <li class="included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Team collaboration</li>
+          </ul>
+          <a href="#" class="btn btn-primary">Get Started</a>
+        </div>
+
+        <div class="pricing-card">
+          <h3 class="plan-name">Enterprise</h3>
+          <p class="plan-desc">For large organizations</p>
+          <div class="plan-price">
+            <span class="price-amount">$99</span>
+            <span class="price-period">/month</span>
+          </div>
+          <ul class="plan-features">
+            <li class="included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Everything in Pro</li>
+            <li class="included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Unlimited storage</li>
+            <li class="included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Custom integrations</li>
+            <li class="included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Dedicated support</li>
+            <li class="included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> SLA guarantee</li>
+            <li class="included"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> SSO & SAML</li>
+          </ul>
+          <a href="#" class="btn btn-outline">Contact Sales</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq">
+    <div class="faq-inner">
+      <h2 class="faq-title">Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <button class="faq-question">
+          Can I change my plan later?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer">Yes, you can upgrade or downgrade your plan at any time. Changes will be reflected in your next billing cycle.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          Is there a free trial?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer">Yes, all plans come with a 14-day free trial. No credit card required to start.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          What payment methods do you accept?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer">We accept all major credit cards (Visa, MasterCard, American Express) and PayPal.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          Can I cancel anytime?
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="faq-answer">Yes, you can cancel your subscription at any time. You'll continue to have access until the end of your billing period.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2 class="cta-title">Ready to get started?</h2>
+    <p class="cta-text">Start your free trial today. No credit card required.</p>
+    <a href="#" class="btn btn-primary">Start Free Trial</a>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; 2024 Company Name. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.parentElement.classList.toggle('open');
+      });
+    });
+  </script>
+</body>
+</html>

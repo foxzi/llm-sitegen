@@ -1,0 +1,227 @@
+<!-- E-commerce: Shopping Cart Page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart - Store</title>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, -apple-system, sans-serif; color: #374151; line-height: 1.5; background: #F9FAFB; }
+
+    /* Header */
+    .header { background: white; border-bottom: 1px solid #E5E7EB; padding: 1rem 1.5rem; }
+    .header-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-size: 1.5rem; font-weight: 700; color: #111827; text-decoration: none; }
+    .header-link { color: #4F46E5; text-decoration: none; font-weight: 500; }
+
+    /* Page */
+    .page { max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem; }
+    .page-title { font-size: 2rem; font-weight: 700; color: #111827; margin-bottom: 2rem; }
+
+    .cart-layout { display: grid; grid-template-columns: 1fr 380px; gap: 2rem; }
+
+    /* Cart Items */
+    .cart-items { background: white; border-radius: 12px; overflow: hidden; }
+    .cart-header { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 40px; gap: 1rem; padding: 1rem 1.5rem; background: #F9FAFB; font-size: 0.75rem; font-weight: 600; color: #6B7280; text-transform: uppercase; letter-spacing: 0.05em; }
+
+    .cart-item { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 40px; gap: 1rem; padding: 1.5rem; align-items: center; border-bottom: 1px solid #E5E7EB; }
+    .cart-item:last-child { border-bottom: none; }
+
+    .item-info { display: flex; gap: 1rem; }
+    .item-image { width: 80px; height: 80px; background: #E5E7EB; border-radius: 8px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: #9CA3AF; font-size: 0.75rem; }
+    .item-details {}
+    .item-name { font-weight: 600; color: #111827; margin-bottom: 0.25rem; }
+    .item-variant { font-size: 0.875rem; color: #6B7280; }
+
+    .item-price { font-weight: 500; color: #111827; }
+
+    .quantity-selector { display: flex; align-items: center; border: 1px solid #D1D5DB; border-radius: 8px; width: fit-content; }
+    .qty-btn { width: 32px; height: 32px; border: none; background: none; cursor: pointer; font-size: 1rem; color: #6B7280; }
+    .qty-btn:hover { color: #111827; }
+    .qty-value { width: 40px; text-align: center; font-weight: 500; }
+
+    .item-total { font-weight: 600; color: #111827; }
+
+    .item-remove { width: 32px; height: 32px; border: none; background: none; cursor: pointer; color: #9CA3AF; display: flex; align-items: center; justify-content: center; }
+    .item-remove:hover { color: #EF4444; }
+    .item-remove svg { width: 20px; height: 20px; }
+
+    /* Cart Summary */
+    .cart-summary { background: white; border-radius: 12px; padding: 1.5rem; height: fit-content; position: sticky; top: 2rem; }
+    .summary-title { font-size: 1.25rem; font-weight: 600; color: #111827; margin-bottom: 1.5rem; }
+
+    .summary-row { display: flex; justify-content: space-between; margin-bottom: 0.75rem; }
+    .summary-label { color: #6B7280; }
+    .summary-value { font-weight: 500; color: #111827; }
+    .summary-value.discount { color: #10B981; }
+
+    .summary-divider { border: none; border-top: 1px solid #E5E7EB; margin: 1rem 0; }
+
+    .summary-total { display: flex; justify-content: space-between; margin-bottom: 1.5rem; }
+    .total-label { font-size: 1.125rem; font-weight: 600; color: #111827; }
+    .total-value { font-size: 1.5rem; font-weight: 700; color: #111827; }
+
+    .promo-code { margin-bottom: 1.5rem; }
+    .promo-input { display: flex; gap: 0.5rem; }
+    .promo-input input { flex: 1; padding: 0.75rem 1rem; border: 1px solid #D1D5DB; border-radius: 8px; }
+    .promo-input button { padding: 0.75rem 1rem; background: #F3F4F6; border: none; border-radius: 8px; font-weight: 500; cursor: pointer; }
+
+    .btn-checkout { width: 100%; padding: 1rem; background: #4F46E5; color: white; border: none; border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+    .btn-checkout:hover { background: #4338CA; }
+
+    .summary-note { text-align: center; font-size: 0.875rem; color: #6B7280; margin-top: 1rem; }
+    .summary-note svg { width: 16px; height: 16px; vertical-align: middle; margin-right: 0.25rem; }
+
+    .payment-icons { display: flex; justify-content: center; gap: 0.5rem; margin-top: 1rem; opacity: 0.5; }
+    .payment-icons span { background: #E5E7EB; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem; }
+
+    /* Empty Cart */
+    .empty-cart { text-align: center; padding: 4rem 2rem; }
+    .empty-cart svg { width: 80px; height: 80px; color: #D1D5DB; margin-bottom: 1.5rem; }
+    .empty-cart h2 { font-size: 1.5rem; color: #111827; margin-bottom: 0.5rem; }
+    .empty-cart p { color: #6B7280; margin-bottom: 1.5rem; }
+    .btn-shop { display: inline-block; padding: 0.875rem 2rem; background: #4F46E5; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; }
+
+    @media (max-width: 1024px) {
+      .cart-layout { grid-template-columns: 1fr; }
+      .cart-summary { position: static; }
+    }
+    @media (max-width: 768px) {
+      .cart-header { display: none; }
+      .cart-item { grid-template-columns: 1fr; gap: 1rem; }
+      .item-info { flex-direction: column; }
+      .item-image { width: 100%; height: 150px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a href="/" class="logo">Store</a>
+      <a href="#" class="header-link">Continue Shopping</a>
+    </div>
+  </header>
+
+  <div class="page">
+    <h1 class="page-title">Shopping Cart (3)</h1>
+
+    <div class="cart-layout">
+      <div class="cart-items">
+        <div class="cart-header">
+          <span>Product</span>
+          <span>Price</span>
+          <span>Quantity</span>
+          <span>Total</span>
+          <span></span>
+        </div>
+
+        <div class="cart-item">
+          <div class="item-info">
+            <div class="item-image">Image</div>
+            <div class="item-details">
+              <div class="item-name">Classic Cotton T-Shirt</div>
+              <div class="item-variant">White / Size M</div>
+            </div>
+          </div>
+          <div class="item-price">$29.99</div>
+          <div class="quantity-selector">
+            <button class="qty-btn">−</button>
+            <span class="qty-value">2</span>
+            <button class="qty-btn">+</button>
+          </div>
+          <div class="item-total">$59.98</div>
+          <button class="item-remove">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <div class="cart-item">
+          <div class="item-info">
+            <div class="item-image">Image</div>
+            <div class="item-details">
+              <div class="item-name">Slim Fit Chinos</div>
+              <div class="item-variant">Navy / Size 32</div>
+            </div>
+          </div>
+          <div class="item-price">$59.99</div>
+          <div class="quantity-selector">
+            <button class="qty-btn">−</button>
+            <span class="qty-value">1</span>
+            <button class="qty-btn">+</button>
+          </div>
+          <div class="item-total">$59.99</div>
+          <button class="item-remove">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <div class="cart-item">
+          <div class="item-info">
+            <div class="item-image">Image</div>
+            <div class="item-details">
+              <div class="item-name">Leather Crossbody Bag</div>
+              <div class="item-variant">Brown</div>
+            </div>
+          </div>
+          <div class="item-price">$89.99</div>
+          <div class="quantity-selector">
+            <button class="qty-btn">−</button>
+            <span class="qty-value">1</span>
+            <button class="qty-btn">+</button>
+          </div>
+          <div class="item-total">$89.99</div>
+          <button class="item-remove">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="cart-summary">
+        <h2 class="summary-title">Order Summary</h2>
+
+        <div class="summary-row">
+          <span class="summary-label">Subtotal (4 items)</span>
+          <span class="summary-value">$209.96</span>
+        </div>
+        <div class="summary-row">
+          <span class="summary-label">Shipping</span>
+          <span class="summary-value">$9.99</span>
+        </div>
+        <div class="summary-row">
+          <span class="summary-label">Discount</span>
+          <span class="summary-value discount">-$20.00</span>
+        </div>
+
+        <hr class="summary-divider">
+
+        <div class="summary-total">
+          <span class="total-label">Total</span>
+          <span class="total-value">$199.95</span>
+        </div>
+
+        <div class="promo-code">
+          <div class="promo-input">
+            <input type="text" placeholder="Promo code">
+            <button>Apply</button>
+          </div>
+        </div>
+
+        <button class="btn-checkout">Proceed to Checkout</button>
+
+        <p class="summary-note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Secure checkout with SSL encryption
+        </p>
+
+        <div class="payment-icons">
+          <span>Visa</span>
+          <span>MC</span>
+          <span>Amex</span>
+          <span>PayPal</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

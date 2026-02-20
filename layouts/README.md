@@ -66,12 +66,41 @@ Standalone sections that can be combined into pages.
 
 Complete page templates ready for customization.
 
+### General Pages
+
 | File | Description | Best For |
 |------|-------------|----------|
 | `pages/landing.html` | SaaS/Product landing page | Products, services, SaaS |
 | `pages/blog-post.html` | Article/blog post template | Blogs, news, tutorials |
 | `pages/dashboard.html` | Admin panel with sidebar | Apps, admin panels |
 | `pages/portfolio.html` | Personal portfolio | Freelancers, designers |
+| `pages/about.html` | Company/team about page | Company sites |
+| `pages/services.html` | Services listing page | Agencies, consultants |
+| `pages/pricing.html` | Pricing page with FAQ | SaaS, subscriptions |
+| `pages/careers.html` | Jobs/careers page | Hiring companies |
+| `pages/404.html` | Error page | All sites |
+
+### Landing Pages
+
+| File | Description | Best For |
+|------|-------------|----------|
+| `pages/lead-gen.html` | Lead generation landing | Email capture, signups |
+| `pages/click-through.html` | Click-through sales page | Product sales, promos |
+| `pages/coming-soon.html` | Pre-launch countdown | Launches, waitlists |
+
+### E-commerce Pages
+
+| File | Description | Best For |
+|------|-------------|----------|
+| `pages/product-listing.html` | Product catalog with filters | Online stores |
+| `pages/product-detail.html` | Single product page | E-commerce |
+| `pages/cart.html` | Shopping cart | E-commerce |
+
+### Auth Pages
+
+| File | Description | Best For |
+|------|-------------|----------|
+| `pages/login.html` | Login/sign in page | Apps, SaaS |
 
 ---
 

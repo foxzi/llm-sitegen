@@ -1,0 +1,276 @@
+<!-- Lead Generation Landing Page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Your Free Guide - Company</title>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, -apple-system, sans-serif; color: #374151; line-height: 1.6; }
+
+    .page { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; }
+
+    /* Left - Content */
+    .content {
+      padding: 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .logo { font-size: 1.5rem; font-weight: 700; color: #4F46E5; margin-bottom: 3rem; }
+
+    .badge {
+      display: inline-block;
+      background: #FEF3C7;
+      color: #92400E;
+      padding: 0.375rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #111827;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+
+    .subtitle {
+      font-size: 1.25rem;
+      color: #6B7280;
+      margin-bottom: 2rem;
+    }
+
+    .benefits {
+      list-style: none;
+      margin-bottom: 2rem;
+    }
+
+    .benefits li {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.5rem 0;
+      font-size: 1.0625rem;
+    }
+
+    .benefits svg {
+      width: 24px;
+      height: 24px;
+      color: #10B981;
+      flex-shrink: 0;
+    }
+
+    .social-proof {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding-top: 2rem;
+      border-top: 1px solid #E5E7EB;
+    }
+
+    .avatars {
+      display: flex;
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      background: #E5E7EB;
+      border: 2px solid white;
+      border-radius: 50%;
+      margin-left: -10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #6B7280;
+    }
+
+    .avatar:first-child { margin-left: 0; }
+
+    .social-text {
+      font-size: 0.875rem;
+      color: #6B7280;
+    }
+
+    .social-text strong {
+      color: #111827;
+    }
+
+    /* Right - Form */
+    .form-side {
+      background: #F9FAFB;
+      padding: 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .form-container {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 420px;
+    }
+
+    .form-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-subtitle {
+      color: #6B7280;
+      margin-bottom: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #374151;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.875rem 1rem;
+      border: 1px solid #D1D5DB;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #4F46E5;
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 1rem;
+      background: #4F46E5;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-submit:hover {
+      background: #4338CA;
+    }
+
+    .form-note {
+      text-align: center;
+      font-size: 0.8125rem;
+      color: #9CA3AF;
+      margin-top: 1rem;
+    }
+
+    .form-note a {
+      color: #4F46E5;
+    }
+
+    @media (max-width: 1024px) {
+      .page { grid-template-columns: 1fr; }
+      .content { padding: 2rem; text-align: center; }
+      h1 { font-size: 2rem; }
+      .benefits { display: inline-block; text-align: left; }
+      .social-proof { justify-content: center; }
+      .form-side { padding: 2rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="content">
+      <div class="logo">Brand</div>
+
+      <span class="badge">Free Download</span>
+
+      <h1>The Ultimate Guide to Growing Your Business</h1>
+
+      <p class="subtitle">Learn the proven strategies that helped 10,000+ businesses increase revenue by 3x in just 90 days.</p>
+
+      <ul class="benefits">
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+          Step-by-step actionable framework
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+          Real case studies and examples
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+          Bonus templates and checklists
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+          Expert tips from industry leaders
+        </li>
+      </ul>
+
+      <div class="social-proof">
+        <div class="avatars">
+          <div class="avatar">JD</div>
+          <div class="avatar">MK</div>
+          <div class="avatar">AS</div>
+          <div class="avatar">+</div>
+        </div>
+        <div class="social-text">
+          <strong>10,000+</strong> people have downloaded this guide
+        </div>
+      </div>
+    </div>
+
+    <div class="form-side">
+      <div class="form-container">
+        <h2 class="form-title">Get Instant Access</h2>
+        <p class="form-subtitle">Enter your details below to download the free guide.</p>
+
+        <form>
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="John Doe" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="john@example.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="company">Company (Optional)</label>
+            <input type="text" id="company" name="company" placeholder="Your Company">
+          </div>
+
+          <button type="submit" class="btn-submit">Download Free Guide</button>
+
+          <p class="form-note">
+            By submitting, you agree to our <a href="#">Privacy Policy</a>. We'll never spam you.
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
