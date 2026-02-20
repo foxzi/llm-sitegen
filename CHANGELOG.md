@@ -10,7 +10,7 @@ All notable changes to this project will be documented in this file.
 - Framework index file `frameworks/README.md` with bundle overview.
 - Bulk update script `frameworks/update.sh` and usage notes in `frameworks/README.md`.
 - Repository `.gitignore` for local instruction files (`CLAUDE.md`, `tz.md`).
-- Added source spec file `exmaples/electrolux-roseville-spec.md`.
+- Added source spec file `examples/electrolux-roseville/spec.md`.
 - Converted all framework README files to LLM-friendly prompts with usage instructions.
 - Main `frameworks/README.md` now serves as LLM routing prompt for framework selection.
 - Color palettes collection in `colors/README.md` with 35+ named schemes for different project types.
@@ -55,3 +55,5 @@ All notable changes to this project will be documented in this file.
 - Tailwind color variants: ocean-trust, executive-green, medical-trust, fresh-market, carbon-dark
 - Bootstrap color variants: ocean-trust, executive-green, medical-trust, fresh-market, carbon-dark
 - Bulma color variants: ocean-trust, executive-green, medical-trust, fresh-market, carbon-dark
+- Project structure for examples with separate spec.md and design.md files
+- Examples README with structure documentation
