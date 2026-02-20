@@ -1,0 +1,428 @@
+<!-- Scroll-Triggered Animations -->
+<!-- CSS + JavaScript for scroll animations -->
+
+<style>
+/* ============================================= */
+/* SCROLL ANIMATION BASE                         */
+/* ============================================= */
+
+/* Elements start hidden */
+[data-scroll] {
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+[data-scroll].is-visible {
+  opacity: 1;
+  transform: none !important;
+}
+
+/* ============================================= */
+/* FADE VARIANTS                                 */
+/* ============================================= */
+
+[data-scroll="fade"] {
+  opacity: 0;
+}
+
+[data-scroll="fade-up"] {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+[data-scroll="fade-down"] {
+  opacity: 0;
+  transform: translateY(-40px);
+}
+
+[data-scroll="fade-left"] {
+  opacity: 0;
+  transform: translateX(-40px);
+}
+
+[data-scroll="fade-right"] {
+  opacity: 0;
+  transform: translateX(40px);
+}
+
+/* ============================================= */
+/* SCALE VARIANTS                                */
+/* ============================================= */
+
+[data-scroll="scale"] {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+[data-scroll="scale-up"] {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+[data-scroll="zoom"] {
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+/* ============================================= */
+/* SLIDE VARIANTS                                */
+/* ============================================= */
+
+[data-scroll="slide-up"] {
+  opacity: 0;
+  transform: translateY(100px);
+}
+
+[data-scroll="slide-down"] {
+  opacity: 0;
+  transform: translateY(-100px);
+}
+
+[data-scroll="slide-left"] {
+  opacity: 0;
+  transform: translateX(-100px);
+}
+
+[data-scroll="slide-right"] {
+  opacity: 0;
+  transform: translateX(100px);
+}
+
+/* ============================================= */
+/* FLIP VARIANTS                                 */
+/* ============================================= */
+
+[data-scroll="flip-up"] {
+  opacity: 0;
+  transform: perspective(500px) rotateX(45deg);
+}
+
+[data-scroll="flip-down"] {
+  opacity: 0;
+  transform: perspective(500px) rotateX(-45deg);
+}
+
+[data-scroll="flip-left"] {
+  opacity: 0;
+  transform: perspective(500px) rotateY(45deg);
+}
+
+[data-scroll="flip-right"] {
+  opacity: 0;
+  transform: perspective(500px) rotateY(-45deg);
+}
+
+/* ============================================= */
+/* ROTATE VARIANTS                               */
+/* ============================================= */
+
+[data-scroll="rotate"] {
+  opacity: 0;
+  transform: rotate(-10deg);
+}
+
+[data-scroll="rotate-left"] {
+  opacity: 0;
+  transform: rotate(-20deg) translateX(-20px);
+}
+
+[data-scroll="rotate-right"] {
+  opacity: 0;
+  transform: rotate(20deg) translateX(20px);
+}
+
+/* ============================================= */
+/* DURATION MODIFIERS                            */
+/* ============================================= */
+
+[data-scroll-duration="fast"] {
+  transition-duration: 0.3s;
+}
+
+[data-scroll-duration="slow"] {
+  transition-duration: 1s;
+}
+
+[data-scroll-duration="slower"] {
+  transition-duration: 1.5s;
+}
+
+/* ============================================= */
+/* DELAY MODIFIERS                               */
+/* ============================================= */
+
+[data-scroll-delay="100"] { transition-delay: 100ms; }
+[data-scroll-delay="200"] { transition-delay: 200ms; }
+[data-scroll-delay="300"] { transition-delay: 300ms; }
+[data-scroll-delay="400"] { transition-delay: 400ms; }
+[data-scroll-delay="500"] { transition-delay: 500ms; }
+[data-scroll-delay="600"] { transition-delay: 600ms; }
+[data-scroll-delay="700"] { transition-delay: 700ms; }
+[data-scroll-delay="800"] { transition-delay: 800ms; }
+[data-scroll-delay="900"] { transition-delay: 900ms; }
+[data-scroll-delay="1000"] { transition-delay: 1000ms; }
+
+/* ============================================= */
+/* EASING MODIFIERS                              */
+/* ============================================= */
+
+[data-scroll-easing="ease-out"] {
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+[data-scroll-easing="ease-in-out"] {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-scroll-easing="bounce"] {
+  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* ============================================= */
+/* STAGGER ANIMATION (for lists)                 */
+/* ============================================= */
+
+[data-scroll-stagger] > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+[data-scroll-stagger].is-visible > *:nth-child(1) { transition-delay: 0ms; }
+[data-scroll-stagger].is-visible > *:nth-child(2) { transition-delay: 100ms; }
+[data-scroll-stagger].is-visible > *:nth-child(3) { transition-delay: 200ms; }
+[data-scroll-stagger].is-visible > *:nth-child(4) { transition-delay: 300ms; }
+[data-scroll-stagger].is-visible > *:nth-child(5) { transition-delay: 400ms; }
+[data-scroll-stagger].is-visible > *:nth-child(6) { transition-delay: 500ms; }
+[data-scroll-stagger].is-visible > *:nth-child(7) { transition-delay: 600ms; }
+[data-scroll-stagger].is-visible > *:nth-child(8) { transition-delay: 700ms; }
+
+[data-scroll-stagger].is-visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================= */
+/* PARALLAX                                      */
+/* ============================================= */
+
+.parallax-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.parallax-bg {
+  position: absolute;
+  inset: -20%;
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
+}
+
+/* ============================================= */
+/* SCROLL PROGRESS                               */
+/* ============================================= */
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: #4F46E5;
+  width: 0%;
+  z-index: 9999;
+  transition: width 0.1s ease;
+}
+
+/* ============================================= */
+/* REVEAL ON SCROLL (alternative approach)       */
+/* ============================================= */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================= */
+/* COUNT UP ANIMATION                            */
+/* ============================================= */
+
+.count-up {
+  font-variant-numeric: tabular-nums;
+}
+</style>
+
+<!-- ============================================= -->
+<!-- EXAMPLES                                      -->
+<!-- ============================================= -->
+
+<!-- Scroll progress bar -->
+<div class="scroll-progress" id="scroll-progress"></div>
+
+<!-- Basic fade up -->
+<div data-scroll="fade-up" style="padding: 2rem; background: #EEF2FF; margin: 2rem 0; border-radius: 8px;">
+  Fade up on scroll
+</div>
+
+<!-- With delay -->
+<div data-scroll="fade-up" data-scroll-delay="200" style="padding: 2rem; background: #ECFDF5; margin: 2rem 0; border-radius: 8px;">
+  Fade up with 200ms delay
+</div>
+
+<!-- Scale -->
+<div data-scroll="scale" style="padding: 2rem; background: #FEF3C7; margin: 2rem 0; border-radius: 8px;">
+  Scale on scroll
+</div>
+
+<!-- Flip -->
+<div data-scroll="flip-up" style="padding: 2rem; background: #FEE2E2; margin: 2rem 0; border-radius: 8px;">
+  Flip up on scroll
+</div>
+
+<!-- Stagger children -->
+<div data-scroll-stagger style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 2rem 0;">
+  <div style="padding: 2rem; background: #F3F4F6; border-radius: 8px; text-align: center;">1</div>
+  <div style="padding: 2rem; background: #F3F4F6; border-radius: 8px; text-align: center;">2</div>
+  <div style="padding: 2rem; background: #F3F4F6; border-radius: 8px; text-align: center;">3</div>
+  <div style="padding: 2rem; background: #F3F4F6; border-radius: 8px; text-align: center;">4</div>
+</div>
+
+<!-- Parallax section -->
+<div class="parallax-container" style="height: 400px;">
+  <div class="parallax-bg" id="parallax-demo" style="background-image: url('https://placehold.co/1200x800');"></div>
+  <div style="position: relative; z-index: 1; padding: 4rem; color: white; text-align: center;">
+    <h2>Parallax Background</h2>
+  </div>
+</div>
+
+<!-- Count up -->
+<div data-scroll="fade-up" style="text-align: center; padding: 2rem;">
+  <span class="count-up" data-count-to="1500" style="font-size: 3rem; font-weight: bold; color: #4F46E5;">0</span>
+  <div style="color: #6B7280;">Total Users</div>
+</div>
+
+<script>
+// =============================================
+// INTERSECTION OBSERVER FOR SCROLL ANIMATIONS
+// =============================================
+
+const scrollObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('is-visible');
+
+      // Handle count-up
+      const countEl = entry.target.querySelector('.count-up[data-count-to]');
+      if (countEl) {
+        animateCount(countEl);
+      }
+    }
+  });
+}, {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+});
+
+// Observe all scroll-animated elements
+document.querySelectorAll('[data-scroll], [data-scroll-stagger]').forEach(el => {
+  scrollObserver.observe(el);
+});
+
+// =============================================
+// PARALLAX EFFECT
+// =============================================
+
+function updateParallax() {
+  const parallaxElements = document.querySelectorAll('.parallax-bg');
+
+  parallaxElements.forEach(el => {
+    const container = el.parentElement;
+    const rect = container.getBoundingClientRect();
+    const scrollPercent = (rect.top + rect.height) / (window.innerHeight + rect.height);
+    const yOffset = (scrollPercent - 0.5) * 100;
+
+    el.style.transform = `translateY(${yOffset}px)`;
+  });
+}
+
+window.addEventListener('scroll', updateParallax, { passive: true });
+updateParallax();
+
+// =============================================
+// SCROLL PROGRESS BAR
+// =============================================
+
+function updateScrollProgress() {
+  const scrollProgress = document.getElementById('scroll-progress');
+  if (!scrollProgress) return;
+
+  const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const scrollPercent = (window.scrollY / scrollHeight) * 100;
+  scrollProgress.style.width = scrollPercent + '%';
+}
+
+window.addEventListener('scroll', updateScrollProgress, { passive: true });
+
+// =============================================
+// COUNT UP ANIMATION
+// =============================================
+
+function animateCount(el) {
+  const target = parseInt(el.dataset.countTo);
+  const duration = 2000;
+  const start = performance.now();
+
+  function update(currentTime) {
+    const elapsed = currentTime - start;
+    const progress = Math.min(elapsed / duration, 1);
+
+    // Easing function
+    const easeOut = 1 - Math.pow(1 - progress, 3);
+    const current = Math.round(target * easeOut);
+
+    el.textContent = current.toLocaleString();
+
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    }
+  }
+
+  requestAnimationFrame(update);
+}
+
+// =============================================
+// REVEAL ON SCROLL (alternative)
+// =============================================
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('revealed');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => {
+  revealObserver.observe(el);
+});
+
+// =============================================
+// SMOOTH SCROLL TO ANCHOR
+// =============================================
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+});
+</script>

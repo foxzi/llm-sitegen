@@ -42,3 +42,6 @@ All notable changes to this project will be documented in this file.
 - Components preprompt with quick reference and customization guide.
 - Layouts preprompt `layouts/README.md` with usage guide and customization instructions.
 - Layout preview page `layouts/index.html` with live iframe previews.
+- CSS animations collection in `animations/` directory.
+- Animation templates: transitions, keyframes, hover effects, scroll-triggered, text effects.
+- Animations preprompt with quick reference and best practices.

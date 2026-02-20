@@ -1,0 +1,535 @@
+<!-- Hover Effect Animations -->
+<!-- Copy classes to your stylesheet -->
+
+<style>
+/* ============================================= */
+/* BASIC HOVER EFFECTS                           */
+/* ============================================= */
+
+/* Scale */
+.hover-scale {
+  transition: transform 0.2s ease;
+}
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.hover-scale-sm:hover { transform: scale(1.02); }
+.hover-scale-lg:hover { transform: scale(1.1); }
+
+/* Lift (with shadow) */
+.hover-lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 20px -8px rgba(0, 0, 0, 0.15);
+}
+
+.hover-lift-sm:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px -6px rgba(0, 0, 0, 0.1);
+}
+
+.hover-lift-lg:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.2);
+}
+
+/* Float (subtle) */
+.hover-float {
+  transition: transform 0.3s ease;
+}
+.hover-float:hover {
+  transform: translateY(-2px);
+}
+
+/* Grow shadow */
+.hover-shadow {
+  transition: box-shadow 0.2s ease;
+}
+.hover-shadow:hover {
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.2);
+}
+
+/* Glow */
+.hover-glow {
+  transition: box-shadow 0.2s ease;
+}
+.hover-glow:hover {
+  box-shadow: 0 0 20px rgba(79, 70, 229, 0.4);
+}
+
+.hover-glow-success:hover {
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+}
+
+.hover-glow-error:hover {
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
+}
+
+/* ============================================= */
+/* ROTATE EFFECTS                                */
+/* ============================================= */
+
+.hover-rotate {
+  transition: transform 0.3s ease;
+}
+.hover-rotate:hover {
+  transform: rotate(3deg);
+}
+
+.hover-rotate-6:hover { transform: rotate(6deg); }
+.hover-rotate-12:hover { transform: rotate(12deg); }
+.hover-rotate--3:hover { transform: rotate(-3deg); }
+.hover-rotate--6:hover { transform: rotate(-6deg); }
+
+.hover-rotate-180 {
+  transition: transform 0.4s ease;
+}
+.hover-rotate-180:hover {
+  transform: rotate(180deg);
+}
+
+/* ============================================= */
+/* SKEW EFFECTS                                  */
+/* ============================================= */
+
+.hover-skew {
+  transition: transform 0.2s ease;
+}
+.hover-skew:hover {
+  transform: skewX(-2deg);
+}
+
+.hover-skew-y:hover {
+  transform: skewY(-2deg);
+}
+
+/* ============================================= */
+/* COLOR TRANSITIONS                             */
+/* ============================================= */
+
+.hover-bg-shift {
+  transition: background-color 0.2s ease;
+}
+
+.hover-text-shift {
+  transition: color 0.2s ease;
+}
+
+.hover-border-shift {
+  transition: border-color 0.2s ease;
+}
+
+/* ============================================= */
+/* OPACITY EFFECTS                               */
+/* ============================================= */
+
+.hover-fade {
+  transition: opacity 0.2s ease;
+}
+.hover-fade:hover {
+  opacity: 0.8;
+}
+
+.hover-fade-75:hover { opacity: 0.75; }
+.hover-fade-50:hover { opacity: 0.5; }
+
+/* ============================================= */
+/* UNDERLINE EFFECTS                             */
+/* ============================================= */
+
+.hover-underline {
+  position: relative;
+  text-decoration: none;
+}
+.hover-underline::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+.hover-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Underline from center */
+.hover-underline-center::after {
+  transform-origin: center;
+}
+.hover-underline-center:hover::after {
+  transform-origin: center;
+}
+
+/* Thick underline */
+.hover-underline-thick::after {
+  height: 3px;
+}
+
+/* ============================================= */
+/* BORDER EFFECTS                                */
+/* ============================================= */
+
+.hover-border {
+  border: 2px solid transparent;
+  transition: border-color 0.2s ease;
+}
+.hover-border:hover {
+  border-color: #4F46E5;
+}
+
+.hover-border-bottom {
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s ease;
+}
+.hover-border-bottom:hover {
+  border-color: #4F46E5;
+}
+
+/* Animated border */
+.hover-border-grow {
+  position: relative;
+  overflow: hidden;
+}
+.hover-border-grow::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: #4F46E5;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+.hover-border-grow:hover::before {
+  width: 100%;
+  left: 0;
+}
+
+/* ============================================= */
+/* BACKGROUND EFFECTS                            */
+/* ============================================= */
+
+.hover-bg-slide {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+.hover-bg-slide::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #4F46E5;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: -1;
+}
+.hover-bg-slide:hover::before {
+  transform: translateX(0);
+}
+.hover-bg-slide:hover {
+  color: white;
+}
+
+/* Slide from right */
+.hover-bg-slide-right::before {
+  transform: translateX(100%);
+}
+.hover-bg-slide-right:hover::before {
+  transform: translateX(0);
+}
+
+/* Slide from bottom */
+.hover-bg-slide-up::before {
+  transform: translateY(100%);
+}
+.hover-bg-slide-up:hover::before {
+  transform: translateY(0);
+}
+
+/* Radial reveal */
+.hover-bg-radial {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+.hover-bg-radial::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: #4F46E5;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s ease, height 0.4s ease;
+  z-index: -1;
+}
+.hover-bg-radial:hover::before {
+  width: 300%;
+  height: 300%;
+}
+.hover-bg-radial:hover {
+  color: white;
+}
+
+/* ============================================= */
+/* IMAGE HOVER EFFECTS                           */
+/* ============================================= */
+
+.hover-img-zoom {
+  overflow: hidden;
+}
+.hover-img-zoom img {
+  transition: transform 0.4s ease;
+}
+.hover-img-zoom:hover img {
+  transform: scale(1.1);
+}
+
+.hover-img-zoom-rotate:hover img {
+  transform: scale(1.1) rotate(3deg);
+}
+
+.hover-img-grayscale img {
+  transition: filter 0.3s ease;
+}
+.hover-img-grayscale:hover img {
+  filter: grayscale(100%);
+}
+
+.hover-img-grayscale-off img {
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+.hover-img-grayscale-off:hover img {
+  filter: grayscale(0%);
+}
+
+.hover-img-blur img {
+  transition: filter 0.3s ease;
+}
+.hover-img-blur:hover img {
+  filter: blur(3px);
+}
+
+.hover-img-brightness img {
+  transition: filter 0.3s ease;
+}
+.hover-img-brightness:hover img {
+  filter: brightness(1.1);
+}
+
+/* ============================================= */
+/* OVERLAY EFFECTS                               */
+/* ============================================= */
+
+.hover-overlay {
+  position: relative;
+  overflow: hidden;
+}
+.hover-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.hover-overlay:hover::after {
+  opacity: 1;
+}
+
+.hover-overlay-gradient::after {
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+}
+
+.hover-overlay-primary::after {
+  background: rgba(79, 70, 229, 0.7);
+}
+
+/* Content reveal on hover */
+.hover-reveal {
+  position: relative;
+  overflow: hidden;
+}
+.hover-reveal .reveal-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.hover-reveal:hover .reveal-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================= */
+/* ICON HOVER EFFECTS                            */
+/* ============================================= */
+
+.hover-icon-bounce:hover svg {
+  animation: bounce 0.5s ease;
+}
+
+.hover-icon-spin:hover svg {
+  animation: spin 0.5s ease;
+}
+
+.hover-icon-shake:hover svg {
+  animation: shake 0.4s ease;
+}
+
+.hover-icon-scale {
+  transition: transform 0.2s ease;
+}
+.hover-icon-scale:hover svg {
+  transform: scale(1.2);
+}
+
+/* ============================================= */
+/* BUTTON HOVER EFFECTS                          */
+/* ============================================= */
+
+.btn-hover-fill {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 0.3s ease;
+}
+.btn-hover-fill::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #111827;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+  z-index: -1;
+}
+.btn-hover-fill:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.btn-hover-fill:hover {
+  color: white;
+}
+
+.btn-hover-outline {
+  border: 2px solid #4F46E5;
+  background: transparent;
+  color: #4F46E5;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.btn-hover-outline:hover {
+  background: #4F46E5;
+  color: white;
+}
+
+/* ============================================= */
+/* CARD HOVER EFFECTS                            */
+/* ============================================= */
+
+.card-hover-lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card-hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.15);
+}
+
+.card-hover-border {
+  border: 2px solid transparent;
+  transition: border-color 0.2s ease;
+}
+.card-hover-border:hover {
+  border-color: #4F46E5;
+}
+
+.card-hover-glow {
+  transition: box-shadow 0.2s ease;
+}
+.card-hover-glow:hover {
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2), 0 10px 40px -10px rgba(0, 0, 0, 0.1);
+}
+</style>
+
+<!-- ============================================= -->
+<!-- EXAMPLES                                      -->
+<!-- ============================================= -->
+
+<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; padding: 2rem;">
+
+  <!-- Basic effects -->
+  <div class="hover-scale" style="padding: 2rem; background: #F3F4F6; border-radius: 8px; text-align: center;">
+    hover-scale
+  </div>
+
+  <div class="hover-lift" style="padding: 2rem; background: white; border: 1px solid #E5E7EB; border-radius: 8px; text-align: center;">
+    hover-lift
+  </div>
+
+  <div class="hover-shadow" style="padding: 2rem; background: white; border-radius: 8px; text-align: center;">
+    hover-shadow
+  </div>
+
+  <div class="hover-glow" style="padding: 2rem; background: #EEF2FF; border-radius: 8px; text-align: center;">
+    hover-glow
+  </div>
+
+  <div class="hover-rotate" style="padding: 2rem; background: #F3F4F6; border-radius: 8px; text-align: center;">
+    hover-rotate
+  </div>
+
+  <!-- Image effects -->
+  <div class="hover-img-zoom" style="border-radius: 8px; overflow: hidden;">
+    <img src="https://placehold.co/200x150" style="display: block; width: 100%;">
+  </div>
+
+  <div class="hover-img-grayscale-off" style="border-radius: 8px; overflow: hidden;">
+    <img src="https://placehold.co/200x150/4F46E5/fff" style="display: block; width: 100%;">
+  </div>
+
+  <!-- Overlay reveal -->
+  <div class="hover-reveal" style="border-radius: 8px; height: 150px; background: #E5E7EB;">
+    <div class="reveal-content">
+      <span>Revealed Content</span>
+    </div>
+  </div>
+
+  <!-- Background slide -->
+  <div class="hover-bg-slide" style="padding: 2rem; background: #F3F4F6; border-radius: 8px; text-align: center; cursor: pointer;">
+    hover-bg-slide
+  </div>
+
+</div>
+
+<!-- Underline effects -->
+<div style="padding: 2rem;">
+  <a href="#" class="hover-underline" style="color: #4F46E5; font-size: 1.25rem;">Hover underline effect</a>
+</div>
+
+<!-- Button effects -->
+<div style="padding: 2rem; display: flex; gap: 1rem;">
+  <button class="btn-hover-fill" style="padding: 0.75rem 1.5rem; border: 2px solid #111827; background: transparent; border-radius: 8px; cursor: pointer;">
+    Fill on hover
+  </button>
+  <button class="btn-hover-outline" style="padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer;">
+    Outline to fill
+  </button>
+</div>

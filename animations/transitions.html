@@ -1,0 +1,266 @@
+<!-- CSS Transition Utilities -->
+<!-- Copy classes to your stylesheet -->
+
+<style>
+/* ============================================= */
+/* TRANSITION DURATIONS                          */
+/* ============================================= */
+
+.transition-none { transition: none; }
+.transition-75 { transition-duration: 75ms; }
+.transition-100 { transition-duration: 100ms; }
+.transition-150 { transition-duration: 150ms; }
+.transition-200 { transition-duration: 200ms; }
+.transition-300 { transition-duration: 300ms; }
+.transition-500 { transition-duration: 500ms; }
+.transition-700 { transition-duration: 700ms; }
+.transition-1000 { transition-duration: 1000ms; }
+
+/* ============================================= */
+/* TRANSITION PROPERTIES                         */
+/* ============================================= */
+
+.transition {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: ease;
+  transition-duration: 200ms;
+}
+
+.transition-all {
+  transition-property: all;
+  transition-timing-function: ease;
+  transition-duration: 200ms;
+}
+
+.transition-colors {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: ease;
+  transition-duration: 200ms;
+}
+
+.transition-opacity {
+  transition-property: opacity;
+  transition-timing-function: ease;
+  transition-duration: 200ms;
+}
+
+.transition-shadow {
+  transition-property: box-shadow;
+  transition-timing-function: ease;
+  transition-duration: 200ms;
+}
+
+.transition-transform {
+  transition-property: transform;
+  transition-timing-function: ease;
+  transition-duration: 200ms;
+}
+
+/* ============================================= */
+/* TRANSITION TIMING FUNCTIONS                   */
+/* ============================================= */
+
+.ease-linear { transition-timing-function: linear; }
+.ease-in { transition-timing-function: cubic-bezier(0.4, 0, 1, 1); }
+.ease-out { transition-timing-function: cubic-bezier(0, 0, 0.2, 1); }
+.ease-in-out { transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
+
+/* Custom easings */
+.ease-bounce { transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55); }
+.ease-elastic { transition-timing-function: cubic-bezier(0.68, -0.6, 0.32, 1.6); }
+.ease-back { transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1); }
+.ease-smooth { transition-timing-function: cubic-bezier(0.45, 0, 0.55, 1); }
+
+/* ============================================= */
+/* TRANSITION DELAY                              */
+/* ============================================= */
+
+.delay-0 { transition-delay: 0ms; }
+.delay-75 { transition-delay: 75ms; }
+.delay-100 { transition-delay: 100ms; }
+.delay-150 { transition-delay: 150ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-500 { transition-delay: 500ms; }
+.delay-700 { transition-delay: 700ms; }
+.delay-1000 { transition-delay: 1000ms; }
+
+/* ============================================= */
+/* TRANSFORM UTILITIES                           */
+/* ============================================= */
+
+/* Scale */
+.scale-0 { transform: scale(0); }
+.scale-50 { transform: scale(0.5); }
+.scale-75 { transform: scale(0.75); }
+.scale-90 { transform: scale(0.9); }
+.scale-95 { transform: scale(0.95); }
+.scale-100 { transform: scale(1); }
+.scale-105 { transform: scale(1.05); }
+.scale-110 { transform: scale(1.1); }
+.scale-125 { transform: scale(1.25); }
+.scale-150 { transform: scale(1.5); }
+
+/* Rotate */
+.rotate-0 { transform: rotate(0deg); }
+.rotate-1 { transform: rotate(1deg); }
+.rotate-2 { transform: rotate(2deg); }
+.rotate-3 { transform: rotate(3deg); }
+.rotate-6 { transform: rotate(6deg); }
+.rotate-12 { transform: rotate(12deg); }
+.rotate-45 { transform: rotate(45deg); }
+.rotate-90 { transform: rotate(90deg); }
+.rotate-180 { transform: rotate(180deg); }
+.-rotate-1 { transform: rotate(-1deg); }
+.-rotate-2 { transform: rotate(-2deg); }
+.-rotate-3 { transform: rotate(-3deg); }
+.-rotate-6 { transform: rotate(-6deg); }
+.-rotate-12 { transform: rotate(-12deg); }
+.-rotate-45 { transform: rotate(-45deg); }
+.-rotate-90 { transform: rotate(-90deg); }
+.-rotate-180 { transform: rotate(-180deg); }
+
+/* Translate */
+.translate-x-0 { transform: translateX(0); }
+.translate-x-1 { transform: translateX(0.25rem); }
+.translate-x-2 { transform: translateX(0.5rem); }
+.translate-x-4 { transform: translateX(1rem); }
+.translate-x-8 { transform: translateX(2rem); }
+.-translate-x-1 { transform: translateX(-0.25rem); }
+.-translate-x-2 { transform: translateX(-0.5rem); }
+.-translate-x-4 { transform: translateX(-1rem); }
+.-translate-x-full { transform: translateX(-100%); }
+.translate-x-full { transform: translateX(100%); }
+
+.translate-y-0 { transform: translateY(0); }
+.translate-y-1 { transform: translateY(0.25rem); }
+.translate-y-2 { transform: translateY(0.5rem); }
+.translate-y-4 { transform: translateY(1rem); }
+.translate-y-8 { transform: translateY(2rem); }
+.-translate-y-1 { transform: translateY(-0.25rem); }
+.-translate-y-2 { transform: translateY(-0.5rem); }
+.-translate-y-4 { transform: translateY(-1rem); }
+.-translate-y-full { transform: translateY(-100%); }
+.translate-y-full { transform: translateY(100%); }
+
+/* Skew */
+.skew-x-0 { transform: skewX(0deg); }
+.skew-x-1 { transform: skewX(1deg); }
+.skew-x-2 { transform: skewX(2deg); }
+.skew-x-3 { transform: skewX(3deg); }
+.skew-x-6 { transform: skewX(6deg); }
+.skew-x-12 { transform: skewX(12deg); }
+.-skew-x-1 { transform: skewX(-1deg); }
+.-skew-x-2 { transform: skewX(-2deg); }
+.-skew-x-3 { transform: skewX(-3deg); }
+.-skew-x-6 { transform: skewX(-6deg); }
+.-skew-x-12 { transform: skewX(-12deg); }
+
+/* ============================================= */
+/* OPACITY UTILITIES                             */
+/* ============================================= */
+
+.opacity-0 { opacity: 0; }
+.opacity-5 { opacity: 0.05; }
+.opacity-10 { opacity: 0.1; }
+.opacity-20 { opacity: 0.2; }
+.opacity-25 { opacity: 0.25; }
+.opacity-30 { opacity: 0.3; }
+.opacity-40 { opacity: 0.4; }
+.opacity-50 { opacity: 0.5; }
+.opacity-60 { opacity: 0.6; }
+.opacity-70 { opacity: 0.7; }
+.opacity-75 { opacity: 0.75; }
+.opacity-80 { opacity: 0.8; }
+.opacity-90 { opacity: 0.9; }
+.opacity-95 { opacity: 0.95; }
+.opacity-100 { opacity: 1; }
+
+/* ============================================= */
+/* TRANSFORM ORIGIN                              */
+/* ============================================= */
+
+.origin-center { transform-origin: center; }
+.origin-top { transform-origin: top; }
+.origin-top-right { transform-origin: top right; }
+.origin-right { transform-origin: right; }
+.origin-bottom-right { transform-origin: bottom right; }
+.origin-bottom { transform-origin: bottom; }
+.origin-bottom-left { transform-origin: bottom left; }
+.origin-left { transform-origin: left; }
+.origin-top-left { transform-origin: top left; }
+
+/* ============================================= */
+/* COMBINED HOVER TRANSITIONS                    */
+/* ============================================= */
+
+/* Hover scale */
+.hover-scale {
+  transition: transform 0.2s ease;
+}
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+/* Hover lift */
+.hover-lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover grow */
+.hover-grow {
+  transition: transform 0.2s ease;
+}
+.hover-grow:hover {
+  transform: scale(1.02);
+}
+
+/* Hover shrink */
+.hover-shrink {
+  transition: transform 0.2s ease;
+}
+.hover-shrink:hover {
+  transform: scale(0.98);
+}
+
+/* Hover rotate */
+.hover-rotate {
+  transition: transform 0.3s ease;
+}
+.hover-rotate:hover {
+  transform: rotate(3deg);
+}
+</style>
+
+<!-- ============================================= -->
+<!-- EXAMPLES                                      -->
+<!-- ============================================= -->
+
+<!-- Basic transition on hover -->
+<button class="transition-colors transition-200 ease-out" style="background: #4F46E5; color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 8px; cursor: pointer;">
+  Hover me (color transition)
+</button>
+
+<!-- Scale on hover -->
+<div class="hover-scale" style="padding: 2rem; background: #F3F4F6; border-radius: 8px; display: inline-block;">
+  Scale on hover
+</div>
+
+<!-- Lift on hover -->
+<div class="hover-lift" style="padding: 2rem; background: white; border: 1px solid #E5E7EB; border-radius: 8px; display: inline-block;">
+  Lift on hover
+</div>
+
+<!-- Transform origin example -->
+<div class="origin-bottom-left hover-scale" style="padding: 2rem; background: #EEF2FF; border-radius: 8px; display: inline-block;">
+  Scale from bottom-left
+</div>
+
+<!-- Delayed transition -->
+<div class="transition-all delay-200" style="padding: 2rem; background: #F3F4F6; border-radius: 8px;">
+  200ms delay
+</div>
