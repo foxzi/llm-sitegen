@@ -2,6 +2,10 @@
 
 A collection of web assets and LLM-friendly prompts for generating complete websites. Each directory contains ready-to-use templates with comprehensive documentation that serves as context for LLMs.
 
+## Quick Start for LLM
+
+Use `master.md` as the main prompt — it connects all modules and defines the workflow.
+
 ## Structure
 
 ```
@@ -17,6 +21,7 @@ llm-sitegen/
   content/        # Text processing (rewrite, tone, length)
   images/         # Image generation with llm-imager
   iterations.md   # Handling revisions and changes
+  master.md       # Main LLM prompt (connects all modules)
 ```
 
 ## Quick Start

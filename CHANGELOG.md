@@ -60,3 +60,5 @@ All notable changes to this project will be documented in this file.
 - Inline image generation syntax `![gen: description](file.jpg size)` for spec.md
 - Iterations and revisions preprompt `iterations.md` with LLM instructions for handling changes
 - Revisions section in user guides (Russian and English)
+- Master prompt `master.md` connecting all modules with workflow and decision trees
+- CLI usage examples for Claude Code and Codex in user guides

@@ -74,9 +74,84 @@ body: Open Sans
 
 ### Шаг 4: Запустите генерацию
 
-Передайте LLM нужные файлы как контекст:
+Передайте LLM файлы как контекст:
+- `master.md` — главный промпт (связывает все модули)
 - `spec.md` и `design.md` вашего проекта
+
+**Опционально** (для детальных инструкций):
 - README.md из нужных папок (frameworks, layouts, colors и т.д.)
+
+---
+
+## Запуск генерации
+
+### Claude Code (Anthropic)
+
+```bash
+# Базовый запуск
+claude --print "$(cat master.md spec.md design.md)" \
+  "Сгенерируй сайт согласно спецификации"
+
+# С дополнительными модулями
+claude --print "$(cat master.md layouts/README.md colors/README.md spec.md design.md)" \
+  "Сгенерируй сайт согласно спецификации"
+
+# Интерактивный режим с файлами
+claude
+> /read master.md
+> /read examples/my-project/spec.md
+> /read examples/my-project/design.md
+> Сгенерируй сайт согласно спецификации и сохрани в build/
+
+# С выводом в файл
+claude --print "$(cat master.md spec.md design.md)" \
+  "Сгенерируй только HTML код сайта" > build/index.html
+```
+
+### Codex (OpenAI)
+
+```bash
+# Базовый запуск
+codex "$(cat master.md spec.md design.md)
+
+Сгенерируй сайт согласно спецификации"
+
+# С указанием модели
+codex --model gpt-4 "$(cat master.md spec.md design.md)
+
+Сгенерируй сайт согласно спецификации"
+
+# Интерактивный режим
+codex
+> Прочитай файлы master.md, spec.md, design.md и сгенерируй сайт
+```
+
+### Примеры команд
+
+**Простой лендинг:**
+```bash
+claude --print "$(cat master.md layouts/README.md examples/my-site/spec.md examples/my-site/design.md)" \
+  "Сгенерируй лендинг и сохрани в examples/my-site/build/"
+```
+
+**С генерацией картинок:**
+```bash
+claude --print "$(cat master.md images/README.md spec.md design.md)" \
+  "Сгенерируй сайт и создай скрипт generate-images.sh для llm-imager"
+```
+
+**Итерация (правки):**
+```bash
+claude --print "$(cat iterations.md)" \
+  "В файле build/index.html измени цвет кнопок на оранжевый и добавь секцию FAQ"
+```
+
+### Рекомендации
+
+1. **Используй master.md** — он содержит все инструкции и ссылки
+2. **Добавляй модули по необходимости** — не нужно подключать всё сразу
+3. **Сохраняй в build/** — держи сгенерированные файлы отдельно
+4. **Итерируй** — используй iterations.md для правок
 
 ---
 

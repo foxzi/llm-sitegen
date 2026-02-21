@@ -74,9 +74,84 @@ body: Open Sans
 
 ### Step 4: Run generation
 
-Provide the LLM with necessary files as context:
+Provide the LLM with files as context:
+- `master.md` — main prompt (connects all modules)
 - Your project's `spec.md` and `design.md`
+
+**Optional** (for detailed instructions):
 - README.md from needed folders (frameworks, layouts, colors, etc.)
+
+---
+
+## Running Generation
+
+### Claude Code (Anthropic)
+
+```bash
+# Basic run
+claude --print "$(cat master.md spec.md design.md)" \
+  "Generate a website according to the specification"
+
+# With additional modules
+claude --print "$(cat master.md layouts/README.md colors/README.md spec.md design.md)" \
+  "Generate a website according to the specification"
+
+# Interactive mode with files
+claude
+> /read master.md
+> /read examples/my-project/spec.md
+> /read examples/my-project/design.md
+> Generate a website according to the specification and save to build/
+
+# Output to file
+claude --print "$(cat master.md spec.md design.md)" \
+  "Generate only the HTML code" > build/index.html
+```
+
+### Codex (OpenAI)
+
+```bash
+# Basic run
+codex "$(cat master.md spec.md design.md)
+
+Generate a website according to the specification"
+
+# With model specification
+codex --model gpt-4 "$(cat master.md spec.md design.md)
+
+Generate a website according to the specification"
+
+# Interactive mode
+codex
+> Read files master.md, spec.md, design.md and generate the website
+```
+
+### Example Commands
+
+**Simple landing page:**
+```bash
+claude --print "$(cat master.md layouts/README.md examples/my-site/spec.md examples/my-site/design.md)" \
+  "Generate a landing page and save to examples/my-site/build/"
+```
+
+**With image generation:**
+```bash
+claude --print "$(cat master.md images/README.md spec.md design.md)" \
+  "Generate website and create generate-images.sh script for llm-imager"
+```
+
+**Iteration (revisions):**
+```bash
+claude --print "$(cat iterations.md)" \
+  "In build/index.html change button color to orange and add FAQ section"
+```
+
+### Recommendations
+
+1. **Use master.md** — it contains all instructions and references
+2. **Add modules as needed** — no need to include everything at once
+3. **Save to build/** — keep generated files separate
+4. **Iterate** — use iterations.md for revisions
 
 ---
 
