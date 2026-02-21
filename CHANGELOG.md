@@ -55,3 +55,4 @@ All notable changes to this project will be documented in this file.
 - Keywords extraction guide `seo/keywords.md` with LLM instructions for extracting and generating SEO keywords from project specs
 - Content processing module `content/` with text transformation instructions (rewrite, tone, length)
 - User guide documentation in `docs/` (Russian and English versions)
+- Image generation module `images/` with llm-imager CLI instructions

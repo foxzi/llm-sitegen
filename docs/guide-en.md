@@ -500,6 +500,53 @@ tone: confident
 
 ---
 
+---
+
+## Image Generation
+
+For image generation, use the [llm-imager](https://github.com/foxzi/llm-imager) utility.
+
+### Installation
+
+```bash
+# Debian/Ubuntu
+echo "deb [trusted=yes] https://foxzi.github.io/llm-imager/apt stable main" | sudo tee /etc/apt/sources.list.d/llm-imager.list
+sudo apt update && sudo apt install llm-imager
+```
+
+### Usage
+
+```bash
+llm-imager -p "image description" -o output.jpg --size 1792x1024
+```
+
+### Specifying in design.md
+
+```markdown
+## Images
+generation: llm-imager
+style: professional, modern, blue tones
+
+images:
+  - hero.jpg: "modern office with natural light"
+  - icon-speed.png: "flat rocket icon, orange"
+  - team-ceo.jpg: "professional portrait, male, 50s"
+```
+
+### Image Types
+
+| Type | Size | Description |
+|------|------|-------------|
+| Hero background | 1792x1024 | Background image for hero section |
+| Icons | 512x512 | Icons for features section |
+| Team | 1024x1024 | Team member photos |
+| Product | 1024x1024 | Product photo or mockup |
+| Blog | 1200x630 | Article cover (OG-compatible) |
+
+More details: `images/README.md`
+
+---
+
 ## Pre-generation Checklist
 
 - [ ] spec.md contains all content
@@ -509,3 +556,4 @@ tone: confident
 - [ ] Required sections specified
 - [ ] Text processing configured (if needed)
 - [ ] SEO requirements specified
+- [ ] Required images described (if needed)

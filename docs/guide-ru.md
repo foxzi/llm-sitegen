@@ -500,6 +500,53 @@ tone: confident
 
 ---
 
+---
+
+## Генерация изображений
+
+Для генерации изображений используется утилита [llm-imager](https://github.com/foxzi/llm-imager).
+
+### Установка
+
+```bash
+# Debian/Ubuntu
+echo "deb [trusted=yes] https://foxzi.github.io/llm-imager/apt stable main" | sudo tee /etc/apt/sources.list.d/llm-imager.list
+sudo apt update && sudo apt install llm-imager
+```
+
+### Использование
+
+```bash
+llm-imager -p "описание изображения" -o output.jpg --size 1792x1024
+```
+
+### Указание в design.md
+
+```markdown
+## Images
+generation: llm-imager
+style: professional, modern, blue tones
+
+images:
+  - hero.jpg: "современный офис с естественным светом"
+  - icon-speed.png: "плоская иконка ракеты, оранжевая"
+  - team-ceo.jpg: "профессиональный портрет, мужчина, 50 лет"
+```
+
+### Типы изображений
+
+| Тип | Размер | Описание |
+|-----|--------|----------|
+| Hero фон | 1792x1024 | Фоновое изображение для hero секции |
+| Иконки | 512x512 | Иконки для features секции |
+| Команда | 1024x1024 | Фото членов команды |
+| Продукт | 1024x1024 | Фото продукта или мокап |
+| Блог | 1200x630 | Обложка для статей (OG-совместимый) |
+
+Подробнее: `images/README.md`
+
+---
+
 ## Чеклист перед генерацией
 
 - [ ] spec.md содержит весь контент
@@ -509,3 +556,4 @@ tone: confident
 - [ ] Указаны нужные секции
 - [ ] Настроена обработка текста (если нужно)
 - [ ] Указаны SEO требования
+- [ ] Описаны нужные изображения (если нужно)

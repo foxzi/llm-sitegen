@@ -15,6 +15,7 @@ llm-sitegen/
   animations/     # CSS animations and transitions
   seo/            # Meta tags, Open Graph, Schema.org templates
   content/        # Text processing (rewrite, tone, length)
+  images/         # Image generation with llm-imager
 ```
 
 ## Quick Start
@@ -27,6 +28,7 @@ llm-sitegen/
 6. Apply animations from `animations/`
 7. Configure SEO from `seo/`
 8. Process text with `content/` directives (if needed)
+9. Generate images with `images/` instructions (if needed)
 
 ## Directory Overview
 
@@ -56,6 +58,9 @@ SEO templates: meta tags, Open Graph, Twitter Cards, favicons, robots.txt, sitem
 
 ### content/
 Text processing instructions: rewrite content, adjust tone (formal, friendly, professional, etc.), change length (shorter/longer). Apply transformations to source text before generating HTML.
+
+### images/
+Image generation instructions using llm-imager CLI tool. Supports hero images, icons, team photos, product mockups, and more. Requires local llm-imager installation.
 
 ## Usage with LLM
 
