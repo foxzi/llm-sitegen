@@ -568,6 +568,55 @@ More details: `images/README.md`
 
 ---
 
+## Revisions & Iterations
+
+After site generation, you can request changes using a structured format.
+
+### Revision Request Format
+
+```markdown
+## Revisions
+
+### Content
+- Hero: change title to "Welcome Home"
+- Footer: update phone to +1 555 000-0000
+
+### Styling
+- Buttons: make them orange (#F59E0B)
+- Font: increase body text to 18px
+
+### Layout
+- Move testimonials above pricing
+- Add FAQ section before footer
+
+### Images
+- Replace hero: ![gen: sunset over mountains](hero-new.jpg 1792x1024)
+
+### Bugs
+- Mobile menu doesn't open
+- Images stretched on mobile
+```
+
+### Revision Types
+
+| Type | Examples |
+|------|----------|
+| Content | Change text, add/remove sections |
+| Styling | Colors, fonts, spacing, sizes |
+| Layout | Section order, columns, structure |
+| Components | Add form, carousel, modal |
+| Images | Regenerate, replace, add new |
+| Bugs | Fix broken functionality |
+
+### Tips
+
+1. **Be specific** — "make buttons more visible" → "buttons: orange, larger, with shadow"
+2. **Group changes** — collect similar revisions together
+3. **Prioritize** — bugs and critical issues first
+4. **Specify location** — "in hero", "in footer", "on contact page"
+
+---
+
 ## Pre-generation Checklist
 
 - [ ] spec.md contains all content

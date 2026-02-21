@@ -16,6 +16,7 @@ llm-sitegen/
   seo/            # Meta tags, Open Graph, Schema.org templates
   content/        # Text processing (rewrite, tone, length)
   images/         # Image generation with llm-imager
+  iterations.md   # Handling revisions and changes
 ```
 
 ## Quick Start
