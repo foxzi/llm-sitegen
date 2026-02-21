@@ -520,6 +520,27 @@ sudo apt update && sudo apt install llm-imager
 llm-imager -p "описание изображения" -o output.jpg --size 1792x1024
 ```
 
+### Inline-синтаксис в spec.md
+
+Вставляйте команды генерации прямо в текст:
+
+```markdown
+## Hero Section
+Добро пожаловать в нашу компанию.
+
+![gen: современный офис с панорамными окнами](hero.jpg 1792x1024)
+
+## Услуги
+
+### Веб-разработка
+![gen: плоская иконка кода, синяя, белый фон](icon-web.png 512x512)
+```
+
+**Расширенный синтаксис:**
+```markdown
+![gen: описание | style: photorealistic | negative: text, watermarks](file.jpg 1024x1024)
+```
+
 ### Указание в design.md
 
 ```markdown

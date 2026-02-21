@@ -57,3 +57,4 @@ All notable changes to this project will be documented in this file.
 - User guide documentation in `docs/` (Russian and English versions)
 - Image generation module `images/` with llm-imager CLI instructions
 - Image processing instructions with ImageMagick convert (resize, crop, optimize, format conversion)
+- Inline image generation syntax `![gen: description](file.jpg size)` for spec.md

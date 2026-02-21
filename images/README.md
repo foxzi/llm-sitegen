@@ -2,6 +2,131 @@
 
 Instructions for generating images for websites using llm-imager CLI tool.
 
+---
+
+## Inline Image Commands
+
+Generate images directly from spec.md using special syntax.
+
+### Syntax
+
+```markdown
+![gen: description](filename.jpg size)
+```
+
+**Parts:**
+- `gen:` — marker that this image should be generated
+- `description` — prompt for image generation
+- `filename.jpg` — output file path (relative to assets/images/)
+- `size` — dimensions (optional, default 1024x1024)
+
+### Examples
+
+**Basic:**
+```markdown
+![gen: modern office with natural light](hero.jpg 1792x1024)
+```
+
+**With detailed prompt:**
+```markdown
+![gen: flat minimalist icon of a rocket, orange color, white background, simple style](icon-speed.png 512x512)
+```
+
+**Team photo:**
+```markdown
+![gen: professional headshot, business woman, 35 years, friendly smile, neutral background](team-anna.jpg)
+```
+
+**Without size (default 1024x1024):**
+```markdown
+![gen: abstract blue gradient background](bg-pattern.jpg)
+```
+
+### Advanced Options
+
+**With style modifier:**
+```markdown
+![gen: city skyline at sunset | style: photorealistic, cinematic](hero-city.jpg 1920x1080)
+```
+
+**With negative prompt:**
+```markdown
+![gen: clean product photo of laptop | negative: text, watermarks, people](product.jpg 1200x800)
+```
+
+**With quality:**
+```markdown
+![gen: detailed illustration of workflow | quality: hd](workflow.png 1400x900)
+```
+
+### Full Syntax
+
+```markdown
+![gen: prompt | style: ... | negative: ... | quality: hd](filename size)
+```
+
+### Usage in spec.md
+
+```markdown
+# Company Website
+
+## Hero Section
+Welcome to our company.
+
+![gen: modern tech startup office, bright natural light, minimalist furniture, no people](hero.jpg 1792x1024)
+
+## Our Services
+
+### Web Development
+We build modern websites.
+
+![gen: flat icon of code brackets, blue color, white background](icon-web.png 512x512)
+
+### Mobile Apps
+Native iOS and Android apps.
+
+![gen: flat icon of smartphone with app interface, purple color, white background](icon-mobile.png 512x512)
+
+## Our Team
+
+### John Smith, CEO
+Leading the company since 2015.
+
+![gen: professional headshot, confident man 50s, suit, neutral gray background](team-john.jpg 800x800)
+```
+
+### Processing
+
+LLM will:
+1. Parse all `![gen: ...]` commands
+2. Generate llm-imager commands for each
+3. Replace with standard markdown images in HTML:
+
+```html
+<img src="assets/images/hero.jpg" alt="modern tech startup office">
+```
+
+### Batch Command Output
+
+From the spec above, LLM generates:
+
+```bash
+#!/bin/bash
+mkdir -p assets/images
+
+llm-imager -p "modern tech startup office, bright natural light, minimalist furniture, no people" \
+  -o assets/images/hero.jpg --size 1792x1024
+
+llm-imager -p "flat icon of code brackets, blue color, white background" \
+  -o assets/images/icon-web.png --size 512x512
+
+llm-imager -p "flat icon of smartphone with app interface, purple color, white background" \
+  -o assets/images/icon-mobile.png --size 512x512
+
+llm-imager -p "professional headshot, confident man 50s, suit, neutral gray background" \
+  -o assets/images/team-john.jpg --size 800x800
+```
+
 ## Prerequisites
 
 The `llm-imager` tool must be installed and configured locally by the user.
