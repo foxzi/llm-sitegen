@@ -19,6 +19,7 @@ seo/
   favicon.html        # Favicon setup
   robots.txt          # Crawler instructions
   sitemap.xml         # Sitemap template
+  keywords.md         # Keywords extraction guide
   schema/             # JSON-LD structured data
 ```
 
@@ -118,6 +119,17 @@ XML sitemap template:
 - URL entries with lastmod, changefreq, priority
 - Multi-page structure
 - Image sitemap extension
+
+### keywords.md
+
+Keywords extraction guide:
+- How to extract keywords from project specs
+- Primary, secondary, long-tail, local keyword types
+- Meta keywords tag format
+- Content keywords list (YAML format)
+- Keyword placement guide by page element
+- Industry-specific keyword templates
+- Keyword expansion techniques
 
 ---
 

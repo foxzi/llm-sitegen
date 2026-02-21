@@ -52,3 +52,4 @@ All notable changes to this project will be documented in this file.
 - Surface Pairs documentation in colors/README.md for contrast handling
 - CSS variables for surface pairs in example templates
 - Fix: CTA section text contrast in all Bulma color variants
+- Keywords extraction guide `seo/keywords.md` with LLM instructions for extracting and generating SEO keywords from project specs
