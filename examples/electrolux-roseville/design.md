@@ -51,12 +51,13 @@ Or preset from `fonts/`:
 - Schema.org LocalBusiness
 - Meta description
 - Canonical URL
+- create sitemap.xml
+- robots.txt allowing all
 
 ---
 
 # Notes / Wishes
 
-- Хочу чтобы кнопки были более заметными
 - Футер должен быть тёмным
 - Добавить иконки к сервисам
 
@@ -64,9 +65,14 @@ Or preset from `fonts/`:
 
 # Variants to Generate
 
-Generate these color variants:
+Generate these color variants in different directories:
 - ocean-trust (default)
 - executive-green
 - medical-trust
 - fresh-market
 - carbon-dark
+
+# Assets
+- Logo: logo.png (transparent background)
+- Favicon: favicon.ico (16x16, 32x32)
+- Все файлы js, css, и изображения должны быть расположены в папке `assets/` с подкаталогами для каждого типа (js/, css/, images/) рядом с index.html.
