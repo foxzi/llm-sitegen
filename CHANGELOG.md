@@ -56,3 +56,4 @@ All notable changes to this project will be documented in this file.
 - Content processing module `content/` with text transformation instructions (rewrite, tone, length)
 - User guide documentation in `docs/` (Russian and English versions)
 - Image generation module `images/` with llm-imager CLI instructions
+- Image processing instructions with ImageMagick convert (resize, crop, optimize, format conversion)
