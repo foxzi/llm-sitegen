@@ -14,6 +14,7 @@ llm-sitegen/
   components/     # UI components (buttons, cards, forms, etc.)
   animations/     # CSS animations and transitions
   seo/            # Meta tags, Open Graph, Schema.org templates
+  content/        # Text processing (rewrite, tone, length)
 ```
 
 ## Quick Start
@@ -25,6 +26,7 @@ llm-sitegen/
 5. Add components from `components/`
 6. Apply animations from `animations/`
 7. Configure SEO from `seo/`
+8. Process text with `content/` directives (if needed)
 
 ## Directory Overview
 
@@ -51,6 +53,9 @@ CSS animations: transitions, keyframes, hover effects, scroll-triggered animatio
 
 ### seo/
 SEO templates: meta tags, Open Graph, Twitter Cards, favicons, robots.txt, sitemap.xml, Schema.org JSON-LD (organization, product, article, FAQ, review, etc.).
+
+### content/
+Text processing instructions: rewrite content, adjust tone (formal, friendly, professional, etc.), change length (shorter/longer). Apply transformations to source text before generating HTML.
 
 ## Usage with LLM
 
