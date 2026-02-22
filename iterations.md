@@ -75,7 +75,7 @@ User wants different or new images.
 
 **Action:** Generate NEW llm-imager commands.
 
-**Note:** llm-imager only creates new images. To modify existing images (resize, crop, format), use ImageMagick `convert`. See `images/README.md`.
+**Note:** llm-imager only creates new images. To modify existing images (resize, crop, format), use ImageMagick `convert`. See `modules/images/README.md`.
 
 ### 6. Animation Changes
 
@@ -87,7 +87,7 @@ User wants to add or modify animations.
 - "Add scroll animations to sections"
 - "Speed up the loading animation"
 
-**Action:** Edit CSS animations/transitions. See `animations/README.md`.
+**Action:** Edit CSS animations/transitions. See `modules/animations/README.md`.
 
 ### 7. Bug Fixes
 

@@ -16,32 +16,32 @@ You are a website generator. You receive project specifications (spec.md, design
 
 | Module | File | Purpose |
 |--------|------|---------|
-| Layouts | `layouts/README.md` | Page structure and sections |
-| Frameworks | `frameworks/README.md` | CSS/JS framework selection |
+| Layouts | `modules/layouts/README.md` | Page structure and sections |
+| Frameworks | `modules/frameworks/README.md` | CSS/JS framework selection |
 
 ### Design (Recommended)
 
 | Module | File | Purpose |
 |--------|------|---------|
-| Colors | `colors/README.md` | Color palettes |
-| Fonts | `fonts/README.md` | Typography |
-| Icons | `icons/README.md` | SVG icons |
-| Components | `components/README.md` | UI elements |
-| Animations | `animations/README.md` | CSS animations |
+| Colors | `modules/colors/README.md` | Color palettes |
+| Fonts | `modules/fonts/README.md` | Typography |
+| Icons | `modules/icons/README.md` | SVG icons |
+| Components | `modules/components/README.md` | UI elements |
+| Animations | `modules/animations/README.md` | CSS animations |
 
 ### Content (As Needed)
 
 | Module | File | Purpose |
 |--------|------|---------|
-| Content | `content/README.md` | Text processing (rewrite, tone, length) |
-| Images | `images/README.md` | Image generation with llm-imager |
+| Content | `modules/content/README.md` | Text processing (rewrite, tone, length) |
+| Images | `modules/images/README.md` | Image generation with llm-imager |
 
 ### SEO (Recommended)
 
 | Module | File | Purpose |
 |--------|------|---------|
-| SEO | `seo/README.md` | Meta tags, Open Graph, Schema.org |
-| Keywords | `seo/keywords.md` | Keyword extraction |
+| SEO | `modules/seo/README.md` | Meta tags, Open Graph, Schema.org |
+| Keywords | `modules/seo/keywords.md` | Keyword extraction |
 
 ### Post-Generation
 
@@ -360,15 +360,15 @@ Before delivering:
 
 When you need specific instructions, refer to:
 
-- **Page structure:** `layouts/README.md`
-- **Framework usage:** `frameworks/README.md` or `frameworks/<name>/README.md`
-- **Color selection:** `colors/README.md`
-- **Font pairing:** `fonts/README.md`
-- **Icon selection:** `icons/README.md`
-- **UI components:** `components/README.md`
-- **Animations:** `animations/README.md`
-- **SEO setup:** `seo/README.md`
-- **Keywords:** `seo/keywords.md`
-- **Text processing:** `content/README.md`
-- **Image generation:** `images/README.md`
+- **Page structure:** `modules/layouts/README.md`
+- **Framework usage:** `modules/frameworks/README.md` or `modules/frameworks/<name>/README.md`
+- **Color selection:** `modules/colors/README.md`
+- **Font pairing:** `modules/fonts/README.md`
+- **Icon selection:** `modules/icons/README.md`
+- **UI components:** `modules/components/README.md`
+- **Animations:** `modules/animations/README.md`
+- **SEO setup:** `modules/seo/README.md`
+- **Keywords:** `modules/seo/keywords.md`
+- **Text processing:** `modules/content/README.md`
+- **Image generation:** `modules/images/README.md`
 - **Handling revisions:** `iterations.md`

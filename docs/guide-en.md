@@ -159,30 +159,35 @@ claude --print "$(cat iterations.md)" \
 
 ```
 llm-sitegen/
-├── frameworks/     # CSS/JS frameworks
-├── colors/         # Color palettes
-├── fonts/          # Fonts (woff2)
-├── icons/          # SVG icons
-├── layouts/        # Page and section templates
-├── components/     # UI components
-├── animations/     # CSS animations
-├── seo/            # SEO templates
-├── content/        # Text processing
-├── examples/       # Project examples
-└── docs/           # Documentation
+├── master.md          # Main LLM prompt
+├── iterations.md      # Handling revisions
+├── modules/           # All generation modules
+│   ├── frameworks/    # CSS/JS frameworks
+│   ├── colors/        # Color palettes
+│   ├── fonts/         # Fonts (woff2)
+│   ├── icons/         # SVG icons
+│   ├── layouts/       # Page and section templates
+│   ├── components/    # UI components
+│   ├── animations/    # CSS animations
+│   ├── seo/           # SEO templates
+│   ├── content/       # Text processing & generation
+│   └── images/        # Image generation
+├── examples/          # Project examples
+├── docs/              # Documentation
+└── build/             # Generated output
 ```
 
 ### What to Include as Context
 
 | Task | Context Files |
 |------|---------------|
-| Choose framework | `frameworks/README.md` |
-| Choose colors | `colors/README.md` |
-| Choose fonts | `fonts/README.md` |
-| Page structure | `layouts/README.md` |
-| UI elements | `components/README.md` |
-| SEO setup | `seo/README.md` |
-| Text processing | `content/README.md` |
+| Choose framework | `modules/frameworks/README.md` |
+| Choose colors | `modules/colors/README.md` |
+| Choose fonts | `modules/fonts/README.md` |
+| Page structure | `modules/layouts/README.md` |
+| UI elements | `modules/components/README.md` |
+| SEO setup | `modules/seo/README.md` |
+| Text processing | `modules/content/README.md` |
 
 ---
 
@@ -350,7 +355,7 @@ pages:
 
 ### Color Palettes
 
-There are 35+ ready palettes in `colors/README.md`:
+There are 35+ ready palettes in `modules/colors/README.md`:
 
 | Category | Example Palettes |
 |----------|------------------|
@@ -665,7 +670,7 @@ images:
 | Product | 1024x1024 | Product photo or mockup |
 | Blog | 1200x630 | Article cover (OG-compatible) |
 
-More details: `images/README.md`
+More details: `modules/images/README.md`
 
 ---
 

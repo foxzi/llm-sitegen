@@ -54,20 +54,22 @@ body: Open Sans
 
 ```
 llm-sitegen/
-├── master.md        # Main LLM prompt
-├── iterations.md    # Handling revisions
-├── frameworks/      # CSS/JS frameworks
-├── colors/          # Color palettes (35+)
-├── fonts/           # Google Fonts (16)
-├── icons/           # SVG icons (15,000+)
-├── layouts/         # Page templates
-├── components/      # UI components
-├── animations/      # CSS animations
-├── seo/             # SEO templates
-├── content/         # Text processing & generation
-├── images/          # Image generation (llm-imager)
-├── examples/        # Example projects
-└── docs/            # Documentation
+├── master.md          # Main LLM prompt
+├── iterations.md      # Handling revisions
+├── modules/           # All generation modules
+│   ├── frameworks/    # CSS/JS frameworks
+│   ├── colors/        # Color palettes (35+)
+│   ├── fonts/         # Google Fonts (16)
+│   ├── icons/         # SVG icons (15,000+)
+│   ├── layouts/       # Page templates
+│   ├── components/    # UI components
+│   ├── animations/    # CSS animations
+│   ├── seo/           # SEO templates
+│   ├── content/       # Text processing & generation
+│   └── images/        # Image generation (llm-imager)
+├── examples/          # Example projects
+├── docs/              # Documentation
+└── build/             # Generated output
 ```
 
 ## Documentation

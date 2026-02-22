@@ -67,3 +67,4 @@ All notable changes to this project will be documented in this file.
 - Added text generation rules to master.md
 - Added animation changes type to iterations.md
 - Clarified that llm-imager only creates images, convert for processing
+- Restructured project: moved all modules to `modules/` directory

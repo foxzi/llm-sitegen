@@ -159,30 +159,35 @@ claude --print "$(cat iterations.md)" \
 
 ```
 llm-sitegen/
-├── frameworks/     # CSS/JS фреймворки
-├── colors/         # Цветовые палитры
-├── fonts/          # Шрифты (woff2)
-├── icons/          # SVG иконки
-├── layouts/        # Шаблоны страниц и секций
-├── components/     # UI компоненты
-├── animations/     # CSS анимации
-├── seo/            # SEO шаблоны
-├── content/        # Обработка текста
-├── examples/       # Примеры проектов
-└── docs/           # Документация
+├── master.md          # Главный промпт для LLM
+├── iterations.md      # Обработка правок
+├── modules/           # Все модули генерации
+│   ├── frameworks/    # CSS/JS фреймворки
+│   ├── colors/        # Цветовые палитры
+│   ├── fonts/         # Шрифты (woff2)
+│   ├── icons/         # SVG иконки
+│   ├── layouts/       # Шаблоны страниц и секций
+│   ├── components/    # UI компоненты
+│   ├── animations/    # CSS анимации
+│   ├── seo/           # SEO шаблоны
+│   ├── content/       # Обработка и генерация текста
+│   └── images/        # Генерация изображений
+├── examples/          # Примеры проектов
+├── docs/              # Документация
+└── build/             # Сгенерированный результат
 ```
 
 ### Что подключать как контекст
 
 | Задача | Файлы для контекста |
 |--------|---------------------|
-| Выбор фреймворка | `frameworks/README.md` |
-| Выбор цветов | `colors/README.md` |
-| Выбор шрифтов | `fonts/README.md` |
-| Структура страницы | `layouts/README.md` |
-| UI элементы | `components/README.md` |
-| SEO настройка | `seo/README.md` |
-| Обработка текста | `content/README.md` |
+| Выбор фреймворка | `modules/frameworks/README.md` |
+| Выбор цветов | `modules/colors/README.md` |
+| Выбор шрифтов | `modules/fonts/README.md` |
+| Структура страницы | `modules/layouts/README.md` |
+| UI элементы | `modules/components/README.md` |
+| SEO настройка | `modules/seo/README.md` |
+| Обработка текста | `modules/content/README.md` |
 
 ---
 
@@ -350,7 +355,7 @@ pages:
 
 ### Цветовые палитры
 
-В `colors/README.md` есть 35+ готовых палитр:
+В `modules/colors/README.md` есть 35+ готовых палитр:
 
 | Категория | Примеры палитр |
 |-----------|----------------|
@@ -665,7 +670,7 @@ images:
 | Продукт | 1024x1024 | Фото продукта или мокап |
 | Блог | 1200x630 | Обложка для статей (OG-совместимый) |
 
-Подробнее: `images/README.md`
+Подробнее: `modules/images/README.md`
 
 ---
 
