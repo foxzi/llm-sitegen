@@ -6,6 +6,9 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 - OpenCode CLI documentation in user guides (Russian and English)
+
+### Changed
+- generate-examples.sh now generates images directly with llm-imager instead of creating generate-images.sh script
 - Local framework bundles in `frameworks/*/dist` for Tailwind, Bootstrap, Bulma, UIkit, Pico.css, Water.css, Milligram, Alpine.js, and htmx.
 - Per-framework usage guides and minimal examples in `frameworks/*/README.md` and `frameworks/*/examples/index.example.html`.
 - Framework index file `frameworks/README.md` with bundle overview.
