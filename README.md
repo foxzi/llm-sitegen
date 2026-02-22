@@ -1,97 +1,87 @@
 # LLM Site Generator Toolkit
 
-A collection of web assets and LLM-friendly prompts for generating complete websites. Each directory contains ready-to-use templates with comprehensive documentation that serves as context for LLMs.
+Набор шаблонов и промптов для генерации сайтов с помощью LLM (Claude, ChatGPT и др.).
 
-## Quick Start for LLM
+A collection of templates and prompts for generating websites with LLMs (Claude, ChatGPT, etc.).
 
-Use `master.md` as the main prompt — it connects all modules and defines the workflow.
+## Quick Start
+
+1. Создайте `spec.md` (контент) и `design.md` (дизайн)
+2. Запустите генерацию:
+
+```bash
+claude --print "$(cat master.md spec.md design.md)" "Сгенерируй сайт"
+```
+
+### Пример spec.md
+
+```markdown
+# My Company
+
+## About
+We build great products since 2010.
+
+## Services
+- Web Development
+- Mobile Apps
+
+## Contact
+Phone: +1 555 123-4567
+```
+
+### Пример design.md
+
+```markdown
+## Site Type
+type: landing
+
+## Colors
+palette: ocean-trust
+
+## Fonts
+heading: Montserrat
+body: Open Sans
+
+## Sections
+- navbar
+- hero-centered
+- features-grid
+- cta
+- footer
+```
 
 ## Structure
 
 ```
 llm-sitegen/
-  frameworks/     # CSS/JS framework bundles (Tailwind, Bootstrap, etc.)
-  colors/         # Color palette presets
-  fonts/          # Typography collection (Google Fonts, woff2)
-  icons/          # SVG icon sets (Heroicons, Feather, Lucide, etc.)
-  layouts/        # Page and section templates
-  components/     # UI components (buttons, cards, forms, etc.)
-  animations/     # CSS animations and transitions
-  seo/            # Meta tags, Open Graph, Schema.org templates
-  content/        # Text processing (rewrite, tone, length)
-  images/         # Image generation with llm-imager
-  iterations.md   # Handling revisions and changes
-  master.md       # Main LLM prompt (connects all modules)
+├── master.md        # Main LLM prompt
+├── iterations.md    # Handling revisions
+├── frameworks/      # CSS/JS frameworks
+├── colors/          # Color palettes (35+)
+├── fonts/           # Google Fonts (16)
+├── icons/           # SVG icons (15,000+)
+├── layouts/         # Page templates
+├── components/      # UI components
+├── animations/      # CSS animations
+├── seo/             # SEO templates
+├── content/         # Text processing & generation
+├── images/          # Image generation (llm-imager)
+├── examples/        # Example projects
+└── docs/            # Documentation
 ```
 
-## Quick Start
+## Documentation
 
-1. Choose a framework from `frameworks/`
-2. Select a color palette from `colors/`
-3. Pick fonts from `fonts/`
-4. Use layouts from `layouts/` as page structure
-5. Add components from `components/`
-6. Apply animations from `animations/`
-7. Configure SEO from `seo/`
-8. Process text with `content/` directives (if needed)
-9. Generate images with `images/` instructions (if needed)
+- [Руководство (RU)](docs/guide-ru.md)
+- [User Guide (EN)](docs/guide-en.md)
 
-## Directory Overview
+## Key Features
 
-### frameworks/
-CSS and JavaScript framework bundles with local distribution files. Includes Tailwind CSS, Bootstrap, Bulma, UIkit, Pico.css, Water.css, Milligram, Alpine.js, htmx.
-
-### colors/
-35+ named color palettes organized by project type: corporate, creative, e-commerce, health, tech, nature, food, finance, education, entertainment.
-
-### fonts/
-16 Google Fonts in woff2 format with font pairing recommendations. Includes serif, sans-serif, display, and monospace families.
-
-### icons/
-6 icon sets with 15,000+ SVG icons: Heroicons, Feather, Lucide, Bootstrap Icons, Tabler, Phosphor.
-
-### layouts/
-HTML templates for sections (navbar, hero, features, pricing, testimonials, FAQ, team, stats, CTA, contact, footer) and complete pages (landing, blog, dashboard, portfolio, e-commerce, auth, etc.).
-
-### components/
-Standalone UI components: buttons, cards, forms, modals, alerts, badges, tabs, dropdowns, avatars, loaders, tooltips.
-
-### animations/
-CSS animations: transitions, keyframes, hover effects, scroll-triggered animations, text effects.
-
-### seo/
-SEO templates: meta tags, Open Graph, Twitter Cards, favicons, robots.txt, sitemap.xml, Schema.org JSON-LD (organization, product, article, FAQ, review, etc.).
-
-### content/
-Text processing instructions: rewrite content, adjust tone (formal, friendly, professional, etc.), change length (shorter/longer). Apply transformations to source text before generating HTML.
-
-### images/
-Image generation instructions using llm-imager CLI tool. Supports hero images, icons, team photos, product mockups, and more. Requires local llm-imager installation.
-
-## Usage with LLM
-
-Each directory contains a `README.md` that serves as an LLM prompt. When generating a website:
-
-1. Provide the relevant README.md files as context
-2. Describe the desired website
-3. LLM will use the templates and guidelines to generate code
-
-Example prompt structure:
-```
-Context: [contents of frameworks/README.md]
-Context: [contents of colors/README.md]
-Context: [contents of layouts/README.md]
-
-Task: Create a landing page for a SaaS product...
-```
-
-## Design Principles
-
-- **Standalone files**: Each template is self-contained with embedded CSS
-- **No external dependencies**: Works offline, no CDN required
-- **Framework-agnostic**: Templates work with any CSS framework
-- **Copy-paste ready**: Code can be used directly without modification
-- **LLM-optimized**: Documentation structured for AI comprehension
+- **Offline**: Локальные шрифты, иконки, фреймворки — без CDN
+- **Modular**: Подключайте только нужные модули
+- **LLM-ready**: Промпты оптимизированы для AI
+- **Content**: Генерация и обработка текста
+- **Images**: Генерация картинок через llm-imager
 
 ## License
 

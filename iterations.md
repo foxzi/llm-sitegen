@@ -65,17 +65,31 @@ User wants to add, remove, or modify components.
 
 ### 5. Image Changes
 
-User wants different images.
+User wants different or new images.
 
 **Examples:**
-- "Generate a different hero image"
-- "Make the team photos more professional"
+- "Generate a new hero image"
 - "Add icons to each service"
-- "Change the illustration style"
+- "Create team photo placeholders"
+- "Add product images"
 
-**Action:** Generate new llm-imager commands.
+**Action:** Generate NEW llm-imager commands.
 
-### 6. Bug Fixes
+**Note:** llm-imager only creates new images. To modify existing images (resize, crop, format), use ImageMagick `convert`. See `images/README.md`.
+
+### 6. Animation Changes
+
+User wants to add or modify animations.
+
+**Examples:**
+- "Add hover effects to buttons"
+- "Make the hero title fade in"
+- "Add scroll animations to sections"
+- "Speed up the loading animation"
+
+**Action:** Edit CSS animations/transitions. See `animations/README.md`.
+
+### 7. Bug Fixes
 
 User reports something not working.
 
@@ -141,7 +155,8 @@ Group revisions by type:
 - Style (CSS changes)
 - Layout (structure changes)
 - Components (add/remove blocks)
-- Images (regenerate)
+- Images (generate new)
+- Animations (effects, transitions)
 - Bugs (fix issues)
 
 ### Step 2: Prioritize
@@ -152,7 +167,8 @@ Order of operations:
 3. Component changes (add/remove)
 4. Content changes (update text)
 5. Style changes (visual polish)
-6. Image changes (can be done in parallel)
+6. Animation changes (effects)
+7. Image changes (can be done in parallel)
 
 ### Step 3: Apply Changes
 
@@ -259,16 +275,45 @@ Check:
 3. Z-index stacking
 4. Touch events vs click events
 
-### Replace Image
+### Add/Replace Image
 
 ```markdown
 Request: "Different hero image, more professional"
 ```
 
 ```bash
-# Generate new image
+# Generate NEW image (llm-imager creates, not edits)
 llm-imager -p "professional corporate office, modern, bright" \
   -o assets/images/hero.jpg --size 1792x1024 --quality hd
+```
+
+### Resize/Crop Image
+
+```markdown
+Request: "Make hero image smaller"
+```
+
+```bash
+# Use convert for processing existing images
+convert assets/images/hero.jpg -resize 1200x600 assets/images/hero.jpg
+```
+
+### Add Animation
+
+```markdown
+Request: "Add fade-in effect to hero title"
+```
+
+```css
+/* Add to CSS */
+.hero h1 {
+  animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 ```
 
 ---

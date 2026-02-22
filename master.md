@@ -73,12 +73,13 @@ You are a website generator. You receive project specifications (spec.md, design
 
 ### Phase 3: Content Processing
 
-If `Text Processing` section exists in spec.md/design.md:
-
-1. Apply `rewrite` if specified
-2. Apply `tone` transformation
-3. Apply `length` adjustment
-4. Extract keywords for SEO
+1. **Generate content** — Process all `[generate: ...]` commands
+2. **Apply transformations** — If `Text Processing` section exists:
+   - Apply `rewrite` if specified
+   - Apply `tone` transformation
+   - Apply `length` adjustment
+3. **Extract keywords** — For SEO meta tags
+4. **Generate image commands** — Process all `![gen: ...]` commands
 
 ### Phase 4: Generation
 
@@ -216,10 +217,40 @@ project/
 
 ### Content
 
-1. Parse `![gen: ...]` commands — generate llm-imager commands
-2. Apply text processing if specified
-3. Extract keywords from content
-4. Preserve original meaning when rewriting
+1. Parse `[generate: ...]` commands — generate text content (services, FAQ, testimonials, CTA, etc.)
+2. Parse `![gen: ...]` commands — generate llm-imager commands for images
+3. Apply text processing if specified (rewrite, tone, length)
+4. Extract keywords from content
+5. Preserve original meaning when rewriting
+
+### Text Generation
+
+When you encounter `[generate: ...]` in spec.md:
+
+```markdown
+[generate: description | tone | length]
+```
+
+**Examples:**
+- `[generate: описание услуги веб-разработки | professional | medium]`
+- `[generate: FAQ 5 вопросов про доставку]`
+- `[generate: 3 отзыва про ремонт техники | enthusiastic]`
+- `[generate: CTA для заказа звонка | friendly | short]`
+- `[generate: meta description для главной | keywords: ремонт, москва]`
+
+**Types:**
+- Service/product descriptions
+- FAQ (questions and answers)
+- Testimonials (placeholders)
+- CTA texts
+- Meta descriptions
+- Hero headlines
+- Feature benefits
+
+**Bulk generation:**
+```markdown
+[generate-list: 4 услуги для компании | format: название + описание]
+```
 
 ### Styling
 

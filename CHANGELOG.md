@@ -63,3 +63,7 @@ All notable changes to this project will be documented in this file.
 - Master prompt `master.md` connecting all modules with workflow and decision trees
 - CLI usage examples for Claude Code and Codex in user guides
 - Content generation syntax `[generate: ...]` for creating text content (services, FAQ, testimonials, CTA, meta descriptions)
+- Simplified README.md with quick start examples and links to documentation
+- Added text generation rules to master.md
+- Added animation changes type to iterations.md
+- Clarified that llm-imager only creates images, convert for processing
