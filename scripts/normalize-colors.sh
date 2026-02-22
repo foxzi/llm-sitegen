@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Нормализация цветов в сгенерированном CSS
+# Использует CSS-переменные из файла, не хардкодит цвета
 # Использование: ./scripts/normalize-colors.sh path/to/style.css
 
 set -e
@@ -17,78 +18,55 @@ echo "Normalizing colors in: $CSS_FILE"
 # Backup
 cp "$CSS_FILE" "$CSS_FILE.backup"
 
-# Нейтральные цвета для текста
-HEADING_COLOR="#111827"
-TEXT_COLOR="#374151"
-TEXT_MUTED="#6B7280"
-TEXT_ON_DARK="#F9FAFB"
+# Проверяем наличие CSS-переменных
+HAS_HEADING_VAR=$(grep -c "\-\-heading" "$CSS_FILE" || true)
+HAS_TEXT_VAR=$(grep -c "\-\-text:" "$CSS_FILE" || true)
+HAS_ON_DARK_VAR=$(grep -c "\-\-on-dark" "$CSS_FILE" || true)
 
-# 1. Заголовки — всегда нейтральный цвет
-# Заменяем цветные заголовки на нейтральные
-sed -i -E "s/(h[1-6].*\{[^}]*color:\s*)#[0-9a-fA-F]{3,6}/\1$HEADING_COLOR/g" "$CSS_FILE"
-
-# 2. .title — нейтральный цвет (без !important, чтобы не сломать тёмные секции)
-# Если .title имеет цветной color, заменяем
-sed -i -E "s/(\.title\s*\{[^}]*color:\s*)#[0-9a-fA-F]{3,6}/\1$HEADING_COLOR/g" "$CSS_FILE"
-
-# 3. Добавляем правила для карточек если их нет
-if ! grep -q "\.card-content" "$CSS_FILE"; then
+# Добавляем правила только если есть переменные
+if [ "$HAS_HEADING_VAR" -gt 0 ] || [ "$HAS_TEXT_VAR" -gt 0 ]; then
     cat >> "$CSS_FILE" << 'EOF'
 
 /* === Color Normalization (auto-added) === */
+
+/* Карточки: сбрасываем к светлому фону с тёмным текстом */
 .card, .card-content, .box {
-    background: #FFFFFF;
-    color: #374151;
+    background: var(--surface, #FFFFFF);
+    color: var(--text, inherit);
 }
 
 .card .title, .card-content .title, .box .title,
 .card h1, .card h2, .card h3, .card h4,
 .box h1, .box h2, .box h3, .box h4 {
-    color: #111827;
+    color: var(--heading, inherit);
 }
-EOF
-    echo "  Added card/box normalization rules"
-fi
 
-# 4. Проверяем что на тёмных секциях текст светлый
-if ! grep -q "\.has-background-dark.*\.title" "$CSS_FILE"; then
-    cat >> "$CSS_FILE" << 'EOF'
+/* Тёмные секции: светлый текст */
+.has-background-dark,
+.section-dark,
+.footer.has-background-dark {
+    color: var(--on-dark, #F9FAFB);
+}
 
-/* Dark section text (auto-added) */
 .has-background-dark .title,
 .has-background-dark h1,
 .has-background-dark h2,
-.has-background-dark h3 {
-    color: #FFFFFF !important;
-}
-
-.has-background-dark p,
-.has-background-dark span,
-.has-background-dark li {
-    color: #F9FAFB;
-}
-EOF
-    echo "  Added dark section rules"
-fi
-
-# 5. Footer текст
-if ! grep -q "\.footer.*\.title" "$CSS_FILE"; then
-    cat >> "$CSS_FILE" << 'EOF'
-
-/* Footer text (auto-added) */
+.has-background-dark h3,
+.section-dark .title,
 .footer .title {
-    color: #FFFFFF !important;
+    color: var(--on-dark, #FFFFFF) !important;
 }
 
-.footer p, .footer a, .footer li {
-    color: rgba(255,255,255,0.8);
-}
-
-.footer a:hover {
-    color: #FFFFFF;
+/* Primary секции: белый текст */
+.hero.is-primary .title,
+.hero.is-primary .subtitle,
+.has-background-primary .title {
+    color: var(--on-primary, #FFFFFF) !important;
 }
 EOF
-    echo "  Added footer rules"
+    echo "  Added normalization rules using CSS variables"
+else
+    echo "  No CSS variables found, skipping (manual review needed)"
 fi
 
 echo "Done. Backup saved as: $CSS_FILE.backup"
