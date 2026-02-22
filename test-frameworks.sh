@@ -50,6 +50,11 @@ Fonts: Montserrat (heading), Open Sans (body)
 Картинки: используй placehold.co плейсхолдеры.
 "
 
+    # Постобработка — нормализация цветов
+    if [ -f "$output_dir/assets/css/style.css" ]; then
+        ./scripts/normalize-colors.sh "$output_dir/assets/css/style.css"
+    fi
+
     echo "Done: $output_dir/"
     echo ""
 }
