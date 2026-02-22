@@ -5,8 +5,43 @@ Ready-to-use color combinations for websites. Each palette has a unique name and
 ## How to Use
 
 1. Choose palette based on project type or mood
-2. Use colors as specified: primary, secondary, accent, background, text
-3. Follow the 60-30-10 rule: 60% primary, 30% secondary, 10% accent
+2. **Copy `base.css`** and replace CSS variables with palette values
+3. **CRITICAL: `heading` is always neutral** (black/dark gray) — never use colored text for headings
+4. Follow the 60-30-10 rule: 60% primary, 30% secondary, 10% accent
+
+### Quick Start
+
+```css
+/* Copy from base.css, then set palette values */
+:root {
+    --primary: #16A34A;      /* from palette */
+    --primary-dark: #15803D; /* darker variant */
+    --secondary: #22C55E;    /* from palette */
+    --accent: #EA580C;       /* from palette */
+
+    /* ALWAYS use neutral colors for text */
+    --heading: #111827;      /* near-black for all headings */
+    --text: #374151;         /* dark gray for body */
+    --text-muted: #6B7280;   /* secondary text */
+
+    /* ... rest from base.css */
+}
+```
+
+**See `base.css` for the complete template with all selectors.**
+
+### Standard Text Colors (use for ALL palettes)
+
+These values are the same for every palette:
+
+```css
+--heading:    #111827;  /* h1-h6, .title */
+--text:       #374151;  /* body text */
+--text-muted: #6B7280;  /* secondary text */
+--on-primary: #FFFFFF;  /* text on primary-colored backgrounds */
+```
+
+Only `--on-dark` changes per palette (lighter variant of primary for dark footer).
 
 ---
 
@@ -251,11 +286,16 @@ text:       #171717 (black)
 ### Fresh Market
 Food, groceries, organic.
 ```
-primary:    #16A34A (green)
-secondary:  #22C55E (light green)
-accent:     #EA580C (orange)
-background: #FFFFFF (white)
-text:       #166534 (dark green)
+primary:      #16A34A (green)
+primary-dark: #15803D
+secondary:    #22C55E (light green)
+accent:       #EA580C (orange)
+background:   #FFFFFF (white)
+heading:      #111827 (neutral black)
+text:         #374151 (neutral gray)
+text-muted:   #6B7280
+surface-dark: #14532D (for footer)
+on-dark:      #F0FDF4
 ```
 
 ---

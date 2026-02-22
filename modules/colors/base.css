@@ -1,0 +1,127 @@
+/*
+ * Base CSS Template for Palettes
+ * Copy this and replace CSS variables with palette values
+ *
+ * IMPORTANT: Always use --heading for h1-h6, never --text
+ */
+
+:root {
+    /* Palette colors - replace with actual values */
+    --primary: #2563EB;
+    --primary-dark: #1D4ED8;
+    --secondary: #3B82F6;
+    --accent: #F59E0B;
+
+    /* Text colors - ALWAYS use neutral colors */
+    --heading: #111827;        /* Headings: always near-black */
+    --text: #374151;           /* Body: dark gray */
+    --text-muted: #6B7280;     /* Secondary text */
+
+    /* Surfaces */
+    --surface: #FFFFFF;
+    --surface-alt: #F9FAFB;
+    --surface-dark: #111827;
+
+    /* On surfaces - text colors for each surface */
+    --on-surface: #374151;
+    --on-surface-alt: #374151;
+    --on-dark: #F9FAFB;
+    --on-primary: #FFFFFF;
+}
+
+/* Typography - headings always neutral */
+body {
+    font-family: var(--font-body, system-ui, sans-serif);
+    color: var(--text);
+    background: var(--surface);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading, system-ui, sans-serif);
+    color: var(--heading);
+}
+
+/* Bulma overrides */
+.title {
+    color: var(--heading) !important;
+}
+
+.subtitle {
+    color: var(--text-muted) !important;
+}
+
+/* Dark sections */
+.has-background-dark,
+.footer.has-background-dark,
+.section-dark {
+    background-color: var(--surface-dark) !important;
+    color: var(--on-dark);
+}
+
+.has-background-dark .title,
+.footer .title,
+.section-dark .title,
+.section-dark h1,
+.section-dark h2,
+.section-dark h3 {
+    color: #FFFFFF !important;
+}
+
+/* Primary colored sections (hero, CTA) */
+.hero.is-primary,
+.section-primary,
+.has-background-primary {
+    background-color: var(--primary) !important;
+    color: var(--on-primary);
+}
+
+.hero.is-primary .title,
+.hero.is-primary .subtitle,
+.section-primary .title,
+.section-primary h1,
+.section-primary h2 {
+    color: #FFFFFF !important;
+}
+
+/* Light alternate sections */
+.has-background-light,
+.section-alt {
+    background-color: var(--surface-alt) !important;
+    color: var(--on-surface-alt);
+}
+
+.has-background-light .title,
+.section-alt .title {
+    color: var(--heading) !important;
+}
+
+/* Links and accents */
+a {
+    color: var(--primary);
+}
+
+a:hover {
+    color: var(--primary-dark);
+}
+
+/* Buttons */
+.button.is-primary {
+    background-color: var(--primary);
+    border-color: transparent;
+    color: var(--on-primary);
+}
+
+.button.is-primary:hover {
+    background-color: var(--primary-dark);
+}
+
+/* Cards on any background */
+.box, .card {
+    background: var(--surface);
+    color: var(--text);
+}
+
+.box .title,
+.card .title {
+    color: var(--heading) !important;
+}
