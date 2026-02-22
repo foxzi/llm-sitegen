@@ -89,12 +89,14 @@ body: Open Sans
 
 ```bash
 # Базовый запуск
-claude --print "$(cat master.md spec.md design.md)" \
-  "Сгенерируй сайт согласно спецификации"
+claude -p "$(cat master.md spec.md design.md)
+
+Сгенерируй сайт согласно спецификации"
 
 # С дополнительными модулями
-claude --print "$(cat master.md layouts/README.md colors/README.md spec.md design.md)" \
-  "Сгенерируй сайт согласно спецификации"
+claude -p "$(cat master.md layouts/README.md colors/README.md spec.md design.md)
+
+Сгенерируй сайт согласно спецификации"
 
 # Интерактивный режим с файлами
 claude
@@ -104,8 +106,9 @@ claude
 > Сгенерируй сайт согласно спецификации и сохрани в build/
 
 # С выводом в файл
-claude --print "$(cat master.md spec.md design.md)" \
-  "Сгенерируй только HTML код сайта" > build/index.html
+claude -p "$(cat master.md spec.md design.md)
+
+Сгенерируй только HTML код сайта" > build/index.html
 ```
 
 ### Codex (OpenAI)
@@ -171,20 +174,23 @@ opencode web --port 4096
 
 **Простой лендинг:**
 ```bash
-claude --print "$(cat master.md layouts/README.md examples/my-site/spec.md examples/my-site/design.md)" \
-  "Сгенерируй лендинг и сохрани в examples/my-site/build/"
+claude -p "$(cat master.md layouts/README.md examples/my-site/spec.md examples/my-site/design.md)
+
+Сгенерируй лендинг и сохрани в examples/my-site/build/"
 ```
 
 **С генерацией картинок:**
 ```bash
-claude --print "$(cat master.md images/README.md spec.md design.md)" \
-  "Сгенерируй сайт и создай скрипт generate-images.sh для llm-imager"
+claude -p "$(cat master.md images/README.md spec.md design.md)
+
+Сгенерируй сайт и создай скрипт generate-images.sh для llm-imager"
 ```
 
 **Итерация (правки):**
 ```bash
-claude --print "$(cat iterations.md)" \
-  "В файле build/index.html измени цвет кнопок на оранжевый и добавь секцию FAQ"
+claude -p "$(cat iterations.md)
+
+В файле build/index.html измени цвет кнопок на оранжевый и добавь секцию FAQ"
 ```
 
 ### Рекомендации

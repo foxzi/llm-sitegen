@@ -89,12 +89,14 @@ Provide the LLM with files as context:
 
 ```bash
 # Basic run
-claude --print "$(cat master.md spec.md design.md)" \
-  "Generate a website according to the specification"
+claude -p "$(cat master.md spec.md design.md)
+
+Generate a website according to the specification"
 
 # With additional modules
-claude --print "$(cat master.md layouts/README.md colors/README.md spec.md design.md)" \
-  "Generate a website according to the specification"
+claude -p "$(cat master.md layouts/README.md colors/README.md spec.md design.md)
+
+Generate a website according to the specification"
 
 # Interactive mode with files
 claude
@@ -104,8 +106,9 @@ claude
 > Generate a website according to the specification and save to build/
 
 # Output to file
-claude --print "$(cat master.md spec.md design.md)" \
-  "Generate only the HTML code" > build/index.html
+claude -p "$(cat master.md spec.md design.md)
+
+Generate only the HTML code" > build/index.html
 ```
 
 ### Codex (OpenAI)
@@ -171,20 +174,23 @@ opencode web --port 4096
 
 **Simple landing page:**
 ```bash
-claude --print "$(cat master.md layouts/README.md examples/my-site/spec.md examples/my-site/design.md)" \
-  "Generate a landing page and save to examples/my-site/build/"
+claude -p "$(cat master.md layouts/README.md examples/my-site/spec.md examples/my-site/design.md)
+
+Generate a landing page and save to examples/my-site/build/"
 ```
 
 **With image generation:**
 ```bash
-claude --print "$(cat master.md images/README.md spec.md design.md)" \
-  "Generate website and create generate-images.sh script for llm-imager"
+claude -p "$(cat master.md images/README.md spec.md design.md)
+
+Generate website and create generate-images.sh script for llm-imager"
 ```
 
 **Iteration (revisions):**
 ```bash
-claude --print "$(cat iterations.md)" \
-  "In build/index.html change button color to orange and add FAQ section"
+claude -p "$(cat iterations.md)
+
+In build/index.html change button color to orange and add FAQ section"
 ```
 
 ### Recommendations
