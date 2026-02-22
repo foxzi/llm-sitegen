@@ -258,6 +258,7 @@ When you encounter `[generate: ...]` in spec.md:
 2. Custom CSS only for specific requirements
 3. Mobile-first responsive design
 4. Consistent spacing and typography
+5. **Headings must be neutral colors** (black/dark gray on light, white on dark) — never use colored text for headings even if palette defines colored `text`
 
 ### Images
 
@@ -350,6 +351,7 @@ Before delivering:
 - [ ] Images commands generated (if needed)
 - [ ] SEO tags included (if specified)
 - [ ] Mobile responsive
+- [ ] **Headings are neutral colors** (not colored text)
 - [ ] No HTML comments in output
 - [ ] Clean, consistent code
 - [ ] File structure organized

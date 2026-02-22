@@ -10,6 +10,9 @@ All notable changes to this project will be documented in this file.
 ### Changed
 - generate-examples.sh now generates images directly with llm-imager instead of creating generate-images.sh script
 - modules/images/README.md updated to run llm-imager directly instead of creating scripts
+- Added rule: headings must use neutral colors (black/white), not colored text from palette
+- Updated colors/README.md with explicit heading color examples
+- Updated master.md checklist to verify heading colors
 - Local framework bundles in `frameworks/*/dist` for Tailwind, Bootstrap, Bulma, UIkit, Pico.css, Water.css, Milligram, Alpine.js, and htmx.
 - Per-framework usage guides and minimal examples in `frameworks/*/README.md` and `frameworks/*/examples/index.example.html`.
 - Framework index file `frameworks/README.md` with bundle overview.
