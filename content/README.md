@@ -1,12 +1,238 @@
 # Content Processing - LLM Instructions
 
-Instructions for preprocessing and transforming text content before using it on the website.
+Instructions for preprocessing, transforming, and generating text content for websites.
 
 ## How to Use
 
 1. Check if `task.md` or `spec.md` contains a `Text Processing` section
 2. If present, apply the specified transformations to all text content
-3. Process text BEFORE generating HTML
+3. Look for `[generate: ...]` commands to create new content
+4. Process text BEFORE generating HTML
+
+---
+
+## Content Generation
+
+Generate new text content using inline commands.
+
+### Syntax
+
+```markdown
+[generate: description | tone | length]
+```
+
+**Parts:**
+- `description` — what to generate (required)
+- `tone` — tone of voice (optional, default: professional)
+- `length` — short/medium/long (optional, default: medium)
+
+### Examples
+
+**Service description:**
+```markdown
+### Web Development
+[generate: описание услуги веб-разработки для IT-компании | professional | medium]
+```
+
+**Output:**
+```markdown
+### Web Development
+Мы создаём современные веб-приложения с использованием передовых технологий.
+От корпоративных сайтов до сложных SaaS-платформ — наша команда обеспечивает
+полный цикл разработки с фокусом на производительность и масштабируемость.
+```
+
+### Generation Types
+
+#### Service Descriptions
+
+```markdown
+[generate: описание услуги {название} для {тип бизнеса}]
+```
+
+**Example:**
+```markdown
+## Services
+
+### Appliance Repair
+[generate: описание услуги ремонта бытовой техники | friendly | short]
+
+### Installation
+[generate: описание услуги установки техники | professional | medium]
+```
+
+#### FAQ Generation
+
+```markdown
+[generate: FAQ {количество} вопросов про {тема}]
+```
+
+**Example:**
+```markdown
+## FAQ
+[generate: FAQ 5 вопросов про доставку и оплату интернет-магазина]
+```
+
+**Output:**
+```markdown
+## FAQ
+
+**Какие способы оплаты вы принимаете?**
+Мы принимаем банковские карты, электронные кошельки и наличные при получении.
+
+**Сколько стоит доставка?**
+Доставка бесплатна при заказе от 3000 рублей. Стандартная стоимость — 300 рублей.
+
+**Как быстро доставляете?**
+Доставка по городу — 1-2 дня, по России — 3-7 рабочих дней.
+
+...
+```
+
+#### Testimonials (Placeholders)
+
+```markdown
+[generate: {количество} отзывов про {услуга/продукт}]
+```
+
+**Example:**
+```markdown
+## Testimonials
+[generate: 3 отзыва про ремонт стиральных машин | enthusiastic]
+```
+
+**Output:**
+```markdown
+> "Мастер приехал в тот же день и починил машинку за час. Очень доволен!"
+> — Алексей М., Москва
+
+> "Уже второй раз обращаюсь. Всегда качественно и с гарантией."
+> — Елена К., Санкт-Петербург
+
+> "Сервис на высоте! Позвонил утром — вечером машинка работала."
+> — Дмитрий В., Казань
+```
+
+#### About/Company Description
+
+```markdown
+[generate: описание компании {название} | {сфера деятельности} | {особенности}]
+```
+
+**Example:**
+```markdown
+## About Us
+[generate: описание компании QuickFix | ремонт техники | 10 лет на рынке, 50000 клиентов]
+```
+
+#### CTA Texts
+
+```markdown
+[generate: CTA для {действие}]
+```
+
+**Example:**
+```markdown
+[generate: CTA для заказа обратного звонка | enthusiastic | short]
+```
+
+**Output:**
+```markdown
+Оставьте заявку — перезвоним за 5 минут!
+```
+
+#### Meta Descriptions
+
+```markdown
+[generate: meta description для {страница} | {ключевые слова}]
+```
+
+**Example:**
+```markdown
+[generate: meta description для страницы услуг | ремонт техники москва, быстрый ремонт]
+```
+
+**Output:**
+```
+Профессиональный ремонт бытовой техники в Москве. Выезд мастера в день обращения.
+Гарантия 1 год. Звоните: +7 495 123-45-67
+```
+
+#### Hero Headlines
+
+```markdown
+[generate: заголовок hero для {тип бизнеса} | {стиль}]
+```
+
+**Example:**
+```markdown
+[generate: заголовок hero для фитнес-клуба | enthusiastic]
+```
+
+**Output:**
+```markdown
+# Твоё тело. Твои правила. Твой результат.
+```
+
+#### Feature Benefits
+
+```markdown
+[generate: {количество} преимуществ для {продукт/услуга}]
+```
+
+**Example:**
+```markdown
+## Why Choose Us
+[generate: 4 преимущества для сервиса доставки еды]
+```
+
+### Full Syntax
+
+```markdown
+[generate: тип контента | tone: ... | length: ... | keywords: ... | language: ...]
+```
+
+**All options:**
+- `tone` — formal, professional, friendly, casual, enthusiastic, etc.
+- `length` — short (1-2 предложения), medium (3-5), long (6+)
+- `keywords` — ключевые слова для SEO
+- `language` — ru, en (default: language of surrounding text)
+
+**Example:**
+```markdown
+[generate: описание услуги клининга | tone: friendly | length: medium | keywords: уборка квартир, клининг москва]
+```
+
+### Bulk Generation
+
+Generate multiple items at once:
+
+```markdown
+## Services
+
+[generate-list: 4 услуги для клининговой компании | format: название + описание (2 предложения)]
+```
+
+**Output:**
+```markdown
+## Services
+
+### Уборка квартир
+Профессиональная уборка жилых помещений любой площади. Используем безопасные средства и современное оборудование.
+
+### Уборка офисов
+Поддержание чистоты в офисных пространствах. Гибкий график — работаем в удобное для вас время.
+
+### Генеральная уборка
+Глубокая очистка всех поверхностей, мытьё окон, химчистка мебели. Идеально перед праздниками или после ремонта.
+
+### Уборка после ремонта
+Удаление строительной пыли, мытьё полов и окон, вывоз мусора. Сдадим объект в идеальном состоянии.
+```
+
+---
+
+## Processing Directives
 
 ---
 

@@ -411,6 +411,32 @@ There are 15,000+ SVG icons from 6 sets in `icons/`:
 
 ## Working with Content
 
+### Text Generation
+
+Generate content directly in spec.md:
+
+```markdown
+## Services
+
+### Web Development
+[generate: web development service description | professional | medium]
+
+## FAQ
+[generate: FAQ 5 questions about delivery and payment]
+
+## Testimonials
+[generate: 3 reviews about appliance repair | enthusiastic]
+```
+
+**What you can generate:**
+- Service and product descriptions
+- FAQ (questions and answers)
+- Testimonials (placeholders)
+- CTA texts
+- Meta descriptions
+- Hero headlines
+- Feature benefits
+
 ### Text Processing
 
 If the source text needs to be rewritten or tone adjusted:

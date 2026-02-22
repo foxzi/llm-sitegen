@@ -62,3 +62,4 @@ All notable changes to this project will be documented in this file.
 - Revisions section in user guides (Russian and English)
 - Master prompt `master.md` connecting all modules with workflow and decision trees
 - CLI usage examples for Claude Code and Codex in user guides
+- Content generation syntax `[generate: ...]` for creating text content (services, FAQ, testimonials, CTA, meta descriptions)
