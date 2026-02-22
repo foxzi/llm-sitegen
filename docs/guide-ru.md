@@ -126,6 +126,47 @@ codex
 > Прочитай файлы master.md, spec.md, design.md и сгенерируй сайт
 ```
 
+### OpenCode
+
+```bash
+# Базовый запуск (один промпт)
+opencode run "$(cat master.md spec.md design.md)
+
+Сгенерируй сайт согласно спецификации"
+
+# С указанием модели
+opencode run --model anthropic/claude-opus-4 "$(cat master.md spec.md design.md)
+
+Сгенерируй сайт согласно спецификации"
+
+# С подключением файлов
+opencode run --file master.md --file spec.md --file design.md \
+  "Сгенерируй сайт согласно спецификации"
+
+# Интерактивный режим (TUI)
+opencode
+
+# Серверный режим для множественных команд
+opencode serve --port 4096
+# В другом терминале:
+opencode run --attach http://localhost:4096 "Сгенерируй сайт"
+
+# Веб-интерфейс
+opencode web --port 4096
+```
+
+**Полезные флаги:**
+- `--model/-m` — указать модель (provider/model)
+- `--file/-f` — подключить файл к запросу
+- `--continue/-c` — продолжить предыдущую сессию
+- `--session/-s` — возобновить конкретную сессию по ID
+- `--format json` — вывод в JSON формате
+
+**Доступные команды:**
+- `opencode models` — список доступных моделей
+- `opencode models anthropic` — фильтр по провайдеру
+- `opencode auth login` — настройка API ключей
+
 ### Примеры команд
 
 **Простой лендинг:**

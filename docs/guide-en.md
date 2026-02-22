@@ -126,6 +126,47 @@ codex
 > Read files master.md, spec.md, design.md and generate the website
 ```
 
+### OpenCode
+
+```bash
+# Basic run (single prompt)
+opencode run "$(cat master.md spec.md design.md)
+
+Generate a website according to the specification"
+
+# With model specification
+opencode run --model anthropic/claude-opus-4 "$(cat master.md spec.md design.md)
+
+Generate a website according to the specification"
+
+# With file attachments
+opencode run --file master.md --file spec.md --file design.md \
+  "Generate a website according to the specification"
+
+# Interactive mode (TUI)
+opencode
+
+# Server mode for multiple commands
+opencode serve --port 4096
+# In another terminal:
+opencode run --attach http://localhost:4096 "Generate the website"
+
+# Web interface
+opencode web --port 4096
+```
+
+**Useful flags:**
+- `--model/-m` — specify model (provider/model)
+- `--file/-f` — attach file to request
+- `--continue/-c` — continue previous session
+- `--session/-s` — resume specific session by ID
+- `--format json` — output in JSON format
+
+**Available commands:**
+- `opencode models` — list available models
+- `opencode models anthropic` — filter by provider
+- `opencode auth login` — configure API keys
+
 ### Example Commands
 
 **Simple landing page:**

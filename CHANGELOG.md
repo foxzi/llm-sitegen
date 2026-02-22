@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- OpenCode CLI documentation in user guides (Russian and English)
 - Local framework bundles in `frameworks/*/dist` for Tailwind, Bootstrap, Bulma, UIkit, Pico.css, Water.css, Milligram, Alpine.js, and htmx.
 - Per-framework usage guides and minimal examples in `frameworks/*/README.md` and `frameworks/*/examples/index.example.html`.
 - Framework index file `frameworks/README.md` with bundle overview.
@@ -68,3 +69,5 @@ All notable changes to this project will be documented in this file.
 - Added animation changes type to iterations.md
 - Clarified that llm-imager only creates images, convert for processing
 - Restructured project: moved all modules to `modules/` directory
+- Added 3 example projects: cleaning-service, apartment-renovation, food-delivery
+- Added generate-examples.sh script for batch site generation
