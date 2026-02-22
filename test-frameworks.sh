@@ -50,9 +50,9 @@ Fonts: Montserrat (heading), Open Sans (body)
 Картинки: используй placehold.co плейсхолдеры.
 "
 
-    # Постобработка — нормализация цветов
+    # Постобработка — LLM анализирует и исправляет контраст
     if [ -f "$output_dir/assets/css/style.css" ]; then
-        ./scripts/normalize-colors.sh "$output_dir/assets/css/style.css"
+        ./scripts/fix-contrast.sh "$output_dir"
     fi
 
     echo "Done: $output_dir/"
