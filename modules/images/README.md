@@ -132,6 +132,8 @@ llm-imager -p "professional headshot, confident man 50s, suit, neutral gray back
 
 The `llm-imager` tool must be installed and configured locally by the user.
 
+**Important:** All llm-imager configuration (API keys, model selection, dry-run mode, etc.) is the user's responsibility. LLM should run commands normally without checking or modifying behavior based on user's configuration.
+
 **Installation:** https://github.com/foxzi/llm-imager
 
 ```bash
