@@ -98,20 +98,19 @@ Leading the company since 2015.
 ### Processing
 
 LLM will:
-1. Parse all `![gen: ...]` commands
-2. Generate llm-imager commands for each
+1. Parse all `![gen: ...]` commands from spec.md
+2. Run llm-imager directly for each image
 3. Replace with standard markdown images in HTML:
 
 ```html
 <img src="assets/images/hero.jpg" alt="modern tech startup office">
 ```
 
-### Batch Command Output
+### Direct Generation
 
-From the spec above, LLM generates:
+From the spec above, LLM runs:
 
 ```bash
-#!/bin/bash
 mkdir -p assets/images
 
 llm-imager -p "modern tech startup office, bright natural light, minimalist furniture, no people" \
@@ -126,6 +125,8 @@ llm-imager -p "flat icon of smartphone with app interface, purple color, white b
 llm-imager -p "professional headshot, confident man 50s, suit, neutral gray background" \
   -o assets/images/team-john.jpg --size 800x800
 ```
+
+**Note:** llm-imager is pre-installed and configured. Run commands directly, do not create scripts.
 
 ## Prerequisites
 
@@ -297,14 +298,11 @@ llm-imager -p "clean office interior" \
 
 ---
 
-## Batch Generation Script
+## Generating Multiple Images
 
-For multiple images, create a shell script:
+Run llm-imager commands directly for each image:
 
 ```bash
-#!/bin/bash
-# generate-images.sh
-
 OUTPUT_DIR="assets/images"
 mkdir -p $OUTPUT_DIR
 
@@ -328,9 +326,9 @@ llm-imager -p "professional headshot, business woman, 30s, friendly smile" \
 
 llm-imager -p "professional headshot, business man, 40s, confident look" \
   -o "$OUTPUT_DIR/team-2.jpg" --size 1024x1024
-
-echo "Images generated in $OUTPUT_DIR"
 ```
+
+**Important:** Execute commands directly during site generation. Do not create separate scripts.
 
 ---
 
