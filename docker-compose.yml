@@ -1,0 +1,10 @@
+services:
+  llm-sitegen:
+    build: .
+    volumes:
+      - ./spec:/spec:ro
+      - ./design:/design:ro
+      - ./output:/output
+      - ~/.config/opencode:/opencode:ro
+      - ~/.llm-imager.yaml:/llm-imager/llm-imager.yaml:ro
+    command: ["Generate website according to master.md instructions"]

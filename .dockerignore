@@ -1,0 +1,13 @@
+.git
+.gitignore
+build/
+examples/
+docs/
+*.md
+!master.md
+*.png
+*.jpg
+.playwright-mcp/
+.claude/
+CLAUDE.md
+tz.md
