@@ -165,32 +165,6 @@ OpenCode предоставляет HTTP API (OpenAPI 3.1) для програм
 
 ### Проверка связи
 
-```bash
-./scripts/api-test.sh
-```
-
-Вывод:
-
-```
-Server: http://localhost:3000
----
-Health: ok (v1.2.10)
-Providers: anthropic, openai
-Sessions: 3 total
----
-API spec: http://localhost:3000/doc
-```
-
-### Генерация сайта через API
-
-```bash
-./scripts/api-generate.sh 001_my-company anthropic/claude-sonnet-4
-```
-
-Скрипт создаёт сессию, отправляет промпт с указанием спеков проекта и ждёт завершения генерации. Аргумент модели опционален (используется модель по умолчанию).
-
-### Ручные вызовы API через curl
-
 **Проверка здоровья:**
 
 ```bash
@@ -258,13 +232,6 @@ curl -N http://localhost:3000/event
 Если сервер защищён паролем:
 
 ```bash
-export OPENCODE_SERVER_PASSWORD=your-password
-./scripts/api-generate.sh 001_my-company
-```
-
-Или напрямую через curl:
-
-```bash
 curl -u opencode:your-password http://localhost:3000/global/health
 ```
 
@@ -294,6 +261,28 @@ const result = await client.session.prompt({
   }
 })
 ```
+
+---
+
+## Пакетный режим
+
+Для одноразовой генерации без веб-панели используйте `docker compose run`:
+
+```bash
+docker compose run --rm llm-sitegen \
+  bash /app/llm-sitegen/docker/entrypoint.sh 001_my-company
+```
+
+С указанием модели:
+
+```bash
+docker compose run --rm llm-sitegen \
+  bash /app/llm-sitegen/docker/entrypoint.sh 001_my-company anthropic/claude-sonnet-4
+```
+
+LLM читает спеки проекта, генерирует сайт и сохраняет результат в `projects/001_my-company/build/`. Контейнер завершается после генерации.
+
+> **Примечание:** В пакетном режиме выполняется один промпт без возможности итерации. Для пошаговой доработки используйте веб-панель.
 
 ---
 

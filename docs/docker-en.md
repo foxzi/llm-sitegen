@@ -165,32 +165,6 @@ OpenCode exposes an HTTP API (OpenAPI 3.1) that allows programmatic site generat
 
 ### Test connectivity
 
-```bash
-./scripts/api-test.sh
-```
-
-Output:
-
-```
-Server: http://localhost:3000
----
-Health: ok (v1.2.10)
-Providers: anthropic, openai
-Sessions: 3 total
----
-API spec: http://localhost:3000/doc
-```
-
-### Generate a site via API
-
-```bash
-./scripts/api-generate.sh 001_my-company anthropic/claude-sonnet-4
-```
-
-The script creates a session, sends the generation prompt with references to the project's spec files, and waits for the LLM to finish. The model argument is optional (uses the default configured model).
-
-### Manual API calls with curl
-
 **Health check:**
 
 ```bash
@@ -258,13 +232,6 @@ curl -N http://localhost:3000/event
 If the server is protected with a password:
 
 ```bash
-export OPENCODE_SERVER_PASSWORD=your-password
-./scripts/api-generate.sh 001_my-company
-```
-
-Or with curl directly:
-
-```bash
 curl -u opencode:your-password http://localhost:3000/global/health
 ```
 
@@ -294,6 +261,28 @@ const result = await client.session.prompt({
   }
 })
 ```
+
+---
+
+## Batch Mode
+
+For one-shot generation without the web panel, use `docker compose run`:
+
+```bash
+docker compose run --rm llm-sitegen \
+  bash /app/llm-sitegen/docker/entrypoint.sh 001_my-company
+```
+
+With a specific model:
+
+```bash
+docker compose run --rm llm-sitegen \
+  bash /app/llm-sitegen/docker/entrypoint.sh 001_my-company anthropic/claude-sonnet-4
+```
+
+The LLM reads project specs, generates the site, and writes output to `projects/001_my-company/build/`. The container exits when done.
+
+> **Note:** Batch mode runs a single prompt without interaction. For iterative refinement, use the web panel.
 
 ---
 

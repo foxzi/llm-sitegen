@@ -15,9 +15,14 @@ All notable changes to this project will be documented in this file.
 - Docker: mount `.llm-imager.yaml` from repo root into container for image generation
 
 ### Added
-- `scripts/api-generate.sh` - generate site for a project via OpenCode HTTP API
-- `scripts/api-test.sh` - test API connectivity, list providers and sessions
 - API usage documentation in Docker guides (EN + RU): endpoints, curl examples, JS SDK
+
+### Fixed
+- `docker/entrypoint.sh`: removed broken stdout redirect, LLM now writes files through its tools
+
+### Removed
+- `scripts/api-generate.sh`, `scripts/api-test.sh` — redundant, web UI covers all scenarios
+- Test project `projects/001_test-landing/`
 
 ### Added
 - New example: Bosch appliance repair Palo Alto (`examples/bosch/`)
