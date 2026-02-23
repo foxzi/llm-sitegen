@@ -181,9 +181,9 @@ claude -p "$(cat master.md layouts/README.md examples/my-site/spec.md examples/m
 
 **С генерацией картинок:**
 ```bash
-claude -p "$(cat master.md images/README.md spec.md design.md)
+claude -p "$(cat master.md modules/images/README.md spec.md design.md)
 
-Сгенерируй сайт и создай скрипт generate-images.sh для llm-imager"
+Сгенерируй сайт и запусти llm-imager для всех изображений"
 ```
 
 **Итерация (правки):**

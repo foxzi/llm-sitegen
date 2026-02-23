@@ -181,9 +181,9 @@ Generate a landing page and save to examples/my-site/build/"
 
 **With image generation:**
 ```bash
-claude -p "$(cat master.md images/README.md spec.md design.md)
+claude -p "$(cat master.md modules/images/README.md spec.md design.md)
 
-Generate website and create generate-images.sh script for llm-imager"
+Generate website and run llm-imager for all images"
 ```
 
 **Iteration (revisions):**

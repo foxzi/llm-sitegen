@@ -47,6 +47,7 @@ You are a website generator. You receive project specifications (spec.md, design
 
 | Module | File | Purpose |
 |--------|------|---------|
+| Normalize | `modules/normalize/README.md` | Fix color contrast issues |
 | Iterations | `iterations.md` | Handling revisions and changes |
 
 ---
@@ -79,7 +80,7 @@ You are a website generator. You receive project specifications (spec.md, design
    - Apply `tone` transformation
    - Apply `length` adjustment
 3. **Extract keywords** — For SEO meta tags
-4. **Generate image commands** — Process all `![gen: ...]` commands
+4. **Run llm-imager** — Execute llm-imager directly for all `![gen: ...]` images (do NOT create scripts)
 
 ### Phase 4: Generation
 
@@ -90,9 +91,18 @@ Generate in this order:
 3. **Content** — Processed text from spec.md
 4. **Components** — Forms, buttons, cards, etc.
 5. **SEO** — Meta tags, Open Graph, Schema.org
-6. **Images** — Generate llm-imager commands
+6. **Images** — Run `llm-imager generate` directly for each image (never create scripts)
 
-### Phase 5: Output
+### Phase 5: Normalize
+
+After generation, check for contrast issues:
+
+1. **Read** `modules/normalize/README.md`
+2. **Verify** text colors against backgrounds
+3. **Fix** any colored headings → neutral colors
+4. **Ensure** cards have proper text contrast
+
+### Phase 6: Output
 
 Deliver:
 
@@ -263,10 +273,10 @@ When you encounter `[generate: ...]` in spec.md:
 
 ### Images
 
-1. Generate llm-imager commands for all `![gen: ...]`
-2. Use appropriate sizes per image type
+1. Run `llm-imager generate` directly for each `![gen: ...]` image
+2. Use appropriate sizes per image type (--size WIDTHxHEIGHT)
 3. Include style consistency keywords
-4. Output as executable shell script
+4. **NEVER create shell scripts** — execute commands directly
 
 ### SEO
 
@@ -374,4 +384,5 @@ When you need specific instructions, refer to:
 - **Keywords:** `modules/seo/keywords.md`
 - **Text processing:** `modules/content/README.md`
 - **Image generation:** `modules/images/README.md`
+- **Color normalization:** `modules/normalize/README.md`
 - **Handling revisions:** `iterations.md`
