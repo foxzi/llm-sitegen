@@ -126,6 +126,7 @@ prompt="$prompt ${assets_note}Use these pre-copied files with relative paths fro
 prompt="$prompt CSS framework: assets/css/, fonts: assets/fonts/<name>/local.css, custom styles: assets/css/style.css."
 prompt="$prompt NEVER use paths containing 'modules/' in HTML or CSS. All asset references must start with 'assets/'."
 prompt="$prompt IMPORTANT: ONLY write files inside $build_dir/. Do NOT create, modify, or delete any files outside of $build_dir/."
+prompt="$prompt You are running in non-interactive batch mode. Do NOT ask questions, do NOT wait for confirmation. Make all decisions yourself and complete the task fully."
 
 # Build opencode run arguments
 run_args=(
