@@ -149,10 +149,20 @@ if curl -sf "$opencode_url/global/health" >/dev/null 2>&1; then
   run_args+=(--attach "$opencode_url")
 fi
 
-echo "Project: $project_name"
-echo "Output:  $build_dir/"
-echo "Model:   ${model_spec:-default}"
+echo "=== Site Generation Log ==="
+echo "Timestamp: $(date -Iseconds)"
+echo "Project:   $project_name"
+echo "Specs:     $specs_dir/"
+echo "Output:    $build_dir/"
+echo "Model:     ${model_spec:-default}"
 echo "Framework: ${framework:-auto}"
+echo ""
+echo "--- Run arguments ---"
+printf "  %s\n" "${run_args[@]}"
+echo ""
+echo "--- Prompt ---"
+echo "$prompt"
+echo "--- End prompt ---"
 echo ""
 
 opencode run "${run_args[@]}" "$prompt"
@@ -191,4 +201,8 @@ for html_file in "$build_dir"/*.html; do
 done
 
 echo ""
-echo "Done. Output: $build_dir/"
+echo "=== Generation complete ==="
+echo "Timestamp: $(date -Iseconds)"
+echo "Output: $build_dir/"
+echo "Files:"
+find "$build_dir" -type f -printf "  %p (%s bytes)\n" 2>/dev/null || ls -lR "$build_dir"

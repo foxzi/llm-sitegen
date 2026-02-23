@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 - File requirements documentation (`docs/file-requirements-ru.md`, `docs/file-requirements-en.md`) describing spec.md, design.md, and task.md structure
 
 ### Changed
+- entrypoint.sh: add verbose logging (timestamp, prompt, arguments, output file list)
 - entrypoint.sh: add write restriction to prompt (only build/ directory allowed)
 - entrypoint.sh: rewrite with 3-phase pipeline (pre-copy assets, generate, post-process HTML paths)
 - entrypoint.sh: auto-attach to running opencode server for batch mode
