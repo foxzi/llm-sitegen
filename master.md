@@ -104,12 +104,15 @@ After generation, check for contrast issues:
 
 ### Phase 6: Output
 
-Deliver:
+Deliver a **self-contained** build directory. All files must be inside `build/` with NO references to `modules/` or any path outside `build/`.
 
 1. **HTML files** — index.html + additional pages
-2. **CSS** — Custom styles (if not using framework)
-3. **JS** — Interactive components (if needed)
-4. **Assets structure** — Organized folder layout
+2. **CSS** — Copy framework CSS + custom styles into `build/assets/css/`
+3. **JS** — Copy framework JS + custom scripts into `build/assets/js/`
+4. **Fonts** — Copy all used font files (.woff2 + local.css) into `build/assets/fonts/`
+5. **Images** — Place in `build/assets/images/`
+
+**CRITICAL:** Copy the actual CSS/JS/font files from `modules/` into the build directory. Use relative paths from HTML files (e.g. `assets/css/tailwind.css`, `assets/fonts/inter/local.css`). The build directory must work as a standalone site without access to `modules/`.
 
 ---
 
@@ -178,7 +181,7 @@ style: professional, modern
 
 ### File Structure
 
-Output goes to the project's `build/` directory:
+Output goes to the project's `build/` directory. The build **MUST be self-contained** — all assets copied inside, no references outside `build/`.
 
 ```
 projects/
@@ -193,13 +196,27 @@ projects/
       contact.html (if multipage)
       assets/
         css/
-          style.css
+          tailwind.css    (copied from modules/frameworks/tailwind/dist/)
+          style.css       (custom styles)
         js/
           main.js
+          alpine.min.js   (if needed, copied from modules/frameworks/)
+        fonts/
+          inter/
+            local.css     (copied from modules/fonts/inter/)
+            *.woff2       (copied from modules/fonts/inter/)
+          playfair-display/
+            local.css
+            *.woff2
         images/
           hero.jpg
-          icons/
 ```
+
+**IMPORTANT:** When using a framework or fonts from `modules/`, you MUST:
+1. Copy the actual files into `build/assets/`
+2. Update all `<link>` and `<script>` paths to reference `assets/` (e.g. `assets/css/tailwind.css`)
+3. Update font CSS `url()` paths if fonts are moved to a different relative location
+4. NEVER use paths like `../../modules/...` or `../modules/...` — the build must be standalone
 
 ### HTML Template
 
@@ -213,8 +230,12 @@ projects/
 
     <!-- SEO Meta Tags -->
     <!-- Open Graph -->
-    <!-- Framework CSS -->
+    <!-- Framework CSS (copied to assets/) -->
+    <link rel="stylesheet" href="assets/css/tailwind.css">
+    <!-- Font CSS (copied to assets/) -->
+    <link rel="stylesheet" href="assets/fonts/inter/local.css">
     <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <!-- Navbar -->
@@ -222,7 +243,7 @@ projects/
     <!-- Content Sections -->
     <!-- Footer -->
 
-    <!-- Framework JS -->
+    <!-- Framework JS (copied to assets/) -->
     <!-- Custom JS -->
 </body>
 </html>
@@ -271,12 +292,15 @@ When you encounter `[generate: ...]` in spec.md:
 
 ### Styling
 
-1. **Start from `modules/colors/base.css`** — copy it and set palette values
-2. Use framework classes when possible
-3. Custom CSS only for specific requirements
-4. Mobile-first responsive design
-5. Consistent spacing and typography
-6. **Headings always `#111827`** on light backgrounds, `#FFFFFF` on dark — never colored
+1. **Start from `modules/colors/base.css`** — copy it into `build/assets/css/` and set palette values
+2. **Copy framework CSS** from `modules/frameworks/<name>/dist/` into `build/assets/css/`
+3. **Copy font files** from `modules/fonts/<name>/` into `build/assets/fonts/<name>/`
+4. Use framework classes when possible
+5. Custom CSS only for specific requirements
+6. Mobile-first responsive design
+7. Consistent spacing and typography
+8. **Headings always `#111827`** on light backgrounds, `#FFFFFF` on dark — never colored
+9. **All paths in HTML must be relative to build/** (e.g. `assets/css/tailwind.css`, NOT `../../modules/...`)
 
 ### Images
 
@@ -374,6 +398,8 @@ Before delivering:
 - [ ] No HTML comments in output
 - [ ] Clean, consistent code
 - [ ] File structure organized
+- [ ] **Build is self-contained** — all CSS, JS, fonts copied into `build/assets/`
+- [ ] **No references to `modules/`** or paths outside `build/` in any HTML/CSS file
 
 ---
 

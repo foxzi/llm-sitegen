@@ -8,7 +8,10 @@ All notable changes to this project will be documented in this file.
 - File requirements documentation (`docs/file-requirements-ru.md`, `docs/file-requirements-en.md`) describing spec.md, design.md, and task.md structure
 
 ### Changed
+- entrypoint.sh: rewrite with 3-phase pipeline (pre-copy assets, generate, post-process HTML paths)
 - entrypoint.sh: auto-attach to running opencode server for batch mode
+- master.md: add explicit self-contained build instructions (no modules/ references in output)
+- master.md: update Phase 6 output, Styling, and Checklist sections for asset bundling
 - Dockerfile: chmod +x entrypoint.sh during build
 
 ### Fixed
