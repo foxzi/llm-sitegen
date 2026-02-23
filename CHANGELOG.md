@@ -5,6 +5,41 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- New example: Bosch appliance repair Palo Alto (`examples/bosch/`)
+- New example: Apartment renovation multipage site (`examples/apartment-renovation/`)
+- New example: Cleaning service landing (`examples/cleaning-service/`)
+- New example: Food delivery landing (`examples/food-delivery/`)
+
+### Changed
+- master.md: Fixed instructions to run llm-imager directly instead of creating scripts
+- master.md: Added explicit "NEVER create shell scripts" instruction
+- docs/guide-en.md, docs/guide-ru.md: Updated image generation instructions
+
+### Removed
+- Deleted obsolete shell scripts: scripts/fix-contrast.sh, scripts/normalize-colors.sh, test-frameworks.sh
+
+### Added
+- Generated Electrolux Roseville appliance repair landing page in `build/electrolux-roseville/sonnet/`
+- Full landing page with sections: navbar, hero, 16 service cards, why-us, 10 reviews, trust, common-issues accordion, about-brand, 11-item FAQ, CTA, service-areas, footer
+- Ocean Trust color palette with Bootstrap 5 framework and Inter font
+- Custom CSS with scroll-reveal animations, hover-lift cards, gradient hero
+- SEO meta tags, Open Graph, Schema.org ProfessionalService and BreadcrumbList
+- sitemap.xml and robots.txt
+- 4 color variants: executive-green, medical-trust, fresh-market, carbon-dark
+- Generated QuickFood food delivery landing page in `build/food-delivery/sonnet/`
+- Full landing with sections: navbar, hero-split, categories, popular dishes, benefits, how-it-works, promotions, testimonials, app-download, footer
+- Custom color palette (red #EF4444, orange #F97316, yellow #FCD34D) applied with proper contrast
+- Tailwind-compatible CSS with Poppins/Inter fonts via Google Fonts
+- SEO meta tags, Open Graph, Schema.org FoodEstablishment and Service structured data
+- Scroll fade-in animations, floating hero image, pulse CTA button, hover scale on category cards
+- Cart toast notification for add-to-cart interaction
+- 12 images generated with llm-imager (hero, 4 dishes, 4 icons, delivery, app mockup, promo banner)
+- Generated CleanPro cleaning service landing page in `build/cleaning-service/sonnet/`
+- Full landing page with all sections: navbar, hero, features, services, pricing, process, team, testimonials, FAQ, CTA, contact form, footer
+- Fresh Market palette applied with proper contrast (heading: #111827, text: #374151)
+- Bulma CSS framework with Montserrat/Open Sans fonts
+- SEO meta tags, Open Graph, Schema.org LocalBusiness structured data
+- Image placeholders for hero, service icons, and team photo generated with llm-imager
 - OpenCode CLI documentation in user guides (Russian and English)
 
 ### Added

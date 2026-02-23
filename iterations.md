@@ -178,7 +178,14 @@ For each revision:
 3. Preserve existing functionality
 4. Test mentally for side effects
 
-### Step 4: Report
+### Step 4: Normalize
+
+After style/color changes:
+1. Read `modules/normalize/README.md`
+2. Check contrast of changed elements
+3. Fix any readability issues
+
+### Step 5: Report
 
 After applying:
 1. List what was changed

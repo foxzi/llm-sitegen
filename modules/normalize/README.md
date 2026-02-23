@@ -56,7 +56,42 @@ h1, h2, h3 {
 }
 ```
 
-### 3. Зелёный/синий текст в компонентах
+### 3. Поля форм без явного фона
+
+**Плохо:**
+```css
+.input, .textarea {
+  border-color: #ccc;
+  /* Firefox с тёмной темой покажет чёрный фон */
+}
+```
+
+**Хорошо:**
+```css
+.input, .textarea {
+  background-color: #fff;
+  color: #374151;
+  border-color: #ccc;
+}
+```
+
+### 4. Бледные labels (strong)
+
+**Плохо:**
+```css
+/* strong наследует цвет от родителя */
+p { color: #9CA3AF; }  /* бледный серый */
+p strong { /* нет стиля — тоже бледный */ }
+```
+
+**Хорошо:**
+```css
+strong {
+  color: var(--heading, #111827);
+}
+```
+
+### 5. Зелёный/синий текст в компонентах
 
 **Плохо:**
 ```css
@@ -129,6 +164,37 @@ h1, h2, h3, h4, h5, h6, .title {
 }
 ```
 
+### Labels и strong
+
+Элементы `<strong>` должны быть контрастными:
+
+```css
+strong {
+  color: var(--heading, #111827);
+}
+```
+
+### Поля форм
+
+Firefox использует системную тёмную тему для input-ов. Всегда задавай явный фон и цвет:
+
+**Плохо:**
+```css
+.input, .textarea, .select select {
+  border-color: #ccc;
+  /* нет background — Firefox покажет чёрный фон */
+}
+```
+
+**Хорошо:**
+```css
+.input, .textarea, .select select {
+  background-color: var(--surface, #FFFFFF);
+  color: var(--text, #374151);
+  border-color: #ccc;
+}
+```
+
 ---
 
 ## Чеклист
@@ -140,6 +206,8 @@ h1, h2, h3, h4, h5, h6, .title {
 - [ ] Карточки: белый фон + тёмный текст
 - [ ] Footer: тёмный фон + светлый текст
 - [ ] Нет зелёного/синего текста в основном контенте
+- [ ] Labels/strong имеют тёмный цвет
+- [ ] Поля форм: явный background-color и color
 
 ---
 
