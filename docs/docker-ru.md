@@ -153,6 +153,150 @@ projects/
 
 ---
 
+## Работа через API
+
+OpenCode предоставляет HTTP API (OpenAPI 3.1) для программной генерации сайтов. Спецификация доступна по адресу `http://localhost:3000/doc`.
+
+### Требования
+
+- Запущенный сервер (`docker compose up`)
+- Настроенный LLM-провайдер (через веб-панель)
+- `curl` и `jq` на хосте
+
+### Проверка связи
+
+```bash
+./scripts/api-test.sh
+```
+
+Вывод:
+
+```
+Server: http://localhost:3000
+---
+Health: ok (v1.2.10)
+Providers: anthropic, openai
+Sessions: 3 total
+---
+API spec: http://localhost:3000/doc
+```
+
+### Генерация сайта через API
+
+```bash
+./scripts/api-generate.sh 001_my-company anthropic/claude-sonnet-4
+```
+
+Скрипт создаёт сессию, отправляет промпт с указанием спеков проекта и ждёт завершения генерации. Аргумент модели опционален (используется модель по умолчанию).
+
+### Ручные вызовы API через curl
+
+**Проверка здоровья:**
+
+```bash
+curl -s http://localhost:3000/global/health | jq
+```
+
+**Список подключённых провайдеров:**
+
+```bash
+curl -s http://localhost:3000/provider | jq '.connected'
+```
+
+**Создание сессии:**
+
+```bash
+curl -s -X POST http://localhost:3000/session \
+  -H 'Content-Type: application/json' \
+  -d '{"title": "001_my-company"}' | jq '.id'
+```
+
+**Отправка промпта (синхронно, ждёт завершения):**
+
+```bash
+curl -s -X POST http://localhost:3000/session/<session-id>/message \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "model": {"providerID": "anthropic", "modelID": "claude-sonnet-4"},
+    "parts": [{"type": "text", "text": "Прочитай master.md и projects/001_my-company/specs/spec.md, specs/design.md. Сгенерируй сайт в projects/001_my-company/build/"}]
+  }'
+```
+
+**Отправка промпта асинхронно (возвращается сразу):**
+
+```bash
+curl -s -X POST http://localhost:3000/session/<session-id>/prompt_async \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "parts": [{"type": "text", "text": "Сгенерируй сайт..."}]
+  }'
+```
+
+**Подписка на события в реальном времени (SSE):**
+
+```bash
+curl -N http://localhost:3000/event
+```
+
+### Основные эндпоинты API
+
+| Метод | Путь | Описание |
+|-------|------|----------|
+| `GET` | `/global/health` | Здоровье сервера и версия |
+| `GET` | `/provider` | Список провайдеров и статус подключения |
+| `POST` | `/session` | Создать сессию |
+| `GET` | `/session` | Список всех сессий |
+| `POST` | `/session/:id/message` | Отправить промпт, дождаться ответа |
+| `POST` | `/session/:id/prompt_async` | Отправить промпт, вернуться сразу |
+| `GET` | `/session/:id/message` | Список сообщений сессии |
+| `POST` | `/session/:id/abort` | Прервать выполнение сессии |
+| `GET` | `/event` | Поток событий (SSE) |
+| `GET` | `/doc` | Спецификация OpenAPI 3.1 |
+
+### Аутентификация
+
+Если сервер защищён паролем:
+
+```bash
+export OPENCODE_SERVER_PASSWORD=your-password
+./scripts/api-generate.sh 001_my-company
+```
+
+Или напрямую через curl:
+
+```bash
+curl -u opencode:your-password http://localhost:3000/global/health
+```
+
+### JS SDK
+
+Для программной интеграции используйте официальный SDK:
+
+```bash
+npm install @opencode-ai/sdk
+```
+
+```js
+import { createOpencodeClient } from "@opencode-ai/sdk"
+
+const client = createOpencodeClient({ baseUrl: "http://localhost:3000" })
+
+const session = await client.session.create({ body: { title: "001_my-company" } })
+
+const result = await client.session.prompt({
+  path: { id: session.id },
+  body: {
+    model: { providerID: "anthropic", modelID: "claude-sonnet-4" },
+    parts: [{
+      type: "text",
+      text: "Прочитай master.md и projects/001_my-company/specs/spec.md, specs/design.md. Сгенерируй сайт в projects/001_my-company/build/"
+    }]
+  }
+})
+```
+
+---
+
 ## Решение проблем
 
 ### "Error: specs/ directory not found"

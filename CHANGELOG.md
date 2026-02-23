@@ -15,6 +15,11 @@ All notable changes to this project will be documented in this file.
 - Docker: mount `.llm-imager.yaml` from repo root into container for image generation
 
 ### Added
+- `scripts/api-generate.sh` - generate site for a project via OpenCode HTTP API
+- `scripts/api-test.sh` - test API connectivity, list providers and sessions
+- API usage documentation in Docker guides (EN + RU): endpoints, curl examples, JS SDK
+
+### Added
 - New example: Bosch appliance repair Palo Alto (`examples/bosch/`)
 - New example: Apartment renovation multipage site (`examples/apartment-renovation/`)
 - New example: Cleaning service landing (`examples/cleaning-service/`)
