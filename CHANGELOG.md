@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 - File requirements documentation (`docs/file-requirements-ru.md`, `docs/file-requirements-en.md`) describing spec.md, design.md, and task.md structure
 
 ### Changed
+- entrypoint.sh: add --refine mode for modifying existing versions in-place
 - entrypoint.sh: add non-interactive batch mode instruction to prevent agent from asking questions
 - entrypoint.sh: add verbose logging (timestamp, prompt, arguments, output file list)
 - entrypoint.sh: add write restriction to prompt (only build/ directory allowed)

@@ -4,11 +4,13 @@ set -euo pipefail
 # Batch-mode entrypoint for llm-sitegen.
 #
 # Usage inside container:
-#   entrypoint.sh <project-name> [model]
+#   Generate:  entrypoint.sh <project-id> [provider/model]
+#   Refine:    entrypoint.sh <project-id> --refine <version-num> [--model provider/model] "instructions"
 #
 # Examples:
-#   entrypoint.sh 001_my-company
-#   entrypoint.sh 001_my-company anthropic/claude-sonnet-4
+#   entrypoint.sh 091bc65b-... anthropic/claude-sonnet-4
+#   entrypoint.sh 091bc65b-... --refine 3 "Change header color to blue"
+#   entrypoint.sh 091bc65b-... --refine 3 --model anthropic/claude-sonnet-4 "Add contact form"
 
 project_dir="/app/llm-sitegen"
 modules_dir="$project_dir/modules"
@@ -18,19 +20,126 @@ project_name="${1:-}"
 
 if [[ -z "$project_name" ]]; then
   echo "Error: project name is required" >&2
-  echo "Usage: entrypoint.sh <project-name> [provider/model]" >&2
-  echo "" >&2
-  echo "Available projects:" >&2
-  ls -1 "$projects_dir" 2>/dev/null | grep -v '^\.' || echo "  (none)" >&2
+  echo "Usage:" >&2
+  echo "  entrypoint.sh <project-id> [provider/model]" >&2
+  echo "  entrypoint.sh <project-id> --refine <version-num> [--model provider/model] \"instructions\"" >&2
   exit 2
 fi
 
 shift
-model_spec="${1:-}"
+
+# Parse mode: --refine or generate
+refine_mode=false
+refine_version=""
+model_spec=""
+refine_instructions=""
+
+if [[ "${1:-}" == "--refine" ]]; then
+  refine_mode=true
+  shift
+  refine_version="${1:-}"
+  if [[ -z "$refine_version" ]]; then
+    echo "Error: version number is required for --refine" >&2
+    exit 2
+  fi
+  shift
+  # Parse optional --model
+  if [[ "${1:-}" == "--model" ]]; then
+    shift
+    model_spec="${1:-}"
+    shift
+  fi
+  # Remaining args are the instructions
+  refine_instructions="$*"
+  if [[ -z "$refine_instructions" ]]; then
+    echo "Error: refinement instructions are required" >&2
+    exit 2
+  fi
+else
+  model_spec="${1:-}"
+fi
 
 # Validate project structure
 specs_dir="$projects_dir/$project_name/specs"
 build_dir="$projects_dir/$project_name/build"
+
+# Common: attach to running opencode server if available
+opencode_url="${OPENCODE_URL:-http://localhost:${OPENCODE_PORT:-3000}}"
+attach_args=()
+if curl -sf "$opencode_url/global/health" >/dev/null 2>&1; then
+  attach_args=(--attach "$opencode_url")
+fi
+
+# ============================================================
+# REFINE MODE
+# ============================================================
+if [[ "$refine_mode" == true ]]; then
+  version_dir="$projects_dir/$project_name/versions/$refine_version"
+
+  if [[ ! -d "$version_dir" ]]; then
+    echo "Error: version directory not found: $version_dir" >&2
+    exit 2
+  fi
+
+  # List existing files for context
+  file_list=$(find "$version_dir" -type f -printf "%P\n" 2>/dev/null | sort)
+
+  prompt="You are modifying an existing website. The site files are in $version_dir/."
+  prompt="$prompt Here are the existing files:"
+  prompt="$prompt $file_list"
+  prompt="$prompt"
+  prompt="$prompt User instructions: $refine_instructions"
+  prompt="$prompt"
+  prompt="$prompt Read the existing files, apply the requested changes, and save modified files back to $version_dir/."
+  prompt="$prompt Keep all existing files unless the user explicitly asks to remove something."
+  prompt="$prompt IMPORTANT: ONLY write files inside $version_dir/. Do NOT create, modify, or delete any files outside of $version_dir/."
+  prompt="$prompt You are running in non-interactive batch mode. Do NOT ask questions, do NOT wait for confirmation. Make all decisions yourself and complete the task fully."
+
+  # Build run arguments — attach all existing HTML/CSS/JS files
+  run_args=(
+    --title "refine-$project_name-v$refine_version"
+  )
+
+  for f in "$version_dir"/*.html "$version_dir"/*.css "$version_dir"/assets/css/*.css; do
+    [[ -f "$f" ]] && run_args+=(--file "$f")
+  done
+
+  if [[ -n "$model_spec" ]]; then
+    run_args+=(--model "$model_spec")
+  fi
+
+  run_args+=("${attach_args[@]}")
+
+  echo "=== Version Refinement Log ==="
+  echo "Timestamp:    $(date -Iseconds)"
+  echo "Project:      $project_name"
+  echo "Version:      $refine_version"
+  echo "Version dir:  $version_dir/"
+  echo "Model:        ${model_spec:-default}"
+  echo "Instructions: $refine_instructions"
+  echo ""
+  echo "--- Run arguments ---"
+  printf "  %s\n" "${run_args[@]}"
+  echo ""
+  echo "--- Prompt ---"
+  echo "$prompt"
+  echo "--- End prompt ---"
+  echo ""
+
+  opencode run "${run_args[@]}" "$prompt"
+
+  echo ""
+  echo "=== Refinement complete ==="
+  echo "Timestamp: $(date -Iseconds)"
+  echo "Output: $version_dir/"
+  echo "Files:"
+  find "$version_dir" -type f -printf "  %p (%s bytes)\n" 2>/dev/null || ls -lR "$version_dir"
+  exit 0
+fi
+
+# ============================================================
+# GENERATE MODE
+# ============================================================
 
 if [[ ! -d "$specs_dir" ]]; then
   echo "Error: $specs_dir/ not found" >&2
@@ -144,11 +253,7 @@ if [[ -n "$model_spec" ]]; then
   run_args+=(--model "$model_spec")
 fi
 
-# Attach to running opencode server if available
-opencode_url="${OPENCODE_URL:-http://localhost:${OPENCODE_PORT:-3000}}"
-if curl -sf "$opencode_url/global/health" >/dev/null 2>&1; then
-  run_args+=(--attach "$opencode_url")
-fi
+run_args+=("${attach_args[@]}")
 
 echo "=== Site Generation Log ==="
 echo "Timestamp: $(date -Iseconds)"
@@ -189,11 +294,9 @@ for html_file in "$build_dir"/*.html; do
   sed -i 's|[^"]*modules/colors/base\.css|assets/css/base.css|g' "$html_file"
 done
 
-# Also copy any modules/ assets referenced in HTML that weren't pre-copied
+# Check for remaining modules/ references
 for html_file in "$build_dir"/*.html; do
   [[ -f "$html_file" ]] || continue
-
-  # Find any remaining modules/ references (shouldn't be any after sed, but just in case)
   remaining=$(grep -oP 'modules/[^"'"'"']+' "$html_file" 2>/dev/null || true)
   if [[ -n "$remaining" ]]; then
     echo "Warning: remaining modules/ references in $(basename "$html_file"):"
