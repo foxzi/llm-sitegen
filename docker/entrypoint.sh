@@ -125,6 +125,7 @@ prompt="$prompt Generate the website and save all output to $build_dir/."
 prompt="$prompt ${assets_note}Use these pre-copied files with relative paths from HTML:"
 prompt="$prompt CSS framework: assets/css/, fonts: assets/fonts/<name>/local.css, custom styles: assets/css/style.css."
 prompt="$prompt NEVER use paths containing 'modules/' in HTML or CSS. All asset references must start with 'assets/'."
+prompt="$prompt IMPORTANT: ONLY write files inside $build_dir/. Do NOT create, modify, or delete any files outside of $build_dir/."
 
 # Build opencode run arguments
 run_args=(
