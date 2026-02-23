@@ -4,8 +4,25 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Changed
+- Move master.md and iterations.md into modules/ directory
+- Remove Docker files (Dockerfile, docker-compose.yml, .dockerignore, docker/)
+- Update AGENTS.md: remove Docker section, update project structure
+- Repository is now a content-only submodule (Docker managed by PageForge)
+
 ### Added
 - File requirements documentation (`docs/file-requirements-ru.md`, `docs/file-requirements-en.md`) describing spec.md, design.md, and task.md structure
+
+### Changed
+- entrypoint.sh: add --refine mode for modifying existing versions in-place
+- entrypoint.sh: add non-interactive batch mode instruction to prevent agent from asking questions
+- entrypoint.sh: add verbose logging (timestamp, prompt, arguments, output file list)
+- entrypoint.sh: add write restriction to prompt (only build/ directory allowed)
+- entrypoint.sh: rewrite with 3-phase pipeline (pre-copy assets, generate, post-process HTML paths)
+- entrypoint.sh: auto-attach to running opencode server for batch mode
+- master.md: add explicit self-contained build instructions (no modules/ references in output)
+- master.md: update Phase 6 output, Styling, and Checklist sections for asset bundling
+- Dockerfile: chmod +x entrypoint.sh during build
 
 ### Fixed
 - master.md: removed contradictory "Image commands - Shell script" from output phase

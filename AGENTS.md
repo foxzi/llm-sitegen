@@ -8,28 +8,16 @@ LLM Site Generator Toolkit — a collection of Markdown prompts, HTML/CSS templa
 fonts, icons, and frameworks for generating websites with LLMs. This is NOT a
 traditional software application. There is no runtime, no package.json, no compiled code.
 
-Key content: `master.md` (main LLM prompt), `modules/` (all templates and assets),
+Key content: `modules/master.md` (main LLM prompt), `modules/` (all templates and assets),
 `examples/` (sample projects with spec.md + design.md), `docs/` (guides).
 
 ## Build and Run
 
-### Docker (primary way to run)
+This is a content-only repository. There is no build system, no Docker,
+no package manager, no linter, no test runner, no CI pipeline.
 
-```bash
-# Build the image
-docker compose build
-
-# Run site generation (requires spec.md and design.md mounted)
-docker compose up
-```
-
-Always use `docker compose` (space), NEVER `docker-compose` (hyphen).
-Use Docker containers when installing dependencies or heavy tooling.
-
-### No Build/Lint/Test Pipeline
-
-There is no package manager, no linter, no test runner, no CI pipeline.
-There are no unit tests or integration tests.
+The repository is used as a git submodule by PageForge, which handles
+Docker containers, opencode server, and site generation orchestration.
 
 ### Visual Testing
 
@@ -100,16 +88,6 @@ Use categories under `## [Unreleased]`:
 - 4-space indentation
 - Comment blocks with `/* ... */`
 
-### Shell Scripts (Bash)
-- Strict mode: `set -euo pipefail`
-- `snake_case` variable names: `spec_dir`, `output_dir`
-- Explicit error checks with `if [[ ... ]]` and meaningful exit codes
-- Comments in English
-
-### Docker
-- Base image: `node:22-slim`
-- Always use `docker compose` (not `docker-compose`)
-
 ## Documentation
 
 - Format: Markdown only
@@ -121,9 +99,9 @@ Use categories under `## [Unreleased]`:
 
 ```
 llm-sitegen/
-  master.md              # Main LLM generation prompt
-  iterations.md          # Revision handling prompt
   modules/
+    master.md            # Main LLM generation prompt
+    iterations.md        # Revision handling prompt
     layouts/             # Section and page HTML templates
     frameworks/          # CSS/JS frameworks (Tailwind, Bootstrap, Bulma, etc.)
     colors/              # Color palettes and base.css
@@ -135,16 +113,9 @@ llm-sitegen/
     content/             # Text processing instructions
     images/              # Image generation with llm-imager
     normalize/           # Post-generation color contrast fixes
-  projects/              # User projects
-    001_project-name/    # Project folder: id_name
-      specs/             # Input: spec.md, design.md, task.md
-      build/             # Output: generated site (gitignored)
+  projects/              # User projects (managed by PageForge)
   examples/              # Sample projects (spec.md + design.md pairs)
   docs/                  # User guides (RU + EN)
-  docker/                # Docker entrypoint script
-  build/                 # Legacy generated output (gitignored)
-  Dockerfile
-  docker-compose.yml
   CHANGELOG.md
 ```
 
@@ -163,4 +134,4 @@ Each module in `modules/` follows the same pattern:
 4. Generate images with `llm-imager` (never create shell scripts for this)
 5. Assemble HTML with SEO meta tags and Schema.org markup
 6. Normalize colors and verify contrast
-7. Output to project's `build/` directory (`projects/<id>_<name>/build/`)
+7. Output to project's `build/` directory
