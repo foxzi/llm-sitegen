@@ -1,62 +1,56 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-spec_dir="/spec"
-design_dir="/design"
-output_dir="/output"
-opencode_config_dir="/opencode"
-llm_imager_config_dir="/llm-imager"
+project_dir="/app/llm-sitegen"
+projects_dir="$project_dir/projects"
 
-prompt="${1:-}"
+project_name="${1:-}"
 
-if [[ -z "$prompt" ]]; then
-  echo "Error: prompt argument is required" >&2
-  echo "Usage: llm-sitegen \"<prompt>\"" >&2
+if [[ -z "$project_name" ]]; then
+  echo "Error: project name is required" >&2
+  echo "Usage: llm-sitegen <project-name> [prompt]" >&2
+  echo "" >&2
+  echo "Available projects:" >&2
+  ls -1 "$projects_dir" 2>/dev/null | grep -v '^\.' || echo "  (none)" >&2
   exit 2
 fi
 
-if [[ ! -d "$spec_dir" ]]; then
-  echo "Error: /spec is not mounted" >&2
+shift
+prompt="${1:-Generate website according to master.md instructions}"
+
+source_dir="$projects_dir/$project_name"
+
+if [[ ! -d "$source_dir" ]]; then
+  echo "Error: project '$project_name' not found in $projects_dir" >&2
   exit 2
 fi
 
-if [[ ! -d "$design_dir" ]]; then
-  echo "Error: /design is not mounted" >&2
+specs_dir="$source_dir/specs"
+spec_file="$specs_dir/spec.md"
+design_file="$specs_dir/design.md"
+
+if [[ ! -d "$specs_dir" ]]; then
+  echo "Error: specs/ directory not found in $source_dir" >&2
   exit 2
 fi
-
-if [[ ! -d "$output_dir" ]]; then
-  echo "Error: /output is not mounted" >&2
-  exit 2
-fi
-
-spec_file="$spec_dir/spec.md"
-design_file="$design_dir/design.md"
 
 if [[ ! -f "$spec_file" ]]; then
-  echo "Error: /spec/spec.md not found" >&2
+  echo "Error: spec.md not found in $specs_dir" >&2
   exit 2
 fi
 
 if [[ ! -f "$design_file" ]]; then
-  echo "Error: /design/design.md not found" >&2
+  echo "Error: design.md not found in $specs_dir" >&2
   exit 2
 fi
 
-if [[ -d "$opencode_config_dir" ]]; then
-  export XDG_CONFIG_HOME="$opencode_config_dir"
-fi
+output_dir="$source_dir/build"
+mkdir -p "$output_dir"
 
-llm_imager_config_file="$llm_imager_config_dir/llm-imager.yaml"
-if [[ -f "$llm_imager_config_file" ]]; then
-  cp "$llm_imager_config_file" "$HOME/.llm-imager.yaml"
-fi
-
-input_prompt="$(cat /app/master.md "$spec_file" "$design_file")
-
-$prompt"
-
-opencode run --file /app/master.md --file "$spec_file" --file "$design_file" \
+opencode run \
+  --file "$project_dir/master.md" \
+  --file "$spec_file" \
+  --file "$design_file" \
   "$prompt" \
   > "$output_dir/index.html"
 

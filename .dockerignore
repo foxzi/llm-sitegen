@@ -1,12 +1,6 @@
 .git
-.gitignore
 build/
-examples/
-docs/
-*.md
-!master.md
-*.png
-*.jpg
+projects/
 .playwright-mcp/
 .claude/
 CLAUDE.md

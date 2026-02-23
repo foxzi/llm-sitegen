@@ -33,10 +33,11 @@ LLM Site Generator is a collection of templates, instructions, and resources for
 ### Step 1: Create a project folder
 
 ```
-examples/
-  my-project/
-    spec.md      # Content and requirements
-    design.md    # Design and styling
+projects/
+  001_my-project/
+    specs/
+      spec.md      # Content and requirements
+      design.md    # Design and styling
 ```
 
 ### Step 2: Describe the project in spec.md
@@ -101,14 +102,14 @@ Generate a website according to the specification"
 # Interactive mode with files
 claude
 > /read master.md
-> /read examples/my-project/spec.md
-> /read examples/my-project/design.md
-> Generate a website according to the specification and save to build/
+> /read projects/001_my-project/specs/spec.md
+> /read projects/001_my-project/specs/design.md
+> Generate a website according to the specification and save to projects/001_my-project/build/
 
 # Output to file
 claude -p "$(cat master.md spec.md design.md)
 
-Generate only the HTML code" > build/index.html
+Generate only the HTML code" > projects/001_my-project/build/index.html
 ```
 
 ### Codex (OpenAI)
@@ -174,9 +175,9 @@ opencode web --port 4096
 
 **Simple landing page:**
 ```bash
-claude -p "$(cat master.md layouts/README.md examples/my-site/spec.md examples/my-site/design.md)
+claude -p "$(cat master.md layouts/README.md projects/001_my-site/specs/spec.md projects/001_my-site/specs/design.md)
 
-Generate a landing page and save to examples/my-site/build/"
+Generate a landing page and save to projects/001_my-site/build/"
 ```
 
 **With image generation:**
@@ -190,14 +191,14 @@ Generate website and run llm-imager for all images"
 ```bash
 claude -p "$(cat iterations.md)
 
-In build/index.html change button color to orange and add FAQ section"
+In projects/001_my-site/build/index.html change button color to orange and add FAQ section"
 ```
 
 ### Recommendations
 
 1. **Use master.md** — it contains all instructions and references
 2. **Add modules as needed** — no need to include everything at once
-3. **Save to build/** — keep generated files separate
+3. **Save to project build/** — keep generated files in `projects/<id>_<name>/build/`
 4. **Iterate** — use iterations.md for revisions
 
 ---
@@ -219,9 +220,12 @@ llm-sitegen/
 │   ├── seo/           # SEO templates
 │   ├── content/       # Text processing & generation
 │   └── images/        # Image generation
-├── examples/          # Project examples
-├── docs/              # Documentation
-└── build/             # Generated output
+├── projects/          # User projects
+│   └── 001_my-site/   # Project folder: id_name
+│       ├── specs/     # Input: spec.md, design.md, task.md
+│       └── build/     # Output: generated site
+├── examples/          # Example projects (spec.md + design.md)
+└── docs/              # Documentation
 ```
 
 ### What to Include as Context

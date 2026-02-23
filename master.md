@@ -179,19 +179,27 @@ style: professional, modern
 
 ### File Structure
 
+Output goes to the project's `build/` directory:
+
 ```
-project/
-├── index.html
-├── about.html (if multipage)
-├── contact.html (if multipage)
-└── assets/
-    ├── css/
-    │   └── style.css
-    ├── js/
-    │   └── main.js
-    └── images/
-        ├── hero.jpg
-        └── icons/
+projects/
+  001_project-name/
+    specs/
+      spec.md
+      design.md
+      task.md (optional)
+    build/
+      index.html
+      about.html (if multipage)
+      contact.html (if multipage)
+      assets/
+        css/
+          style.css
+        js/
+          main.js
+        images/
+          hero.jpg
+          icons/
 ```
 
 ### HTML Template

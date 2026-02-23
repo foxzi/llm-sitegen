@@ -391,8 +391,8 @@ After applying revisions:
 - ⏳ New hero image command generated (run with llm-imager)
 
 ## Files Modified
-- index.html (lines 45, 78, 156)
-- assets/css/style.css (lines 12, 89)
+- build/index.html (lines 45, 78, 156)
+- build/assets/css/style.css (lines 12, 89)
 
 ## Suggested Additional Improvements
 - Consider adding hover states to service cards

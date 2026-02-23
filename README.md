@@ -67,9 +67,9 @@ llm-sitegen/
 │   ├── seo/           # SEO templates
 │   ├── content/       # Text processing & generation
 │   └── images/        # Image generation (llm-imager)
+├── projects/          # User projects (specs/ + build/)
 ├── examples/          # Example projects
-├── docs/              # Documentation
-└── build/             # Generated output
+└── docs/              # Documentation
 ```
 
 ## Documentation

@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Changed
+- Restructured `projects/` directory: each project now has `specs/` (input) and `build/` (output) subdirectories
+- Project folder naming convention: `id_project-name` (e.g. `001_cleaning-service`)
+- Updated `docker/entrypoint.sh` to use new project structure (`specs/` for input, `build/` for output)
+- Updated `docker-compose.yml`: single `projects/` volume mount instead of separate `projects/` and `build/`
+- Updated `.gitignore`: track `projects/*/specs/`, ignore `projects/*/build/`
+- Updated all documentation (guides, Docker docs) to reflect new project structure
+- Docker docs: added web panel workflow with LLM provider configuration (OpenAI, Anthropic, GitHub Copilot)
+- Docker: mount `.llm-imager.yaml` from repo root into container for image generation
+
 ### Added
 - New example: Bosch appliance repair Palo Alto (`examples/bosch/`)
 - New example: Apartment renovation multipage site (`examples/apartment-renovation/`)

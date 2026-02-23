@@ -33,10 +33,11 @@ LLM Site Generator — это набор шаблонов, инструкций 
 ### Шаг 1: Создайте папку проекта
 
 ```
-examples/
-  my-project/
-    spec.md      # Контент и требования
-    design.md    # Дизайн и стилизация
+projects/
+  001_my-project/
+    specs/
+      spec.md      # Контент и требования
+      design.md    # Дизайн и стилизация
 ```
 
 ### Шаг 2: Опишите проект в spec.md
@@ -101,14 +102,14 @@ claude -p "$(cat master.md layouts/README.md colors/README.md spec.md design.md)
 # Интерактивный режим с файлами
 claude
 > /read master.md
-> /read examples/my-project/spec.md
-> /read examples/my-project/design.md
-> Сгенерируй сайт согласно спецификации и сохрани в build/
+> /read projects/001_my-project/specs/spec.md
+> /read projects/001_my-project/specs/design.md
+> Сгенерируй сайт согласно спецификации и сохрани в projects/001_my-project/build/
 
 # С выводом в файл
 claude -p "$(cat master.md spec.md design.md)
 
-Сгенерируй только HTML код сайта" > build/index.html
+Сгенерируй только HTML код сайта" > projects/001_my-project/build/index.html
 ```
 
 ### Codex (OpenAI)
@@ -174,9 +175,9 @@ opencode web --port 4096
 
 **Простой лендинг:**
 ```bash
-claude -p "$(cat master.md layouts/README.md examples/my-site/spec.md examples/my-site/design.md)
+claude -p "$(cat master.md layouts/README.md projects/001_my-site/specs/spec.md projects/001_my-site/specs/design.md)
 
-Сгенерируй лендинг и сохрани в examples/my-site/build/"
+Сгенерируй лендинг и сохрани в projects/001_my-site/build/"
 ```
 
 **С генерацией картинок:**
@@ -190,14 +191,14 @@ claude -p "$(cat master.md modules/images/README.md spec.md design.md)
 ```bash
 claude -p "$(cat iterations.md)
 
-В файле build/index.html измени цвет кнопок на оранжевый и добавь секцию FAQ"
+В файле projects/001_my-site/build/index.html измени цвет кнопок на оранжевый и добавь секцию FAQ"
 ```
 
 ### Рекомендации
 
 1. **Используй master.md** — он содержит все инструкции и ссылки
 2. **Добавляй модули по необходимости** — не нужно подключать всё сразу
-3. **Сохраняй в build/** — держи сгенерированные файлы отдельно
+3. **Сохраняй в build/ проекта** — держи сгенерированные файлы в `projects/<id>_<name>/build/`
 4. **Итерируй** — используй iterations.md для правок
 
 ---
@@ -219,9 +220,12 @@ llm-sitegen/
 │   ├── seo/           # SEO шаблоны
 │   ├── content/       # Обработка и генерация текста
 │   └── images/        # Генерация изображений
-├── examples/          # Примеры проектов
-├── docs/              # Документация
-└── build/             # Сгенерированный результат
+├── projects/          # Проекты пользователей
+│   └── 001_my-site/   # Папка проекта: id_имя
+│       ├── specs/     # Вход: spec.md, design.md, task.md
+│       └── build/     # Выход: сгенерированный сайт
+├── examples/          # Примеры проектов (spec.md + design.md)
+└── docs/              # Документация
 ```
 
 ### Что подключать как контекст

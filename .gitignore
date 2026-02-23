@@ -1,3 +1,6 @@
 CLAUDE.md
 tz.md
 build/
+projects/*/build/
+.llm-imager.yaml
+*.png
