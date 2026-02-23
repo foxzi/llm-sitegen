@@ -73,6 +73,12 @@ if [[ -n "$model_spec" ]]; then
   run_args+=(--model "$model_spec")
 fi
 
+# Attach to running opencode server if available
+opencode_url="${OPENCODE_URL:-http://localhost:${OPENCODE_PORT:-3000}}"
+if curl -sf "$opencode_url/global/health" >/dev/null 2>&1; then
+  run_args+=(--attach "$opencode_url")
+fi
+
 echo "Project: $project_name"
 echo "Output:  $build_dir/"
 echo "Model:   ${model_spec:-default}"

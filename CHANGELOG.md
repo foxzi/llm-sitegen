@@ -7,6 +7,10 @@ All notable changes to this project will be documented in this file.
 ### Added
 - File requirements documentation (`docs/file-requirements-ru.md`, `docs/file-requirements-en.md`) describing spec.md, design.md, and task.md structure
 
+### Changed
+- entrypoint.sh: auto-attach to running opencode server for batch mode
+- Dockerfile: chmod +x entrypoint.sh during build
+
 ### Fixed
 - master.md: removed contradictory "Image commands - Shell script" from output phase
 - master.md: strengthened script prohibition to include all extensions (.sh, .bat, .ps1) and saving commands to files

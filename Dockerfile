@@ -20,6 +20,7 @@ WORKDIR /app
 COPY . /app/llm-sitegen/
 
 RUN mkdir -p /app/.local /app/.config /app/llm-sitegen/build \
+    && chmod +x /app/llm-sitegen/docker/entrypoint.sh \
     && chown -R sitegen:sitegen /app
 
 USER sitegen
