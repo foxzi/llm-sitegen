@@ -7,6 +7,11 @@ All notable changes to this project will be documented in this file.
 ### Added
 - File requirements documentation (`docs/file-requirements-ru.md`, `docs/file-requirements-en.md`) describing spec.md, design.md, and task.md structure
 
+### Fixed
+- master.md: removed contradictory "Image commands - Shell script" from output phase
+- master.md: strengthened script prohibition to include all extensions (.sh, .bat, .ps1) and saving commands to files
+- modules/images/README.md: added explicit prohibition against creating script files for image generation
+
 ### Changed
 - Restructured `projects/` directory: each project now has `specs/` (input) and `build/` (output) subdirectories
 - Project folder naming convention: `id_project-name` (e.g. `001_cleaning-service`)

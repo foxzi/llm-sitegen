@@ -109,8 +109,7 @@ Deliver:
 1. **HTML files** — index.html + additional pages
 2. **CSS** — Custom styles (if not using framework)
 3. **JS** — Interactive components (if needed)
-4. **Image commands** — Shell script for llm-imager
-5. **Assets structure** — Organized folder layout
+4. **Assets structure** — Organized folder layout
 
 ---
 
@@ -284,7 +283,8 @@ When you encounter `[generate: ...]` in spec.md:
 1. Run `llm-imager generate` directly for each `![gen: ...]` image
 2. Use appropriate sizes per image type (--size WIDTHxHEIGHT)
 3. Include style consistency keywords
-4. **NEVER create shell scripts** — execute commands directly
+4. **NEVER create shell scripts (.sh, .bat, .ps1)** — execute commands directly
+5. **NEVER save image commands to files** — run them inline, no images.sh or similar
 
 ### SEO
 

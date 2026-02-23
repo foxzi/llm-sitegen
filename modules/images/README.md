@@ -2,6 +2,8 @@
 
 Instructions for generating images for websites using llm-imager CLI tool.
 
+**IMPORTANT: NEVER create shell scripts (.sh, .bat) for image generation. NEVER save llm-imager commands to files like images.sh or generate-images.sh. Always execute llm-imager commands directly and inline.**
+
 ---
 
 ## Inline Image Commands
