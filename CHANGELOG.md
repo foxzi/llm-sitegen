@@ -9,6 +9,10 @@ All notable changes to this project will be documented in this file.
 - Remove Docker files (Dockerfile, docker-compose.yml, .dockerignore, docker/)
 - Update AGENTS.md: remove Docker section, update project structure
 - Repository is now a content-only submodule (Docker managed by PageForge)
+- Updated llm-imager integration: all commands now use `generate` subcommand (e.g. `llm-imager generate -p "..." -o file.jpg`)
+- Updated llm-imager examples to prefer `--aspect-ratio` over `--size` where applicable
+- Added new llm-imager flags to `modules/images/README.md`: `--aspect-ratio`, `--steps`, `--provider`
+- Added models table to `modules/images/README.md` with all supported providers and their capabilities
 
 ### Added
 - File requirements documentation (`docs/file-requirements-ru.md`, `docs/file-requirements-en.md`) describing spec.md, design.md, and task.md structure

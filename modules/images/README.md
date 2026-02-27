@@ -115,17 +115,17 @@ From the spec above, LLM runs:
 ```bash
 mkdir -p assets/images
 
-llm-imager -p "modern tech startup office, bright natural light, minimalist furniture, no people" \
-  -o assets/images/hero.jpg --size 1792x1024
+llm-imager generate -p "modern tech startup office, bright natural light, minimalist furniture, no people" \
+  -o assets/images/hero.jpg --aspect-ratio 16:9
 
-llm-imager -p "flat icon of code brackets, blue color, white background" \
-  -o assets/images/icon-web.png --size 512x512
+llm-imager generate -p "flat icon of code brackets, blue color, white background" \
+  -o assets/images/icon-web.png --aspect-ratio 1:1 --size 512x512
 
-llm-imager -p "flat icon of smartphone with app interface, purple color, white background" \
-  -o assets/images/icon-mobile.png --size 512x512
+llm-imager generate -p "flat icon of smartphone with app interface, purple color, white background" \
+  -o assets/images/icon-mobile.png --aspect-ratio 1:1 --size 512x512
 
-llm-imager -p "professional headshot, confident man 50s, suit, neutral gray background" \
-  -o assets/images/team-john.jpg --size 800x800
+llm-imager generate -p "professional headshot, confident man 50s, suit, neutral gray background" \
+  -o assets/images/team-john.jpg --aspect-ratio 1:1
 ```
 
 **Note:** llm-imager is pre-installed and configured. Run commands directly, do not create scripts.
@@ -161,20 +161,48 @@ go install github.com/foxzi/llm-imager/cmd/llm-imager@latest
 ## Basic Command
 
 ```bash
-llm-imager -p "prompt" -o output.png --size 1024x1024
+llm-imager generate -p "prompt" -o output.png
 ```
+
+**Aliases:** `generate`, `gen`, `g`
 
 **Parameters:**
 | Flag | Description |
 |------|-------------|
 | `-p, --prompt` | Image description (required) |
 | `-o, --output` | Output file path (required) |
-| `-m, --model` | Model to use |
-| `--size` | Dimensions (e.g., 1024x1024, 1792x1024) |
-| `--quality` | standard/hd or low/medium/high |
-| `--style` | natural/vivid |
+| `-m, --model` | Model to use (e.g., `openrouter/google/gemini-2.5-flash-image`) |
+| `--aspect-ratio` | Aspect ratio (e.g., `16:9`, `1:1`, `4:3`) — preferred over `--size` |
+| `--size` | Exact dimensions (e.g., `1024x1024`, `1792x1024`) |
+| `--quality` | `standard`/`hd` or `low`/`medium`/`high` |
+| `--style` | `natural`/`vivid` |
 | `--negative-prompt` | What to avoid |
 | `--seed` | For reproducibility |
+| `--steps` | Generation steps (Stability AI, Replicate) |
+| `--provider` | Explicit provider (`openai`/`google`/`stability`/`replicate`/`openrouter`) |
+
+## Available Models
+
+| Model | Provider | Supported features |
+|-------|----------|--------------------|
+| `openrouter/google/gemini-2.5-flash-image` | openrouter | aspect_ratio, image_size |
+| `openrouter/google/gemini-3-pro-image-preview` | openrouter | aspect_ratio, image_size |
+| `openrouter/openai/gpt-5-image` | openrouter | aspect_ratio |
+| `openrouter/openai/gpt-5-image-mini` | openrouter | aspect_ratio |
+| `openai/dall-e-3` | openai | quality, style |
+| `openai/gpt-image-1` | openai | quality |
+| `openai/dall-e-2` | openai | — |
+| `google/gemini-2.0-flash-exp-image` | google | — |
+| `google/imagen-3.0-generate-002` | google | aspect_ratio |
+| `replicate/flux-1.1-pro` | replicate | aspect_ratio, seed |
+| `replicate/flux-schnell` | replicate | aspect_ratio, seed |
+| `replicate/sdxl` | replicate | negative_prompt, seed, steps |
+| `stability/stable-image-core` | stability | negative_prompt, seed, aspect_ratio, style_preset |
+| `stability/stable-image-ultra` | stability | negative_prompt, seed, aspect_ratio |
+| `stability/sd3-large` | stability | negative_prompt, seed |
+
+Use `llm-imager list models` to see available models.
+Use `llm-imager list providers` to check which providers are configured.
 
 ---
 
@@ -184,12 +212,12 @@ llm-imager -p "prompt" -o output.png --size 1024x1024
 
 Large background images for hero sections.
 
-**Recommended size:** 1792x1024 (landscape)
+**Recommended:** `--aspect-ratio 16:9`
 
 ```bash
-llm-imager -p "modern office workspace with natural light, minimalist design, professional atmosphere, no people" \
+llm-imager generate -p "modern office workspace with natural light, minimalist design, professional atmosphere, no people" \
   -o assets/images/hero-bg.jpg \
-  --size 1792x1024 \
+  --aspect-ratio 16:9 \
   --quality hd
 ```
 
@@ -197,12 +225,12 @@ llm-imager -p "modern office workspace with natural light, minimalist design, pr
 
 Small illustrations for feature sections.
 
-**Recommended size:** 512x512 or 1024x1024
+**Recommended:** `--aspect-ratio 1:1`
 
 ```bash
-llm-imager -p "simple flat icon of a shield with checkmark, blue color, white background, minimal style" \
+llm-imager generate -p "simple flat icon of a shield with checkmark, blue color, white background, minimal style" \
   -o assets/images/icon-security.png \
-  --size 1024x1024 \
+  --aspect-ratio 1:1 \
   --style natural
 ```
 
@@ -210,12 +238,12 @@ llm-imager -p "simple flat icon of a shield with checkmark, blue color, white ba
 
 AI-generated placeholder portraits.
 
-**Recommended size:** 1024x1024 (square)
+**Recommended:** `--aspect-ratio 1:1`
 
 ```bash
-llm-imager -p "professional headshot of a smiling business woman, 30s, neutral background, corporate style" \
+llm-imager generate -p "professional headshot of a smiling business woman, 30s, neutral background, corporate style" \
   -o assets/images/team-1.jpg \
-  --size 1024x1024 \
+  --aspect-ratio 1:1 \
   --quality hd
 ```
 
@@ -223,12 +251,12 @@ llm-imager -p "professional headshot of a smiling business woman, 30s, neutral b
 
 Product photos or mockups.
 
-**Recommended size:** 1024x1024 or custom aspect ratio
+**Recommended:** `--aspect-ratio 1:1` or `4:3`
 
 ```bash
-llm-imager -p "smartphone mockup showing app interface, floating on gradient background, professional product photography" \
+llm-imager generate -p "smartphone mockup showing app interface, floating on gradient background, professional product photography" \
   -o assets/images/product-mockup.png \
-  --size 1024x1024 \
+  --aspect-ratio 1:1 \
   --quality hd
 ```
 
@@ -236,11 +264,12 @@ llm-imager -p "smartphone mockup showing app interface, floating on gradient bac
 
 Subtle patterns for sections.
 
-**Recommended size:** 512x512 (tileable)
+**Recommended:** `--aspect-ratio 1:1 --size 512x512`
 
 ```bash
-llm-imager -p "seamless geometric pattern, subtle blue lines on white, minimal, tileable texture" \
+llm-imager generate -p "seamless geometric pattern, subtle blue lines on white, minimal, tileable texture" \
   -o assets/images/pattern-bg.png \
+  --aspect-ratio 1:1 \
   --size 512x512
 ```
 
@@ -248,12 +277,12 @@ llm-imager -p "seamless geometric pattern, subtle blue lines on white, minimal, 
 
 Featured images for blog posts.
 
-**Recommended size:** 1200x630 (Open Graph compatible)
+**Recommended:** `--aspect-ratio 16:9` (Open Graph compatible)
 
 ```bash
-llm-imager -p "abstract illustration of digital transformation, blue and purple gradient, modern tech style" \
+llm-imager generate -p "abstract illustration of digital transformation, blue and purple gradient, modern tech style" \
   -o assets/images/blog-featured.jpg \
-  --size 1792x1024 \
+  --aspect-ratio 16:9 \
   --quality hd
 ```
 
@@ -295,7 +324,7 @@ studio lighting, high quality headshot
 Use `--negative-prompt` to avoid unwanted elements:
 
 ```bash
-llm-imager -p "clean office interior" \
+llm-imager generate -p "clean office interior" \
   --negative-prompt "people, text, watermarks, logos, clutter" \
   -o office.jpg
 ```
@@ -311,25 +340,25 @@ OUTPUT_DIR="assets/images"
 mkdir -p $OUTPUT_DIR
 
 # Hero image
-llm-imager -p "modern tech company office, bright natural light, minimalist design" \
-  -o "$OUTPUT_DIR/hero.jpg" --size 1792x1024 --quality hd
+llm-imager generate -p "modern tech company office, bright natural light, minimalist design" \
+  -o "$OUTPUT_DIR/hero.jpg" --aspect-ratio 16:9 --quality hd
 
 # Feature icons
-llm-imager -p "flat icon of a rocket launching, orange color, white background" \
-  -o "$OUTPUT_DIR/icon-fast.png" --size 512x512
+llm-imager generate -p "flat icon of a rocket launching, orange color, white background" \
+  -o "$OUTPUT_DIR/icon-fast.png" --aspect-ratio 1:1 --size 512x512
 
-llm-imager -p "flat icon of a shield with lock, blue color, white background" \
-  -o "$OUTPUT_DIR/icon-secure.png" --size 512x512
+llm-imager generate -p "flat icon of a shield with lock, blue color, white background" \
+  -o "$OUTPUT_DIR/icon-secure.png" --aspect-ratio 1:1 --size 512x512
 
-llm-imager -p "flat icon of a gear with sparkles, green color, white background" \
-  -o "$OUTPUT_DIR/icon-easy.png" --size 512x512
+llm-imager generate -p "flat icon of a gear with sparkles, green color, white background" \
+  -o "$OUTPUT_DIR/icon-easy.png" --aspect-ratio 1:1 --size 512x512
 
 # Team photos
-llm-imager -p "professional headshot, business woman, 30s, friendly smile" \
-  -o "$OUTPUT_DIR/team-1.jpg" --size 1024x1024
+llm-imager generate -p "professional headshot, business woman, 30s, friendly smile" \
+  -o "$OUTPUT_DIR/team-1.jpg" --aspect-ratio 1:1
 
-llm-imager -p "professional headshot, business man, 40s, confident look" \
-  -o "$OUTPUT_DIR/team-2.jpg" --size 1024x1024
+llm-imager generate -p "professional headshot, business man, 40s, confident look" \
+  -o "$OUTPUT_DIR/team-2.jpg" --aspect-ratio 1:1
 ```
 
 **Important:** Execute commands directly during site generation. Do not create separate scripts.
@@ -338,16 +367,16 @@ llm-imager -p "professional headshot, business man, 40s, confident look" \
 
 ## Image Specifications by Section
 
-| Section | Aspect Ratio | Size | Style |
-|---------|--------------|------|-------|
-| Hero background | 16:9 | 1792x1024 | Photo/Abstract |
-| Feature icons | 1:1 | 512x512 | Flat/Isometric |
-| Team photos | 1:1 | 1024x1024 | Portrait |
-| Product images | 1:1 or 4:3 | 1024x1024 | Product photo |
-| Blog featured | 1.91:1 | 1200x630 | Illustration |
-| Testimonial avatars | 1:1 | 256x256 | Portrait |
-| Logo placeholder | 1:1 | 512x512 | Minimal |
-| Gallery images | Various | 1024x768 | Photo |
+| Section | `--aspect-ratio` | `--size` (if needed) | Style |
+|---------|-----------------|----------------------|-------|
+| Hero background | `16:9` | `1792x1024` | Photo/Abstract |
+| Feature icons | `1:1` | `512x512` | Flat/Isometric |
+| Team photos | `1:1` | — | Portrait |
+| Product images | `1:1` or `4:3` | — | Product photo |
+| Blog featured | `16:9` | — | Illustration |
+| Testimonial avatars | `1:1` | `256x256` | Portrait |
+| Logo placeholder | `1:1` | `512x512` | Minimal |
+| Gallery images | `4:3` | — | Photo |
 
 ---
 
@@ -380,9 +409,9 @@ Add the style string to all prompts for the project:
 ```bash
 STYLE="professional, clean, modern, blue color scheme"
 
-llm-imager -p "office workspace, $STYLE" -o hero.jpg
-llm-imager -p "team meeting, $STYLE" -o about.jpg
-llm-imager -p "handshake, $STYLE" -o contact.jpg
+llm-imager generate -p "office workspace, $STYLE" -o hero.jpg --aspect-ratio 16:9
+llm-imager generate -p "team meeting, $STYLE" -o about.jpg --aspect-ratio 16:9
+llm-imager generate -p "handshake, $STYLE" -o contact.jpg --aspect-ratio 16:9
 ```
 
 ---

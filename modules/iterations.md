@@ -290,8 +290,8 @@ Request: "Different hero image, more professional"
 
 ```bash
 # Generate NEW image (llm-imager creates, not edits)
-llm-imager -p "professional corporate office, modern, bright" \
-  -o assets/images/hero.jpg --size 1792x1024 --quality hd
+llm-imager generate -p "professional corporate office, modern, bright" \
+  -o assets/images/hero.jpg --aspect-ratio 16:9 --quality hd
 ```
 
 ### Resize/Crop Image

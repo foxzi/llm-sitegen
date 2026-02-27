@@ -674,7 +674,7 @@ sudo apt update && sudo apt install llm-imager
 ### Использование
 
 ```bash
-llm-imager -p "описание изображения" -o output.jpg --size 1792x1024
+llm-imager generate -p "описание изображения" -o output.jpg --aspect-ratio 16:9
 ```
 
 ### Inline-синтаксис в spec.md
