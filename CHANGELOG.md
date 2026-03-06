@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file.
 - Normalized asset paths to assets/css, assets/js, assets/icons, assets/images
 - Refined framework examples and README setup to match build asset layout
 - Updated examples README to reference modules paths and asset layout
+- Added requirements section to user guides (RU/EN)
 
 ### Changed
 - Move master.md and iterations.md into modules/ directory

@@ -7,11 +7,12 @@ This guide explains how to use the repository to generate websites with LLMs (Ch
 1. [What is This](#what-is-this)
 2. [Quick Start](#quick-start)
 3. [Project Structure](#project-structure)
-4. [Creating a Task](#creating-a-task)
-5. [Site Types](#site-types)
-6. [Design Configuration](#design-configuration)
-7. [Working with Content](#working-with-content)
-8. [Examples](#examples)
+4. [Requirements](#requirements)
+5. [Creating a Task](#creating-a-task)
+6. [Site Types](#site-types)
+7. [Design Configuration](#design-configuration)
+8. [Working with Content](#working-with-content)
+9. [Examples](#examples)
 
 ---
 
@@ -39,6 +40,21 @@ projects/
       spec.md      # Content and requirements
       design.md    # Design and styling
 ```
+
+---
+
+## Requirements
+
+- Required input files: `spec.md`, `design.md`
+- Optional: `task.md` for additional instructions
+- All assets must be local (no CDN)
+- Output must be self-contained under `build/assets/`
+  - `build/assets/css/`
+  - `build/assets/js/`
+  - `build/assets/fonts/`
+  - `build/assets/images/`
+  - `build/assets/icons/`
+- Image generation: only direct `llm-imager` commands (no scripts)
 
 ### Step 2: Describe the project in spec.md
 
