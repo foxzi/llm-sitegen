@@ -30,8 +30,8 @@ examples/
 - **Framework** - какой CSS фреймворк использовать
 
 ### Опциональные
-- **Color Scheme** - пресет из `colors/` или свои цвета
-- **Typography** - шрифты из `fonts/` или системные
+- **Color Scheme** - пресет из `modules/colors/` или свои цвета
+- **Typography** - шрифты из `modules/fonts/` или системные
 - **Style** - общий стиль (modern, classic, minimal)
 - **Layout** - структура страницы
 - **Animations** - анимации
@@ -53,7 +53,17 @@ examples/
 ## Ссылки на ресурсы
 
 В design.md можно ссылаться на готовые пресеты:
-- `colors/ocean-trust` - цветовая схема
-- `fonts/inter` - шрифт
-- `layouts/landing-page` - шаблон страницы
-- `components/cards` - компонент
+- `modules/colors/ocean-trust` - цветовая схема
+- `modules/fonts/inter` - шрифт
+- `modules/layouts/landing-page` - шаблон страницы
+- `modules/components/cards` - компонент
+
+## Выходные ассеты
+
+В итоговом сайте все ассеты должны лежать в `assets/`:
+
+- `assets/css/`
+- `assets/js/`
+- `assets/images/`
+- `assets/icons/`
+- `assets/fonts/`

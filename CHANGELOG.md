@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file.
 - Unified module README structure and bilingual layout
 - Normalized asset paths to assets/css, assets/js, assets/icons, assets/images
 - Refined framework examples and README setup to match build asset layout
+- Updated examples README to reference modules paths and asset layout
 
 ### Changed
 - Move master.md and iterations.md into modules/ directory
