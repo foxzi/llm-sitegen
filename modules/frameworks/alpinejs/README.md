@@ -1,14 +1,40 @@
 # Alpine.js - LLM Instructions
 
-## Files
+See global rules: `modules/README.md`.
 
-- `dist/alpine.min.js` - include with `defer` attribute
+## Purpose
 
-## HTML Setup
+Provide lightweight reactivity via HTML attributes.
+
+## How to Use
+
+1. Link local Alpine.js from `dist/` with `defer`
+2. Use `x-` directives for behavior
+
+## Examples
+
+### HTML Setup
 
 ```html
-<script defer src="./dist/alpine.min.js"></script>
+<script defer src="assets/js/alpine.min.js"></script>
 ```
+
+## Rules
+
+- Use local `dist/` assets only
+- Do not use CDN links
+
+## Checklist
+
+- [ ] Alpine.js linked locally
+
+## References
+
+- `modules/frameworks/alpinejs/dist/alpine.min.js`
+
+## Structure
+
+- `dist/alpine.min.js` - include with `defer` attribute
 
 ## Core Concepts
 

@@ -1,6 +1,12 @@
 # UI Components - LLM Instructions
 
+See global rules: `modules/README.md`.
+
 Atomic UI components with standalone CSS. Each component file contains complete styles and examples.
+
+## Purpose
+
+Provide reusable UI components with standalone CSS.
 
 ## How to Use
 
@@ -8,6 +14,7 @@ Atomic UI components with standalone CSS. Each component file contains complete 
 2. Copy the `<style>` block to your page
 3. Copy the HTML markup
 4. Include JavaScript if the component requires interactivity
+5. Copy only the components you use to avoid style conflicts
 
 ## Structure
 
@@ -27,6 +34,27 @@ components/
 ```
 
 ---
+
+## Examples
+
+```html
+<button class="btn btn-primary">Primary</button>
+```
+
+## Rules
+
+- Copy only components in use
+- Include required JS for interactive components
+
+## Checklist
+
+- [ ] Component CSS copied
+- [ ] Required JS added
+- [ ] No unused components
+
+## References
+
+- `modules/components/`
 
 ## Quick Reference
 
@@ -228,6 +256,15 @@ components/
 | loaders | Yes | No | No |
 | tooltips | Yes | Partial | Partial |
 
+### Components Requiring JavaScript
+
+| Component | Required JS |
+|-----------|-------------|
+| modals | open/close handlers |
+| alerts/toasts | auto-dismiss timers |
+| tabs | active tab switching |
+| dropdowns | open/close handlers |
+
 ---
 
 ## Design System
@@ -247,7 +284,7 @@ Neutral: `#6B7280` (text), `#E5E7EB` (borders), `#F3F4F6` (backgrounds)
 
 ### Typography
 
-Font: `system-ui, -apple-system, sans-serif`
+Font: `Inter`, `sans-serif`
 Base size: `0.9375rem` (15px)
 
 ### Spacing

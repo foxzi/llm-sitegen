@@ -1,14 +1,41 @@
 # Tailwind CSS - LLM Instructions
 
-## Files
+See global rules: `modules/README.md`.
 
-- `dist/tailwind.css` - include this file in HTML
+## Purpose
 
-## HTML Setup
+Provide utility-first CSS for rapid layout and styling.
+
+## How to Use
+
+1. Link the local Tailwind CSS file from `dist/`
+2. Use utility classes directly in HTML
+
+## Examples
+
+### HTML Setup
 
 ```html
-<link rel="stylesheet" href="./dist/tailwind.css" />
+<link rel="stylesheet" href="assets/css/tailwind.css" />
 ```
+
+## Rules
+
+- Use local `dist/` assets only
+- Do not use CDN links
+
+## Checklist
+
+- [ ] Tailwind CSS linked locally
+- [ ] No CDN links
+
+## References
+
+- `modules/frameworks/tailwind/dist/tailwind.css`
+
+## Structure
+
+- `dist/tailwind.css` - include this file in HTML
 
 ## Core Concepts
 

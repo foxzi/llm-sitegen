@@ -1,6 +1,12 @@
 # Color Palettes - LLM Instructions
 
+See global rules: `modules/README.md`.
+
 Ready-to-use color combinations for websites. Each palette has a unique name and tested color harmony.
+
+## Purpose
+
+Provide named color palettes and rules for consistent usage.
 
 ## How to Use
 
@@ -9,28 +15,41 @@ Ready-to-use color combinations for websites. Each palette has a unique name and
 3. **CRITICAL: `heading` is always neutral** (black/dark gray) — never use colored text for headings
 4. Follow the 60-30-10 rule: 60% primary, 30% secondary, 10% accent
 
-### Quick Start
+Use `modules/colors/base.css` as the single source of truth for variable names.
+
+## Examples
 
 ```css
-/* Copy from base.css, then set palette values */
 :root {
-    --primary: #16A34A;      /* from palette */
-    --primary-dark: #15803D; /* darker variant */
-    --secondary: #22C55E;    /* from palette */
-    --accent: #EA580C;       /* from palette */
-
-    /* ALWAYS use neutral colors for text */
-    --heading: #111827;      /* near-black for all headings */
-    --text: #374151;         /* dark gray for body */
-    --text-muted: #6B7280;   /* secondary text */
-
-    /* ... rest from base.css */
+  /* copy from base.css, then set palette values */
+  --primary: #16A34A;
+  --primary-dark: #15803D;
+  --secondary: #22C55E;
+  --accent: #EA580C;
+  --heading: #111827;
+  --text: #374151;
 }
 ```
 
-**See `base.css` for the complete template with all selectors.**
+## Rules
 
-### Standard Text Colors (use for ALL palettes)
+- Use `modules/colors/base.css` as the source of truth
+- Headings must always be neutral (not colored)
+- Follow the 60-30-10 rule for usage
+
+## Checklist
+
+- [ ] base.css copied and filled
+- [ ] headings neutral
+- [ ] surface pairs defined
+
+## References
+
+- `modules/colors/base.css`
+
+### Standard Text Colors
+
+Use for all palettes.
 
 These values are the same for every palette:
 
@@ -55,6 +74,10 @@ secondary:  #004499 (dark blue)
 accent:     #FF6B35 (orange)
 background: #F8FAFC (light gray)
 text:       #1E293B (dark slate)
+heading:    #111827 (neutral)
+on-primary: #FFFFFF
+surface-dark: #1E293B
+on-dark:    #F8FAFC
 ```
 
 ### Slate Professional
@@ -65,6 +88,10 @@ secondary:  #64748B (gray)
 accent:     #3B82F6 (blue)
 background: #FFFFFF (white)
 text:       #0F172A (dark)
+heading:    #111827 (neutral)
+on-primary: #FFFFFF
+surface-dark: #0F172A
+on-dark:    #F8FAFC
 ```
 
 ### Executive Green
@@ -75,6 +102,10 @@ secondary:  #14532D (dark green)
 accent:     #CA8A04 (gold)
 background: #FAFAF9 (warm white)
 text:       #1C1917 (charcoal)
+heading:    #111827 (neutral)
+on-primary: #FFFFFF
+surface-dark: #14532D
+on-dark:    #F0FDF4
 ```
 
 ### Navy Authority
@@ -85,6 +116,10 @@ secondary:  #3D5A80 (steel blue)
 accent:     #EE6C4D (coral)
 background: #F0F4F8 (blue gray)
 text:       #293241 (dark blue)
+heading:    #111827 (neutral)
+on-primary: #FFFFFF
+surface-dark: #1E3A5F
+on-dark:    #F0F4F8
 ```
 
 ---
@@ -92,6 +127,7 @@ text:       #293241 (dark blue)
 ## Tech / Startup
 
 ### Midnight Tech
+
 Dark mode tech aesthetic.
 ```
 primary:    #6366F1 (indigo)
@@ -99,9 +135,14 @@ secondary:  #8B5CF6 (violet)
 accent:     #22D3EE (cyan)
 background: #0F0F23 (dark)
 text:       #E2E8F0 (light)
+heading:    #FFFFFF (neutral on dark)
+on-primary: #FFFFFF
+surface-dark: #0F0F23
+on-dark:    #E2E8F0
 ```
 
 ### Electric Startup
+
 Energetic, modern SaaS.
 ```
 primary:    #7C3AED (purple)
@@ -109,9 +150,14 @@ secondary:  #2563EB (blue)
 accent:     #10B981 (emerald)
 background: #FFFFFF (white)
 text:       #111827 (near black)
+heading:    #111827 (neutral)
+on-primary: #FFFFFF
+surface-dark: #111827
+on-dark:    #F9FAFB
 ```
 
 ### Neon Cyber
+
 Gaming, crypto, futuristic.
 ```
 primary:    #00FF88 (neon green)
@@ -119,9 +165,14 @@ secondary:  #FF00FF (magenta)
 accent:     #00FFFF (cyan)
 background: #0A0A0A (black)
 text:       #FFFFFF (white)
+heading:    #FFFFFF (neutral on dark)
+on-primary: #0A0A0A
+surface-dark: #0A0A0A
+on-dark:    #FFFFFF
 ```
 
 ### Clean SaaS
+
 Minimal tech product.
 ```
 primary:    #2563EB (blue)
@@ -129,9 +180,14 @@ secondary:  #1D4ED8 (dark blue)
 accent:     #F59E0B (amber)
 background: #F9FAFB (gray 50)
 text:       #374151 (gray 700)
+heading:    #111827 (neutral)
+on-primary: #FFFFFF
+surface-dark: #1D4ED8
+on-dark:    #F9FAFB
 ```
 
 ### Terminal Dark
+
 Developer tools, code editors.
 ```
 primary:    #22C55E (green)
@@ -139,6 +195,10 @@ secondary:  #3B82F6 (blue)
 accent:     #F97316 (orange)
 background: #1E1E1E (vs code dark)
 text:       #D4D4D4 (light gray)
+heading:    #FFFFFF (neutral on dark)
+on-primary: #0A0A0A
+surface-dark: #1E1E1E
+on-dark:    #D4D4D4
 ```
 
 ---
@@ -146,6 +206,7 @@ text:       #D4D4D4 (light gray)
 ## Nature / Organic
 
 ### Forest Calm
+
 Eco, sustainability, wellness.
 ```
 primary:    #2D5016 (forest green)
@@ -153,9 +214,14 @@ secondary:  #4D7C0F (lime green)
 accent:     #A3E635 (bright lime)
 background: #FEFCE8 (warm white)
 text:       #1A2E05 (dark green)
+heading:    #111827 (neutral)
+on-primary: #FFFFFF
+surface-dark: #2D5016
+on-dark:    #F0FDF4
 ```
 
 ### Earth Tone
+
 Natural products, organic brands.
 ```
 primary:    #78716C (stone)
@@ -163,9 +229,14 @@ secondary:  #A8A29E (warm gray)
 accent:     #84CC16 (green)
 background: #FAF9F6 (cream)
 text:       #44403C (brown)
+heading:    #111827 (neutral)
+on-primary: #FFFFFF
+surface-dark: #44403C
+on-dark:    #FAFAF9
 ```
 
 ### Ocean Breeze
+
 Beach, travel, relaxation.
 ```
 primary:    #0891B2 (cyan)
@@ -173,9 +244,14 @@ secondary:  #06B6D4 (light cyan)
 accent:     #F59E0B (sand/amber)
 background: #F0FDFA (mint)
 text:       #164E63 (dark cyan)
+heading:    #111827 (neutral)
+on-primary: #FFFFFF
+surface-dark: #164E63
+on-dark:    #F0FDFA
 ```
 
 ### Desert Sand
+
 Warm, earthy, bohemian.
 ```
 primary:    #B45309 (amber)
@@ -183,9 +259,14 @@ secondary:  #D97706 (orange)
 accent:     #0D9488 (teal)
 background: #FFFBEB (cream)
 text:       #78350F (brown)
+heading:    #111827 (neutral)
+on-primary: #FFFFFF
+surface-dark: #78350F
+on-dark:    #FFFBEB
 ```
 
 ### Botanical
+
 Plants, gardens, florists.
 ```
 primary:    #15803D (green)
@@ -193,6 +274,10 @@ secondary:  #86EFAC (light green)
 accent:     #FB7185 (rose)
 background: #F0FDF4 (green tint)
 text:       #14532D (dark green)
+heading:    #111827 (neutral)
+on-primary: #FFFFFF
+surface-dark: #14532D
+on-dark:    #F0FDF4
 ```
 
 ---
@@ -200,6 +285,7 @@ text:       #14532D (dark green)
 ## Creative / Design
 
 ### Sunset Gradient
+
 Bold, creative, artistic.
 ```
 primary:    #F43F5E (rose)
@@ -207,9 +293,14 @@ secondary:  #FB923C (orange)
 accent:     #FBBF24 (yellow)
 background: #18181B (dark)
 text:       #FAFAFA (white)
+heading:    #FFFFFF (neutral on dark)
+on-primary: #FFFFFF
+surface-dark: #18181B
+on-dark:    #FAFAFA
 ```
 
 ### Pastel Dream
+
 Soft, feminine, lifestyle.
 ```
 primary:    #F9A8D4 (pink)
@@ -217,9 +308,14 @@ secondary:  #C4B5FD (lavender)
 accent:     #6EE7B7 (mint)
 background: #FFFBFE (rose white)
 text:       #581C87 (purple)
+heading:    #111827 (neutral)
+on-primary: #1F2937
+surface-dark: #581C87
+on-dark:    #FDF4FF
 ```
 
 ### Bold Contrast
+
 Striking, memorable, high impact.
 ```
 primary:    #DC2626 (red)
@@ -227,9 +323,14 @@ secondary:  #000000 (black)
 accent:     #FBBF24 (yellow)
 background: #FFFFFF (white)
 text:       #171717 (near black)
+heading:    #111827 (neutral)
+on-primary: #FFFFFF
+surface-dark: #000000
+on-dark:    #FFFFFF
 ```
 
 ### Studio Minimal
+
 Clean portfolio, photography.
 ```
 primary:    #18181B (black)
@@ -237,9 +338,14 @@ secondary:  #71717A (gray)
 accent:     #E11D48 (rose)
 background: #FAFAFA (off white)
 text:       #27272A (dark gray)
+heading:    #111827 (neutral)
+on-primary: #FFFFFF
+surface-dark: #18181B
+on-dark:    #FAFAFA
 ```
 
 ### Candy Pop
+
 Fun, playful, youth brands.
 ```
 primary:    #EC4899 (pink)
@@ -247,6 +353,10 @@ secondary:  #8B5CF6 (purple)
 accent:     #06B6D4 (cyan)
 background: #FDF4FF (light pink)
 text:       #1F2937 (dark)
+heading:    #111827 (neutral)
+on-primary: #FFFFFF
+surface-dark: #1F2937
+on-dark:    #FDF4FF
 ```
 
 ---
@@ -254,6 +364,7 @@ text:       #1F2937 (dark)
 ## E-commerce / Retail
 
 ### Luxury Gold
+
 Premium, high-end products.
 ```
 primary:    #B8860B (dark gold)
@@ -261,9 +372,14 @@ secondary:  #1C1917 (charcoal)
 accent:     #D4AF37 (gold)
 background: #FFFEF7 (ivory)
 text:       #292524 (dark brown)
+heading:    #111827 (neutral)
+on-primary: #FFFFFF
+surface-dark: #1C1917
+on-dark:    #FFFEF7
 ```
 
 ### Trust Blue
+
 General retail, marketplaces.
 ```
 primary:    #1D4ED8 (blue)
@@ -271,9 +387,14 @@ secondary:  #3B82F6 (lighter blue)
 accent:     #EF4444 (red for sales)
 background: #FFFFFF (white)
 text:       #1F2937 (dark gray)
+heading:    #111827 (neutral)
+on-primary: #FFFFFF
+surface-dark: #1F2937
+on-dark:    #F9FAFB
 ```
 
 ### Fashion Noir
+
 Clothing, accessories.
 ```
 primary:    #000000 (black)
@@ -281,9 +402,14 @@ secondary:  #404040 (dark gray)
 accent:     #B91C1C (deep red)
 background: #FFFFFF (white)
 text:       #171717 (black)
+heading:    #111827 (neutral)
+on-primary: #FFFFFF
+surface-dark: #000000
+on-dark:    #FFFFFF
 ```
 
 ### Fresh Market
+
 Food, groceries, organic.
 ```
 primary:      #16A34A (green)
@@ -296,6 +422,7 @@ text:         #374151 (neutral gray)
 text-muted:   #6B7280
 surface-dark: #14532D (for footer)
 on-dark:      #F0FDF4
+on-primary:   #FFFFFF
 ```
 
 ---
@@ -303,6 +430,7 @@ on-dark:      #F0FDF4
 ## Health / Wellness
 
 ### Medical Trust
+
 Healthcare, clinics, pharma.
 ```
 primary:    #0EA5E9 (sky blue)
@@ -310,9 +438,14 @@ secondary:  #0284C7 (darker blue)
 accent:     #10B981 (green)
 background: #F0F9FF (light blue)
 text:       #0C4A6E (dark blue)
+heading:    #111827 (neutral)
+on-primary: #FFFFFF
+surface-dark: #0C4A6E
+on-dark:    #F0F9FF
 ```
 
 ### Spa Serenity
+
 Wellness, meditation, yoga.
 ```
 primary:    #5EEAD4 (teal)
@@ -320,9 +453,14 @@ secondary:  #99F6E4 (light teal)
 accent:     #C084FC (purple)
 background: #F0FDFA (mint white)
 text:       #134E4A (dark teal)
+heading:    #111827 (neutral)
+on-primary: #1F2937
+surface-dark: #134E4A
+on-dark:    #F0FDFA
 ```
 
 ### Fitness Energy
+
 Gym, sports, active lifestyle.
 ```
 primary:    #EF4444 (red)
@@ -330,6 +468,10 @@ secondary:  #F97316 (orange)
 accent:     #1E1E1E (black)
 background: #FFFFFF (white)
 text:       #171717 (near black)
+heading:    #111827 (neutral)
+on-primary: #FFFFFF
+surface-dark: #1E1E1E
+on-dark:    #F9FAFB
 ```
 
 ---
@@ -337,6 +479,7 @@ text:       #171717 (near black)
 ## Food / Restaurant
 
 ### Appetito
+
 Italian, warm dining.
 ```
 primary:    #B91C1C (red)
@@ -344,9 +487,14 @@ secondary:  #7F1D1D (dark red)
 accent:     #CA8A04 (olive gold)
 background: #FFFBEB (cream)
 text:       #292524 (brown)
+heading:    #111827 (neutral)
+on-primary: #FFFFFF
+surface-dark: #7F1D1D
+on-dark:    #FFFBEB
 ```
 
 ### Cafe Warm
+
 Coffee shops, bakeries.
 ```
 primary:    #78350F (brown)
@@ -354,9 +502,14 @@ secondary:  #A16207 (caramel)
 accent:     #65A30D (green)
 background: #FFFBF5 (warm white)
 text:       #422006 (dark brown)
+heading:    #111827 (neutral)
+on-primary: #FFFFFF
+surface-dark: #422006
+on-dark:    #FFFBF5
 ```
 
 ### Fresh Kitchen
+
 Modern, healthy food.
 ```
 primary:    #65A30D (lime green)
@@ -364,6 +517,10 @@ secondary:  #84CC16 (bright lime)
 accent:     #F97316 (orange)
 background: #FFFFFF (white)
 text:       #1A2E05 (dark green)
+heading:    #111827 (neutral)
+on-primary: #FFFFFF
+surface-dark: #1A2E05
+on-dark:    #F0FDF4
 ```
 
 ---
@@ -371,6 +528,7 @@ text:       #1A2E05 (dark green)
 ## Education / Learning
 
 ### Scholar Blue
+
 Schools, universities, courses.
 ```
 primary:    #1E40AF (royal blue)
@@ -378,9 +536,14 @@ secondary:  #3B82F6 (blue)
 accent:     #F59E0B (amber)
 background: #EFF6FF (blue tint)
 text:       #1E3A8A (dark blue)
+heading:    #111827 (neutral)
+on-primary: #FFFFFF
+surface-dark: #1E3A8A
+on-dark:    #EFF6FF
 ```
 
 ### Kids Bright
+
 Children, playful learning.
 ```
 primary:    #F59E0B (yellow)
@@ -388,6 +551,10 @@ secondary:  #10B981 (green)
 accent:     #EC4899 (pink)
 background: #FFFFFF (white)
 text:       #1F2937 (dark gray)
+heading:    #111827 (neutral)
+on-primary: #1F2937
+surface-dark: #1F2937
+on-dark:    #F9FAFB
 ```
 
 ---
@@ -395,6 +562,7 @@ text:       #1F2937 (dark gray)
 ## Dark Themes
 
 ### Carbon Dark
+
 Universal dark mode.
 ```
 primary:    #3B82F6 (blue)
@@ -402,9 +570,14 @@ secondary:  #1E293B (dark slate)
 accent:     #22D3EE (cyan)
 background: #0F172A (dark blue)
 text:       #F1F5F9 (light)
+heading:    #FFFFFF (neutral on dark)
+on-primary: #FFFFFF
+surface-dark: #0F172A
+on-dark:    #F1F5F9
 ```
 
 ### Midnight Purple
+
 Creative dark theme.
 ```
 primary:    #A855F7 (purple)
@@ -412,9 +585,14 @@ secondary:  #7C3AED (violet)
 accent:     #F472B6 (pink)
 background: #18181B (zinc 900)
 text:       #E4E4E7 (zinc 200)
+heading:    #FFFFFF (neutral on dark)
+on-primary: #FFFFFF
+surface-dark: #18181B
+on-dark:    #E4E4E7
 ```
 
 ### Charcoal Minimal
+
 Elegant dark mode.
 ```
 primary:    #FFFFFF (white)
@@ -422,6 +600,10 @@ secondary:  #A1A1AA (gray)
 accent:     #F43F5E (rose)
 background: #27272A (dark gray)
 text:       #FAFAFA (white)
+heading:    #FFFFFF (neutral on dark)
+on-primary: #111827
+surface-dark: #27272A
+on-dark:    #FAFAFA
 ```
 
 ---
@@ -429,6 +611,7 @@ text:       #FAFAFA (white)
 ## Monochrome
 
 ### Pure Grayscale
+
 Minimalist, typography focused.
 ```
 primary:    #171717 (black)
@@ -436,9 +619,14 @@ secondary:  #525252 (gray)
 accent:     #A3A3A3 (light gray)
 background: #FFFFFF (white)
 text:       #262626 (near black)
+heading:    #111827 (neutral)
+on-primary: #FFFFFF
+surface-dark: #171717
+on-dark:    #FFFFFF
 ```
 
 ### Warm Gray
+
 Softer monochrome.
 ```
 primary:    #292524 (warm black)
@@ -446,6 +634,10 @@ secondary:  #78716C (stone)
 accent:     #D6D3D1 (light stone)
 background: #FAFAF9 (warm white)
 text:       #1C1917 (dark)
+heading:    #111827 (neutral)
+on-primary: #FFFFFF
+surface-dark: #292524
+on-dark:    #FAFAF9
 ```
 
 ---
@@ -453,6 +645,7 @@ text:       #1C1917 (dark)
 ## Seasonal
 
 ### Spring Bloom
+
 Fresh, renewal.
 ```
 primary:    #22C55E (green)
@@ -460,9 +653,14 @@ secondary:  #A3E635 (lime)
 accent:     #F472B6 (pink)
 background: #F0FDF4 (green white)
 text:       #14532D (dark green)
+heading:    #111827 (neutral)
+on-primary: #FFFFFF
+surface-dark: #14532D
+on-dark:    #F0FDF4
 ```
 
 ### Summer Vibrant
+
 Energetic, sunny.
 ```
 primary:    #0EA5E9 (sky blue)
@@ -470,9 +668,14 @@ secondary:  #FBBF24 (yellow)
 accent:     #F97316 (orange)
 background: #FFFFFF (white)
 text:       #0C4A6E (dark blue)
+heading:    #111827 (neutral)
+on-primary: #FFFFFF
+surface-dark: #0C4A6E
+on-dark:    #F0F9FF
 ```
 
 ### Autumn Warm
+
 Cozy, harvest.
 ```
 primary:    #C2410C (rust)
@@ -480,9 +683,14 @@ secondary:  #EA580C (orange)
 accent:     #CA8A04 (gold)
 background: #FFFBEB (cream)
 text:       #431407 (dark brown)
+heading:    #111827 (neutral)
+on-primary: #FFFFFF
+surface-dark: #431407
+on-dark:    #FFFBEB
 ```
 
 ### Winter Cool
+
 Clean, crisp.
 ```
 primary:    #0891B2 (cyan)
@@ -490,6 +698,10 @@ secondary:  #67E8F9 (light cyan)
 accent:     #E11D48 (rose)
 background: #F8FAFC (cool white)
 text:       #164E63 (dark cyan)
+heading:    #111827 (neutral)
+on-primary: #FFFFFF
+surface-dark: #164E63
+on-dark:    #F8FAFC
 ```
 
 ---
@@ -535,11 +747,15 @@ Dark text on light background or light text on dark background.
 
 ---
 
-## Surface Pairs (Контрастные секции)
+## Surface Pairs
 
-При чередовании светлых и тёмных блоков на странице важно правильно подбирать цвет текста для каждой поверхности.
+When alternating light and dark sections, ensure each surface has a matching text color.
 
-### Правило: каждая поверхность имеет свой цвет текста
+Контрастные секции.
+
+### Rule: each surface has its own text color
+
+Правило: каждая поверхность имеет свой цвет текста.
 
 ```css
 :root {
@@ -559,7 +775,9 @@ Dark text on light background or light text on dark background.
 }
 ```
 
-### Готовые классы для секций
+### Ready-to-use section classes
+
+Готовые классы для секций.
 
 ```css
 .section-light {
@@ -580,7 +798,9 @@ Dark text on light background or light text on dark background.
 }
 ```
 
-### Пример структуры страницы
+### Example page structure
+
+Пример структуры страницы.
 
 ```
 ┌─────────────────────────────────┐
@@ -600,7 +820,9 @@ Dark text on light background or light text on dark background.
 └─────────────────────────────────┘
 ```
 
-### Surface Pairs для каждой палитры
+### Surface pairs per palette
+
+Surface pairs для каждой палитры.
 
 При использовании палитры определяй все поверхности:
 
@@ -631,15 +853,25 @@ Carbon Dark:
   surface-primary: #3B82F6    on-primary: #FFFFFF
 ```
 
-### Важно: заголовки должны быть нейтральными
+### Headings must be neutral
+
+Важно: заголовки должны быть нейтральными.
+
+Headings must always use neutral colors (not colored text).
 
 **Правило: заголовки всегда используют нейтральный цвет, не цветной.**
+
+Even if the palette sets a colored `text` (for example `#166534`), headings must be:
 
 Даже если палитра задаёт цветной `text` (например, тёмно-зелёный `#166534`), заголовки должны быть:
 - На светлом фоне: **чёрный или тёмно-серый** (`#111827`, `#1F2937`, `#171717`)
 - На тёмном фоне: **белый или светло-серый** (`#FFFFFF`, `#F9FAFB`)
 
+Colored text is allowed only for body text, not headings.
+
 Цветной текст допустим только для body text, не для заголовков.
+
+**Why:** Colored headings (green, blue) reduce readability even with sufficient contrast. Neutral colors provide better typography.
 
 **Почему:** Цветные заголовки (зелёные, синие) снижают читаемость даже при достаточном контрасте. Нейтральные цвета обеспечивают лучшую типографику.
 
@@ -663,7 +895,9 @@ h1, h2, h3, h4, h5, h6,
 }
 ```
 
-### Пример правильной реализации
+### Example implementation
+
+Пример правильной реализации.
 
 ```css
 :root {
@@ -679,7 +913,9 @@ body { color: var(--text); }           /* зелёный body */
 h1, h2, h3 { color: var(--heading); }  /* чёрные заголовки */
 ```
 
-### Чеклист контрастности
+### Contrast checklist
+
+Чеклист контрастности.
 
 При создании страницы проверь:
 

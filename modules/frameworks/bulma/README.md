@@ -1,14 +1,40 @@
 # Bulma - LLM Instructions
 
-## Files
+See global rules: `modules/README.md`.
 
-- `dist/bulma.min.css` - CSS only, no JavaScript
+## Purpose
 
-## HTML Setup
+Provide CSS-only components and layout helpers.
+
+## How to Use
+
+1. Link local Bulma CSS from `dist/`
+2. Add optional custom JS for interactive parts
+
+## Examples
+
+### HTML Setup
 
 ```html
-<link rel="stylesheet" href="./dist/bulma.min.css" />
+<link rel="stylesheet" href="assets/css/bulma.min.css" />
 ```
+
+## Rules
+
+- Use local `dist/` assets only
+- Do not use CDN links
+
+## Checklist
+
+- [ ] Bulma CSS linked locally
+
+## References
+
+- `modules/frameworks/bulma/dist/bulma.min.css`
+
+## Structure
+
+- `dist/bulma.min.css` - CSS only, no JavaScript
 
 ## Core Concepts
 

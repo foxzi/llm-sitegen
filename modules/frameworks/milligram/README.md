@@ -1,16 +1,44 @@
 # Milligram - LLM Instructions
 
-## Files
+See global rules: `modules/README.md`.
+
+## Purpose
+
+Provide a minimal CSS framework with grid and basic components.
+
+## How to Use
+
+1. Link local Normalize and Milligram CSS from `dist/`
+2. Use basic grid classes for layout
+
+## Examples
+
+### HTML Setup
+
+```html
+<link rel="stylesheet" href="assets/css/normalize.min.css" />
+<link rel="stylesheet" href="assets/css/milligram.min.css" />
+```
+
+## Rules
+
+- Use local `dist/` assets only
+- Do not use CDN links
+
+## Checklist
+
+- [ ] Normalize CSS linked locally
+- [ ] Milligram CSS linked locally
+
+## References
+
+- `modules/frameworks/milligram/dist/normalize.min.css`
+- `modules/frameworks/milligram/dist/milligram.min.css`
+
+## Structure
 
 - `dist/normalize.min.css` - CSS reset (required, include first)
 - `dist/milligram.min.css` - Milligram styles
-
-## HTML Setup
-
-```html
-<link rel="stylesheet" href="./dist/normalize.min.css" />
-<link rel="stylesheet" href="./dist/milligram.min.css" />
-```
 
 ## Core Concepts
 
@@ -24,8 +52,8 @@ Milligram is minimal (2KB). Uses `container`, `row`, `column` for grid. Basic st
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="./dist/normalize.min.css">
-  <link rel="stylesheet" href="./dist/milligram.min.css">
+  <link rel="stylesheet" href="assets/css/normalize.min.css">
+  <link rel="stylesheet" href="assets/css/milligram.min.css">
   <title>Page</title>
 </head>
 <body>

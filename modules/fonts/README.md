@@ -1,13 +1,45 @@
 # Typography - LLM Instructions
 
+See global rules: `modules/README.md`.
+
 Local font collection for websites. All fonts are Google Fonts in woff2 format with local CSS files.
+
+## Purpose
+
+Provide local fonts and pairing guidance for typography.
 
 ## How to Use
 
 1. Choose fonts based on project type
 2. Use recommended font pairings (heading + body)
-3. Include the local.css file from font directory
+3. Include the local.css file from font directory (preferred)
 4. Apply font-family in CSS
+5. Use fallbacks at the end of font stacks
+
+## Examples
+
+```html
+<link rel="stylesheet" href="fonts/inter/local.css">
+<style>
+  body { font-family: 'Inter', sans-serif; }
+</style>
+```
+
+## Rules
+
+- Use `local.css` for each font (relative paths)
+- Include fallbacks at the end of font stacks
+- Limit weights to what you use
+
+## Checklist
+
+- [ ] local.css linked
+- [ ] fallbacks present
+- [ ] weights limited
+
+## References
+
+- `modules/fonts/`
 
 ## HTML Setup
 
@@ -35,6 +67,8 @@ code, pre {
   font-family: 'Fira Code', monospace;
 }
 ```
+
+**Note:** Use `local.css` because it contains relative paths to `.woff2` files.
 
 ---
 

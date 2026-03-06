@@ -1,15 +1,41 @@
 # Pico CSS - LLM Instructions
 
-## Files
+See global rules: `modules/README.md`.
 
-- `dist/pico.min.css` - include in HTML
+## Purpose
 
-## HTML Setup
+Provide classless styling for semantic HTML.
+
+## How to Use
+
+1. Link local Pico CSS from `dist/`
+2. Use semantic HTML without extra classes
+
+## Examples
+
+### HTML Setup
 
 ```html
 <meta name="color-scheme" content="light dark">
-<link rel="stylesheet" href="./dist/pico.min.css" />
+<link rel="stylesheet" href="assets/css/pico.min.css" />
 ```
+
+## Rules
+
+- Use local `dist/` assets only
+- Do not use CDN links
+
+## Checklist
+
+- [ ] Pico CSS linked locally
+
+## References
+
+- `modules/frameworks/pico/dist/pico.min.css`
+
+## Structure
+
+- `dist/pico.min.css` - include in HTML
 
 ## Core Concepts
 
@@ -24,7 +50,7 @@ Pico is classless. Semantic HTML is styled automatically. Minimal classes needed
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
-  <link rel="stylesheet" href="./dist/pico.min.css">
+  <link rel="stylesheet" href="assets/css/pico.min.css">
   <title>Page</title>
 </head>
 <body>

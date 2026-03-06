@@ -1,18 +1,47 @@
 # UIkit - LLM Instructions
 
-## Files
+See global rules: `modules/README.md`.
+
+## Purpose
+
+Provide feature-rich components with JS behaviors.
+
+## How to Use
+
+1. Link local UIkit CSS and JS from `dist/`
+2. Use `uk-` classes and attributes
+
+## Examples
+
+### HTML Setup
+
+```html
+<link rel="stylesheet" href="assets/css/uikit.min.css" />
+<script src="assets/js/uikit.min.js"></script>
+<script src="assets/js/uikit-icons.min.js"></script>
+```
+
+## Rules
+
+- Use local `dist/` assets only
+- Do not use CDN links
+
+## Checklist
+
+- [ ] UIkit CSS linked locally
+- [ ] UIkit JS linked locally
+
+## References
+
+- `modules/frameworks/uikit/dist/uikit.min.css`
+- `modules/frameworks/uikit/dist/uikit.min.js`
+- `modules/frameworks/uikit/dist/uikit-icons.min.js`
+
+## Structure
 
 - `dist/uikit.min.css` - CSS styles
 - `dist/uikit.min.js` - JavaScript components
 - `dist/uikit-icons.min.js` - Icon library (optional)
-
-## HTML Setup
-
-```html
-<link rel="stylesheet" href="./dist/uikit.min.css" />
-<script src="./dist/uikit.min.js"></script>
-<script src="./dist/uikit-icons.min.js"></script>
-```
 
 ## Core Concepts
 

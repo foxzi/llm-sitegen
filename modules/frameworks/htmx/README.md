@@ -1,14 +1,40 @@
 # htmx - LLM Instructions
 
-## Files
+See global rules: `modules/README.md`.
 
-- `dist/htmx.min.js` - include in HTML
+## Purpose
 
-## HTML Setup
+Enable HTML-driven AJAX without custom JS.
+
+## How to Use
+
+1. Link local htmx from `dist/`
+2. Use `hx-` attributes for requests
+
+## Examples
+
+### HTML Setup
 
 ```html
-<script src="./dist/htmx.min.js"></script>
+<script src="assets/js/htmx.min.js"></script>
 ```
+
+## Rules
+
+- Use local `dist/` assets only
+- Do not use CDN links
+
+## Checklist
+
+- [ ] htmx linked locally
+
+## References
+
+- `modules/frameworks/htmx/dist/htmx.min.js`
+
+## Structure
+
+- `dist/htmx.min.js` - include in HTML
 
 ## Core Concepts
 

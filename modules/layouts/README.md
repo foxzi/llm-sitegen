@@ -1,6 +1,12 @@
 # Layouts - LLM Instructions
 
+See global rules: `modules/README.md`.
+
 Ready-to-use HTML layout templates and sections for websites. All layouts are standalone HTML with embedded CSS.
+
+## Purpose
+
+Provide reusable page sections and complete page templates.
 
 ## How to Use
 
@@ -8,6 +14,8 @@ Ready-to-use HTML layout templates and sections for websites. All layouts are st
 2. Copy entire file or specific sections
 3. Customize content, colors, and styles
 4. Combine sections to build complete pages
+5. Use only local assets (fonts, icons, images) - no CDN links
+6. When merging multiple sections, deduplicate shared CSS and JS
 
 ## Structure
 
@@ -18,6 +26,18 @@ layouts/
 ```
 
 ---
+
+## Examples
+
+```html
+<!-- Combine sections to build a page -->
+<body>
+  <!-- navbar -->
+  <!-- hero -->
+  <!-- features -->
+  <!-- footer -->
+</body>
+```
 
 ## Sections
 
@@ -59,6 +79,13 @@ Standalone sections that can be combined into pages.
 | File | Description |
 |------|-------------|
 | `sections/footer.html` | Multi-column footer with social |
+
+### Section Scripts
+
+| Section | JavaScript Required |
+|---------|---------------------|
+| `sections/navbar.html` | Mobile menu toggle |
+| `sections/faq.html` | Accordion open/close |
 
 ---
 
@@ -103,6 +130,22 @@ Complete page templates ready for customization.
 | `pages/login.html` | Login/sign in page | Apps, SaaS |
 
 ---
+
+## Rules
+
+- Use only local assets (fonts, icons, images)
+- Deduplicate shared CSS and JS when merging multiple sections
+
+## Checklist
+
+- [ ] All required sections included
+- [ ] Scripts added for interactive sections
+- [ ] Local assets only
+
+## References
+
+- `modules/layouts/sections/`
+- `modules/layouts/pages/`
 
 ## Building a Page
 
@@ -176,9 +219,11 @@ Add font links and update font-family:
 
 ```css
 body {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 ```
+
+Use local font CSS from `modules/fonts/` (e.g. `fonts/inter/local.css`).
 
 ### Spacing
 
@@ -421,7 +466,7 @@ All layouts include mobile breakpoints:
 
 ### Icon Usage
 
-All sections use inline SVG icons. Replace with icons from `icons/` directory:
+All sections use inline SVG icons. Replace with icons from `assets/icons/` directory:
 
 ```html
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">

@@ -1,6 +1,12 @@
 # Content Processing - LLM Instructions
 
+See global rules: `modules/README.md`.
+
 Instructions for preprocessing, transforming, and generating text content for websites.
+
+## Purpose
+
+Define text processing and generation directives.
 
 ## How to Use
 
@@ -11,9 +17,35 @@ Instructions for preprocessing, transforming, and generating text content for we
 
 ---
 
+## Examples
+
+```markdown
+[generate: CTA для заказа обратного звонка | enthusiastic | short]
+```
+
+```markdown
+[generate: hero headline для SaaS | tone: professional | length: short | language: en]
+```
+
+## Rules
+
+- Do not fabricate facts, prices, or guarantees
+- Do not process legal, contact, or pricing text
+
+## Checklist
+
+- [ ] Directives applied in order
+- [ ] No factual changes introduced
+
+## References
+
+- `modules/content/README.md`
+
 ## Content Generation
 
 Generate new text content using inline commands.
+
+Генерация текста.
 
 ### Syntax
 
@@ -26,7 +58,11 @@ Generate new text content using inline commands.
 - `tone` — tone of voice (optional, default: professional)
 - `length` — short/medium/long (optional, default: medium)
 
+Части синтаксиса:
+
 ### Examples
+
+Примеры.
 
 **Service description:**
 ```markdown
@@ -46,6 +82,8 @@ Generate new text content using inline commands.
 
 #### Service Descriptions
 
+Описание услуг.
+
 ```markdown
 [generate: описание услуги {название} для {тип бизнеса}]
 ```
@@ -62,6 +100,8 @@ Generate new text content using inline commands.
 ```
 
 #### FAQ Generation
+
+Генерация FAQ.
 
 ```markdown
 [generate: FAQ {количество} вопросов про {тема}]
@@ -89,7 +129,9 @@ Generate new text content using inline commands.
 ...
 ```
 
-#### Testimonials (Placeholders)
+#### Testimonials
+
+Отзывы (плейсхолдеры).
 
 ```markdown
 [generate: {количество} отзывов про {услуга/продукт}]
@@ -115,6 +157,8 @@ Generate new text content using inline commands.
 
 #### About/Company Description
 
+Описание компании.
+
 ```markdown
 [generate: описание компании {название} | {сфера деятельности} | {особенности}]
 ```
@@ -126,6 +170,8 @@ Generate new text content using inline commands.
 ```
 
 #### CTA Texts
+
+CTA тексты.
 
 ```markdown
 [generate: CTA для {действие}]
@@ -142,6 +188,8 @@ Generate new text content using inline commands.
 ```
 
 #### Meta Descriptions
+
+Meta descriptions.
 
 ```markdown
 [generate: meta description для {страница} | {ключевые слова}]
@@ -160,6 +208,8 @@ Generate new text content using inline commands.
 
 #### Hero Headlines
 
+Hero заголовки.
+
 ```markdown
 [generate: заголовок hero для {тип бизнеса} | {стиль}]
 ```
@@ -176,6 +226,8 @@ Generate new text content using inline commands.
 
 #### Feature Benefits
 
+Преимущества.
+
 ```markdown
 [generate: {количество} преимуществ для {продукт/услуга}]
 ```
@@ -188,6 +240,8 @@ Generate new text content using inline commands.
 
 ### Full Syntax
 
+Полный синтаксис.
+
 ```markdown
 [generate: тип контента | tone: ... | length: ... | keywords: ... | language: ...]
 ```
@@ -198,12 +252,16 @@ Generate new text content using inline commands.
 - `keywords` — ключевые слова для SEO
 - `language` — ru, en (default: language of surrounding text)
 
+Все параметры.
+
 **Example:**
 ```markdown
 [generate: описание услуги клининга | tone: friendly | length: medium | keywords: уборка квартир, клининг москва]
 ```
 
 ### Bulk Generation
+
+Массовая генерация.
 
 Generate multiple items at once:
 
@@ -234,9 +292,13 @@ Generate multiple items at once:
 
 ## Processing Directives
 
+Директивы обработки.
+
 ---
 
 ## Processing Directive Format
+
+Формат директив.
 
 In task.md or spec.md, text processing is specified like this:
 
@@ -261,7 +323,11 @@ Original text here...
 
 ## Processing Types
 
-### 1. Rewrite (Перефразирование)
+Типы обработки.
+
+### 1. Rewrite
+
+Перефразирование.
 
 Rewrite text in different words while preserving the original meaning.
 
@@ -290,7 +356,9 @@ Output:
 
 ---
 
-### 2. Tone (Тональность)
+### 2. Tone
+
+Тональность.
 
 Adjust the emotional tone and style of the text.
 
@@ -331,7 +399,9 @@ Output: Готовы к трансформации? Наши тренировк�
 
 ---
 
-### 3. Length (Длина)
+### 3. Length
+
+Длина.
 
 Adjust the length of the text content.
 
@@ -386,6 +456,8 @@ Output:
 
 ## Combined Processing
 
+Совмещенная обработка.
+
 Multiple directives can be combined:
 
 ```markdown
@@ -422,6 +494,8 @@ Output:
 
 ## Section-Specific Processing
 
+Обработка для конкретных секций.
+
 Apply different processing to different sections:
 
 ```markdown
@@ -442,6 +516,8 @@ Keep original testimonials...
 
 ## Language-Aware Processing
 
+Обработка с учетом языка.
+
 **Directive:** `language: <code>`
 
 Ensure output matches the target language:
@@ -459,6 +535,8 @@ When processing multilingual content:
 
 ## Do NOT Process
 
+Не обрабатывать.
+
 Some content should never be modified:
 
 - **Quotes** - Keep testimonials and citations verbatim
@@ -466,6 +544,7 @@ Some content should never be modified:
 - **Technical specs** - Numbers, measurements, model names
 - **Contact info** - Addresses, phones, emails
 - **Proper nouns** - Brand names, person names, place names
+- **Pricing** - Prices, offers, guarantees, deadlines
 
 Mark sections to skip:
 ```markdown
@@ -476,6 +555,8 @@ This text will not be processed.
 ---
 
 ## Quality Checklist
+
+Чеклист качества.
 
 After processing, verify:
 
@@ -493,6 +574,8 @@ After processing, verify:
 ---
 
 ## Examples by Industry
+
+Примеры по отраслям.
 
 ### E-commerce
 
@@ -537,6 +620,8 @@ focus: features, efficiency, innovation
 ---
 
 ## Final Cleanup
+
+Финальная очистка.
 
 **IMPORTANT:** Before delivering the final website, remove ALL HTML comments from the output.
 

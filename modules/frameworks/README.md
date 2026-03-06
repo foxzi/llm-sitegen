@@ -1,8 +1,10 @@
 # Frontend Frameworks - LLM Instructions
 
+See global rules: `modules/README.md`.
+
 You have access to local frontend framework bundles. When user asks to create a website or use a specific framework, follow these instructions.
 
-## Directory Structure
+## Structure
 
 ```
 frameworks/
@@ -17,11 +19,33 @@ frameworks/
 └── htmx/README.md        - htmx documentation
 ```
 
+## Purpose
+
+Select and apply local CSS/JS frameworks for site generation.
+
 ## How to Use
 
 1. When user requests a specific framework, read `frameworks/<name>/README.md` for detailed usage instructions
 2. Use files from `frameworks/<name>/dist/` directory - all assets are local, no CDN needed
 3. Follow code examples from the framework's README.md
+4. Do not mix multiple CSS frameworks on one page unless explicitly required
+
+### Local Asset Example
+
+```html
+<!-- CSS framework (local) -->
+<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+<!-- JS framework (local, optional) -->
+<script src="assets/js/alpine.min.js" defer></script>
+```
+
+## Examples
+
+```html
+<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+<script src="assets/js/alpine.min.js" defer></script>
+```
 
 ## Available Frameworks
 
@@ -43,6 +67,23 @@ frameworks/
 |-----------|------|----------|
 | Alpine.js | `frameworks/alpinejs/README.md` | Reactive UI, dropdowns, modals, tabs |
 | htmx | `frameworks/htmx/README.md` | AJAX without writing JS, server-rendered apps |
+
+## Rules
+
+- Do not mix multiple CSS frameworks on one page
+- Use local `dist/` assets only (no CDN)
+- Add JS frameworks only when needed
+
+## Checklist
+
+- [ ] Framework README read
+- [ ] Local dist paths used
+- [ ] No mixed CSS frameworks
+
+## References
+
+- `modules/frameworks/<name>/README.md`
+- `modules/frameworks/<name>/dist/`
 
 ## Framework Selection Guide
 

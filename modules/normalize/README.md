@@ -1,26 +1,32 @@
 # Color Normalization - LLM Instructions
 
+See global rules: `modules/README.md`.
+
+Module for post-processing generated sites. Fixes color contrast issues.
+
 Модуль для постобработки сгенерированных сайтов. Исправляет проблемы с контрастом цветов.
 
 ---
 
-## Когда применять
+## Purpose
+
+Normalize colors to meet contrast and readability rules.
+
+Нормализует цвета для читабельности и контраста.
+
+## How to Use
+
+Run after generation to verify and fix contrast.
 
 Запускай после генерации сайта для проверки и исправления контраста.
 
 ---
 
-## Задача
+## Examples
 
-1. Прочитай CSS файл сайта
-2. Найди проблемы с контрастом
-3. Исправь их
+### 1. Colored heading text
 
----
-
-## Типичные проблемы
-
-### 1. Цветной текст для заголовков
+Цветной текст для заголовков.
 
 **Плохо:**
 ```css
@@ -38,7 +44,9 @@ body { color: var(--text); }
 h1, h2, h3, .title { color: var(--heading); }
 ```
 
-### 2. Заголовки без явного цвета
+### 2. Headings without explicit color
+
+Заголовки без явного цвета.
 
 **Плохо:**
 ```css
@@ -56,7 +64,9 @@ h1, h2, h3 {
 }
 ```
 
-### 3. Поля форм без явного фона
+### 3. Form fields without explicit background
+
+Поля форм без явного фона.
 
 **Плохо:**
 ```css
@@ -75,7 +85,9 @@ h1, h2, h3 {
 }
 ```
 
-### 4. Бледные labels (strong)
+### 4. Low-contrast labels
+
+Бледные labels и strong.
 
 **Плохо:**
 ```css
@@ -91,7 +103,9 @@ strong {
 }
 ```
 
-### 5. Зелёный/синий текст в компонентах
+### 5. Colored text in components
+
+Зелёный/синий текст в компонентах.
 
 **Плохо:**
 ```css
@@ -109,9 +123,11 @@ strong {
 
 ---
 
-## Правила нормализации
+## Rules
 
-### Переменные
+### Variables
+
+Переменные.
 
 Если в CSS есть цветные переменные для текста — замени на нейтральные:
 
@@ -125,7 +141,9 @@ strong {
 --heading: #111827;   /* тёмный для заголовков */
 ```
 
-### Заголовки
+### Headings
+
+Заголовки.
 
 Добавь явный цвет:
 
@@ -135,7 +153,9 @@ h1, h2, h3, h4, h5, h6, .title {
 }
 ```
 
-### Карточки
+### Cards
+
+Карточки.
 
 Карточки должны иметь свой контекст:
 
@@ -150,7 +170,9 @@ h1, h2, h3, h4, h5, h6, .title {
 }
 ```
 
-### Тёмные секции
+### Dark sections
+
+Тёмные секции.
 
 Текст на тёмном фоне — светлый:
 
@@ -164,7 +186,9 @@ h1, h2, h3, h4, h5, h6, .title {
 }
 ```
 
-### Labels и strong
+### Labels and strong
+
+Labels и strong.
 
 Элементы `<strong>` должны быть контрастными:
 
@@ -174,7 +198,9 @@ strong {
 }
 ```
 
-### Поля форм
+### Form fields
+
+Поля форм.
 
 Firefox использует системную тёмную тему для input-ов. Всегда задавай явный фон и цвет:
 
@@ -197,7 +223,9 @@ Firefox использует системную тёмную тему для inp
 
 ---
 
-## Чеклист
+## Checklist
+
+After normalization, verify:
 
 После нормализации проверь:
 
@@ -211,7 +239,13 @@ Firefox использует системную тёмную тему для inp
 
 ---
 
-## Пример применения
+## References
+
+- `modules/normalize/README.md`
+
+## Example usage
+
+Пример применения.
 
 ```
 Прочитай modules/normalize/README.md и примени к build/site/assets/css/style.css

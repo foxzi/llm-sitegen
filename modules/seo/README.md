@@ -1,6 +1,12 @@
 # SEO & Meta - LLM Instructions
 
+See global rules: `modules/README.md`.
+
 Ready-to-use SEO templates: meta tags, Open Graph, Twitter Cards, Schema.org markup, and technical SEO files.
+
+## Purpose
+
+Provide meta tags and structured data templates.
 
 ## How to Use
 
@@ -24,6 +30,30 @@ seo/
 ```
 
 ---
+
+## Examples
+
+```html
+<meta name="description" content="...">
+<meta property="og:title" content="...">
+```
+
+## Rules
+
+- Use absolute URLs for social previews
+- Keep titles/descriptions within recommended lengths
+
+## Checklist
+
+- [ ] Essential meta tags included
+- [ ] OG/Twitter tags use absolute URLs
+- [ ] Schema included when relevant
+
+## References
+
+- `modules/seo/meta-tags.html`
+- `modules/seo/open-graph.html`
+- `modules/seo/schema/`
 
 ## Quick Reference
 
@@ -60,6 +90,8 @@ seo/
 ```html
 <link rel="canonical" href="https://example.com/page">
 ```
+
+**Important:** social previews require absolute URLs (not local paths).
 
 ---
 

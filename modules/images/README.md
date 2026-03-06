@@ -1,10 +1,62 @@
 # Images - LLM Instructions
 
+See global rules: `modules/README.md`.
+
 Instructions for generating images for websites using llm-imager CLI tool.
 
 **IMPORTANT: NEVER create shell scripts (.sh, .bat) for image generation. NEVER save llm-imager commands to files like images.sh or generate-images.sh. Always execute llm-imager commands directly and inline.**
+**Note:** Batch scripts are allowed for post-processing with `convert`, but not for `llm-imager` generation.
 
 ---
+
+## Purpose
+
+Define how to generate and reference local images.
+
+## How to Use
+
+1. Add inline `![gen: ...]` directives in `spec.md`
+2. Run `llm-imager` directly for each image
+3. Output images to `assets/images/`
+
+## Examples
+
+```markdown
+![gen: modern office with natural light](hero.jpg 1792x1024)
+```
+
+## Rules
+
+- Do not create scripts for image generation
+- Use `assets/images/` for output paths
+
+## Prerequisites
+
+The `llm-imager` tool must be installed and configured locally by the user.
+
+**Important:** All llm-imager configuration (API keys, model selection, dry-run mode, etc.) is the user's responsibility. LLM should run commands normally without checking or modifying behavior based on user's configuration.
+
+**Installation:** https://github.com/foxzi/llm-imager
+
+```bash
+# Debian/Ubuntu
+echo "deb [trusted=yes] https://foxzi.github.io/llm-imager/apt stable main" | sudo tee /etc/apt/sources.list.d/llm-imager.list
+sudo apt update && sudo apt install llm-imager
+
+# Or via Go
+go install github.com/foxzi/llm-imager/cmd/llm-imager@latest
+```
+
+## Checklist
+
+- [ ] All required images listed in spec
+- [ ] Outputs placed in assets/images
+- [ ] No generation scripts created
+
+## References
+
+- `modules/images/README.md`
+- `modules/images/processing/README.md`
 
 ## Inline Image Commands
 
@@ -128,40 +180,12 @@ llm-imager generate -p "professional headshot, confident man 50s, suit, neutral 
   -o assets/images/team-john.jpg --aspect-ratio 1:1
 ```
 
-**Note:** llm-imager is pre-installed and configured. Run commands directly, do not create scripts.
+**Note:** Run commands directly, do not create scripts.
 
-## Prerequisites
-
-The `llm-imager` tool must be installed and configured locally by the user.
-
-**Important:** All llm-imager configuration (API keys, model selection, dry-run mode, etc.) is the user's responsibility. LLM should run commands normally without checking or modifying behavior based on user's configuration.
-
-**Installation:** https://github.com/foxzi/llm-imager
+### Basic Command
 
 ```bash
-# Debian/Ubuntu
-echo "deb [trusted=yes] https://foxzi.github.io/llm-imager/apt stable main" | sudo tee /etc/apt/sources.list.d/llm-imager.list
-sudo apt update && sudo apt install llm-imager
-
-# Or via Go
-go install github.com/foxzi/llm-imager/cmd/llm-imager@latest
-```
-
----
-
-## How to Use
-
-1. Identify images needed from spec.md/design.md
-2. Generate prompts for each image
-3. Create llm-imager commands
-4. Output images to project assets folder
-
----
-
-## Basic Command
-
-```bash
-llm-imager generate -p "prompt" -o output.png
+llm-imager generate -p "prompt" -o assets/images/output.png
 ```
 
 **Aliases:** `generate`, `gen`, `g`
@@ -207,6 +231,17 @@ Use `llm-imager list providers` to check which providers are configured.
 ---
 
 ## Image Types for Websites
+
+### Defaults (Quick Reference)
+
+| Image Type | Aspect Ratio | Size (if needed) | Quality | Notes |
+|------------|--------------|------------------|---------|-------|
+| Hero background | 16:9 | 1792x1024 | hd | No people, no text |
+| Feature icons | 1:1 | 512x512 | standard | Flat or isometric |
+| Team photos | 1:1 | 800x800 | hd | Neutral background |
+| Product images | 1:1 or 4:3 | 1200x1200 | hd | Clean product photo |
+| Blog featured | 16:9 | 1200x630 | hd | Open Graph friendly |
+| Background patterns | 1:1 | 512x512 | standard | Tileable texture |
 
 ### Hero Images
 
@@ -327,6 +362,19 @@ Use `--negative-prompt` to avoid unwanted elements:
 llm-imager generate -p "clean office interior" \
   --negative-prompt "people, text, watermarks, logos, clutter" \
   -o office.jpg
+```
+
+### Prompt Cheatsheet
+
+```
+[subject] + [style] + [colors] + [mood] + [constraints]
+
+Example (hero):
+modern office workspace, photorealistic, neutral blue-gray palette,
+bright natural light, no people, no text, wide composition
+
+Example (icon):
+flat icon of a shield with checkmark, minimal, blue on white, no text
 ```
 
 ---
@@ -459,204 +507,24 @@ project/
 
 If llm-imager is not available:
 
-1. **Placeholder services:** Use placeholder.com or similar
-2. **Stock photos:** Unsplash, Pexels (with attribution)
-3. **SVG illustrations:** Use icons from `icons/` directory
-4. **CSS gradients:** For abstract backgrounds
+1. **Local placeholders:** Use local SVGs copied from `modules/icons/` into `assets/icons/`
+2. **Simple local assets:** Use neutral gradients or solid backgrounds in CSS
+3. **Local photos:** Use project-provided assets in `assets/images/`
 
 ```html
-<!-- Placeholder fallback -->
-<img src="https://via.placeholder.com/1792x1024" alt="Hero">
+<!-- Local SVG fallback -->
+<img src="assets/icons/hero-placeholder.svg" alt="Hero">
 
 <!-- Gradient fallback -->
 <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
 ```
 
 ---
-
----
-
 ## Image Processing with Convert
 
-Use ImageMagick `convert` for post-processing: resize, crop, optimize, format conversion.
+For post-processing (resize, crop, optimize, format conversion), use:
 
-### Basic Commands
-
-**Resize (keep aspect ratio):**
-```bash
-convert input.jpg -resize 800x600 output.jpg
-```
-
-**Resize (exact dimensions, may distort):**
-```bash
-convert input.jpg -resize 800x600! output.jpg
-```
-
-**Resize (fit within bounds):**
-```bash
-convert input.jpg -resize 800x600\> output.jpg
-```
-
-**Crop (width x height + offset):**
-```bash
-convert input.jpg -crop 800x600+100+50 output.jpg
-```
-
-**Crop to aspect ratio (center):**
-```bash
-convert input.jpg -gravity center -crop 16:9 +repage output.jpg
-```
-
-### Common Operations
-
-**Convert format:**
-```bash
-convert input.png output.jpg
-convert input.jpg output.webp
-```
-
-**Optimize JPEG (quality 80%):**
-```bash
-convert input.jpg -quality 80 output.jpg
-```
-
-**Optimize PNG:**
-```bash
-convert input.png -strip -quality 85 output.png
-```
-
-**Create thumbnail:**
-```bash
-convert input.jpg -thumbnail 200x200^ -gravity center -extent 200x200 thumb.jpg
-```
-
-**Add white background (for transparent PNGs):**
-```bash
-convert input.png -background white -flatten output.jpg
-```
-
-**Batch resize all images in folder:**
-```bash
-for img in *.jpg; do
-  convert "$img" -resize 800x600 "resized_$img"
-done
-```
-
-### Website-Specific Tasks
-
-**Hero image (optimize for web):**
-```bash
-convert hero-original.jpg -resize 1920x1080 -quality 85 -strip hero.jpg
-```
-
-**Favicon from logo:**
-```bash
-convert logo.png -resize 32x32 favicon.ico
-convert logo.png -resize 16x16 favicon-16.png
-convert logo.png -resize 32x32 favicon-32.png
-convert logo.png -resize 180x180 apple-touch-icon.png
-convert logo.png -resize 192x192 android-chrome-192.png
-convert logo.png -resize 512x512 android-chrome-512.png
-```
-
-**Open Graph image (exact 1200x630):**
-```bash
-convert input.jpg -resize 1200x630^ -gravity center -extent 1200x630 og-image.jpg
-```
-
-**Team photo (square crop):**
-```bash
-convert photo.jpg -gravity center -crop 1:1 +repage -resize 400x400 team-member.jpg
-```
-
-**Product image (white background, square):**
-```bash
-convert product.png -gravity center -background white -extent 1000x1000 product-square.jpg
-```
-
-**Create WebP versions (smaller file size):**
-```bash
-for img in *.jpg; do
-  convert "$img" -quality 80 "${img%.jpg}.webp"
-done
-```
-
-### Batch Processing Script
-
-```bash
-#!/bin/bash
-# process-images.sh
-
-INPUT_DIR="assets/images/original"
-OUTPUT_DIR="assets/images"
-
-mkdir -p "$OUTPUT_DIR"
-
-# Process hero images
-for img in "$INPUT_DIR"/hero-*.jpg; do
-  [ -f "$img" ] || continue
-  name=$(basename "$img")
-  convert "$img" -resize 1920x1080 -quality 85 -strip "$OUTPUT_DIR/$name"
-done
-
-# Process team photos (square)
-for img in "$INPUT_DIR"/team-*.jpg; do
-  [ -f "$img" ] || continue
-  name=$(basename "$img")
-  convert "$img" -gravity center -crop 1:1 +repage -resize 400x400 -quality 85 "$OUTPUT_DIR/$name"
-done
-
-# Process icons (ensure PNG, resize)
-for img in "$INPUT_DIR"/icon-*.png; do
-  [ -f "$img" ] || continue
-  name=$(basename "$img")
-  convert "$img" -resize 128x128 "$OUTPUT_DIR/$name"
-done
-
-# Create WebP versions
-for img in "$OUTPUT_DIR"/*.jpg; do
-  [ -f "$img" ] || continue
-  convert "$img" -quality 80 "${img%.jpg}.webp"
-done
-
-echo "Images processed in $OUTPUT_DIR"
-```
-
-### Integration with Design Spec
-
-In design.md, specify processing requirements:
-
-```markdown
-## Images
-
-processing:
-  hero.jpg:
-    resize: 1920x1080
-    quality: 85
-  team-*.jpg:
-    crop: 1:1
-    resize: 400x400
-  icons:
-    resize: 128x128
-    format: png
-  all:
-    webp: true  # create WebP versions
-```
-
-### Quick Reference
-
-| Task | Command |
-|------|---------|
-| Resize | `-resize 800x600` |
-| Exact resize | `-resize 800x600!` |
-| Crop | `-crop 800x600+0+0` |
-| Center crop | `-gravity center -crop 800x600+0+0` |
-| Quality | `-quality 85` |
-| Strip metadata | `-strip` |
-| Format | just change extension |
-| Thumbnail | `-thumbnail 200x200^` |
-| White background | `-background white -flatten` |
-| Aspect crop | `-gravity center -crop 16:9 +repage` |
+- `modules/images/processing/README.md`
 
 ---
 
@@ -665,7 +533,7 @@ processing:
 Before generating images:
 
 - [ ] Image list identified from spec/design
-- [ ] Sizes determined for each image
+- [ ] Defaults selected for each image type
 - [ ] Style keywords defined for consistency
 - [ ] Output directory created
 - [ ] Prompts written with negative prompts if needed

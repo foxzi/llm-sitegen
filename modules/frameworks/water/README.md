@@ -1,19 +1,46 @@
 # Water.css - LLM Instructions
 
-## Files
+See global rules: `modules/README.md`.
 
-- `dist/water.min.css` - auto theme (light/dark based on system)
-- `dist/water-dark.min.css` - dark theme only
+## Purpose
 
-## HTML Setup
+Provide classless styling with automatic theme.
+
+## How to Use
+
+1. Link local Water.css from `dist/`
+2. Use semantic HTML without extra classes
+
+## Examples
+
+### HTML Setup
 
 ```html
 <!-- Auto theme (recommended) -->
-<link rel="stylesheet" href="./dist/water.min.css" />
+<link rel="stylesheet" href="assets/css/water.min.css" />
 
 <!-- Dark only -->
-<link rel="stylesheet" href="./dist/water-dark.min.css" />
+<link rel="stylesheet" href="assets/css/water-dark.min.css" />
 ```
+
+## Rules
+
+- Use local `dist/` assets only
+- Do not use CDN links
+
+## Checklist
+
+- [ ] Water.css linked locally
+
+## References
+
+- `modules/frameworks/water/dist/water.min.css`
+- `modules/frameworks/water/dist/water-dark.min.css`
+
+## Structure
+
+- `dist/water.min.css` - auto theme (light/dark based on system)
+- `dist/water-dark.min.css` - dark theme only
 
 ## Core Concepts
 
@@ -27,7 +54,7 @@ Water.css is classless. Write semantic HTML, it looks good automatically. No cla
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="./dist/water.min.css">
+  <link rel="stylesheet" href="assets/css/water.min.css">
   <title>Page</title>
 </head>
 <body>

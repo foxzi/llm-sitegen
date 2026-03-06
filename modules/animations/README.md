@@ -1,12 +1,19 @@
 # Animations - LLM Instructions
 
+See global rules: `modules/README.md`.
+
 CSS animations, transitions, and effects. Each file contains complete styles and usage examples.
+
+## Purpose
+
+Provide reusable animation utilities and effects.
 
 ## How to Use
 
 1. Copy CSS to your stylesheet
 2. Apply classes to elements
 3. Include JavaScript if required (scroll, text effects)
+4. Respect `prefers-reduced-motion` for accessibility
 
 ## Structure
 
@@ -20,6 +27,27 @@ animations/
 ```
 
 ---
+
+## Examples
+
+```html
+<div class="animate-fade-in-up duration-500">Content</div>
+```
+
+## Rules
+
+- Prefer transform/opacity animations
+- Respect `prefers-reduced-motion`
+- Add JS only for scroll/text effects
+
+## Checklist
+
+- [ ] Reduced motion handled
+- [ ] No heavy layout animations
+
+## References
+
+- `modules/animations/`
 
 ## Quick Reference
 

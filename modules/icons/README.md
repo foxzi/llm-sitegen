@@ -1,12 +1,40 @@
 # Icons - LLM Instructions
 
+See global rules: `modules/README.md`.
+
 Local SVG icon collections for websites. All icons are SVG format, scalable and styleable with CSS.
+
+## Purpose
+
+Provide local SVG icon sets with usage guidance.
 
 ## How to Use
 
 1. Choose icon set based on project type or style
-2. Include SVG inline or as img src
+2. Use inline SVG when possible (easier to recolor and scale)
 3. Style with CSS (color, size)
+
+## Examples
+
+```html
+<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+  <path d="M12 4.5v15m7.5-7.5h-15" />
+</svg>
+```
+
+## Rules
+
+- Prefer inline SVG for styling control
+- Use local paths under `assets/icons/`
+
+## Checklist
+
+- [ ] Inline SVG used when possible
+- [ ] Paths point to local assets
+
+## References
+
+- `modules/icons/`
 
 ## HTML Usage
 
@@ -28,7 +56,7 @@ Local SVG icon collections for websites. All icons are SVG format, scalable and 
 
 ### Image Tag
 ```html
-<img src="icons/heroicons/outline/plus.svg" alt="Add" width="24" height="24">
+<img src="assets/icons/heroicons/outline/plus.svg" alt="Add" width="24" height="24">
 ```
 
 ### CSS Background
@@ -36,7 +64,7 @@ Local SVG icon collections for websites. All icons are SVG format, scalable and 
 .icon-plus {
   width: 24px;
   height: 24px;
-  background: url('icons/feather/plus.svg') no-repeat center;
+  background: url('assets/icons/feather/plus.svg') no-repeat center;
   background-size: contain;
 }
 ```
@@ -279,9 +307,9 @@ nav a {
 ### Social Icons
 ```html
 <div class="social">
-  <a href="#"><img src="icons/lucide/twitter.svg" alt="Twitter"></a>
-  <a href="#"><img src="icons/lucide/github.svg" alt="GitHub"></a>
-  <a href="#"><img src="icons/lucide/linkedin.svg" alt="LinkedIn"></a>
+  <a href="#"><img src="assets/icons/lucide/twitter.svg" alt="Twitter"></a>
+  <a href="#"><img src="assets/icons/lucide/github.svg" alt="GitHub"></a>
+  <a href="#"><img src="assets/icons/lucide/linkedin.svg" alt="LinkedIn"></a>
 </div>
 
 <style>
@@ -322,6 +350,8 @@ icons/
     bold/        # bold weight
     fill/        # filled style
 ```
+
+For generated sites, place icons under `assets/icons/` and update paths accordingly.
 
 ## Icon Naming Convention
 

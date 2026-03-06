@@ -1,16 +1,44 @@
 # Bootstrap - LLM Instructions
 
-## Files
+See global rules: `modules/README.md`.
+
+## Purpose
+
+Provide component-based CSS/JS for standard layouts and UI.
+
+## How to Use
+
+1. Link local Bootstrap CSS and JS from `dist/`
+2. Use Bootstrap classes for layout and components
+
+## Examples
+
+### HTML Setup
+
+```html
+<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+```
+
+## Rules
+
+- Use local `dist/` assets only
+- Do not use CDN links
+
+## Checklist
+
+- [ ] Bootstrap CSS linked locally
+- [ ] Bootstrap JS linked locally (if needed)
+
+## References
+
+- `modules/frameworks/bootstrap/dist/bootstrap.min.css`
+- `modules/frameworks/bootstrap/dist/bootstrap.bundle.min.js`
+
+## Structure
 
 - `dist/bootstrap.min.css` - CSS styles
 - `dist/bootstrap.bundle.min.js` - JavaScript (includes Popper.js)
-
-## HTML Setup
-
-```html
-<link rel="stylesheet" href="./dist/bootstrap.min.css" />
-<script src="./dist/bootstrap.bundle.min.js"></script>
-```
 
 ## Grid System
 
