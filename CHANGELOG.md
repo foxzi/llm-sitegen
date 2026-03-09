@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Fixed
+- Remove duplicate horizontal rules in docs/guide-en.md and docs/guide-ru.md
+- Replace `build/site/` with `build/` in task.md examples in file-requirements docs
+- Replace self-referencing entries in References sections of modules/images, normalize, content READMEs
+- Fix invalid module paths in examples/README.md (use README.md paths instead of non-existent directory paths)
+
 ### Changed
 - Rename spec.md to content.md and design.md to technical.md across all files
 - Rename example project files (spec.md -> content.md, design.md -> technical.md)

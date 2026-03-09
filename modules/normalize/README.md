@@ -241,7 +241,8 @@ After normalization, verify:
 
 ## References
 
-- `modules/normalize/README.md`
+- `modules/colors/base.css`
+- `modules/master.md` — Phase 5: Normalize
 
 ## Example usage
 

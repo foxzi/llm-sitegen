@@ -39,7 +39,8 @@ Define text processing and generation directives.
 
 ## References
 
-- `modules/content/README.md`
+- `modules/master.md` — Phase 3: Content Processing
+- `modules/seo/keywords.md` — keyword extraction
 
 ## Content Generation
 

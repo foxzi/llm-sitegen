@@ -455,7 +455,7 @@ Design in `technical.md`.
 Website specification and content in `content.md`.
 Technical details for website creation in `technical.md`.
 
-Create website in build/site/ folder.
+Create website in build/ folder.
 
 ## Additional
 

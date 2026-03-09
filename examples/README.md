@@ -52,11 +52,11 @@ examples/
 
 ## Ссылки на ресурсы
 
-В technical.md можно ссылаться на готовые пресеты:
-- `modules/colors/ocean-trust` - цветовая схема
-- `modules/fonts/inter` - шрифт
-- `modules/layouts/landing-page` - шаблон страницы
-- `modules/components/cards` - компонент
+В technical.md можно ссылаться на готовые пресеты из `modules/`:
+- `modules/colors/README.md` — цветовые палитры (35+)
+- `modules/fonts/README.md` — шрифты (16 Google Fonts)
+- `modules/layouts/README.md` — шаблоны страниц и секций
+- `modules/components/README.md` — UI компоненты
 
 ## Выходные ассеты
 

@@ -673,8 +673,6 @@ tone: confident
 
 ---
 
----
-
 ## Генерация изображений
 
 Для генерации изображений используется утилита [llm-imager](https://github.com/foxzi/llm-imager).

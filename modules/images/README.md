@@ -55,8 +55,8 @@ go install github.com/foxzi/llm-imager/cmd/llm-imager@latest
 
 ## References
 
-- `modules/images/README.md`
 - `modules/images/processing/README.md`
+- `modules/master.md` — image generation workflow
 
 ## Inline Image Commands
 

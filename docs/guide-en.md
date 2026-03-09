@@ -673,8 +673,6 @@ tone: confident
 
 ---
 
----
-
 ## Image Generation
 
 For image generation, use the [llm-imager](https://github.com/foxzi/llm-imager) utility.
