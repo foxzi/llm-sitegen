@@ -106,7 +106,7 @@ Provider settings are saved in a Docker volume (`opencode-config`) and persist b
 In the OpenCode chat, provide the project files and prompt:
 
 ```
-Read files master.md, projects/001_my-company/specs/content.md, projects/001_my-company/specs/technical.md
+Read files modules/master.md, projects/001_my-company/specs/content.md, projects/001_my-company/specs/technical.md
 
 Generate a website according to the specification and save to projects/001_my-company/build/
 ```
@@ -192,7 +192,7 @@ curl -s -X POST http://localhost:3000/session/<session-id>/message \
   -H 'Content-Type: application/json' \
   -d '{
     "model": {"providerID": "anthropic", "modelID": "claude-sonnet-4"},
-    "parts": [{"type": "text", "text": "Read master.md and projects/001_my-company/specs/content.md, specs/technical.md. Generate website to projects/001_my-company/build/"}]
+    "parts": [{"type": "text", "text": "Read modules/master.md and projects/001_my-company/specs/content.md and projects/001_my-company/specs/technical.md. Generate website to projects/001_my-company/build/"}]
   }'
 ```
 
@@ -256,7 +256,7 @@ const result = await client.session.prompt({
     model: { providerID: "anthropic", modelID: "claude-sonnet-4" },
     parts: [{
       type: "text",
-      text: "Read master.md and projects/001_my-company/specs/content.md, specs/technical.md. Generate website to projects/001_my-company/build/"
+      text: "Read modules/master.md and projects/001_my-company/specs/content.md and projects/001_my-company/specs/technical.md. Generate website to projects/001_my-company/build/"
     }]
   }
 })

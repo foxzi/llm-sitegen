@@ -92,11 +92,11 @@ body: Open Sans
 ### Step 4: Run generation
 
 Provide the LLM with files as context:
-- `master.md` — main prompt (connects all modules)
+- `modules/master.md` — main prompt (connects all modules)
 - Your project's `content.md` and `technical.md`
 
 **Optional** (for detailed instructions):
-- README.md from needed folders (frameworks, layouts, colors, etc.)
+- README.md from needed folders (`modules/frameworks`, `modules/layouts`, `modules/colors`, etc.)
 
 ---
 
@@ -106,24 +106,24 @@ Provide the LLM with files as context:
 
 ```bash
 # Basic run
-claude -p "$(cat master.md content.md technical.md)
+claude -p "$(cat modules/master.md content.md technical.md)
 
 Generate a website according to the specification"
 
 # With additional modules
-claude -p "$(cat master.md layouts/README.md colors/README.md content.md technical.md)
+claude -p "$(cat modules/master.md modules/layouts/README.md modules/colors/README.md content.md technical.md)
 
 Generate a website according to the specification"
 
 # Interactive mode with files
 claude
-> /read master.md
+> /read modules/master.md
 > /read projects/001_my-project/specs/content.md
 > /read projects/001_my-project/specs/technical.md
 > Generate a website according to the specification and save to projects/001_my-project/build/
 
 # Output to file
-claude -p "$(cat master.md content.md technical.md)
+claude -p "$(cat modules/master.md content.md technical.md)
 
 Generate only the HTML code" > projects/001_my-project/build/index.html
 ```
@@ -132,35 +132,35 @@ Generate only the HTML code" > projects/001_my-project/build/index.html
 
 ```bash
 # Basic run
-codex "$(cat master.md content.md technical.md)
+codex "$(cat modules/master.md content.md technical.md)
 
 Generate a website according to the specification"
 
 # With model specification
-codex --model gpt-4 "$(cat master.md content.md technical.md)
+codex --model gpt-4 "$(cat modules/master.md content.md technical.md)
 
 Generate a website according to the specification"
 
 # Interactive mode
 codex
-> Read files master.md, content.md, technical.md and generate the website
+> Read files modules/master.md, content.md, technical.md and generate the website
 ```
 
 ### OpenCode
 
 ```bash
 # Basic run (single prompt)
-opencode run "$(cat master.md content.md technical.md)
+opencode run "$(cat modules/master.md content.md technical.md)
 
 Generate a website according to the specification"
 
 # With model specification
-opencode run --model anthropic/claude-opus-4 "$(cat master.md content.md technical.md)
+opencode run --model anthropic/claude-opus-4 "$(cat modules/master.md content.md technical.md)
 
 Generate a website according to the specification"
 
 # With file attachments
-opencode run --file master.md --file content.md --file technical.md \
+opencode run --file modules/master.md --file content.md --file technical.md \
   "Generate a website according to the specification"
 
 # Interactive mode (TUI)
@@ -191,31 +191,31 @@ opencode web --port 4096
 
 **Simple landing page:**
 ```bash
-claude -p "$(cat master.md layouts/README.md projects/001_my-site/specs/content.md projects/001_my-site/specs/technical.md)
+claude -p "$(cat modules/master.md modules/layouts/README.md projects/001_my-site/specs/content.md projects/001_my-site/specs/technical.md)
 
 Generate a landing page and save to projects/001_my-site/build/"
 ```
 
 **With image generation:**
 ```bash
-claude -p "$(cat master.md modules/images/README.md content.md technical.md)
+claude -p "$(cat modules/master.md modules/images/README.md content.md technical.md)
 
 Generate website and run llm-imager for all images"
 ```
 
 **Iteration (revisions):**
 ```bash
-claude -p "$(cat iterations.md)
+claude -p "$(cat modules/iterations.md)
 
 In projects/001_my-site/build/index.html change button color to orange and add FAQ section"
 ```
 
 ### Recommendations
 
-1. **Use master.md** — it contains all instructions and references
+1. **Use modules/master.md** — it contains all instructions and references
 2. **Add modules as needed** — no need to include everything at once
 3. **Save to project build/** — keep generated files in `projects/<id>_<name>/build/`
-4. **Iterate** — use iterations.md for revisions
+4. **Iterate** — use modules/iterations.md for revisions
 
 ---
 
@@ -223,9 +223,9 @@ In projects/001_my-site/build/index.html change button color to orange and add F
 
 ```
 llm-sitegen/
-├── master.md          # Main LLM prompt
-├── iterations.md      # Handling revisions
 ├── modules/           # All generation modules
+│   ├── master.md      # Main LLM prompt
+│   ├── iterations.md  # Handling revisions
 │   ├── frameworks/    # CSS/JS frameworks
 │   ├── colors/        # Color palettes
 │   ├── fonts/         # Fonts (woff2)

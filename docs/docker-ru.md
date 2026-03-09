@@ -106,7 +106,7 @@ docker compose up
 В чате OpenCode укажите файлы проекта и промпт:
 
 ```
-Прочитай файлы master.md, projects/001_my-company/specs/content.md, projects/001_my-company/specs/technical.md
+Прочитай файлы modules/master.md, projects/001_my-company/specs/content.md, projects/001_my-company/specs/technical.md
 
 Сгенерируй сайт согласно спецификации и сохрани в projects/001_my-company/build/
 ```
@@ -192,7 +192,7 @@ curl -s -X POST http://localhost:3000/session/<session-id>/message \
   -H 'Content-Type: application/json' \
   -d '{
     "model": {"providerID": "anthropic", "modelID": "claude-sonnet-4"},
-    "parts": [{"type": "text", "text": "Прочитай master.md и projects/001_my-company/specs/content.md, specs/technical.md. Сгенерируй сайт в projects/001_my-company/build/"}]
+    "parts": [{"type": "text", "text": "Прочитай modules/master.md и projects/001_my-company/specs/content.md и projects/001_my-company/specs/technical.md. Сгенерируй сайт в projects/001_my-company/build/"}]
   }'
 ```
 
@@ -256,7 +256,7 @@ const result = await client.session.prompt({
     model: { providerID: "anthropic", modelID: "claude-sonnet-4" },
     parts: [{
       type: "text",
-      text: "Прочитай master.md и projects/001_my-company/specs/content.md, specs/technical.md. Сгенерируй сайт в projects/001_my-company/build/"
+      text: "Прочитай modules/master.md и projects/001_my-company/specs/content.md и projects/001_my-company/specs/technical.md. Сгенерируй сайт в projects/001_my-company/build/"
     }]
   }
 })

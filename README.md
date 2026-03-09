@@ -10,7 +10,7 @@ A collection of templates and prompts for generating websites with LLMs (Claude,
 2. Запустите генерацию:
 
 ```bash
-claude --print "$(cat master.md content.md technical.md)" "Сгенерируй сайт"
+claude --print "$(cat modules/master.md content.md technical.md)" "Сгенерируй сайт"
 ```
 
 ### Пример content.md
@@ -54,9 +54,9 @@ body: Open Sans
 
 ```
 llm-sitegen/
-├── master.md          # Main LLM prompt
-├── iterations.md      # Handling revisions
 ├── modules/           # All generation modules
+│   ├── master.md      # Main LLM prompt
+│   ├── iterations.md  # Handling revisions
 │   ├── frameworks/    # CSS/JS frameworks
 │   ├── colors/        # Color palettes (35+)
 │   ├── fonts/         # Google Fonts (16)

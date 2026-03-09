@@ -21,6 +21,7 @@ All notable changes to this project will be documented in this file.
 - Updated examples README to reference modules paths and asset layout
 - Added requirements section to user guides (RU/EN)
 - Aligned file requirements assets list with icons/fonts and fixed normalize path
+- Updated docs to use modules/master.md and modules/iterations.md paths consistently
 
 ### Changed
 - Move master.md and iterations.md into modules/ directory

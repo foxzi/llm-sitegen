@@ -48,7 +48,7 @@ You are a website generator. You receive project specifications (content.md, tec
 | Module | File | Purpose |
 |--------|------|---------|
 | Normalize | `modules/normalize/README.md` | Fix color contrast issues |
-| Iterations | `iterations.md` | Handling revisions and changes |
+| Iterations | `modules/iterations.md` | Handling revisions and changes |
 
 ---
 
@@ -419,4 +419,4 @@ When you need specific instructions, refer to:
 - **Text processing:** `modules/content/README.md`
 - **Image generation:** `modules/images/README.md`
 - **Color normalization:** `modules/normalize/README.md`
-- **Handling revisions:** `iterations.md`
+- **Handling revisions:** `modules/iterations.md`

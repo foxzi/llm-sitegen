@@ -92,11 +92,11 @@ body: Open Sans
 ### Шаг 4: Запустите генерацию
 
 Передайте LLM файлы как контекст:
-- `master.md` — главный промпт (связывает все модули)
+- `modules/master.md` — главный промпт (связывает все модули)
 - `content.md` и `technical.md` вашего проекта
 
 **Опционально** (для детальных инструкций):
-- README.md из нужных папок (frameworks, layouts, colors и т.д.)
+- README.md из нужных папок (`modules/frameworks`, `modules/layouts`, `modules/colors` и т.д.)
 
 ---
 
@@ -106,24 +106,24 @@ body: Open Sans
 
 ```bash
 # Базовый запуск
-claude -p "$(cat master.md content.md technical.md)
+claude -p "$(cat modules/master.md content.md technical.md)
 
 Сгенерируй сайт согласно спецификации"
 
 # С дополнительными модулями
-claude -p "$(cat master.md layouts/README.md colors/README.md content.md technical.md)
+claude -p "$(cat modules/master.md modules/layouts/README.md modules/colors/README.md content.md technical.md)
 
 Сгенерируй сайт согласно спецификации"
 
 # Интерактивный режим с файлами
 claude
-> /read master.md
+> /read modules/master.md
 > /read projects/001_my-project/specs/content.md
 > /read projects/001_my-project/specs/technical.md
 > Сгенерируй сайт согласно спецификации и сохрани в projects/001_my-project/build/
 
 # С выводом в файл
-claude -p "$(cat master.md content.md technical.md)
+claude -p "$(cat modules/master.md content.md technical.md)
 
 Сгенерируй только HTML код сайта" > projects/001_my-project/build/index.html
 ```
@@ -132,35 +132,35 @@ claude -p "$(cat master.md content.md technical.md)
 
 ```bash
 # Базовый запуск
-codex "$(cat master.md content.md technical.md)
+codex "$(cat modules/master.md content.md technical.md)
 
 Сгенерируй сайт согласно спецификации"
 
 # С указанием модели
-codex --model gpt-4 "$(cat master.md content.md technical.md)
+codex --model gpt-4 "$(cat modules/master.md content.md technical.md)
 
 Сгенерируй сайт согласно спецификации"
 
 # Интерактивный режим
 codex
-> Прочитай файлы master.md, content.md, technical.md и сгенерируй сайт
+> Прочитай файлы modules/master.md, content.md, technical.md и сгенерируй сайт
 ```
 
 ### OpenCode
 
 ```bash
 # Базовый запуск (один промпт)
-opencode run "$(cat master.md content.md technical.md)
+opencode run "$(cat modules/master.md content.md technical.md)
 
 Сгенерируй сайт согласно спецификации"
 
 # С указанием модели
-opencode run --model anthropic/claude-opus-4 "$(cat master.md content.md technical.md)
+opencode run --model anthropic/claude-opus-4 "$(cat modules/master.md content.md technical.md)
 
 Сгенерируй сайт согласно спецификации"
 
 # С подключением файлов
-opencode run --file master.md --file content.md --file technical.md \
+opencode run --file modules/master.md --file content.md --file technical.md \
   "Сгенерируй сайт согласно спецификации"
 
 # Интерактивный режим (TUI)
@@ -191,31 +191,31 @@ opencode web --port 4096
 
 **Простой лендинг:**
 ```bash
-claude -p "$(cat master.md layouts/README.md projects/001_my-site/specs/content.md projects/001_my-site/specs/technical.md)
+claude -p "$(cat modules/master.md modules/layouts/README.md projects/001_my-site/specs/content.md projects/001_my-site/specs/technical.md)
 
 Сгенерируй лендинг и сохрани в projects/001_my-site/build/"
 ```
 
 **С генерацией картинок:**
 ```bash
-claude -p "$(cat master.md modules/images/README.md content.md technical.md)
+claude -p "$(cat modules/master.md modules/images/README.md content.md technical.md)
 
 Сгенерируй сайт и запусти llm-imager для всех изображений"
 ```
 
 **Итерация (правки):**
 ```bash
-claude -p "$(cat iterations.md)
+claude -p "$(cat modules/iterations.md)
 
 В файле projects/001_my-site/build/index.html измени цвет кнопок на оранжевый и добавь секцию FAQ"
 ```
 
 ### Рекомендации
 
-1. **Используй master.md** — он содержит все инструкции и ссылки
+1. **Используй modules/master.md** — он содержит все инструкции и ссылки
 2. **Добавляй модули по необходимости** — не нужно подключать всё сразу
 3. **Сохраняй в build/ проекта** — держи сгенерированные файлы в `projects/<id>_<name>/build/`
-4. **Итерируй** — используй iterations.md для правок
+4. **Итерируй** — используй modules/iterations.md для правок
 
 ---
 
@@ -223,9 +223,9 @@ claude -p "$(cat iterations.md)
 
 ```
 llm-sitegen/
-├── master.md          # Главный промпт для LLM
-├── iterations.md      # Обработка правок
 ├── modules/           # Все модули генерации
+│   ├── master.md      # Главный промпт для LLM
+│   ├── iterations.md  # Обработка правок
 │   ├── frameworks/    # CSS/JS фреймворки
 │   ├── colors/        # Цветовые палитры
 │   ├── fonts/         # Шрифты (woff2)
