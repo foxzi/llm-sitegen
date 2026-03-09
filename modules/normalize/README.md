@@ -248,5 +248,5 @@ After normalization, verify:
 Пример применения.
 
 ```
-Прочитай modules/normalize/README.md и примени к build/site/assets/css/style.css
+Прочитай modules/normalize/README.md и примени к build/assets/css/style.css
 ```

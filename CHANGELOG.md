@@ -20,6 +20,7 @@ All notable changes to this project will be documented in this file.
 - Refined framework examples and README setup to match build asset layout
 - Updated examples README to reference modules paths and asset layout
 - Added requirements section to user guides (RU/EN)
+- Aligned file requirements assets list with icons/fonts and fixed normalize path
 
 ### Changed
 - Move master.md and iterations.md into modules/ directory

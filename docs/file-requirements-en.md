@@ -335,7 +335,7 @@ Standard sections for landing pages:
 ## Assets
 - Logo: logo.png
 - Favicon: favicon.ico
-- Folder structure: assets/css/, assets/js/, assets/images/
+- Folder structure: assets/css/, assets/js/, assets/images/, assets/icons/, assets/fonts/
 ```
 
 ### Minimal technical.md Example

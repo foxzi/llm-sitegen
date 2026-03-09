@@ -335,7 +335,7 @@ text: #1F2937
 ## Assets
 - Logo: logo.png
 - Favicon: favicon.ico
-- Структура папок: assets/css/, assets/js/, assets/images/
+- Структура папок: assets/css/, assets/js/, assets/images/, assets/icons/, assets/fonts/
 ```
 
 ### Пример минимального technical.md
