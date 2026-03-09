@@ -37,15 +37,15 @@ LLM Site Generator — это набор шаблонов, инструкций 
 projects/
   001_my-project/
     specs/
-      spec.md      # Контент и требования
-      design.md    # Дизайн и стилизация
+      content.md      # Контент и требования
+      technical.md    # Дизайн и стилизация
 ```
 
 ---
 
 ## Требования
 
-- Обязательные входные файлы: `spec.md`, `design.md`
+- Обязательные входные файлы: `content.md`, `technical.md`
 - Опционально: `task.md` для дополнительных инструкций
 - Все ассеты должны быть локальными (без CDN)
 - Итоговый сайт должен быть самодостаточным и хранить всё в `build/assets/`
@@ -56,7 +56,7 @@ projects/
   - `build/assets/icons/`
 - Генерация изображений: только прямые команды `llm-imager` (без скриптов)
 
-### Шаг 2: Опишите проект в spec.md
+### Шаг 2: Опишите проект в content.md
 
 ```markdown
 # Название проекта
@@ -73,7 +73,7 @@ projects/
 Адрес: г. Москва, ул. Примерная, 1
 ```
 
-### Шаг 3: Настройте дизайн в design.md
+### Шаг 3: Настройте дизайн в technical.md
 
 ```markdown
 # Design
@@ -93,7 +93,7 @@ body: Open Sans
 
 Передайте LLM файлы как контекст:
 - `master.md` — главный промпт (связывает все модули)
-- `spec.md` и `design.md` вашего проекта
+- `content.md` и `technical.md` вашего проекта
 
 **Опционально** (для детальных инструкций):
 - README.md из нужных папок (frameworks, layouts, colors и т.д.)
@@ -106,24 +106,24 @@ body: Open Sans
 
 ```bash
 # Базовый запуск
-claude -p "$(cat master.md spec.md design.md)
+claude -p "$(cat master.md content.md technical.md)
 
 Сгенерируй сайт согласно спецификации"
 
 # С дополнительными модулями
-claude -p "$(cat master.md layouts/README.md colors/README.md spec.md design.md)
+claude -p "$(cat master.md layouts/README.md colors/README.md content.md technical.md)
 
 Сгенерируй сайт согласно спецификации"
 
 # Интерактивный режим с файлами
 claude
 > /read master.md
-> /read projects/001_my-project/specs/spec.md
-> /read projects/001_my-project/specs/design.md
+> /read projects/001_my-project/specs/content.md
+> /read projects/001_my-project/specs/technical.md
 > Сгенерируй сайт согласно спецификации и сохрани в projects/001_my-project/build/
 
 # С выводом в файл
-claude -p "$(cat master.md spec.md design.md)
+claude -p "$(cat master.md content.md technical.md)
 
 Сгенерируй только HTML код сайта" > projects/001_my-project/build/index.html
 ```
@@ -132,35 +132,35 @@ claude -p "$(cat master.md spec.md design.md)
 
 ```bash
 # Базовый запуск
-codex "$(cat master.md spec.md design.md)
+codex "$(cat master.md content.md technical.md)
 
 Сгенерируй сайт согласно спецификации"
 
 # С указанием модели
-codex --model gpt-4 "$(cat master.md spec.md design.md)
+codex --model gpt-4 "$(cat master.md content.md technical.md)
 
 Сгенерируй сайт согласно спецификации"
 
 # Интерактивный режим
 codex
-> Прочитай файлы master.md, spec.md, design.md и сгенерируй сайт
+> Прочитай файлы master.md, content.md, technical.md и сгенерируй сайт
 ```
 
 ### OpenCode
 
 ```bash
 # Базовый запуск (один промпт)
-opencode run "$(cat master.md spec.md design.md)
+opencode run "$(cat master.md content.md technical.md)
 
 Сгенерируй сайт согласно спецификации"
 
 # С указанием модели
-opencode run --model anthropic/claude-opus-4 "$(cat master.md spec.md design.md)
+opencode run --model anthropic/claude-opus-4 "$(cat master.md content.md technical.md)
 
 Сгенерируй сайт согласно спецификации"
 
 # С подключением файлов
-opencode run --file master.md --file spec.md --file design.md \
+opencode run --file master.md --file content.md --file technical.md \
   "Сгенерируй сайт согласно спецификации"
 
 # Интерактивный режим (TUI)
@@ -191,14 +191,14 @@ opencode web --port 4096
 
 **Простой лендинг:**
 ```bash
-claude -p "$(cat master.md layouts/README.md projects/001_my-site/specs/spec.md projects/001_my-site/specs/design.md)
+claude -p "$(cat master.md layouts/README.md projects/001_my-site/specs/content.md projects/001_my-site/specs/technical.md)
 
 Сгенерируй лендинг и сохрани в projects/001_my-site/build/"
 ```
 
 **С генерацией картинок:**
 ```bash
-claude -p "$(cat master.md modules/images/README.md spec.md design.md)
+claude -p "$(cat master.md modules/images/README.md content.md technical.md)
 
 Сгенерируй сайт и запусти llm-imager для всех изображений"
 ```
@@ -238,9 +238,9 @@ llm-sitegen/
 │   └── images/        # Генерация изображений
 ├── projects/          # Проекты пользователей
 │   └── 001_my-site/   # Папка проекта: id_имя
-│       ├── specs/     # Вход: spec.md, design.md, task.md
+│       ├── specs/     # Вход: content.md, technical.md, task.md
 │       └── build/     # Выход: сгенерированный сайт
-├── examples/          # Примеры проектов (spec.md + design.md)
+├── examples/          # Примеры проектов (content.md + technical.md)
 └── docs/              # Документация
 ```
 
@@ -260,7 +260,7 @@ llm-sitegen/
 
 ## Создание задания
 
-### Файл spec.md (контент)
+### Файл content.md (контент)
 
 Описывает ЧТО будет на сайте:
 
@@ -290,7 +290,7 @@ A: Ответ на вопрос.
 - Address: г. Москва, ул. Примерная, 1
 ```
 
-### Файл design.md (дизайн)
+### Файл technical.md (дизайн)
 
 Описывает КАК будет выглядеть сайт:
 
@@ -485,7 +485,7 @@ body: Open Sans
 
 ### Генерация текста
 
-Генерируйте контент прямо в spec.md:
+Генерируйте контент прямо в content.md:
 
 ```markdown
 ## Services
@@ -556,7 +556,7 @@ LLM автоматически извлечёт keywords из текста. Мо
 
 ### Пример 1: Лендинг для сервиса
 
-**spec.md:**
+**content.md:**
 ```markdown
 # QuickFix - Ремонт техники
 
@@ -580,7 +580,7 @@ LLM автоматически извлечёт keywords из текста. Мо
 Режим работы: 9:00-21:00, без выходных
 ```
 
-**design.md:**
+**technical.md:**
 ```markdown
 # Design
 
@@ -620,7 +620,7 @@ length: same
 
 ### Пример 2: Портфолио дизайнера
 
-**spec.md:**
+**content.md:**
 ```markdown
 # Анна Петрова - UX/UI дизайнер
 
@@ -640,7 +640,7 @@ Email: anna@example.com
 Telegram: @anna_design
 ```
 
-**design.md:**
+**technical.md:**
 ```markdown
 # Design
 
@@ -693,7 +693,7 @@ sudo apt update && sudo apt install llm-imager
 llm-imager generate -p "описание изображения" -o output.jpg --aspect-ratio 16:9
 ```
 
-### Inline-синтаксис в spec.md
+### Inline-синтаксис в content.md
 
 Вставляйте команды генерации прямо в текст:
 
@@ -714,7 +714,7 @@ llm-imager generate -p "описание изображения" -o output.jpg -
 ![gen: описание | style: photorealistic | negative: text, watermarks](file.jpg 1024x1024)
 ```
 
-### Указание в design.md
+### Указание в technical.md
 
 ```markdown
 ## Images
@@ -792,8 +792,8 @@ images:
 
 ## Чеклист перед генерацией
 
-- [ ] spec.md содержит весь контент
-- [ ] design.md указывает тип сайта
+- [ ] content.md содержит весь контент
+- [ ] technical.md указывает тип сайта
 - [ ] Выбрана цветовая палитра
 - [ ] Выбраны шрифты
 - [ ] Указаны нужные секции

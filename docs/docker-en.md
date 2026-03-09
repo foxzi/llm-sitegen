@@ -29,7 +29,7 @@ Create a project folder with a `specs/` directory:
 mkdir -p projects/001_my-company/specs
 ```
 
-**projects/001_my-company/specs/spec.md** — content and requirements:
+**projects/001_my-company/specs/content.md** — content and requirements:
 
 ```markdown
 # My Company
@@ -45,7 +45,7 @@ We build great products since 2010.
 Phone: +1 555 123-4567
 ```
 
-**projects/001_my-company/specs/design.md** — visual design:
+**projects/001_my-company/specs/technical.md** — visual design:
 
 ```markdown
 ## Site Type
@@ -106,7 +106,7 @@ Provider settings are saved in a Docker volume (`opencode-config`) and persist b
 In the OpenCode chat, provide the project files and prompt:
 
 ```
-Read files master.md, projects/001_my-company/specs/spec.md, projects/001_my-company/specs/design.md
+Read files master.md, projects/001_my-company/specs/content.md, projects/001_my-company/specs/technical.md
 
 Generate a website according to the specification and save to projects/001_my-company/build/
 ```
@@ -143,8 +143,8 @@ Each project lives in `projects/` with a numeric ID prefix:
 projects/
   001_my-company/
     specs/
-      spec.md        # Content and requirements
-      design.md      # Visual design
+      content.md        # Content and requirements
+      technical.md      # Visual design
       task.md        # Revision tasks (optional)
     build/
       index.html     # Generated site
@@ -192,7 +192,7 @@ curl -s -X POST http://localhost:3000/session/<session-id>/message \
   -H 'Content-Type: application/json' \
   -d '{
     "model": {"providerID": "anthropic", "modelID": "claude-sonnet-4"},
-    "parts": [{"type": "text", "text": "Read master.md and projects/001_my-company/specs/spec.md, specs/design.md. Generate website to projects/001_my-company/build/"}]
+    "parts": [{"type": "text", "text": "Read master.md and projects/001_my-company/specs/content.md, specs/technical.md. Generate website to projects/001_my-company/build/"}]
   }'
 ```
 
@@ -256,7 +256,7 @@ const result = await client.session.prompt({
     model: { providerID: "anthropic", modelID: "claude-sonnet-4" },
     parts: [{
       type: "text",
-      text: "Read master.md and projects/001_my-company/specs/spec.md, specs/design.md. Generate website to projects/001_my-company/build/"
+      text: "Read master.md and projects/001_my-company/specs/content.md, specs/technical.md. Generate website to projects/001_my-company/build/"
     }]
   }
 })
@@ -290,11 +290,11 @@ The LLM reads project specs, generates the site, and writes output to `projects/
 
 ### "Error: specs/ directory not found"
 
-Make sure the project has a `specs/` directory with `spec.md` and `design.md`:
+Make sure the project has a `specs/` directory with `content.md` and `technical.md`:
 
 ```bash
-ls projects/001_my-company/specs/spec.md
-ls projects/001_my-company/specs/design.md
+ls projects/001_my-company/specs/content.md
+ls projects/001_my-company/specs/technical.md
 ```
 
 ### "Error: project not found"

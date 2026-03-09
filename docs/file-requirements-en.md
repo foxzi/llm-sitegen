@@ -5,8 +5,8 @@ Each website generation project uses a set of files that describe content and de
 ## Contents
 
 1. [General Structure](#general-structure)
-2. [spec.md — Content](#specmd--content)
-3. [design.md — Design](#designmd--design)
+2. [content.md — Content](#contentmd--content)
+3. [technical.md — Design](#technicalmd--design)
 4. [task.md — Task](#taskmd--task)
 
 ---
@@ -19,15 +19,15 @@ Project files are located in the `projects/{id}_{name}/specs/` folder:
 projects/
   001_my-project/
     specs/
-      spec.md      # Required: content and website information
-      design.md    # Required: visual styling
+      content.md      # Required: content and website information
+      technical.md    # Required: visual styling
       task.md      # Optional: additional instructions
     build/         # Generated website
 ```
 
 ---
 
-## spec.md — Content
+## content.md — Content
 
 **Purpose:** Describes WHAT will be on the website — all text content, information structure, and business data.
 
@@ -144,7 +144,7 @@ For automatic text generation, use the syntax:
 | Testimonials | Recommended | Social proof |
 | FAQ | Recommended | Answers to common questions |
 
-### Minimal spec.md Example
+### Minimal content.md Example
 
 ```markdown
 # CleanPro - Cleaning Company
@@ -166,16 +166,16 @@ Complete cleaning with window washing and furniture cleaning.
 - Address: 123 Main Street
 ```
 
-### Full spec.md Example
+### Full content.md Example
 
 See examples in the `examples/` folder:
-- `examples/electrolux-roseville/spec.md` — complete landing page with Schema.org
-- `examples/cleaning-service/spec.md` — with content generation
-- `examples/food-delivery/spec.md` — with images
+- `examples/electrolux-roseville/content.md` — complete landing page with Schema.org
+- `examples/cleaning-service/content.md` — with content generation
+- `examples/food-delivery/content.md` — with images
 
 ---
 
-## design.md — Design
+## technical.md — Design
 
 **Purpose:** Describes HOW the website will look — visual styling, framework, colors, fonts, section structure.
 
@@ -338,7 +338,7 @@ Standard sections for landing pages:
 - Folder structure: assets/css/, assets/js/, assets/images/
 ```
 
-### Minimal design.md Example
+### Minimal technical.md Example
 
 ```markdown
 # Design
@@ -357,7 +357,7 @@ heading: Montserrat
 body: Open Sans
 ```
 
-### Full design.md Example
+### Full technical.md Example
 
 ```markdown
 # Design Settings
@@ -417,7 +417,7 @@ length: same
 
 ## task.md — Task
 
-**Purpose:** Optional file with additional instructions that don't fit in spec.md or design.md.
+**Purpose:** Optional file with additional instructions that don't fit in content.md or technical.md.
 
 ### When to Use
 
@@ -431,8 +431,8 @@ length: same
 ```markdown
 # Task
 
-Specification in `spec.md`.
-Design in `design.md`.
+Specification in `content.md`.
+Design in `technical.md`.
 
 ## Special Requirements
 
@@ -452,8 +452,8 @@ Design in `design.md`.
 ```markdown
 # Website Creation Task
 
-Website specification and content in `spec.md`.
-Technical details for website creation in `design.md`.
+Website specification and content in `content.md`.
+Technical details for website creation in `technical.md`.
 
 Create website in build/site/ folder.
 
@@ -468,7 +468,7 @@ Create website in build/site/ folder.
 
 ## Pre-generation Checklist
 
-### spec.md
+### content.md
 - [ ] Company/project name specified
 - [ ] All services/products described
 - [ ] Contact information added
@@ -476,7 +476,7 @@ Create website in build/site/ folder.
 - [ ] Testimonials added (or generation directives)
 - [ ] FAQ described (if needed)
 
-### design.md
+### technical.md
 - [ ] Site type specified
 - [ ] Framework selected
 - [ ] Color palette chosen

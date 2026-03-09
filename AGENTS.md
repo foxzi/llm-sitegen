@@ -9,7 +9,7 @@ fonts, icons, and frameworks for generating websites with LLMs. This is NOT a
 traditional software application. There is no runtime, no package.json, no compiled code.
 
 Key content: `modules/master.md` (main LLM prompt), `modules/` (all templates and assets),
-`examples/` (sample projects with spec.md + design.md), `docs/` (guides).
+`examples/` (sample projects with content.md + technical.md), `docs/` (guides).
 
 ## Build and Run
 
@@ -114,7 +114,7 @@ llm-sitegen/
     images/              # Image generation with llm-imager
     normalize/           # Post-generation color contrast fixes
   projects/              # User projects (managed by PageForge)
-  examples/              # Sample projects (spec.md + design.md pairs)
+  examples/              # Sample projects (content.md + technical.md pairs)
   docs/                  # User guides (RU + EN)
   CHANGELOG.md
 ```
@@ -128,7 +128,7 @@ Each module in `modules/` follows the same pattern:
 
 ## Generation Workflow (for reference)
 
-1. Read `spec.md` (content) and `design.md` (visual design)
+1. Read `content.md` (content) and `technical.md` (visual design)
 2. Select framework, colors, fonts, layout from `modules/`
 3. Process content: `[generate: ...]` commands and text transformations
 4. Generate images with `llm-imager` (never create shell scripts for this)

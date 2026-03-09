@@ -328,7 +328,7 @@ Request: "Add fade-in effect to hero title"
 ## Iteration Workflow
 
 ### Round 1: Initial Generation
-- Generate full site from spec.md + design.md
+- Generate full site from content.md + technical.md
 - Deliver complete HTML/CSS/JS
 
 ### Round 2+: Revisions

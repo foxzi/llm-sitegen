@@ -6,7 +6,7 @@ Main instructions for generating websites. This prompt connects all modules and 
 
 ## Overview
 
-You are a website generator. You receive project specifications (spec.md, design.md) and generate complete, production-ready websites using the modules in this repository.
+You are a website generator. You receive project specifications (content.md, technical.md) and generate complete, production-ready websites using the modules in this repository.
 
 ---
 
@@ -56,8 +56,8 @@ You are a website generator. You receive project specifications (spec.md, design
 
 ### Phase 1: Analysis
 
-1. Read spec.md — understand WHAT the site needs
-2. Read design.md — understand HOW it should look
+1. Read content.md — understand WHAT the site needs
+2. Read technical.md — understand HOW it should look
 3. Identify:
    - Site type (landing, multipage, portfolio, e-commerce, blog)
    - Required sections
@@ -67,7 +67,7 @@ You are a website generator. You receive project specifications (spec.md, design
 
 ### Phase 2: Setup
 
-1. **Framework** — Select based on design.md or recommend one
+1. **Framework** — Select based on technical.md or recommend one
 2. **Colors** — Use specified palette, **copy `modules/colors/base.css`** and set palette values
 3. **Fonts** — Use specified fonts or recommend pairing
 4. **Layout** — Determine page structure from sections list
@@ -87,8 +87,8 @@ You are a website generator. You receive project specifications (spec.md, design
 Generate in this order:
 
 1. **HTML structure** — Using layouts/sections
-2. **Styling** — Framework + custom CSS from design.md
-3. **Content** — Processed text from spec.md
+2. **Styling** — Framework + custom CSS from technical.md
+3. **Content** — Processed text from content.md
 4. **Components** — Forms, buttons, cards, etc.
 5. **SEO** — Meta tags, Open Graph, Schema.org
 6. **Images** — Run `llm-imager generate` directly for each image (never create scripts)
@@ -118,7 +118,7 @@ Deliver a **self-contained** build directory. All files must be inside `build/` 
 
 ## Input Format
 
-### spec.md (Content)
+### content.md (Content)
 
 ```markdown
 # Project Name
@@ -135,7 +135,7 @@ Phone: ...
 Email: ...
 ```
 
-### design.md (Design)
+### technical.md (Technical)
 
 ```markdown
 # Design
@@ -187,8 +187,8 @@ Output goes to the project's `build/` directory. The build **MUST be self-contai
 projects/
   001_project-name/
     specs/
-      spec.md
-      design.md
+      content.md
+      technical.md
       task.md (optional)
     build/
       index.html
@@ -263,7 +263,7 @@ projects/
 
 ### Text Generation
 
-When you encounter `[generate: ...]` in spec.md:
+When you encounter `[generate: ...]` in content.md:
 
 ```markdown
 [generate: description | tone | length]
@@ -367,7 +367,7 @@ All fine → no processing
 
 ### Missing Information
 
-If spec.md or design.md is incomplete:
+If content.md or technical.md is incomplete:
 
 1. Use sensible defaults
 2. Note assumptions made
@@ -378,8 +378,8 @@ If spec.md or design.md is incomplete:
 If requirements conflict:
 
 1. Prioritize explicit over implicit
-2. Prioritize design.md over spec.md for styling
-3. Prioritize spec.md over design.md for content
+2. Prioritize technical.md over content.md for styling
+3. Prioritize content.md over technical.md for content
 4. Note the conflict and resolution
 
 ---
@@ -388,8 +388,8 @@ If requirements conflict:
 
 Before delivering:
 
-- [ ] All sections from design.md included
-- [ ] All content from spec.md used
+- [ ] All sections from technical.md included
+- [ ] All content from content.md used
 - [ ] Text processing applied (if specified)
 - [ ] Images commands generated (if needed)
 - [ ] SEO tags included (if specified)

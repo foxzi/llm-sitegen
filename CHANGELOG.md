@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Changed
+- Rename spec.md to content.md and design.md to technical.md across all files
+- Rename example project files (spec.md -> content.md, design.md -> technical.md)
+- Update all documentation references (guides, docker docs, file requirements, README)
+- Update AGENTS.md and module prompts with new file names
+
 ### Added
 - Global modules style guide at modules/README.md
 - Image post-processing guide at modules/images/processing/README.md

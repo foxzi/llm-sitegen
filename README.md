@@ -6,14 +6,14 @@ A collection of templates and prompts for generating websites with LLMs (Claude,
 
 ## Quick Start
 
-1. Создайте `spec.md` (контент) и `design.md` (дизайн)
+1. Создайте `content.md` (контент) и `technical.md` (дизайн)
 2. Запустите генерацию:
 
 ```bash
-claude --print "$(cat master.md spec.md design.md)" "Сгенерируй сайт"
+claude --print "$(cat master.md content.md technical.md)" "Сгенерируй сайт"
 ```
 
-### Пример spec.md
+### Пример content.md
 
 ```markdown
 # My Company
@@ -29,7 +29,7 @@ We build great products since 2010.
 Phone: +1 555 123-4567
 ```
 
-### Пример design.md
+### Пример technical.md
 
 ```markdown
 ## Site Type

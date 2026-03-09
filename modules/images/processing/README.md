@@ -187,7 +187,7 @@ echo "Images processed in $OUTPUT_DIR"
 
 ## Integration with Design Spec
 
-In design.md, specify processing requirements:
+In technical.md, specify processing requirements:
 
 ```markdown
 ## Images

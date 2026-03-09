@@ -4,7 +4,7 @@ Instructions for extracting and generating SEO keywords from project specificati
 
 ## How to Use
 
-1. Analyze the project text (spec.md, design.md, or user brief)
+1. Analyze the project text (content.md, technical.md, or user brief)
 2. Extract keywords following the rules below
 3. Generate output in both formats: meta tag and content list
 

@@ -10,7 +10,7 @@ Define text processing and generation directives.
 
 ## How to Use
 
-1. Check if `task.md` or `spec.md` contains a `Text Processing` section
+1. Check if `task.md` or `content.md` contains a `Text Processing` section
 2. If present, apply the specified transformations to all text content
 3. Look for `[generate: ...]` commands to create new content
 4. Process text BEFORE generating HTML
@@ -300,7 +300,7 @@ Generate multiple items at once:
 
 Формат директив.
 
-In task.md or spec.md, text processing is specified like this:
+In task.md or content.md, text processing is specified like this:
 
 ```markdown
 # Text Processing

@@ -15,7 +15,7 @@ Define how to generate and reference local images.
 
 ## How to Use
 
-1. Add inline `![gen: ...]` directives in `spec.md`
+1. Add inline `![gen: ...]` directives in `content.md`
 2. Run `llm-imager` directly for each image
 3. Output images to `assets/images/`
 
@@ -60,7 +60,7 @@ go install github.com/foxzi/llm-imager/cmd/llm-imager@latest
 
 ## Inline Image Commands
 
-Generate images directly from spec.md using special syntax.
+Generate images directly from content.md using special syntax.
 
 ### Syntax
 
@@ -119,7 +119,7 @@ Generate images directly from spec.md using special syntax.
 ![gen: prompt | style: ... | negative: ... | quality: hd](filename size)
 ```
 
-### Usage in spec.md
+### Usage in content.md
 
 ```markdown
 # Company Website
@@ -152,7 +152,7 @@ Leading the company since 2015.
 ### Processing
 
 LLM will:
-1. Parse all `![gen: ...]` commands from spec.md
+1. Parse all `![gen: ...]` commands from content.md
 2. Run llm-imager directly for each image
 3. Replace with standard markdown images in HTML:
 
@@ -466,7 +466,7 @@ llm-imager generate -p "handshake, $STYLE" -o contact.jpg --aspect-ratio 16:9
 
 ## Integration with Design Spec
 
-In design.md, specify image requirements:
+In technical.md, specify image requirements:
 
 ```markdown
 ## Images

@@ -37,15 +37,15 @@ LLM Site Generator is a collection of templates, instructions, and resources for
 projects/
   001_my-project/
     specs/
-      spec.md      # Content and requirements
-      design.md    # Design and styling
+      content.md      # Content and requirements
+      technical.md    # Design and styling
 ```
 
 ---
 
 ## Requirements
 
-- Required input files: `spec.md`, `design.md`
+- Required input files: `content.md`, `technical.md`
 - Optional: `task.md` for additional instructions
 - All assets must be local (no CDN)
 - Output must be self-contained under `build/assets/`
@@ -56,7 +56,7 @@ projects/
   - `build/assets/icons/`
 - Image generation: only direct `llm-imager` commands (no scripts)
 
-### Step 2: Describe the project in spec.md
+### Step 2: Describe the project in content.md
 
 ```markdown
 # Project Name
@@ -73,7 +73,7 @@ Phone: +1 555 123-4567
 Address: 123 Main St, City
 ```
 
-### Step 3: Configure design in design.md
+### Step 3: Configure design in technical.md
 
 ```markdown
 # Design
@@ -93,7 +93,7 @@ body: Open Sans
 
 Provide the LLM with files as context:
 - `master.md` — main prompt (connects all modules)
-- Your project's `spec.md` and `design.md`
+- Your project's `content.md` and `technical.md`
 
 **Optional** (for detailed instructions):
 - README.md from needed folders (frameworks, layouts, colors, etc.)
@@ -106,24 +106,24 @@ Provide the LLM with files as context:
 
 ```bash
 # Basic run
-claude -p "$(cat master.md spec.md design.md)
+claude -p "$(cat master.md content.md technical.md)
 
 Generate a website according to the specification"
 
 # With additional modules
-claude -p "$(cat master.md layouts/README.md colors/README.md spec.md design.md)
+claude -p "$(cat master.md layouts/README.md colors/README.md content.md technical.md)
 
 Generate a website according to the specification"
 
 # Interactive mode with files
 claude
 > /read master.md
-> /read projects/001_my-project/specs/spec.md
-> /read projects/001_my-project/specs/design.md
+> /read projects/001_my-project/specs/content.md
+> /read projects/001_my-project/specs/technical.md
 > Generate a website according to the specification and save to projects/001_my-project/build/
 
 # Output to file
-claude -p "$(cat master.md spec.md design.md)
+claude -p "$(cat master.md content.md technical.md)
 
 Generate only the HTML code" > projects/001_my-project/build/index.html
 ```
@@ -132,35 +132,35 @@ Generate only the HTML code" > projects/001_my-project/build/index.html
 
 ```bash
 # Basic run
-codex "$(cat master.md spec.md design.md)
+codex "$(cat master.md content.md technical.md)
 
 Generate a website according to the specification"
 
 # With model specification
-codex --model gpt-4 "$(cat master.md spec.md design.md)
+codex --model gpt-4 "$(cat master.md content.md technical.md)
 
 Generate a website according to the specification"
 
 # Interactive mode
 codex
-> Read files master.md, spec.md, design.md and generate the website
+> Read files master.md, content.md, technical.md and generate the website
 ```
 
 ### OpenCode
 
 ```bash
 # Basic run (single prompt)
-opencode run "$(cat master.md spec.md design.md)
+opencode run "$(cat master.md content.md technical.md)
 
 Generate a website according to the specification"
 
 # With model specification
-opencode run --model anthropic/claude-opus-4 "$(cat master.md spec.md design.md)
+opencode run --model anthropic/claude-opus-4 "$(cat master.md content.md technical.md)
 
 Generate a website according to the specification"
 
 # With file attachments
-opencode run --file master.md --file spec.md --file design.md \
+opencode run --file master.md --file content.md --file technical.md \
   "Generate a website according to the specification"
 
 # Interactive mode (TUI)
@@ -191,14 +191,14 @@ opencode web --port 4096
 
 **Simple landing page:**
 ```bash
-claude -p "$(cat master.md layouts/README.md projects/001_my-site/specs/spec.md projects/001_my-site/specs/design.md)
+claude -p "$(cat master.md layouts/README.md projects/001_my-site/specs/content.md projects/001_my-site/specs/technical.md)
 
 Generate a landing page and save to projects/001_my-site/build/"
 ```
 
 **With image generation:**
 ```bash
-claude -p "$(cat master.md modules/images/README.md spec.md design.md)
+claude -p "$(cat master.md modules/images/README.md content.md technical.md)
 
 Generate website and run llm-imager for all images"
 ```
@@ -238,9 +238,9 @@ llm-sitegen/
 │   └── images/        # Image generation
 ├── projects/          # User projects
 │   └── 001_my-site/   # Project folder: id_name
-│       ├── specs/     # Input: spec.md, design.md, task.md
+│       ├── specs/     # Input: content.md, technical.md, task.md
 │       └── build/     # Output: generated site
-├── examples/          # Example projects (spec.md + design.md)
+├── examples/          # Example projects (content.md + technical.md)
 └── docs/              # Documentation
 ```
 
@@ -260,7 +260,7 @@ llm-sitegen/
 
 ## Creating a Task
 
-### spec.md file (content)
+### content.md file (content)
 
 Describes WHAT will be on the site:
 
@@ -290,7 +290,7 @@ A: Answer to the question.
 - Address: 123 Main St, City
 ```
 
-### design.md file (design)
+### technical.md file (design)
 
 Describes HOW the site will look:
 
@@ -485,7 +485,7 @@ There are 15,000+ SVG icons from 6 sets in `icons/`:
 
 ### Text Generation
 
-Generate content directly in spec.md:
+Generate content directly in content.md:
 
 ```markdown
 ## Services
@@ -556,7 +556,7 @@ LLM will automatically extract keywords from text. You can specify additional on
 
 ### Example 1: Service Landing Page
 
-**spec.md:**
+**content.md:**
 ```markdown
 # QuickFix - Appliance Repair
 
@@ -580,7 +580,7 @@ Address: New York, NY
 Hours: 9AM-9PM, 7 days a week
 ```
 
-**design.md:**
+**technical.md:**
 ```markdown
 # Design
 
@@ -620,7 +620,7 @@ length: same
 
 ### Example 2: Designer Portfolio
 
-**spec.md:**
+**content.md:**
 ```markdown
 # Anna Smith - UX/UI Designer
 
@@ -640,7 +640,7 @@ Email: anna@example.com
 LinkedIn: /in/annasmith
 ```
 
-**design.md:**
+**technical.md:**
 ```markdown
 # Design
 
@@ -693,7 +693,7 @@ sudo apt update && sudo apt install llm-imager
 llm-imager generate -p "image description" -o output.jpg --aspect-ratio 16:9
 ```
 
-### Inline Syntax in spec.md
+### Inline Syntax in content.md
 
 Insert generation commands directly in text:
 
@@ -714,7 +714,7 @@ Welcome to our company.
 ![gen: description | style: photorealistic | negative: text, watermarks](file.jpg 1024x1024)
 ```
 
-### Specifying in design.md
+### Specifying in technical.md
 
 ```markdown
 ## Images
@@ -792,8 +792,8 @@ After site generation, you can request changes using a structured format.
 
 ## Pre-generation Checklist
 
-- [ ] spec.md contains all content
-- [ ] design.md specifies site type
+- [ ] content.md contains all content
+- [ ] technical.md specifies site type
 - [ ] Color palette selected
 - [ ] Fonts selected
 - [ ] Required sections specified
