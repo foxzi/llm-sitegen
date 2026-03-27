@@ -19,6 +19,11 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Global modules style guide at modules/README.md
 - Image post-processing guide at modules/images/processing/README.md
+- Gallery image support: LLM instructions to preserve `/gallery/images/{uuid}/raw` URLs from content.md
+- Gallery images documentation in modules/content/README.md with syntax, rules, and examples
+- Prompt directives support: `[prompt: instruction | target: ... | tone: ... | length: ... | format: ...]` in content processing
+- Navigation from block markers: `<!-- block: type="..." id="..." -->` used to build navbar links and section anchors
+- Block markers and prompt directives documentation in modules/content/README.md
 
 ### Changed
 - Unified module README structure and bilingual layout

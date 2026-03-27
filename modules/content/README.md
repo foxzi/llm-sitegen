@@ -289,6 +289,95 @@ Generate multiple items at once:
 Удаление строительной пыли, мытьё полов и окон, вывоз мусора. Сдадим объект в идеальном состоянии.
 ```
 
+### Prompt Directives
+
+Post-processing instructions that tell the LLM to modify or improve specific parts of the content.
+
+**Syntax:**
+```markdown
+[prompt: instruction | target: ... | tone: ... | length: ... | format: ...]
+```
+
+**Parts:**
+- `instruction` — what to do (required)
+- `target` — which section/block to apply to (optional, default: surrounding context)
+- `tone` — tone of voice (optional)
+- `length` — shorter/longer/short/medium/long (optional)
+- `format` — output format, e.g. markdown (optional)
+
+**Examples:**
+```markdown
+[prompt: rewrite this section for clarity and trust | target: section "About Us" | tone: professional | length: shorter]
+[prompt: expand each service with concrete outcomes | target: section "Services" | tone: confident | length: longer]
+[prompt: improve SEO wording without keyword stuffing | target: full document | format: markdown]
+[prompt: translate content to English preserving meaning | target: section "FAQ" | format: markdown]
+```
+
+**Rules:**
+- Execute each directive in order before writing final HTML
+- Apply the result to the requested target section/content
+- Keep factual data, contacts, legal text, and prices unchanged unless explicitly requested
+- Do not copy `[prompt: ...]` directives into final HTML output
+
+### Navigation and Block Markers
+
+Content.md can define section structure using block markers. These markers determine both section layout and navbar links.
+
+**Block marker syntax:**
+```markdown
+<!-- block: type="hero" id="home" -->
+
+# Home
+
+<!-- block: type="features" id="services" -->
+
+## Services
+
+<!-- block: type="faq" id="faq" -->
+
+## FAQ
+
+<!-- block: type="contacts" id="contacts" -->
+
+## Contacts
+```
+
+**Rules:**
+- Each `id` becomes a section anchor in HTML (e.g. `<section id="services">`)
+- Navbar links are built from block ids and their headings (e.g. `<a href="#services">Services</a>`)
+- Block order in content.md determines the order of sections and nav links
+- If `navbar` is in the `## Sections` list (technical.md), generate a navbar with links to all block ids
+
+### Gallery Images
+
+User-provided images from the gallery. These are pre-uploaded images available via application URLs.
+
+**Syntax:**
+```markdown
+![filename](/gallery/images/{uuid}/raw)
+```
+
+**Example in content.md:**
+```markdown
+## Our Team
+
+![team-photo.jpg](/gallery/images/a569e87a-b4c5-46c8-817d-83ae3f9541cd/raw)
+![office.png](/gallery/images/1f9982b7-0047-4eb7-b6b7-a5f734a730ce/raw)
+```
+
+**Rules:**
+- Use the URL exactly as-is in `<img src="...">` tags
+- Do NOT replace gallery images with `![gen: ...]` generated images
+- Do NOT modify the UUID or URL path
+- The `alt` attribute should use the filename (without extension) or contextual description
+- Gallery images are resolved to local files automatically in post-processing
+
+**Output in HTML:**
+```html
+<img src="/gallery/images/a569e87a-b4c5-46c8-817d-83ae3f9541cd/raw" alt="Team photo">
+<img src="/gallery/images/1f9982b7-0047-4eb7-b6b7-a5f734a730ce/raw" alt="Office">
+```
+
 ---
 
 ## Processing Directives

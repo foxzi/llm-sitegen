@@ -62,7 +62,7 @@ You are a website generator. You receive project specifications (content.md, tec
    - Site type (landing, multipage, portfolio, e-commerce, blog)
    - Required sections
    - Content to process
-   - Images to generate
+    - Images to generate (`![gen: ...]`) and gallery images to preserve (`![...](/gallery/images/...)`)  
    - SEO requirements
 
 ### Phase 2: Setup
@@ -81,17 +81,19 @@ You are a website generator. You receive project specifications (content.md, tec
    - Apply `length` adjustment
 3. **Extract keywords** — For SEO meta tags
 4. **Run llm-imager** — Execute llm-imager directly for all `![gen: ...]` images (do NOT create scripts)
+5. **Preserve gallery images** — If content.md contains `![...](/gallery/images/{uuid}/raw)`, keep these URLs exactly as-is in `<img src="...">` tags. Do NOT replace them with generated images.
 
 ### Phase 4: Generation
 
 Generate in this order:
 
 1. **HTML structure** — Using layouts/sections
-2. **Styling** — Framework + custom CSS from technical.md
-3. **Content** — Processed text from content.md
-4. **Components** — Forms, buttons, cards, etc.
-5. **SEO** — Meta tags, Open Graph, Schema.org
-6. **Images** — Run `llm-imager generate` directly for each image (never create scripts)
+2. **Navigation** — Build navbar links from `<!-- block: type="..." id="..." -->` markers in content.md. Each block `id` becomes a section anchor (`#id`), each heading after the marker becomes a nav label.
+3. **Styling** — Framework + custom CSS from technical.md
+4. **Content** — Processed text from content.md
+5. **Components** — Forms, buttons, cards, etc.
+6. **SEO** — Meta tags, Open Graph, Schema.org
+7. **Images** — Run `llm-imager generate` directly for each image (never create scripts)
 
 ### Phase 5: Normalize
 
@@ -257,9 +259,11 @@ projects/
 
 1. Parse `[generate: ...]` commands — generate text content (services, FAQ, testimonials, CTA, etc.)
 2. Parse `![gen: ...]` commands — generate llm-imager commands for images
-3. Apply text processing if specified (rewrite, tone, length)
-4. Extract keywords from content
-5. Preserve original meaning when rewriting
+3. Parse `[prompt: instruction | target: ... | tone: ... | length: ... | format: ...]` — execute post-processing directives on content
+4. Parse `<!-- block: type="..." id="..." -->` markers — use `id` values as section anchors for navigation
+5. Apply text processing if specified (rewrite, tone, length)
+6. Extract keywords from content
+7. Preserve original meaning when rewriting
 
 ### Text Generation
 
@@ -309,6 +313,7 @@ When you encounter `[generate: ...]` in content.md:
 3. Include style consistency keywords
 4. **NEVER create shell scripts (.sh, .bat, .ps1)** — execute commands directly
 5. **NEVER save image commands to files** — run them inline, no images.sh or similar
+6. **Gallery images** — If content.md contains `![...](/gallery/images/{uuid}/raw)`, use these URLs directly in `<img src="/gallery/images/{uuid}/raw">`. Do NOT generate replacements for them. They are user-provided images that will be resolved to local files in post-processing.
 
 ### SEO
 
