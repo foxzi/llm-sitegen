@@ -4,10 +4,15 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+- Gallery placement directives: after-title, before-text, after-text, left, right, full-width, background
+- Directive syntax in alt text: `![directive: description](/gallery/images/{uuid}/raw)`
+- HTML output examples for each directive in content/README.md
+
 ### Changed
 - Gallery image placement: LLM instructions now require placing each gallery image inside the HTML section matching its position in content.md
 - master.md: strengthen gallery image rules in Phase 3, Images section, and checklist
-- content/README.md: add section-matching rule for gallery image placement
+- content/README.md: add section-matching rule and placement directives documentation
 
 ### Fixed
 - Remove duplicate horizontal rules in docs/guide-en.md and docs/guide-ru.md

@@ -369,14 +369,75 @@ User-provided images from the gallery. These are pre-uploaded images available v
 - Use the URL exactly as-is in `<img src="...">` tags
 - Do NOT replace gallery images with `![gen: ...]` generated images
 - Do NOT modify the UUID or URL path
-- The `alt` attribute should use the filename (without extension) or contextual description
 - Gallery images are resolved to local files automatically in post-processing
 - **Place each image in the HTML section matching its position in content.md.** If an image is under `## Our Team`, the `<img>` must be inside the "Our Team" section in the generated HTML. Never group all gallery images together or move them to the end of the page.
 
-**Output in HTML:**
+### Placement Directives
+
+Gallery images can include a **placement directive** prefix in the alt text to control their position within the section.
+
+**Syntax:**
+```markdown
+![directive: description](/gallery/images/{uuid}/raw)
+```
+
+**Available directives:**
+
+| Directive | Meaning | HTML result |
+|---|---|---|
+| `after-title:` | Immediately after the section heading | `<img>` right after `<h2>` |
+| `before-text:` | Before the text content | `<img>` before first `<p>` |
+| `after-text:` | After the text content | `<img>` after last `<p>` |
+| `left:` | Float left, text wraps right | `<img>` with `float:left` or framework float class |
+| `right:` | Float right, text wraps left | `<img>` with `float:right` or framework float class |
+| `full-width:` | Full container width | `<img>` with `width:100%` |
+| `background:` | Section background image | `background-image` CSS on the `<section>` |
+| _(no directive)_ | Auto placement | LLM decides based on context |
+
+**Example in content.md:**
+```markdown
+## Hero
+
+![background: city-skyline.jpg](/gallery/images/a569e87a-b4c5-46c8-817d-83ae3f9541cd/raw)
+
+## Our Team
+
+We are a team of professionals.
+
+![right: team-photo.jpg](/gallery/images/1f9982b7-0047-4eb7-b6b7-a5f734a730ce/raw)
+
+## Portfolio
+
+![full-width: project-banner.jpg](/gallery/images/c3d4e5f6-1234-5678-9abc-def012345678/raw)
+```
+
+**Rules for directives:**
+- Strip the directive prefix from the final HTML `alt` attribute (e.g. `![right: Team photo](...)` becomes `alt="Team photo"`)
+- If no directive is present, use the filename (without extension) as alt text and place the image contextually
+- The directive only affects position within the section, not which section the image belongs to (that is determined by the heading above it)
+
+**Output examples:**
+
+After-title:
 ```html
-<img src="/gallery/images/a569e87a-b4c5-46c8-817d-83ae3f9541cd/raw" alt="Team photo">
-<img src="/gallery/images/1f9982b7-0047-4eb7-b6b7-a5f734a730ce/raw" alt="Office">
+<section id="about">
+  <h2>About Us</h2>
+  <img src="/gallery/images/{uuid}/raw" alt="Office">
+  <p>We are a company...</p>
+</section>
+```
+
+Left float:
+```html
+<img src="/gallery/images/{uuid}/raw" alt="Team photo" style="float:left;margin:0 1.5rem 1rem 0;max-width:40%;">
+<p>We are a team of professionals...</p>
+```
+
+Background:
+```html
+<section id="hero" style="background-image:url('/gallery/images/{uuid}/raw');background-size:cover;">
+  <h1>Welcome</h1>
+</section>
 ```
 
 ---
