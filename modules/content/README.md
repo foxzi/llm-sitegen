@@ -371,6 +371,7 @@ User-provided images from the gallery. These are pre-uploaded images available v
 - Do NOT modify the UUID or URL path
 - The `alt` attribute should use the filename (without extension) or contextual description
 - Gallery images are resolved to local files automatically in post-processing
+- **Place each image in the HTML section matching its position in content.md.** If an image is under `## Our Team`, the `<img>` must be inside the "Our Team" section in the generated HTML. Never group all gallery images together or move them to the end of the page.
 
 **Output in HTML:**
 ```html

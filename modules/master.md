@@ -81,7 +81,7 @@ You are a website generator. You receive project specifications (content.md, tec
    - Apply `length` adjustment
 3. **Extract keywords** — For SEO meta tags
 4. **Run llm-imager** — Execute llm-imager directly for all `![gen: ...]` images (do NOT create scripts)
-5. **Preserve gallery images** — If content.md contains `![...](/gallery/images/{uuid}/raw)`, keep these URLs exactly as-is in `<img src="...">` tags. Do NOT replace them with generated images.
+5. **Preserve gallery images** — If content.md contains `![...](/gallery/images/{uuid}/raw)`, keep these URLs exactly as-is in `<img src="...">` tags. Do NOT replace them with generated images. **Place each gallery image inside the same section where it appears in content.md.** For example, if an image is under `## Our Team` in content.md, the `<img>` tag must go inside the "Our Team" `<section>` in HTML.
 
 ### Phase 4: Generation
 
@@ -313,7 +313,7 @@ When you encounter `[generate: ...]` in content.md:
 3. Include style consistency keywords
 4. **NEVER create shell scripts (.sh, .bat, .ps1)** — execute commands directly
 5. **NEVER save image commands to files** — run them inline, no images.sh or similar
-6. **Gallery images** — If content.md contains `![...](/gallery/images/{uuid}/raw)`, use these URLs directly in `<img src="/gallery/images/{uuid}/raw">`. Do NOT generate replacements for them. They are user-provided images that will be resolved to local files in post-processing.
+6. **Gallery images** — If content.md contains `![...](/gallery/images/{uuid}/raw)`, use these URLs directly in `<img src="/gallery/images/{uuid}/raw">`. Do NOT generate replacements for them. They are user-provided images that will be resolved to local files in post-processing. **CRITICAL: Each gallery image MUST appear in the same HTML section as the heading it appears under in content.md.** If an image is placed under `## Hero` in content.md, it must be inside the hero section in HTML. Never collect all gallery images into one place or skip them.
 
 ### SEO
 
@@ -404,6 +404,7 @@ Before delivering:
 - [ ] Clean, consistent code
 - [ ] File structure organized
 - [ ] **Build is self-contained** — all CSS, JS, fonts copied into `build/assets/`
+- [ ] **Gallery images placed in correct sections** (matching their position in content.md)
 - [ ] **No references to `modules/`** or paths outside `build/` in any HTML/CSS file
 
 ---
